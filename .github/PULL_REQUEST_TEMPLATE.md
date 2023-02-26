@@ -7,5 +7,5 @@
 ## Description
 - 부가 설명
 
-## Viuals
+## Visuals
 - 스크린샷, gif, 동영상 등 
