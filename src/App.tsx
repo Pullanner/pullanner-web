@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
-import { Root, Error } from '@/pages';
+import { Root, Error, Login } from '@/pages';
 
 const queryClient = new QueryClient();
 
@@ -12,6 +12,13 @@ const router = createBrowserRouter([
     path: '/',
     element: <Root />,
     errorElement: <Error />,
+    children: [
+      {
+        path: '/login',
+        element: <Login />,
+        errorElement: <Error />,
+      },
+    ],
   },
 ]);
 
