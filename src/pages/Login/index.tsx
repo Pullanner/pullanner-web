@@ -1,4 +1,4 @@
-import { GoogleLoginButton, KakaoLoginButton, NaverLoginButton } from './Button';
+import { GoogleLoginButton, KakaoLoginButton, NaverLoginButton } from '@/components/LoginButton';
 
 export const Login = () => {
   return (
