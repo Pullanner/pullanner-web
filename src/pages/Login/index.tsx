@@ -1,4 +1,24 @@
-import { GoogleLoginButton, KakaoLoginButton, NaverLoginButton } from '@/components/LoginButton';
+import { LoginButton } from '@/components/LoginButton';
+
+type LoginButtonData = {
+  platform: 'kakao' | 'naver' | 'google';
+  iconURL: string;
+};
+
+const loginButtonData: LoginButtonData[] = [
+  {
+    platform: 'kakao',
+    iconURL: '/assets/kakao-icon.svg',
+  },
+  {
+    platform: 'naver',
+    iconURL: '/assets/naver-icon.svg',
+  },
+  {
+    platform: 'google',
+    iconURL: '/assets/google-icon.svg',
+  },
+];
 
 export const Login = () => {
   return (
@@ -9,9 +29,9 @@ export const Login = () => {
       <h3 className="mb-9 font-sans text-sm font-normal text-white tracking-tight">
         로그인 후 플래너의 다양한 기능을 사용해보세요
       </h3>
-      <KakaoLoginButton />
-      <NaverLoginButton />
-      <GoogleLoginButton />
+      {loginButtonData.map(({ platform, iconURL }) => {
+        return <LoginButton key={platform} platform={platform} iconURL={iconURL} />;
+      })}
     </>
   );
 };
