@@ -1,4 +1,2 @@
-export * from './ErrorPage';
+export * from './Error';
 export * from './Root';
-export * from './Login';
-export * from './LoginLoading';
