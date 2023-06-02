@@ -29,15 +29,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
-          cache-dependency-path: './package-lock.json'
+          cache: 'yarn'
+          cache-dependency-path: './yarn.lock'
 
-      - name: npm install
-        run: npm ci
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
       - name: Build project
         run: |
-          npm run build --if-present
+          yarn build --if-present
 
       - name: init build outputs at AWS EC2
         uses: appleboy/ssh-action@master
