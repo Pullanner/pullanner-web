@@ -12,7 +12,7 @@ export const LoginLoading = () => {
   }, [navigate]);
 
   useEffect(() => {
-    const accessTokenValue = getCookie('accessToken');
+    const accessTokenValue = getCookie('auth');
     if (accessTokenValue) {
       setAccessToken(accessTokenValue);
     }
