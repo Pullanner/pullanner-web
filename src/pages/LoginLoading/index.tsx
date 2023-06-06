@@ -1,4 +1,4 @@
-import { accessTokenAtom } from '@/stores/accessTokenAtom';
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { getCookie } from '@/utils/cookie';
 import { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
