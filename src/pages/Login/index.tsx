@@ -27,12 +27,6 @@ export const Login = () => {
       {LOGIN_BUTTON_DATA.map(({ platform, iconURL }) => {
         return <LoginButton key={platform} platform={platform} iconURL={iconURL} />;
       })}
-      {LOGIN_BUTTON_DATA.map(({ platform, iconURL }) => {
-        return <LoginButton key={platform} platform={platform} iconURL={iconURL} />;
-      })}
-      {LOGIN_BUTTON_DATA.map(({ platform, iconURL }) => {
-        return <LoginButton key={platform} platform={platform} iconURL={iconURL} />;
-      })}
     </div>
   );
 };
