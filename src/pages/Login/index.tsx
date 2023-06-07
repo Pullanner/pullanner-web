@@ -22,7 +22,7 @@ const loginButtonData: LoginButtonData[] = [
 
 export const Login = () => {
   return (
-    <>
+    <div className="flex flex-col justify-center items-center my-52">
       <h1 className="mb-14">
         <img src="/assets/logo.svg" alt="Logo" />
       </h1>
@@ -32,6 +32,6 @@ export const Login = () => {
       {loginButtonData.map(({ platform, iconURL }) => {
         return <LoginButton key={platform} platform={platform} iconURL={iconURL} />;
       })}
-    </>
+    </div>
   );
 };
