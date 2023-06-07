@@ -27,7 +27,7 @@ export const Header = () => {
         <img src="/assets/logo.svg" alt="Logo" />
       </Link>
       {isLogin ? (
-        <Link to="/myPage">
+        <Link to="/mypage">
           <img src="/assets/user-icon.svg" alt="userIcon" />
         </Link>
       ) : (
