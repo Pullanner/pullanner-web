@@ -1,22 +1,25 @@
+import { usePreviousPage } from '@/hooks/usePreviuosPage';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { getCookie } from '@/utils/cookie';
-import { useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+
+const ACCESS_TOKEN_COOKIE_KEY = 'auth';
+const PREVIOUS_PAGE_NUMBER = -2;
 
 export const LoginLoading = () => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
-  const navigate = useNavigate();
-  const goBack = useCallback(() => {
-    navigate(-2);
-  }, [navigate]);
+  const setLoginState = useSetRecoilState(loginStateAtom);
+  const handleBackButtonClick = usePreviousPage(PREVIOUS_PAGE_NUMBER);
 
   useEffect(() => {
-    const accessTokenValue = getCookie('auth');
-    if (accessTokenValue) {
+    const accessTokenValue = getCookie(ACCESS_TOKEN_COOKIE_KEY);
+    if (accessTokenValue?.length) {
       setAccessToken(accessTokenValue);
+      setLoginState(true);
     }
-  }, [setAccessToken]);
+  }, [setAccessToken, setLoginState]);
 
   return (
     <>
@@ -24,7 +27,7 @@ export const LoginLoading = () => {
       {accessToken && (
         <button
           type="button"
-          onClick={goBack}
+          onClick={handleBackButtonClick}
           className="font-sans text-sm mt-5 px-5 py-2.5 bg-teal-300 rounded"
         >
           이전 페이지로 이동하기
