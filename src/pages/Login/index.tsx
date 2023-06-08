@@ -3,15 +3,15 @@ import { LoginButton } from '@/components/LoginButton';
 const LOGIN_BUTTON_DATA = [
   {
     platform: 'kakao',
-    iconURL: '/assets/kakao-icon.svg',
+    iconURL: '/assets/images/kakao-icon.svg',
   },
   {
     platform: 'naver',
-    iconURL: '/assets/naver-icon.svg',
+    iconURL: '/assets/images/naver-icon.svg',
   },
   {
     platform: 'google',
-    iconURL: '/assets/google-icon.svg',
+    iconURL: '/assets/images/google-icon.svg',
   },
 ] as const;
 

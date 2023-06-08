@@ -20,18 +20,18 @@ export const Header = () => {
         className={`${BACK_BUTTON_VISIBILITY[isMainPage]}`}
         onClick={handleBackButtonClick}
       >
-        <img src="/assets/back-button.svg" alt="backButton" />
+        <img src="/assets/images/back-button.svg" alt="backButton" />
       </button>
       <Link to="/">
-        <img src="/assets/logo.svg" alt="Logo" />
+        <img src="/assets/images/logo.svg" alt="Logo" />
       </Link>
       {isLogin ? (
         <Link to="/mypage">
-          <img src="/assets/user-icon.svg" alt="userIcon" />
+          <img src="/assets/images/user-icon.svg" alt="userIcon" />
         </Link>
       ) : (
         <Link to="/login">
-          <img src="/assets/user-icon.svg" alt="userIcon" />
+          <img src="/assets/images/user-icon.svg" alt="userIcon" />
         </Link>
       )}
     </header>
