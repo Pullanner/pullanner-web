@@ -28,17 +28,17 @@ const ICON_LINK_DATA = [
   },
 ] as const;
 
-type IconLinkProps = {
+type IconLinkData = {
   name: string;
   linkPath: string;
   iconClass: string;
 };
 
-type Props = {
-  iconLinkProps: IconLinkProps;
+type IconLinkProps = {
+  iconLinkProps: IconLinkData;
 };
 
-const IconLink = ({ iconLinkProps }: Props) => {
+const IconLink = ({ iconLinkProps }: IconLinkProps) => {
   const { name, linkPath, iconClass } = iconLinkProps;
 
   return (
@@ -57,7 +57,7 @@ const IconLink = ({ iconLinkProps }: Props) => {
 export const BottomNavigationBar = () => {
   return (
     <nav className="absolute bottom-0 flex justify-around w-96 h-20 border border-white rounded-t-[20px] bg-black">
-      {ICON_LINK_DATA.map((iconLinkData: IconLinkProps) => {
+      {ICON_LINK_DATA.map((iconLinkData: IconLinkData) => {
         return <IconLink key={iconLinkData.name} iconLinkProps={iconLinkData} />;
       })}
     </nav>
