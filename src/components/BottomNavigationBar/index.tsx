@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 const NAVLINK_CLASS_VARIANTS = {
   active: 'flex flex-col justify-center items-center text-teal-300',
-  nonactive: 'flex flex-col justify-center items-center text-white',
+  inactive: 'flex flex-col justify-center items-center text-white',
 } as const;
 
 export const BottomNavigationBar = () => {
@@ -11,7 +11,7 @@ export const BottomNavigationBar = () => {
       <NavLink
         to="/"
         className={({ isActive }) => {
-          return isActive ? NAVLINK_CLASS_VARIANTS.active : NAVLINK_CLASS_VARIANTS.nonactive;
+          return isActive ? NAVLINK_CLASS_VARIANTS.active : NAVLINK_CLASS_VARIANTS.inactive;
         }}
       >
         <i className="icon-roadmap-icon" />
@@ -20,7 +20,7 @@ export const BottomNavigationBar = () => {
       <NavLink
         to="/journal"
         className={({ isActive }) => {
-          return isActive ? NAVLINK_CLASS_VARIANTS.active : NAVLINK_CLASS_VARIANTS.nonactive;
+          return isActive ? NAVLINK_CLASS_VARIANTS.active : NAVLINK_CLASS_VARIANTS.inactive;
         }}
       >
         <i className="icon-journal-icon" />
@@ -29,7 +29,7 @@ export const BottomNavigationBar = () => {
       <NavLink
         to="/dashboard"
         className={({ isActive }) => {
-          return isActive ? NAVLINK_CLASS_VARIANTS.active : NAVLINK_CLASS_VARIANTS.nonactive;
+          return isActive ? NAVLINK_CLASS_VARIANTS.active : NAVLINK_CLASS_VARIANTS.inactive;
         }}
       >
         <i className="icon-dashboard-icon" />
@@ -38,7 +38,7 @@ export const BottomNavigationBar = () => {
       <NavLink
         to="/community"
         className={({ isActive }) => {
-          return isActive ? NAVLINK_CLASS_VARIANTS.active : NAVLINK_CLASS_VARIANTS.nonactive;
+          return isActive ? NAVLINK_CLASS_VARIANTS.active : NAVLINK_CLASS_VARIANTS.inactive;
         }}
       >
         <i className="icon-community-icon" />
