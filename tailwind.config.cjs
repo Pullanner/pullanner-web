@@ -6,16 +6,16 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      color: {
-        naverColor: '00BF18',
+      colors: {
+        naver: '#00BF18',
+        kakao: '#FBE950',
+        primary: '#60EBD1',
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       spacing: {
         mobileHeight: '844px',
-        18: '18px',
-        300: '300px',
       },
     },
   },
