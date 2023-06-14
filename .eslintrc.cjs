@@ -37,7 +37,7 @@ module.exports = {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
         pathGroups: [
           {
-            pattern: '@/*',
+            pattern: '@/**',
             group: 'internal',
             position: 'after',
           },

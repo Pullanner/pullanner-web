@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 const NAVLINK_CLASS_VARIANTS = {
-  active: 'flex flex-col justify-center items-center text-teal-300',
+  active: 'flex flex-col justify-center items-center text-primary',
   inactive: 'flex flex-col justify-center items-center text-white',
 } as const;
 
