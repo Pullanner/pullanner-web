@@ -1,6 +1,6 @@
-export const PATH = {
+export const ROUTE_PATH = {
   root: '/',
   login: '/login',
   callback: '/callback',
-  mypage: '/my-page',
+  myPage: '/my-page',
 } as const;

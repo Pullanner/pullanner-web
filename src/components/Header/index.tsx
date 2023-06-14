@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
+import { ROUTE_PATH } from '@/constants/routePath';
 import { usePreviousPage } from '@/hooks/usePreviuosPage';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 
@@ -23,15 +24,15 @@ export const Header = () => {
       >
         <img src="/assets/images/back-button.svg" alt="backButton" />
       </button>
-      <Link to="/">
+      <Link to={ROUTE_PATH.root}>
         <img src="/assets/images/logo.svg" alt="Logo" />
       </Link>
       {isLogin ? (
-        <Link to="/mypage">
+        <Link to={ROUTE_PATH.myPage}>
           <img src="/assets/images/user-icon.svg" alt="userIcon" />
         </Link>
       ) : (
-        <Link to="/login">
+        <Link to={ROUTE_PATH.login}>
           <img src="/assets/images/user-icon.svg" alt="userIcon" />
         </Link>
       )}
