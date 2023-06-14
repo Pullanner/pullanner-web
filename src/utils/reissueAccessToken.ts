@@ -1,18 +1,14 @@
 import axios, { AxiosResponse } from 'axios';
 
 import { authInstance } from '@/lib/axios/authInstance';
-import { getCookie } from '@/utils/cookie';
 
-const REFRESH_TOKEN_COOKIE_KEY = 'renew';
 const REISSUE_TOKEN_PATH = '/api/token';
 
 export const reissueAccessToken = async () => {
-  const refreshToken = getCookie(REFRESH_TOKEN_COOKIE_KEY);
-  authInstance.defaults.headers.Authorization = `Bearer ${refreshToken}`;
   try {
     const {
       data: { accessToken: newAccessToken },
-    } = await axios.post(REISSUE_TOKEN_PATH);
+    } = await authInstance.post(REISSUE_TOKEN_PATH);
     return newAccessToken;
   } catch (error) {
     if (axios.isAxiosError(error)) {
