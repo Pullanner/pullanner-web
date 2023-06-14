@@ -1,7 +1,8 @@
-import { usePreviousPage } from '@/hooks/usePreviuosPage';
-import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { Link, useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+
+import { usePreviousPage } from '@/hooks/usePreviuosPage';
+import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 
 const BACK_BUTTON_VISIBILITY = {
   true: 'invisible',

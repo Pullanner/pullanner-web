@@ -1,6 +1,7 @@
+import axios, { AxiosResponse } from 'axios';
+
 import { authInstance } from '@/lib/axios/authInstance';
 import { getCookie } from '@/utils/cookie';
-import axios, { AxiosResponse } from 'axios';
 
 const REFRESH_TOKEN_COOKIE_KEY = 'renew';
 const REISSUE_TOKEN_PATH = '/api/token';

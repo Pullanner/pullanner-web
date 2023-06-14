@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+
 import { usePreviousPage } from '@/hooks/usePreviuosPage';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { getCookie } from '@/utils/cookie';
-import { useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
 
 const ACCESS_TOKEN_COOKIE_KEY = 'auth';
 const PREVIOUS_PAGE_NUMBER = -2;
