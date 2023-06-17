@@ -1,13 +1,15 @@
-import { authInstance } from '@/lib/axios/authInstance';
-import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
-import { reissueAccessToken } from '@/utils/reissueAccessToken';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
 
-export const useAuthGetApi = async (url: string) => {
+import { ApiPathType } from '@/constants';
+import { authInstance } from '@/lib/axios/authInstance';
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { reissueAccessToken } from '@/utils/reissueAccessToken';
+
+export const useAuthGetApi = async (apiPath: ApiPathType) => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
   try {
-    const { data } = await authInstance.get(url, {
+    const { data } = await authInstance.get(apiPath, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -21,10 +23,10 @@ export const useAuthGetApi = async (url: string) => {
   }
 };
 
-export const useAuthPostApi = async <T>(url: string, payload: T) => {
+export const useAuthPostApi = async <T>(apiPath: string, payload: T) => {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
   try {
-    const { data } = await authInstance.post(url, payload, {
+    const { data } = await authInstance.post(apiPath, payload, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
