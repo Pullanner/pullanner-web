@@ -1,1 +1,2 @@
-export * from './path';
+export * from './routePath';
+export * from './apiPath';
