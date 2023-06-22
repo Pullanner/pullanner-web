@@ -14,8 +14,11 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      fontSize: {
+        main: '0.938rem',
+      },
       spacing: {
-        mobileHeight: '844px',
+        mobileHeight: '52.75rem',
       },
     },
   },
