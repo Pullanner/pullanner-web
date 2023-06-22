@@ -1,14 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
 
+import { API_PATH } from '@/constants/apiPath';
 import { authInstance } from '@/lib/axios/authInstance';
-
-const REISSUE_TOKEN_PATH = '/api/token';
 
 export const reissueAccessToken = async () => {
   try {
     const {
       data: { accessToken: newAccessToken },
-    } = await authInstance.post(REISSUE_TOKEN_PATH);
+    } = await authInstance.post(API_PATH.token);
     return newAccessToken;
   } catch (error) {
     if (axios.isAxiosError(error)) {
