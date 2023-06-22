@@ -20,7 +20,11 @@ export const MyPage = () => {
   };
   return (
     <div className="flex flex-col justify-center items-center border-t-0">
-      <UserSection profileImage={data?.profileImage} nickName={data?.nickName} />
+      <UserSection
+        profileImage={data?.profileImage}
+        nickName={data?.nickName}
+        email={data?.email}
+      />
       <ProgressSection />
       <TabSection />
       <LargeBlockButton name="로그아웃" handler={handleLogoutButtonClick} />
