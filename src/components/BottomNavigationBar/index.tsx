@@ -49,7 +49,7 @@ const IconLink = ({ iconLinkProps }: IconLinkProps) => {
       }}
     >
       <i className={iconClass} />
-      <span className="mt-1.5 font-sans text-xs font-medium">{name}</span>
+      <span className="mt-1.5 text-xs font-medium">{name}</span>
     </NavLink>
   );
 };

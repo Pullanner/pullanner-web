@@ -24,12 +24,12 @@ export const LoginLoading = () => {
 
   return (
     <>
-      <div className="font-sans text-xl text-white">Loading...</div>
+      <div className="text-xl text-white">Loading...</div>
       {accessToken && (
         <button
           type="button"
           onClick={handleBackButtonClick}
-          className="font-sans text-sm mt-5 px-5 py-2.5 bg-teal-300 rounded"
+          className="text-sm mt-5 px-5 py-2.5 bg-teal-300 rounded"
         >
           이전 페이지로 이동하기
         </button>
