@@ -28,7 +28,7 @@ export const Header = () => {
         <img src="/assets/images/logo.svg" alt="Logo" />
       </Link>
       {isLogin ? (
-        <Link to={ROUTE_PATH.myPage}>
+        <Link to={ROUTE_PATH.myPage.index}>
           <img src="/assets/images/user-icon.svg" alt="userIcon" />
         </Link>
       ) : (
