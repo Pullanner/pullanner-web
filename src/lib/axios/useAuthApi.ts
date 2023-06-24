@@ -1,13 +1,15 @@
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
+import { Dispatch, SetStateAction } from 'react';
 
 import { ApiPathType } from '@/constants';
 import { authInstance } from '@/lib/axios/authInstance';
-import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { reissueAccessToken } from '@/utils/reissueAccessToken';
 
-export const useAuthGetApi = async (apiPath: ApiPathType) => {
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
+export const getAuthRequest = async (
+  apiPath: ApiPathType,
+  accessToken: string,
+  setAccessToken: Dispatch<SetStateAction<string>>,
+) => {
   try {
     const { data } = await authInstance.get(apiPath, {
       headers: {
@@ -23,8 +25,12 @@ export const useAuthGetApi = async (apiPath: ApiPathType) => {
   }
 };
 
-export const useAuthPostApi = async <T>(apiPath: string, payload: T) => {
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
+export const postAuthRequest = async <T>(
+  apiPath: string,
+  payload: T,
+  accessToken: string,
+  setAccessToken: Dispatch<SetStateAction<string>>,
+) => {
   try {
     const { data } = await authInstance.post(apiPath, payload, {
       headers: {
