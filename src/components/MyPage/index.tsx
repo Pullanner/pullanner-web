@@ -1,3 +1,3 @@
 export * from './ProgressSection';
-export * from './TabSecion';
+export * from './TabSection';
 export * from './UserSection';

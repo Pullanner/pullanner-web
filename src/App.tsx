@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
-import { CommunityList, CommentList } from '@/components/MyPage/TabSecion';
+import { CommunityList, CommentList } from '@/components/MyPage/TabSection';
 import { ROUTE_PATH } from '@/constants';
 import { Root, ErrorPage, Login, LoginLoading, MyPage } from '@/pages';
 
