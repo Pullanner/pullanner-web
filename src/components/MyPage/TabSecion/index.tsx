@@ -1,8 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
 import { Tabs } from '@/components/Tabs';
-
-import { MY_PAGE_TABS, MY_PAGE_TAB_STYLE } from '../../../pages/MyPage/constants';
+import { MY_PAGE_TABS, MY_PAGE_TAB_STYLE } from '@/pages/MyPage/constants';
 
 export const TabSection = () => {
   return (
