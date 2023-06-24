@@ -28,7 +28,7 @@ export const MyPage = () => {
         nickName={data?.nickName}
         email={data?.email}
       />
-      <ProgressSection />
+      <ProgressSection journalCount={data?.journalCount} level={data?.level} />
       <TabSection />
       <LargeBlockButton name="로그아웃" handler={handleLogoutButtonClick} />
     </div>
