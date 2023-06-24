@@ -1,14 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+// import { Dispatch, SetStateAction } from 'react';
 
 import { API_PATH } from '@/constants/apiPath';
-// import { useAuthGetApi } from '@/lib/axios/useAuthApi';
+// import { getAuthRequest } from '@/lib/axios/useAuthApi';
 
 import { queryKeys } from './queryKeys';
-
-// const useGetUserData = () => {
-//   return useAuthGetApi(API_PATH.user);
-// };
 
 const getUserDataTest = async () => {
   try {
@@ -25,3 +22,13 @@ export const useUserData = () => {
     queryFn: getUserDataTest,
   });
 };
+
+// 실제 API 요청에 대한 useQuery
+// export const useUserData = (
+//   accessToken: string,
+//   setAccessToken: Dispatch<SetStateAction<string>>,
+// ) => {
+//   return useQuery([queryKeys.userData, accessToken, setAccessToken], () => {
+//     return getAuthRequest(API_PATH.user, accessToken, setAccessToken);
+//   });
+// };
