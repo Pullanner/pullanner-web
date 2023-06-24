@@ -3,6 +3,9 @@ export const getPercent = (currentAmount: number, totalAmount: number) => {
 };
 
 export const getPercentWidth = (percent: number) => {
+  if (percent === 0) {
+    return 'w-0';
+  }
   if (percent < 10) {
     return 'w-[5%]';
   }
