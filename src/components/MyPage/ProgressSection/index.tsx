@@ -1,5 +1,6 @@
+import { ProgressBar } from '@/components/ProgressBar';
 import { MAX_JOURNAL_COUNT_BY_LEVEL } from '@/constants';
-import { getPercent, getPercentWidth } from '@/utils/percent';
+import { getPercent } from '@/utils/percent';
 
 type ProgressSectionProps = {
   journalCount: number | null;
@@ -10,17 +11,13 @@ export const ProgressSection = ({ journalCount, level }: ProgressSectionProps) =
   const currentJournalCount = journalCount || 0;
   const currentLevel = level || 1;
   const percent = getPercent(currentJournalCount, MAX_JOURNAL_COUNT_BY_LEVEL[currentLevel]);
-  const progressWidth = getPercentWidth(percent);
+  const remainingJournalCount = MAX_JOURNAL_COUNT_BY_LEVEL[currentLevel] - currentJournalCount;
+
   return (
     <section className="w-full px-6 ">
-      <div className="h-2.5 bg-gray-200 rounded-full">
-        <div className={`${progressWidth} h-2.5 bg-primary rounded-full`} />
-      </div>
+      <ProgressBar percent={percent} />
       <div className="flex mt-2 justify-between text-xs text-white">
-        <span>
-          저널 {MAX_JOURNAL_COUNT_BY_LEVEL[currentLevel] - currentJournalCount}개만 더 작성하면
-          레벨업
-        </span>
+        <span>{`저널 ${remainingJournalCount}개만 더 작성하면 레벨업`}</span>
         <span>{`${currentJournalCount} / ${MAX_JOURNAL_COUNT_BY_LEVEL[currentLevel]}`}</span>
       </div>
     </section>
