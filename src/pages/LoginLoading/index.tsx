@@ -1,7 +1,7 @@
+import { useAtom, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
 
-import { usePreviousPage } from '@/hooks/usePreviuosPage';
+import { usePreviousPage } from '@/hooks/usePreviousPage';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { getCookie } from '@/utils/cookie';
@@ -10,8 +10,8 @@ const ACCESS_TOKEN_COOKIE_KEY = 'auth';
 const PREVIOUS_PAGE_NUMBER = -2;
 
 export const LoginLoading = () => {
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenAtom);
-  const setLoginState = useSetRecoilState(loginStateAtom);
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const setLoginState = useSetAtom(loginStateAtom);
   const handleBackButtonClick = usePreviousPage(PREVIOUS_PAGE_NUMBER);
 
   useEffect(() => {
