@@ -22,7 +22,7 @@ export const MyPage = () => {
     navigate(ROUTE_PATH.root);
   };
   return (
-    <div className="flex flex-col justify-center items-center border-t-0">
+    <div className="border-t-0">
       <UserSection
         profileImage={data?.profileImage}
         nickName={data?.nickName}

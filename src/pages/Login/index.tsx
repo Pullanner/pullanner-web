@@ -17,7 +17,7 @@ const LOGIN_BUTTON_DATA = [
 
 export const Login = () => {
   return (
-    <div className="flex flex-col justify-center items-center my-52">
+    <div className="my-52">
       <h1 className="mb-14">
         <img src="/assets/images/logo.svg" alt="Logo" />
       </h1>
