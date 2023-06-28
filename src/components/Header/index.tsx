@@ -1,8 +1,8 @@
+import { useAtomValue } from 'jotai';
 import { Link, useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 
 import { ROUTE_PATH } from '@/constants/routePath';
-import { usePreviousPage } from '@/hooks/usePreviuosPage';
+import { usePreviousPage } from '@/hooks/usePreviousPage';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 
 const BACK_BUTTON_VISIBILITY = {
@@ -13,8 +13,9 @@ const BACK_BUTTON_VISIBILITY = {
 export const Header = () => {
   const location = useLocation();
   const isMainPage = location.pathname === '/' ? 'true' : 'false';
-  const isLogin = useRecoilValue(loginStateAtom);
+  const isLogin = useAtomValue(loginStateAtom);
   const handleBackButtonClick = usePreviousPage();
+
   return (
     <header className="flex justify-between h-12 p-5 bg-black">
       <button

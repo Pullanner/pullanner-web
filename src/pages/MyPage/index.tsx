@@ -1,5 +1,5 @@
+import { useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 
 import { LargeBlockButton } from '@/components/LargeBlockButton';
 import { ProgressSection, UserSection, TabSection } from '@/components/MyPage';
@@ -11,8 +11,8 @@ import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 
 export const MyPage = () => {
   const { data } = useUserData();
-  const setAccessToken = useSetRecoilState(accessTokenAtom);
-  const setLoginState = useSetRecoilState(loginStateAtom);
+  const setAccessToken = useSetAtom(accessTokenAtom);
+  const setLoginState = useSetAtom(loginStateAtom);
   const navigate = useNavigate();
 
   const handleLogoutButtonClick = () => {

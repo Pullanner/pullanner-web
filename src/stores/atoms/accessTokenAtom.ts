@@ -1,6 +1,12 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
 
-export const accessTokenAtom = atom({
-  key: 'accessToken',
-  default: '',
-});
+export const accessTokenAtom = atom('');
+
+export const readWriteAtom = atom(
+  (get) => {
+    return get(accessTokenAtom);
+  },
+  (get, set, newAccessToken: string) => {
+    set(accessTokenAtom, newAccessToken);
+  },
+);
