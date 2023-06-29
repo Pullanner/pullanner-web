@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
-import { LargeBlockButton } from '@/components/LargeBlockButton';
+import { DimmedButton } from '@/components/DimmedButton';
 import { ProgressSection, UserSection, TabSection } from '@/components/MyPage';
 import { API_PATH, ROUTE_PATH } from '@/constants';
 import { authInstance } from '@/lib/axios/authInstance';
@@ -22,7 +22,7 @@ export const MyPage = () => {
     navigate(ROUTE_PATH.root);
   };
   return (
-    <div className="border-t-0">
+    <div>
       <UserSection
         profileImage={data?.profileImage}
         nickName={data?.nickName}
@@ -30,7 +30,9 @@ export const MyPage = () => {
       />
       <ProgressSection journalCount={data?.journalCount} level={data?.level} />
       <TabSection />
-      <LargeBlockButton name="로그아웃" handler={handleLogoutButtonClick} />
+      <div className="flex justify-center">
+        <DimmedButton name="로그아웃" handler={handleLogoutButtonClick} />
+      </div>
     </div>
   );
 };
