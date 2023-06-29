@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import { CommunityList, CommentList } from '@/components/MyPage/TabSection';
+import { MyPostList, MyCommentList } from '@/components/MyPage/TabSection';
 import { ROUTE_PATH } from '@/constants';
 import { Root, ErrorPage, Login, LoginLoading, MyPage } from '@/pages';
 
@@ -28,11 +28,11 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <CommunityList />,
+            element: <MyPostList />,
           },
           {
             path: ROUTE_PATH.myPage.comment,
-            element: <CommentList />,
+            element: <MyCommentList />,
           },
         ],
       },
