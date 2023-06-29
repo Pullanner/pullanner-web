@@ -17,9 +17,6 @@ module.exports = {
       fontSize: {
         main: '0.938rem',
       },
-      spacing: {
-        mobileHeight: '52.75rem',
-      },
     },
   },
   plugins: [],
