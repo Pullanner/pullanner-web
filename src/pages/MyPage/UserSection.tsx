@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import { ProfileImage } from '@/components/ProfileImage';
 import { ROUTE_PATH } from '@/constants/routePath';
 
 type UserSectionProps = {
@@ -11,7 +12,7 @@ type UserSectionProps = {
 export const UserSection = ({ profileImage, nickName, email }: UserSectionProps) => {
   return (
     <section className="pt-12 pb-7 flex flex-col justify-center items-center">
-      <img className="w-24 h-24 mb-[1.938rem] rounded-full" src={profileImage} alt="profileImage" />
+      <ProfileImage url={profileImage} size="6rem" />
       <span className="inline-block pb-[0.313rem]  text-main font-semibold text-white">{`안녕하세요, ${nickName}님`}</span>
       <span className="inline-block pb-[1.125rem] text-xs text-gray-400">{email}</span>
       <Link
