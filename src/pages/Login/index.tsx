@@ -21,7 +21,7 @@ export const Login = () => {
       <h1 className="mb-14">
         <img src="/assets/images/logo.svg" alt="Logo" />
       </h1>
-      <h3 className="mb-9 text-sm font-normal text-white tracking-tight">
+      <h3 className="mb-9 text-sm font-normal tracking-tight">
         로그인 후 플래너의 다양한 기능을 사용해보세요
       </h3>
       {LOGIN_BUTTON_DATA.map(({ platform, iconURL }) => {

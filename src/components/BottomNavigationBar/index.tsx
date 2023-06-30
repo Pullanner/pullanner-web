@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 const NAVLINK_CLASS_VARIANTS = {
   active: 'flex flex-col justify-center items-center text-primary',
-  inactive: 'flex flex-col justify-center items-center text-white',
+  inactive: 'flex flex-col justify-center items-center',
 } as const;
 
 const ICON_LINK_DATA = [

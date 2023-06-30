@@ -16,7 +16,7 @@ export const ProgressSection = ({ journalCount, level }: ProgressSectionProps) =
   return (
     <section className="w-full px-6 ">
       <ProgressBar percent={percent} />
-      <div className="flex pt-2 justify-between text-xs text-white">
+      <div className="flex pt-2 justify-between text-xs">
         <span>{`저널 ${remainingJournalCount}개만 더 작성하면 레벨업`}</span>
         <span>{`${currentJournalCount} / ${MAX_JOURNAL_COUNT_BY_LEVEL[currentLevel]}`}</span>
       </div>

@@ -38,7 +38,7 @@ const TabList = ({ totalInfo, listData, listItemComponent }: TabListProps) => {
       {listData &&
         listData.map((list) => {
           return (
-            <div key={list.id} className="py-2 text-white">
+            <div key={list.id} className="py-2">
               {listItemComponent({ list })}
             </div>
           );
