@@ -2,12 +2,15 @@ import { useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
 import { DimmedButton } from '@/components/DimmedButton';
-import { ProgressSection, UserSection, TabSection } from '@/components/MyPage';
 import { API_PATH, ROUTE_PATH } from '@/constants';
 import { authInstance } from '@/lib/axios/authInstance';
 import { useUserData } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
+
+import { ProgressSection } from './ProgressSection';
+import { TabSection } from './TabSection';
+import { UserSection } from './UserSection';
 
 export const MyPage = () => {
   const { data } = useUserData();

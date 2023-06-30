@@ -2,9 +2,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import { MyPostList, MyCommentList } from '@/components/MyPage/TabSection';
 import { ROUTE_PATH } from '@/constants';
 import { Root, ErrorPage, Login, LoginLoading, MyPage } from '@/pages';
+import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
 const queryClient = new QueryClient();
 
