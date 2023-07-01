@@ -24,7 +24,7 @@ export const LoginLoading = () => {
 
   return (
     <>
-      <div className="text-xl text-white">Loading...</div>
+      <div className="text-xl">Loading...</div>
       {accessToken && (
         <button
           type="button"

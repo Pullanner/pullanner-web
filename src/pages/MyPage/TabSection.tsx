@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { Tabs } from '@/components/Tabs';
@@ -20,25 +21,35 @@ type ListDataType = {
   content: string;
 };
 
+type ListItemProps = {
+  list: ListDataType;
+};
+
 type TabListProps = {
   totalInfo: string;
   listData: ListDataType[];
+  listItemComponent: (arg0: ListItemProps) => ReactElement<ListItemProps>;
 };
 
-const TabList = ({ totalInfo, listData }: TabListProps) => {
+const TabList = ({ totalInfo, listData, listItemComponent }: TabListProps) => {
   return (
     <div className="w-[21.875rem] p-6">
       <div className="text-xs text-gray-500">{totalInfo}</div>
       {listData &&
         listData.map((list) => {
           return (
-            <div key={list.id} className="text-white text-sm py-2">
-              {list.content}
+            <div key={list.id} className="py-2">
+              {listItemComponent({ list })}
             </div>
           );
         })}
     </div>
   );
+};
+
+// TODO: 실제 데이터에 따라 PostItem과 CommentItem 컴포넌트로 분리하기
+const ListItem = ({ list }: ListItemProps) => {
+  return <span className="text-sm">{list.content}</span>;
 };
 
 export const MyPostList = () => {
@@ -48,16 +59,18 @@ export const MyPostList = () => {
     <TabList
       totalInfo={`${myPostListData.length}개의 작성한 글이 있습니다.`}
       listData={myPostListData}
+      listItemComponent={ListItem}
     />
   );
 };
 
 export const MyCommentList = () => {
-  const myCommentListData = [];
+  const myCommentListData = [{ id: 1, content: '새로운 글' }];
   return (
     <TabList
       totalInfo={`${myCommentListData.length}개의 작성한 댓글이 있습니다.`}
       listData={myCommentListData}
+      listItemComponent={ListItem}
     />
   );
 };

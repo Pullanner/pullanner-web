@@ -4,6 +4,6 @@
 
 @layer {
   html {
-    @apply font-sans;
+    @apply font-sans text-white;
   }
 }
