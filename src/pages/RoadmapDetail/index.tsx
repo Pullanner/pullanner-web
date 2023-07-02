@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { Rate } from '@/components/Rate';
 import { ROADMAP_DATA } from '@/constants/roadmap';
 
+import { RoadmapNav } from './RoadmapNav';
+
 export const RoadmapDetail = () => {
   const { step } = useParams();
   const stepData = ROADMAP_DATA.find((v) => {
@@ -16,7 +18,8 @@ export const RoadmapDetail = () => {
   const { title, imageSrc, description, color, difficulty, link } = stepData;
 
   return (
-    <div className="p-3 w-88 flex flex-col items-center">
+    <div className="px-3 w-88 flex flex-col items-center">
+      <RoadmapNav />
       <div className="rounded-xl mb-5" style={{ backgroundColor: color }}>
         <img src={imageSrc} alt={description} />
       </div>
