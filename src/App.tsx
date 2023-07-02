@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        index: true,
+        path: ROUTE_PATH.roadmap,
         element: <Roadmap />,
       },
       {

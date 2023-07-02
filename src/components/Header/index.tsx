@@ -25,7 +25,7 @@ export const Header = () => {
       >
         <img src="/assets/images/back-button.svg" alt="backButton" />
       </button>
-      <Link to={ROUTE_PATH.root}>
+      <Link to={ROUTE_PATH.roadmap}>
         <img src="/assets/images/logo.svg" alt="Logo" />
       </Link>
       {isLogin ? (
