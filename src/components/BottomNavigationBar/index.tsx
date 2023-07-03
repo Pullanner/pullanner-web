@@ -8,11 +8,11 @@ const NAVLINK_CLASS_VARIANTS = {
 const ICON_LINK_DATA = [
   {
     name: 'Roadmap',
-    linkPath: '/',
+    linkPath: '/roadmap',
     iconClass: 'icon-roadmap-icon',
   },
   {
-    name: 'Jounal',
+    name: 'Journal',
     linkPath: '/journal',
     iconClass: 'icon-journal-icon',
   },

@@ -7,4 +7,6 @@ export const ROUTE_PATH = {
     comment: '/my-page/comment',
     edit: '/my-page/edit',
   },
+  roadmap: '/roadmap',
+  roadmapDetail: '/roadmap/:step',
 } as const;

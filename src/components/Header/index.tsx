@@ -12,12 +12,12 @@ const BACK_BUTTON_VISIBILITY = {
 
 export const Header = () => {
   const location = useLocation();
-  const isMainPage = location.pathname === '/' ? 'true' : 'false';
+  const isMainPage = location.pathname === ROUTE_PATH.roadmap ? 'true' : 'false';
   const isLogin = useAtomValue(loginStateAtom);
   const handleBackButtonClick = usePreviousPage();
 
   return (
-    <header className="flex justify-between h-12 p-5 bg-black">
+    <header className="flex justify-between items-center p-5 bg-black">
       <button
         type="button"
         className={`${BACK_BUTTON_VISIBILITY[isMainPage]}`}
@@ -25,7 +25,7 @@ export const Header = () => {
       >
         <img src="/assets/images/back-button.svg" alt="backButton" />
       </button>
-      <Link to={ROUTE_PATH.root}>
+      <Link to={ROUTE_PATH.roadmap}>
         <img src="/assets/images/logo.svg" alt="Logo" />
       </Link>
       {isLogin ? (

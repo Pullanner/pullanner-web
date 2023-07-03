@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { ROUTE_PATH } from '@/constants';
-import { Root, ErrorPage, Login, LoginLoading, MyPage } from '@/pages';
+import { Root, ErrorPage, Login, LoginLoading, MyPage, Roadmap, RoadmapDetail } from '@/pages';
 import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
 const queryClient = new QueryClient();
@@ -35,6 +35,14 @@ const router = createBrowserRouter([
             element: <MyCommentList />,
           },
         ],
+      },
+      {
+        path: ROUTE_PATH.roadmap,
+        element: <Roadmap />,
+      },
+      {
+        path: ROUTE_PATH.roadmapDetail,
+        element: <RoadmapDetail />,
       },
     ],
   },
