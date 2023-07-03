@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 
 export const ScrollTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const outletContainer = document.querySelector('#outlet-container') as HTMLElement;
 
   const handleScrollToTop = () => {
+    const outletContainer = document.querySelector('#outlet-container') as HTMLElement;
     outletContainer.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
+    const outletContainer = document.querySelector('#outlet-container') as HTMLElement;
     const showScrollTopButton = () => {
       if (outletContainer.scrollTop > 0) {
         setIsVisible(true);
@@ -17,6 +18,7 @@ export const ScrollTopButton = () => {
       }
     };
     outletContainer.addEventListener('scroll', showScrollTopButton);
+
     return () => {
       outletContainer.removeEventListener('scroll', showScrollTopButton);
     };
