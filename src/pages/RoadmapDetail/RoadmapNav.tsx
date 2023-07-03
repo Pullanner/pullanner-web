@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 
-import { ROADMAP_DATA } from '@/constants/roadmap';
+import { ROADMAP_DATA } from '@/constants/roadmapData';
 
 const activeStyle = {
   border: '3px solid white',
-};
+} as const;
 
 export const RoadmapNav = () => {
   return (
