@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 
 import { Rate } from '@/components/Rate';
-import { ROADMAP_DATA } from '@/constants/roadmap';
+import { ROADMAP_DATA } from '@/constants/roadmapData';
 
 import { RoadmapNav } from './RoadmapNav';
 
