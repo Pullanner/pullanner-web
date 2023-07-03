@@ -1,7 +1,8 @@
 import { Banner } from '@/components/Banner';
-import { RoadmapCard } from '@/components/RoadmapCard';
 import { BANNER_TEXT } from '@/constants/bannerText';
-import { ROADMAP_DATA } from '@/constants/roadmap';
+import { ROADMAP_DATA } from '@/constants/roadmapData';
+
+import { RoadmapCard } from './RoadmapCard';
 
 export const Roadmap = () => {
   return (
