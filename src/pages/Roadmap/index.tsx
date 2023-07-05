@@ -10,7 +10,13 @@ export const Roadmap = () => {
       <div className="grid grid-cols-2 gap-3 m-3">
         {ROADMAP_DATA.map(({ color, imageSrc, id, description }) => {
           return (
-            <RoadmapCard color={color} imageSrc={imageSrc} id={id} description={description} />
+            <RoadmapCard
+              key={id}
+              color={color}
+              imageSrc={imageSrc}
+              id={id}
+              description={description}
+            />
           );
         })}
       </div>
