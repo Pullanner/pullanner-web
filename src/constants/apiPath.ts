@@ -1,5 +1,6 @@
 export const API_PATH = {
   user: '/api/users',
+  nicknameValidation: '/api/users/duplicate',
   token: '/api/tokens',
 } as const;
 
