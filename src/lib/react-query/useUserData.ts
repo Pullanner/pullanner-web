@@ -1,7 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { getUserDataTest } from '@/apis/user/getUserData';
-import { postUserDataTest } from '@/apis/user/postUserData';
+import { getUserDataTest, postUserDataTest } from '@/apis/user';
 
 import { queryKeys } from './queryKeys';
 
