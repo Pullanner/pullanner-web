@@ -39,8 +39,21 @@ const getNicknameValidation = async (
   return res(ctx.status(200), ctx.json({ code: 'U04', message: '사용 가능한 닉네임입니다.' }));
 };
 
+const postUserData = async (
+  req: RestRequest<DefaultBodyType, PathParams<string>>,
+  res: ResponseComposition<DefaultBodyType>,
+  ctx: RestContext,
+) => {
+  const { nickname } = await req.json();
+  USER_DATA.nickname = nickname;
+  console.log(USER_DATA);
+  return res(ctx.status(200), ctx.json(USER_DATA));
+};
+
 const userHandler = [
   rest.get(API_PATH.user, getUserData),
   rest.get<NicknameValidationReqBody>(API_PATH.nicknameValidation, getNicknameValidation),
+  rest.post(API_PATH.user, postUserData),
 ];
+
 export default userHandler;
