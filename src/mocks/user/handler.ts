@@ -46,7 +46,6 @@ const postUserData = async (
 ) => {
   const { nickname } = await req.json();
   USER_DATA.nickname = nickname;
-  console.log(USER_DATA);
   return res(ctx.status(200), ctx.json(USER_DATA));
 };
 
