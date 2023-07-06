@@ -21,16 +21,18 @@ export const EditMyPage = () => {
   const { mutate } = useMutateNickname();
   const navigate = useNavigate();
 
+  const handleSaveButtonClick = () => {
+    if (nicknameValue.length) {
+      mutate(nicknameValue);
+      navigate(ROUTE_PATH.myPage.index);
+    }
+  };
+
   return (
     <div>
       <SaveButton
         isActive={nicknameValue.length ? 'active' : 'inactive'}
-        handleButtonClick={() => {
-          if (nicknameValue.length) {
-            mutate(nicknameValue);
-            navigate(ROUTE_PATH.myPage.index);
-          }
-        }}
+        handleButtonClick={handleSaveButtonClick}
       />
       <div className="mt-[2.125rem] pb-[24.5rem]">
         <DuplicationCheckForm
