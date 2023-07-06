@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { validateNickname } from '@/apis/validateNickname';
+import { validateNickname } from '@/apis/user/validateNickname';
 import { DimmedButton } from '@/components/DimmedButton';
 import { DuplicationCheckForm } from '@/components/DuplicationCheckForm';
 import { SaveButton } from '@/components/SaveButton';
