@@ -9,4 +9,6 @@ export const ROUTE_PATH = {
   },
   roadmap: '/roadmap',
   roadmapDetail: '/roadmap/:step',
+  journal: '/journal',
+  newJournal: '/journal/new',
 } as const;
