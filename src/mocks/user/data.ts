@@ -8,4 +8,6 @@ export const USER_DATA = {
   oauthProvider: 'Google',
   level: 1,
   journalCount: 2,
-} as const;
+};
+
+export const USER_NICKNAMES = ['Bongcheol', 'Milli', 'Ikjo', 'Sohui'];
