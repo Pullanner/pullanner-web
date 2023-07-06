@@ -5,14 +5,17 @@ import { ROUTE_PATH } from '@/constants/routePath';
 
 type UserSectionProps = {
   profileImage: string;
-  nickName: string;
+  nickname: string;
   email: string;
 };
 
-const MyPageEditButton = () => {
+type MyPageEditButtonProps = Pick<UserSectionProps, 'nickname'>;
+
+const MyPageEditButton = ({ nickname }: MyPageEditButtonProps) => {
   return (
     <Link
       to={ROUTE_PATH.myPage.edit}
+      state={{ nickname }}
       className="flex w-[6.25rem] h-7 border border-white rounded-[1.25rem] items-center"
     >
       <span className="px-3 text-xs">정보수정</span>
@@ -21,13 +24,13 @@ const MyPageEditButton = () => {
   );
 };
 
-export const UserSection = ({ profileImage, nickName, email }: UserSectionProps) => {
+export const UserSection = ({ profileImage, nickname, email }: UserSectionProps) => {
   return (
     <section className="pt-12 pb-7 flex flex-col justify-center items-center">
       <ProfileImage imageUrl={profileImage} imageSize="6rem" />
-      <span className="inline-block pb-[0.313rem]  text-main font-semibold">{`안녕하세요, ${nickName}님`}</span>
+      <span className="inline-block mt-[1.938rem] pb-[0.313rem]  text-main font-semibold">{`안녕하세요, ${nickname}님`}</span>
       <span className="inline-block pb-[1.125rem] text-xs text-gray-400">{email}</span>
-      <MyPageEditButton />
+      <MyPageEditButton nickname={nickname} />
     </section>
   );
 };
