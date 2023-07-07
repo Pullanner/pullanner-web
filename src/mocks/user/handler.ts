@@ -1,15 +1,16 @@
-import {
-  DefaultBodyType,
-  ResponseComposition,
-  rest,
-  RestContext,
-  RestRequest,
-  PathParams,
-} from 'msw';
+import { rest } from 'msw';
 
 import { API_PATH } from '@/constants/apiPath';
 
 import { USER_DATA, USER_NICKNAMES } from './data';
+
+import type {
+  DefaultBodyType,
+  ResponseComposition,
+  RestContext,
+  RestRequest,
+  PathParams,
+} from 'msw';
 
 const getUserData = (
   req: RestRequest,
