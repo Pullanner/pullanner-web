@@ -6,7 +6,7 @@ type ProfileImageProps = {
 export const ProfileImage = ({ imageUrl, imageSize }: ProfileImageProps) => {
   return (
     <img
-      className="mb-[1.938rem] rounded-full"
+      className="rounded-full"
       src={imageUrl}
       alt="profileImage"
       style={{ width: imageSize, height: imageSize }}

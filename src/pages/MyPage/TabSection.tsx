@@ -33,7 +33,7 @@ type TabListProps = {
 
 const TabList = ({ totalInfo, listData, listItemComponent }: TabListProps) => {
   return (
-    <div className="w-[21.875rem] p-6">
+    <div className="w-[21.875rem] min-h-[11.875rem] p-6">
       <div className="text-xs text-gray-500">{totalInfo}</div>
       {listData &&
         listData.map((list) => {

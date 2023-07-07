@@ -11,6 +11,7 @@ import {
   MyPage,
   Roadmap,
   RoadmapDetail,
+  EditMyPage,
   Journal,
 } from '@/pages';
 import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: ROUTE_PATH.roadmapDetail,
         element: <RoadmapDetail />,
+      },
+      {
+        path: ROUTE_PATH.myPage.edit,
+        element: <EditMyPage />,
       },
       {
         path: ROUTE_PATH.journal,

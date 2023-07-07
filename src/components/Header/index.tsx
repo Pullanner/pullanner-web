@@ -1,7 +1,7 @@
 import { useAtomValue } from 'jotai';
 import { Link, useLocation } from 'react-router-dom';
 
-import { ROUTE_PATH } from '@/constants/routePath';
+import { ROUTE_PATH } from '@/constants';
 import { usePreviousPage } from '@/hooks/usePreviousPage';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 

@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-import { API_PATH } from '@/constants/apiPath';
+import { API_PATH } from '@/constants';
 import { authInstance } from '@/lib/axios/authInstance';
 
 export const reissueAccessToken = async () => {

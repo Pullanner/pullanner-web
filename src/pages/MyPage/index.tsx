@@ -28,7 +28,7 @@ export const MyPage = () => {
     <div>
       <UserSection
         profileImage={data?.profileImage}
-        nickName={data?.nickName}
+        nickname={data?.nickname}
         email={data?.email}
       />
       <ProgressSection journalCount={data?.journalCount} level={data?.level} />

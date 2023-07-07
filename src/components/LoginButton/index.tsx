@@ -4,7 +4,7 @@ type LoginButtonProps = {
 };
 
 const BACKGROUND_COLOR_VARIANTS = {
-  google: 'bg-white',
+  google: 'bg-white text-black',
   kakao: 'bg-kakao',
   naver: 'bg-naver',
 } as const;
