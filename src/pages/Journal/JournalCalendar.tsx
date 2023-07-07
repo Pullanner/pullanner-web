@@ -7,6 +7,8 @@ import { SAMPLE_JOURNAL_DATA } from './mockData';
 
 import type { Dayjs } from 'dayjs';
 
+const MAX_JOURNAL_DOT_COUNT = 3;
+
 const CalendarHeader = ({ value, onChange }) => {
   const start = 0;
   const end = 12;
@@ -15,7 +17,7 @@ const CalendarHeader = ({ value, onChange }) => {
   let current = value.clone();
   const localeData = value.localeData();
   const months = [];
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < end; i++) {
     current = current.month(i);
     months.push(localeData.monthsShort(current));
   }
@@ -30,8 +32,9 @@ const CalendarHeader = ({ value, onChange }) => {
 
   const year = value.year();
   const month = value.month();
+  const YEAR_SPAN = 10;
   const options = [];
-  for (let i = year - 10; i < year + 10; i += 1) {
+  for (let i = year - YEAR_SPAN; i < year + YEAR_SPAN; i++) {
     options.push(
       <Select.Option key={i} value={i} className="year-item">
         {i}
@@ -112,7 +115,7 @@ export const JournalCalendar = () => {
     return (
       <div className="flex justify-evenly pt-1">
         {journals.map(({ color }, index) => {
-          if (index >= 3) {
+          if (index >= MAX_JOURNAL_DOT_COUNT) {
             return;
           }
           return <div style={{ backgroundColor: color }} className="rounded-full w-2 h-2" />;
