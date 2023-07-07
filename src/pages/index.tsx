@@ -6,3 +6,4 @@ export * from './MyPage';
 export * from './Roadmap';
 export * from './RoadmapDetail';
 export * from './EditMyPage';
+export * from './Journal';
