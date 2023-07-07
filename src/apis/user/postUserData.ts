@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { API_PATH } from '@/constants/apiPath';
+import { API_PATH } from '@/constants';
 
 export const postUserDataTest = async (nickname: string) => {
   try {

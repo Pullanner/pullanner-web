@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { ProfileImage } from '@/components/ProfileImage';
-import { ROUTE_PATH } from '@/constants/routePath';
+import { ROUTE_PATH } from '@/constants';
 
 type UserSectionProps = {
   profileImage: string;

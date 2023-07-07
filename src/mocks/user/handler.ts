@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 
-import { API_PATH } from '@/constants/apiPath';
+import { API_PATH } from '@/constants';
 
 import { USER_DATA, USER_NICKNAMES } from './data';
 

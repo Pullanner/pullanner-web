@@ -1,6 +1,5 @@
 import { Banner } from '@/components/Banner';
-import { BANNER_TEXT } from '@/constants/bannerText';
-import { ROADMAP_DATA } from '@/constants/roadmapData';
+import { BANNER_TEXT, ROADMAP_DATA } from '@/constants';
 
 import { RoadmapCard } from './RoadmapCard';
 

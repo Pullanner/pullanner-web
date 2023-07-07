@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import { Dispatch, SetStateAction } from 'react';
 
-import { API_PATH } from '@/constants/apiPath';
+import { API_PATH } from '@/constants';
 // import { getAuthRequest } from '@/lib/axios/useAuthApi';
 
 export const getUserDataTest = async () => {
