@@ -1,10 +1,6 @@
 import { useState, Dispatch, SetStateAction, ChangeEvent } from 'react';
 
-import {
-  VALID_INPUT_STATUS,
-  INVALID_INPUT_STATUS,
-  DUPLICATION_CHECK_BUTTON_STYLE,
-} from './constants';
+import { VALID_INPUT, INVALID_INPUT, DUPLICATION_CHECK_BUTTON_STYLE } from './constants';
 import { InputStatusType, InputDescription } from './InputDescription';
 
 type AsyncValidateFunction<T> = (value: T) => Promise<boolean>;
@@ -27,7 +23,7 @@ export const DuplicationCheckForm = ({
   validationFunction,
 }: DuplicationCheckFormProps) => {
   const [inputValue, setInputValue] = useState(defaultValue);
-  const [inputStatus, setInputStatus] = useState<InputStatusType>(INVALID_INPUT_STATUS);
+  const [inputStatus, setInputStatus] = useState<InputStatusType>(INVALID_INPUT.status);
   const [showValidationResult, setValidationResultShowed] = useState(false);
   const DuplicationCheckButtonState = inputValue.length >= minLength ? 'active' : 'inactive';
   let isFirstTyping = true;
@@ -45,10 +41,10 @@ export const DuplicationCheckForm = ({
     try {
       const isInputNotDuplicated = await validationFunction(inputValue);
       if (isInputNotDuplicated) {
-        setInputStatus(VALID_INPUT_STATUS);
+        setInputStatus(VALID_INPUT.status);
         setValidInputValue(inputValue);
       } else {
-        setInputStatus(INVALID_INPUT_STATUS);
+        setInputStatus(INVALID_INPUT.status);
         setValidInputValue('');
       }
       setValidationResultShowed(true);

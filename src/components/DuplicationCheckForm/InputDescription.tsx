@@ -1,13 +1,6 @@
-import {
-  VALID_INPUT_STATUS,
-  VALID_INPUT_DESCRIPTION,
-  VALID_INPUT_DESCRIPTION_STYLE,
-  INVALID_INPUT_STATUS,
-  INVALID_INPUT_DESCRIPTION,
-  INVALID_INPUT_DESCRIPTION_STYLE,
-} from './constants';
+import { VALID_INPUT, INVALID_INPUT } from './constants';
 
-export type InputStatusType = typeof VALID_INPUT_STATUS | typeof INVALID_INPUT_STATUS;
+export type InputStatusType = typeof VALID_INPUT.status | typeof INVALID_INPUT.status;
 
 type DescriptionItemProps = {
   descriptionInfo: string;
@@ -44,15 +37,15 @@ export const InputDescription = ({
       />
     );
   }
-  return inputStatus === VALID_INPUT_STATUS ? (
+  return inputStatus === VALID_INPUT.status ? (
     <DescriptionItem
-      descriptionInfo={VALID_INPUT_DESCRIPTION}
-      descriptionInfoStyle={VALID_INPUT_DESCRIPTION_STYLE}
+      descriptionInfo={VALID_INPUT.description.text}
+      descriptionInfoStyle={VALID_INPUT.description.style}
     />
   ) : (
     <DescriptionItem
-      descriptionInfo={INVALID_INPUT_DESCRIPTION}
-      descriptionInfoStyle={INVALID_INPUT_DESCRIPTION_STYLE}
+      descriptionInfo={INVALID_INPUT.description.text}
+      descriptionInfoStyle={INVALID_INPUT.description.style}
     />
   );
 };
