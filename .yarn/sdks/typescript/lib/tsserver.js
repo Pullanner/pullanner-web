@@ -17,9 +17,15 @@ const moduleWrapper = (tsserver) => {
   const { isAbsolute } = require(`path`);
   const pnpApi = require(`pnpapi`);
 
-  const isVirtual = (str) => str.match(/\/(\$\$virtual|__virtual__)\//);
-  const isPortal = (str) => str.startsWith('portal:/');
-  const normalize = (str) => str.replace(/\\/g, `/`).replace(/^\/?/, `/`);
+  const isVirtual = (str) => {
+    return str.match(/\/(\$\$virtual|__virtual__)\//);
+  };
+  const isPortal = (str) => {
+    return str.startsWith('portal:/');
+  };
+  const normalize = (str) => {
+    return str.replace(/\\/g, `/`).replace(/^\/?/, `/`);
+  };
 
   const dependencyTreeRoots = new Set(
     pnpApi.getDependencyTreeRoots().map((locator) => {
@@ -182,7 +188,7 @@ const moduleWrapper = (tsserver) => {
   // VSCode doesn't want to enable 'allowLocalPluginLoads' due to security concerns but
   // TypeScript already does local loads and if this code is running the user trusts the workspace
   // https://github.com/microsoft/vscode/issues/45856
-  const ConfiguredProject = tsserver.server.ConfiguredProject;
+  const { ConfiguredProject } = tsserver.server;
   const { enablePluginsWithOptions: originalEnablePluginsWithOptions } =
     ConfiguredProject.prototype;
   ConfiguredProject.prototype.enablePluginsWithOptions = function () {
@@ -194,7 +200,7 @@ const moduleWrapper = (tsserver) => {
   // by adding ourselves in the middle. We locate everything that looks
   // like an absolute path of ours and normalize it.
 
-  const Session = tsserver.server.Session;
+  const { Session } = tsserver.server;
   const { onMessage: originalOnMessage, send: originalSend } = Session.prototype;
   let hostInfo = `unknown`;
 

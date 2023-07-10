@@ -15,6 +15,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:import/typescript',
     'plugin:storybook/recommended',
+    'plugin:tailwindcss/recommended',
     'plugin:prettier/recommended',
   ],
   plugins: ['react', '@typescript-eslint', 'import'],
