@@ -11,7 +11,7 @@ export const Banner = ({ data }: BannerProps) => {
 
   return (
     <div
-      className="flex flex-col justify-center items-center h-44 p-5 relative before:content-[''] before:bg-black before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:opacity-30"
+      className="relative flex h-44 flex-col items-center justify-center p-5 before:absolute before:inset-0 before:bg-black before:opacity-30 before:content-['']"
       style={{
         backgroundImage: `url(${backgroundImgSrc})`,
         backgroundPosition: 'center',
@@ -19,8 +19,8 @@ export const Banner = ({ data }: BannerProps) => {
         backgroundSize: 'cover',
       }}
     >
-      <div className="font-bold text-lg relative">{title}</div>
-      <div className="text-sm p-5 relative">{description}</div>
+      <div className="relative text-lg font-bold">{title}</div>
+      <div className="relative p-5 text-sm">{description}</div>
     </div>
   );
 };

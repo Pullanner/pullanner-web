@@ -15,7 +15,7 @@ export const Journal = () => {
   return (
     <>
       <Banner data={BANNER_DATA.journal} />
-      <div className="p-3 flex flex-col items-center">
+      <div className="flex flex-col items-center p-3">
         <div className="mb-5">
           <JournalCalendar />
           <div className="mt-3">
@@ -36,7 +36,7 @@ export const Journal = () => {
                 },
               )
             ) : (
-              <div className="text-center text-zinc-200 text-sm bg-zinc-800 rounded-md p-2">
+              <div className="rounded-md bg-zinc-800 p-2 text-center text-sm text-zinc-200">
                 이 날에는 풀업 저널을 기록하지 않았어요.
               </div>
             )}
@@ -44,10 +44,10 @@ export const Journal = () => {
         </div>
         <Link
           to="/journal/new"
-          className="bg-primary flex p-2 px-4 rounded-lg sticky w-fit bottom-4 z-10"
+          className="sticky bottom-4 z-10 flex w-fit rounded-lg bg-primary p-2 px-4"
         >
           <img src="/assets/images/plus.svg" alt="+" />
-          <span className="text-black ml-2">풀업 운동 기록하기</span>
+          <span className="ml-2 text-black">풀업 운동 기록하기</span>
         </Link>
       </div>
     </>

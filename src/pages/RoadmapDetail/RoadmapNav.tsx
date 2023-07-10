@@ -8,7 +8,7 @@ const activeStyle = {
 
 export const RoadmapNav = () => {
   return (
-    <div className="flex items-center gap-4 p-2 mb-1">
+    <div className="mb-1 flex items-center gap-4 p-2">
       {ROADMAP_DATA.map(({ color: linkColor, id }) => {
         return (
           <NavLink
@@ -18,7 +18,7 @@ export const RoadmapNav = () => {
               return isActive ? activeStyle : undefined;
             }}
           >
-            <div className="w-4 h-4 rounded-full" style={{ backgroundColor: linkColor }} />
+            <div className="h-4 w-4 rounded-full" style={{ backgroundColor: linkColor }} />
           </NavLink>
         );
       })}

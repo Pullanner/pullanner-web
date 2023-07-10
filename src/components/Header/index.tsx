@@ -17,7 +17,7 @@ export const Header = () => {
   const handleBackButtonClick = usePreviousPage();
 
   return (
-    <header className="flex justify-between items-center p-5 bg-black">
+    <header className="flex items-center justify-between bg-black p-5">
       <button
         type="button"
         className={`${BACK_BUTTON_VISIBILITY[isMainPage]}`}

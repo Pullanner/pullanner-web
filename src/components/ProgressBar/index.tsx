@@ -4,8 +4,8 @@ type ProgressBarProps = {
 
 export const ProgressBar = ({ percent }: ProgressBarProps) => {
   return (
-    <div className="h-2.5 bg-gray-200 rounded-full">
-      <div className="h-2.5 bg-primary rounded-full" style={{ width: `${percent}%` }} />
+    <div className="h-2.5 rounded-full bg-gray-200">
+      <div className="h-2.5 rounded-full bg-primary" style={{ width: `${percent}%` }} />
     </div>
   );
 };

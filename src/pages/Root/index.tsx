@@ -6,11 +6,11 @@ import { ScrollTopButton } from '@/components/ScrollTopButton';
 
 export const Root = () => {
   return (
-    <div className="w-screen h-screen flex flex-row justify-center items-center">
-      <div className="w-[100%] sm:w-96 h-[100%] sm:h-[50rem] sm:max-h-[90vh] bg-black">
+    <div className="flex h-screen w-screen flex-row items-center justify-center">
+      <div className="h-[100%] w-[100%] bg-black sm:h-[50rem] sm:max-h-[90vh] sm:w-96">
         <Header />
-        <div className="flex flex-col items-center h-[calc(100%-8rem)]">
-          <div className="overflow-y-auto relative" id="outlet-container">
+        <div className="flex h-[calc(100%-8rem)] flex-col items-center">
+          <div className="relative overflow-y-auto" id="outlet-container">
             <Outlet />
             <ScrollTopButton />
           </div>

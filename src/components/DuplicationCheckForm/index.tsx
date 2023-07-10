@@ -55,15 +55,15 @@ export const DuplicationCheckForm = ({
 
   return (
     <form className="flex flex-col">
-      <label className="inline-block mb-2.5 text-sm" htmlFor={inputName}>
+      <label className="mb-2.5 inline-block text-sm" htmlFor={inputName}>
         {inputName}
       </label>
-      <div className="flex h-11 justify-between items-center px-3 rounded-[0.313rem] bg-[#161616]">
+      <div className="flex h-11 items-center justify-between rounded-[0.313rem] bg-[#161616] px-3">
         <input
           id={inputName}
           name={inputName}
           type="text"
-          className="text-base focus:outline-none bg-transparent focus:bg-transparent"
+          className="bg-transparent text-base focus:bg-transparent focus:outline-none"
           value={inputValue}
           onChange={handleInputChange}
           minLength={minLength}
@@ -72,7 +72,7 @@ export const DuplicationCheckForm = ({
         />
         <button
           type="button"
-          className={`w-[4.875rem] h-[1.875rem] rounded-[0.313rem] text-base ${DUPLICATION_CHECK_BUTTON_STYLE[DuplicationCheckButtonState]}`}
+          className={`h-[1.875rem] w-[4.875rem] rounded-[0.313rem] text-base ${DUPLICATION_CHECK_BUTTON_STYLE[DuplicationCheckButtonState]}`}
           onClick={handleDuplicationCheckButtonClick}
         >
           중복확인

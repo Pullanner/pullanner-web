@@ -42,14 +42,14 @@ export const JournalCard = ({
   };
 
   return (
-    <div className="bg-zinc-800 p-2 my-2 rounded-md">
+    <div className="my-2 rounded-md bg-zinc-800 p-2">
       <div className="flex items-center justify-between">
         <button
           type="button"
           onClick={handleJournalCardClick}
-          className="grid grid-cols-7 w-full items-center"
+          className="grid w-full grid-cols-7 items-center"
         >
-          <img src={`/assets/images/emotion/${emotion}.svg`} alt="emotion" className="w-6 h-6" />
+          <img src={`/assets/images/emotion/${emotion}.svg`} alt="emotion" className="h-6 w-6" />
           <span style={{ color }} className="col-span-3 justify-self-start">
             {name}
           </span>
@@ -66,7 +66,7 @@ export const JournalCard = ({
         </Dropdown>
       </div>
       <div
-        className="p-2 mt-2 text-sm bg-zinc-700 rounded-sm"
+        className="mt-2 rounded-sm bg-zinc-700 p-2 text-sm"
         style={{ display: showDescription ? 'block' : 'none' }}
       >
         {description}

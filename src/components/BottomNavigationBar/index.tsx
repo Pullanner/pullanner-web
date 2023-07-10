@@ -56,7 +56,7 @@ const IconLink = ({ iconLinkProps }: IconLinkProps) => {
 
 export const BottomNavigationBar = () => {
   return (
-    <nav className="flex justify-around w-[100%] h-20 border border-white rounded-t-[20px] bg-black">
+    <nav className="flex h-20 w-[100%] justify-around rounded-t-[20px] border border-white bg-black">
       {ICON_LINK_DATA.map((iconLinkData: IconLinkData) => {
         return <IconLink key={iconLinkData.name} iconLinkProps={iconLinkData} />;
       })}

@@ -15,10 +15,10 @@ export const LoginButton = (props: LoginButtonProps) => {
   return (
     <a
       href={AUTH_URL}
-      className={`${BACKGROUND_COLOR_VARIANTS[platform]} flex flex-row justify-center items-center w-[300px] h-10 mb-5 rounded-md`}
+      className={`${BACKGROUND_COLOR_VARIANTS[platform]} mb-5 flex h-10 w-[300px] flex-row items-center justify-center rounded-md`}
     >
       <img src={iconURL} alt={`${platform} icon`} />
-      <span className="ml-2.5 font-bold text-sm">{platform}로 시작하기</span>
+      <span className="ml-2.5 text-sm font-bold">{platform}로 시작하기</span>
     </a>
   );
 };

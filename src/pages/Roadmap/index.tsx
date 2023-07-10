@@ -7,7 +7,7 @@ export const Roadmap = () => {
   return (
     <>
       <Banner data={BANNER_DATA.roadmap} />
-      <div className="grid grid-cols-2 gap-3 m-3">
+      <div className="m-3 grid grid-cols-2 gap-3">
         {ROADMAP_DATA.map(({ color, imageSrc, id, description }) => {
           return (
             <RoadmapCard

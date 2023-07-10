@@ -10,10 +10,10 @@ const SAVE_BUTTON_STYLE = {
 
 export const SaveButton = ({ isActive, handleButtonClick }: SaveButtonProps) => {
   return (
-    <div className="flex flex-row-reverse w-full py-5">
+    <div className="flex w-full flex-row-reverse py-5">
       <button
         type="button"
-        className={`w-20 h-8 rounded-[0.313rem] ${SAVE_BUTTON_STYLE[isActive]}`}
+        className={`h-8 w-20 rounded-[0.313rem] ${SAVE_BUTTON_STYLE[isActive]}`}
         onClick={handleButtonClick}
       >
         저장

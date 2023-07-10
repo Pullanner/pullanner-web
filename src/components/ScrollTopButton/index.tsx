@@ -27,7 +27,7 @@ export const ScrollTopButton = () => {
   return (
     <button
       type="button"
-      className="bg-white sticky float-right bottom-3 right-3 w-10 h-10 rounded-full opacity-80"
+      className="sticky bottom-3 right-3 float-right h-10 w-10 rounded-full bg-white opacity-80"
       onClick={handleScrollToTop}
       style={{ display: `${isVisible ? 'block' : 'none'}` }}
     >

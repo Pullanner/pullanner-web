@@ -29,7 +29,7 @@ export const LoginLoading = () => {
         <button
           type="button"
           onClick={handleBackButtonClick}
-          className="text-sm mt-5 px-5 py-2.5 bg-teal-300 rounded"
+          className="mt-5 rounded bg-teal-300 px-5 py-2.5 text-sm"
         >
           이전 페이지로 이동하기
         </button>
