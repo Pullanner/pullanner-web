@@ -107,7 +107,7 @@ export const JournalCalendar = () => {
     if (!journals) {
       return (
         <div className="flex pt-1">
-          <div className="h-2 w-2" />
+          <div className="h-1.5 w-1.5" />
         </div>
       );
     }
@@ -118,7 +118,7 @@ export const JournalCalendar = () => {
           if (index >= MAX_JOURNAL_DOT_COUNT) {
             return;
           }
-          return <div style={{ backgroundColor: color }} className="h-2 w-2 rounded-full" />;
+          return <div style={{ backgroundColor: color }} className="h-1.5 w-1.5 rounded-full" />;
         })}
       </div>
     );
