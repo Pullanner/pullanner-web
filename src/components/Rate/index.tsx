@@ -12,7 +12,7 @@ export const Rate = ({ rateValue, color }: RateProps) => {
         const filled = index < rateValue;
         return (
           <li
-            className="mr-1 h-2 w-2 rounded-full"
+            className="mr-1.5 h-2.5 w-2.5 rounded-full"
             style={{
               backgroundColor: `${filled ? color : 'white'}`,
             }}
