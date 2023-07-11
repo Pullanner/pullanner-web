@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
-import { DimmedButton } from '@/components/DimmedButton';
+import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { API_PATH, ROUTE_PATH } from '@/constants';
 import { authInstance } from '@/lib/axios/authInstance';
 import { useUserData } from '@/lib/react-query/useUserData';

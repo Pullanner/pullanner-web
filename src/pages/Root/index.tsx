@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
 
 import { BottomNavigationBar } from '@/components/BottomNavigationBar';
+import { ScrollTopButton } from '@/components/buttons/ScrollTopButton';
 import { Header } from '@/components/Header';
-import { ScrollTopButton } from '@/components/ScrollTopButton';
 
 export const Root = () => {
   return (

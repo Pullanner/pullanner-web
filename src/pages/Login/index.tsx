@@ -1,4 +1,4 @@
-import { LoginButton } from '@/components/LoginButton';
+import { LoginButton } from '@/components/buttons/LoginButton';
 
 const LOGIN_BUTTON_DATA = [
   {

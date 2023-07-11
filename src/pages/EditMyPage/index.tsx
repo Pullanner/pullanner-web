@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { validateNickname } from '@/apis/user';
-import { DimmedButton } from '@/components/DimmedButton';
+import { DimmedButton } from '@/components/buttons/DimmedButton';
+import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckForm } from '@/components/DuplicationCheckForm';
-import { SaveButton } from '@/components/SaveButton';
 import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
 
