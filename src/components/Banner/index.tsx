@@ -11,12 +11,13 @@ export const Banner = ({ data }: BannerProps) => {
 
   return (
     <div
-      className="relative flex h-44 flex-col items-center justify-center p-5 before:absolute before:inset-0 before:bg-black before:opacity-30 before:content-['']"
+      className="relative flex h-44 flex-col items-center justify-center p-5 before:absolute before:inset-0 before:bg-black before:opacity-40 before:content-['']"
       style={{
         backgroundImage: `url(${backgroundImgSrc})`,
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+        textShadow: `1px 2px 4px rgba(0, 0, 0, 0.67)`,
       }}
     >
       <div className="relative text-lg font-bold">{title}</div>
