@@ -1,3 +1,3 @@
-export * from './getUserData';
-export * from './postUserData';
+export * from './getUserDataTest';
+export * from './postUserDataTest';
 export * from './validateNickname';
