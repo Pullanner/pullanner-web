@@ -1,20 +1,28 @@
-import axios from 'axios';
-import { Dispatch, SetStateAction } from 'react';
+import axios, { RawAxiosRequestHeaders, AxiosHeaders } from 'axios';
 
 import { ApiPathType } from '@/constants';
 import { authInstance } from '@/lib/axios/authInstance';
 import { reissueAccessToken } from '@/utils/reissueAccessToken';
 
+import type { Dispatch, SetStateAction } from 'react';
+
+type Options = {
+  headers?: RawAxiosRequestHeaders | AxiosHeaders;
+  params?: any;
+};
+
 export const getAuthRequest = async (
   apiPath: ApiPathType,
   accessToken: string,
   setAccessToken: Dispatch<SetStateAction<string>>,
+  options?: Options,
 ) => {
   try {
     const { data } = await authInstance.get(apiPath, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
+      ...options,
     });
     return data;
   } catch (error) {
