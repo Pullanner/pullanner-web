@@ -13,6 +13,7 @@ import {
   RoadmapDetail,
   EditMyPage,
   Journal,
+  rootLoader,
 } from '@/pages';
 import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        index: true,
+        loader: rootLoader,
+      },
       {
         path: ROUTE_PATH.login,
         element: <Login />,
