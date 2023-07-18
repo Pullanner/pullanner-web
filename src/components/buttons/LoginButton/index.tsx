@@ -1,12 +1,12 @@
 type LoginButtonProps = {
-  platform: 'google' | 'kakao' | 'naver';
+  platform: 'Google' | 'Kakao' | 'Naver';
   iconURL: string;
 };
 
 const BACKGROUND_COLOR_VARIANTS = {
-  google: 'bg-white text-black',
-  kakao: 'bg-kakao',
-  naver: 'bg-naver',
+  Google: 'bg-white text-black',
+  Kakao: 'bg-kakao text-[#34201F]',
+  Naver: 'bg-naver',
 } as const;
 
 export const LoginButton = (props: LoginButtonProps) => {
