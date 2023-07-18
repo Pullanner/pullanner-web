@@ -14,6 +14,8 @@ import {
   EditMyPage,
   Journal,
   rootLoader,
+  Summary,
+  Community,
 } from '@/pages';
 import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
@@ -66,6 +68,14 @@ const router = createBrowserRouter([
       {
         path: ROUTE_PATH.journal.index,
         element: <Journal />,
+      },
+      {
+        path: ROUTE_PATH.summary,
+        element: <Summary />,
+      },
+      {
+        path: ROUTE_PATH.community,
+        element: <Community />,
       },
     ],
   },
