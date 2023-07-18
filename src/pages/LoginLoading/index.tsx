@@ -19,7 +19,7 @@ export const LoginLoading = () => {
     if (accessTokenValue?.length) {
       setAccessToken(accessTokenValue);
       setLoginState(true);
-      navigate(ROUTE_PATH.roadmap);
+      navigate(ROUTE_PATH.roadmap.index);
     }
   }, [setAccessToken, setLoginState, navigate]);
   return <div className="text-xl">Loading...</div>;

@@ -12,7 +12,7 @@ const BACK_BUTTON_VISIBILITY = {
 
 export const Header = () => {
   const location = useLocation();
-  const isMainPage = location.pathname === ROUTE_PATH.roadmap ? 'true' : 'false';
+  const isMainPage = location.pathname === ROUTE_PATH.roadmap.index ? 'true' : 'false';
   const isLogin = useAtomValue(loginStateAtom);
   const handleBackButtonClick = usePreviousPage();
 
@@ -25,7 +25,7 @@ export const Header = () => {
       >
         <img src="/assets/images/back-button.svg" alt="backButton" />
       </button>
-      <Link to={ROUTE_PATH.roadmap}>
+      <Link to={ROUTE_PATH.roadmap.index}>
         <img src="/assets/images/logo.svg" alt="Logo" />
       </Link>
       {isLogin ? (

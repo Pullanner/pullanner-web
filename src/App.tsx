@@ -52,11 +52,11 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: ROUTE_PATH.roadmap,
+        path: ROUTE_PATH.roadmap.index,
         element: <Roadmap />,
       },
       {
-        path: ROUTE_PATH.roadmapDetail,
+        path: ROUTE_PATH.roadmap.detail,
         element: <RoadmapDetail />,
       },
       {
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         element: <EditMyPage />,
       },
       {
-        path: ROUTE_PATH.journal,
+        path: ROUTE_PATH.journal.index,
         element: <Journal />,
       },
     ],

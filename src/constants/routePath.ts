@@ -7,8 +7,14 @@ export const ROUTE_PATH = {
     comment: '/my-page/comment',
     edit: '/my-page/edit',
   },
-  roadmap: '/roadmap',
-  roadmapDetail: '/roadmap/:step',
-  journal: '/journal',
-  newJournal: '/journal/new',
+  roadmap: {
+    index: '/roadmap',
+    detail: '/roadmap/:step',
+  },
+  journal: {
+    index: '/journal',
+    new: '/journal/new',
+  },
+  summary: '/summary',
+  community: '/community',
 } as const;
