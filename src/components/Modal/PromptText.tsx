@@ -5,5 +5,5 @@ type PromptTextProps = {
 };
 
 export const PromptText = ({ children }: PromptTextProps) => {
-  return <div className="whitespace-normal text-center">{children}</div>;
+  return <span className="text-center">{children}</span>;
 };
