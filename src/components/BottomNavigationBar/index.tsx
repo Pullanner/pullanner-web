@@ -17,8 +17,8 @@ const ICON_LINK_DATA = [
     iconClass: 'icon-journal-icon',
   },
   {
-    name: 'Dashboard',
-    linkPath: '/dashboard',
+    name: 'Summary',
+    linkPath: '/summary',
     iconClass: 'icon-dashboard-icon',
   },
   {
