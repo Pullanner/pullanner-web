@@ -2,16 +2,19 @@ import { LoginButton } from '@/components/buttons/LoginButton';
 
 const LOGIN_BUTTON_DATA = [
   {
-    platform: 'Kakao',
+    platform: 'kakao',
     iconURL: '/assets/images/kakao-icon.svg',
+    style: 'bg-kakao text-[#34201F] capitalize',
   },
   {
-    platform: 'Naver',
+    platform: 'naver',
     iconURL: '/assets/images/naver-icon.svg',
+    style: 'bg-naver capitalize',
   },
   {
-    platform: 'Google',
+    platform: 'google',
     iconURL: '/assets/images/google-icon.svg',
+    style: 'bg-white text-black capitalize',
   },
 ] as const;
 
@@ -24,8 +27,8 @@ export const Login = () => {
         <img src="/assets/images/logo.svg" alt="Logo" />
       </h1>
       <h3 className="mb-9 text-sm font-normal">{LOGIN_MESSAGE}</h3>
-      {LOGIN_BUTTON_DATA.map(({ platform, iconURL }) => {
-        return <LoginButton key={platform} platform={platform} iconURL={iconURL} />;
+      {LOGIN_BUTTON_DATA.map(({ platform, iconURL, style }) => {
+        return <LoginButton key={platform} platform={platform} iconURL={iconURL} style={style} />;
       })}
     </div>
   );
