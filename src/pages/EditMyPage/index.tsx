@@ -37,7 +37,7 @@ export const EditMyPage = () => {
   };
 
   const handleOkButtonClick = () => {
-    navigate(ROUTE_PATH.withdrawal);
+    navigate(ROUTE_PATH.deleteAccount);
   };
 
   const handleCancleButtonClick = () => {
