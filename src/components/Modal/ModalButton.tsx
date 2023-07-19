@@ -16,6 +16,7 @@ export const ModalButton = ({ text, handler, imageUrl, isFocused }: ModalButtonP
       buttonRef.current.focus();
     }
   }, [isFocused]);
+
   return (
     <button
       type="button"
