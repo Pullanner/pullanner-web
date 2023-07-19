@@ -118,6 +118,7 @@ export const JournalCalendar = () => {
           if (index >= MAX_JOURNAL_DOT_COUNT) {
             return;
           }
+
           return <div style={{ backgroundColor: color }} className="h-1.5 w-1.5 rounded-full" />;
         })}
       </div>

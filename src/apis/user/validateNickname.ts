@@ -12,9 +12,11 @@ export const validateNickname = async (nickname: string) => {
     const params = new URLSearchParams();
     params.append('nickname', nickname);
     const { data } = await axios.get(API_PATH.nicknameValidation, { params });
+
     return data.code === SUCCESS_RESPONSE_CODE;
   } catch (error) {
     console.log(error);
+
     return false;
   }
 };

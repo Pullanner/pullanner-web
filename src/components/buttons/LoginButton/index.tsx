@@ -6,6 +6,7 @@ type LoginButtonProps = {
 
 export const LoginButton = ({ platform, iconURL, style }: LoginButtonProps) => {
   const AUTH_URL = `${import.meta.env.VITE_API_URL}/oauth2/authorization/${platform}`;
+
   return (
     <a
       href={AUTH_URL}

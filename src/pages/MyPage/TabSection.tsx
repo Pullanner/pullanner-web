@@ -55,6 +55,7 @@ const ListItem = ({ list }: ListItemProps) => {
 export const MyPostList = () => {
   // TODO: 임시 데이터 추후 실제 데이터를 받아오는 것으로 수정
   const myPostListData = [{ id: 1, content: '새로운 글' }];
+
   return (
     <TabList
       totalInfo={`${myPostListData.length}개의 작성한 글이 있습니다.`}
@@ -66,6 +67,7 @@ export const MyPostList = () => {
 
 export const MyCommentList = () => {
   const myCommentListData = [{ id: 1, content: '새로운 글' }];
+
   return (
     <TabList
       totalInfo={`${myCommentListData.length}개의 작성한 댓글이 있습니다.`}

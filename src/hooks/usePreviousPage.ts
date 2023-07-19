@@ -6,5 +6,6 @@ export const usePreviousPage = (previousPageNumber = -1) => {
   const navigateToPreviousPage = useCallback(() => {
     navigate(previousPageNumber);
   }, [navigate, previousPageNumber]);
+
   return navigateToPreviousPage;
 };

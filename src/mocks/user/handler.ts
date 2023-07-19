@@ -37,6 +37,7 @@ const getNicknameValidation = async (
   if (isNicknameDuplicated) {
     return res(ctx.status(200), ctx.json({ code: 'U03', message: '이미 존재하는 닉네임입니다' }));
   }
+
   return res(ctx.status(200), ctx.json({ code: 'U04', message: '사용 가능한 닉네임입니다.' }));
 };
 
@@ -47,6 +48,7 @@ const postUserData = async (
 ) => {
   const { nickname } = await req.json();
   USER_DATA.nickname = nickname;
+
   return res(ctx.status(200), ctx.json(USER_DATA));
 };
 

@@ -22,5 +22,6 @@ export const LoginLoading = () => {
       navigate(ROUTE_PATH.roadmap.index);
     }
   }, [setAccessToken, setLoginState, navigate]);
+
   return <div className="text-xl">Loading...</div>;
 };

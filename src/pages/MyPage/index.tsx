@@ -24,6 +24,7 @@ export const MyPage = () => {
     setAccessToken('');
     navigate(ROUTE_PATH.root);
   };
+
   return (
     <div>
       <UserSection

@@ -17,6 +17,7 @@ export const useUserData = () => {
 
 export const useMutateNickname = () => {
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: postUserDataTest,
     onSuccess: () => {

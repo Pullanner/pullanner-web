@@ -24,6 +24,7 @@ export const getAuthRequest = async (
       },
       ...options,
     });
+
     return data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.code === '403') {
@@ -45,6 +46,7 @@ export const postAuthRequest = async <T>(
         Authorization: `Bearer ${accessToken}`,
       },
     });
+
     return data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.code === '403') {

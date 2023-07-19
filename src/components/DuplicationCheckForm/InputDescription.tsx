@@ -37,6 +37,7 @@ export const InputDescription = ({
       />
     );
   }
+
   return inputStatus === VALID_INPUT.status ? (
     <DescriptionItem
       descriptionInfo={VALID_INPUT.description.text}

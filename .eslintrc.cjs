@@ -83,6 +83,10 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'arrow-body-style': ['error', 'always'],
     'import/extensions': ['error', 'never'],
+    'padding-line-between-statements': [
+      'error',
+      { blankLine: 'always', prev: '*', next: 'return' },
+    ],
   },
   settings: {
     'import/resolver': {
