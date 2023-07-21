@@ -17,4 +17,5 @@ export const ROUTE_PATH = {
   },
   summary: '/summary',
   community: '/community',
+  deleteAccount: '/delete-account',
 } as const;
