@@ -70,7 +70,7 @@ export const EditMyPage = () => {
               회원 탈퇴시 Pullanner의 모든 데이터가 삭제됩니다. 삭제된 데이터는 복구할 수 없습니다.
             </SubText>
           </ModalText>
-          <div className="flex w-full justify-around p-3">
+          <div className="mb-2 flex w-full justify-around p-3">
             <ModalButton
               text="네"
               handler={handleOkButtonClick}
