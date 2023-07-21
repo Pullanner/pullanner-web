@@ -1,31 +1,21 @@
-import { useRef, useLayoutEffect } from 'react';
-
-import type { RefObject } from 'react';
-
 type ModalButtonProps = {
   text: string;
   handler: () => void;
   imageUrl?: string;
-  isFocused?: boolean;
+  isPrimary?: boolean;
 };
 
-export const ModalButton = ({ text, handler, imageUrl, isFocused }: ModalButtonProps) => {
-  const buttonRef = useRef<HTMLButtonElement>() as RefObject<HTMLButtonElement>;
-  useLayoutEffect(() => {
-    if (isFocused && buttonRef.current) {
-      buttonRef.current.focus();
-    }
-  }, [isFocused]);
+export const ModalButton = ({ text, handler, imageUrl, isPrimary }: ModalButtonProps) => {
+  const primaryButtonStyle = isPrimary ? 'bg-primary text-black' : 'bg-[#373737] text-white';
 
   return (
     <button
       type="button"
-      className="flex h-14 w-20 cursor-pointer flex-col items-center justify-center gap-y-0.5 rounded-md bg-[#373737] focus:bg-primary focus:text-black"
+      className={`${primaryButtonStyle} flex min-h-[2.5rem] min-w-[3.75rem] items-center justify-center gap-y-0.5 rounded-md bg-[#373737] p-2`}
       onClick={handler}
-      ref={buttonRef}
     >
-      {imageUrl && <img src={imageUrl} alt="emoticon" className="h-5 w-5" />}
-      <span className="inline-block text-sm">{text}</span>
+      {imageUrl && <img src={imageUrl} alt="emoticon" className="mr-1.5 h-5 w-5" />}
+      <span className="inline-block text-xs">{text}</span>
     </button>
   );
 };

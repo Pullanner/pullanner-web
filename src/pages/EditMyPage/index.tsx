@@ -7,7 +7,7 @@ import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckForm } from '@/components/DuplicationCheckForm';
 import { Modal } from '@/components/Modal';
 import { ModalButton } from '@/components/Modal/ModalButton';
-import { PromptText } from '@/components/Modal/PromptText';
+import { MainText, SubText, PromptText } from '@/components/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
 
@@ -64,14 +64,12 @@ export const EditMyPage = () => {
       <DimmedButton name="회원탈퇴" handler={handleWithdrwalButtonClick} />
       {showModal && (
         <Modal>
-          <PromptText>
-            <p className="mb-2.5 text-xs">
-              회원 탈퇴시 Pullanner의<span className="font-extrabold">모든 데이터가 삭제</span>
-              됩니다.
-            </p>
-            <p className="text-xs">정말 탈퇴하시겠습니까?</p>
+          <PromptText textStyle="p-5">
+            <MainText textStyle="text-red-400">정말 탈퇴하시겠습니까?</MainText>
+            <SubText>회원 탈퇴시 Pullanner의 모든 데이터가 삭제됩니다.</SubText>
+            <SubText>삭제된 데이터는 복구할 수 없습니다.</SubText>
           </PromptText>
-          <div className="mt-4 flex w-full justify-around">
+          <div className="flex w-full justify-around p-3">
             <ModalButton
               text="네"
               handler={handleOkButtonClick}
@@ -81,7 +79,7 @@ export const EditMyPage = () => {
               text="아니오"
               handler={handleCancleButtonClick}
               imageUrl="/assets/images/emotion/5.svg"
-              isFocused
+              isPrimary
             />
           </div>
         </Modal>
