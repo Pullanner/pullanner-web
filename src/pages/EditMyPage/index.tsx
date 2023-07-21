@@ -50,7 +50,7 @@ export const EditMyPage = () => {
         isActive={nicknameValue.length ? 'active' : 'inactive'}
         handleButtonClick={handleSaveButtonClick}
       />
-      <div className="mt-[2.125rem] pb-[24.5rem]">
+      <div className="pb-[24.5rem]">
         <DuplicationCheckForm
           inputName="닉네임"
           defaultValue={nickname}
