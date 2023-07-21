@@ -5,7 +5,7 @@ type TextProps = {
   textStyle?: string;
 };
 
-export const PromptText = ({ children, textStyle = '' }: TextProps) => {
+export const ModalText = ({ children, textStyle = '' }: TextProps) => {
   return <div className={`${textStyle}`}>{children}</div>;
 };
 

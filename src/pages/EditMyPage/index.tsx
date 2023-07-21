@@ -7,7 +7,7 @@ import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckForm } from '@/components/DuplicationCheckForm';
 import { Modal } from '@/components/Modal';
 import { ModalButton } from '@/components/Modal/ModalButton';
-import { MainText, SubText, PromptText } from '@/components/Modal/ModalText';
+import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
 
@@ -64,11 +64,12 @@ export const EditMyPage = () => {
       <DimmedButton name="회원탈퇴" handler={handleWithdrwalButtonClick} />
       {showModal && (
         <Modal>
-          <PromptText textStyle="p-5">
+          <ModalText textStyle="p-5">
             <MainText textStyle="text-red-400">정말 탈퇴하시겠습니까?</MainText>
-            <SubText>회원 탈퇴시 Pullanner의 모든 데이터가 삭제됩니다.</SubText>
-            <SubText>삭제된 데이터는 복구할 수 없습니다.</SubText>
-          </PromptText>
+            <SubText>
+              회원 탈퇴시 Pullanner의 모든 데이터가 삭제됩니다. 삭제된 데이터는 복구할 수 없습니다.
+            </SubText>
+          </ModalText>
           <div className="flex w-full justify-around p-3">
             <ModalButton
               text="네"
