@@ -6,7 +6,7 @@ type TextProps = {
 };
 
 export const ModalText = ({ children, textStyle = '' }: TextProps) => {
-  return <div className={`${textStyle}`}>{children}</div>;
+  return <div className={`${textStyle} max-w-[20rem]`}>{children}</div>;
 };
 
 export const MainText = ({ children, textStyle }: TextProps) => {
