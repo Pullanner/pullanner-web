@@ -1,5 +1,6 @@
+import { useSetAtom, useAtomValue } from 'jotai';
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { validateNickname } from '@/apis/user';
 import { DimmedButton } from '@/components/buttons/DimmedButton';
@@ -10,6 +11,7 @@ import { ModalButton } from '@/components/Modal/ModalButton';
 import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
+import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 const INPUT_LENGTH = {
   min: 2,
@@ -17,10 +19,11 @@ const INPUT_LENGTH = {
 } as const;
 
 export const EditMyPage = () => {
-  const {
-    state: { nickname },
-  } = useLocation();
-  const [nicknameValue, setNicknameValue] = useState(nickname);
+  const userData = useAtomValue(userDataAtom) as UserData;
+  const setUserData = useSetAtom(userDataAtom);
+  const { nickname } = userData;
+  const initialNicknameValue = nickname ?? '';
+  const [nicknameValue, setNicknameValue] = useState(initialNicknameValue);
   const [showModal, setShowModal] = useState(false);
   const { mutate } = useMutateNickname();
   const navigate = useNavigate();
@@ -28,6 +31,7 @@ export const EditMyPage = () => {
   const handleSaveButtonClick = () => {
     if (nicknameValue.length) {
       mutate(nicknameValue);
+      setUserData({ ...userData, nickname: nicknameValue });
       navigate(ROUTE_PATH.myPage.index);
     }
   };
