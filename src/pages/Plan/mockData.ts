@@ -1,150 +1,114 @@
-export const SAMPLE_JOURNAL_DATA = {
+export const SAMPLE_PLAN_DATA = {
   '2023-07-01': [
     {
-      id: 2,
-      name: 'Hanging',
-      count: 15,
-      date: '2023.7.2',
-      time: '12:40pm',
-      emotion: 5,
-      description: 'Good!',
-      color: '#F47C7C',
+      id: 1,
+      createdAt: '2023-07-01 15:35',
+      updatedAt: '',
+      planDate: '2023-07-01',
+      planName: 'Pull-up Plan 1',
+      planTime: '12:00pm',
+      planType: 'master',
+      workout: [
+        { id: 1, name: 'Jump Pull-up', count: 3, set: 5, total: 15, done: false, color: '#F1B55B' },
+        { id: 2, name: 'Pull-up', count: 3, set: 10, total: 30, done: true, color: '#8EE14E' },
+      ],
+      progress: 50,
+      Note: '열심히 했다!',
+      mainColor: '#F1B55B',
     },
+    {
+      id: 2,
+      createdAt: '2023-07-01 15:45',
+      updatedAt: '',
+      planDate: '2023-07-01',
+      planName: 'Pull-up Plan 2',
+      planTime: '12:00pm',
+      planType: 'strength',
+      workout: [
+        {
+          id: 1,
+          name: 'Archer Pull-up',
+          count: 3,
+          set: 5,
+          total: 15,
+          done: false,
+          color: '#CD7BFF',
+        },
+        { id: 2, name: 'Muscle-up', count: 3, set: 10, total: 30, done: false, color: '#FF8CF4' },
+      ],
+      progress: 0,
+      Note: '',
+      mainColor: '#CD7BFF',
+    },
+  ],
+  '2023-07-27': [
     {
       id: 3,
-      name: 'Band Pull-up',
-      count: 20,
-      date: '2023.7.2',
-      time: '12:40pm',
-      emotion: 2,
-      description: 'Good!',
-      color: '#DFE152',
+      createdAt: '2023-07-01 15:35',
+      updatedAt: '',
+      planDate: '2023-07-27',
+      planName: 'Pull-up Plan 3',
+      planTime: '12:00pm',
+      planType: 'master',
+      workout: [
+        { id: 1, name: 'Jump Pull-up', count: 3, set: 5, total: 15, done: false, color: '#F1B55B' },
+        { id: 2, name: 'Pull-up', count: 3, set: 10, total: 30, done: true, color: '#8EE14E' },
+      ],
+      progress: 50,
+      Note: '열심히 했다!',
+      mainColor: '#F1B55B',
     },
     {
       id: 4,
-      name: 'Muscle-up',
-      count: 20,
-      date: '2023.7.2',
-      time: '12:40pm',
-      emotion: 1,
-      description: 'Good!',
-      color: '#FF8CF4',
+      createdAt: '2023-07-01 15:45',
+      updatedAt: '',
+      planDate: '2023-07-27',
+      planName: 'Pull-up Plan 4',
+      planTime: '12:00pm',
+      planType: 'strength',
+      workout: [
+        {
+          id: 1,
+          name: 'Archer Pull-up',
+          count: 3,
+          set: 5,
+          total: 15,
+          done: false,
+          color: '#CD7BFF',
+        },
+        { id: 2, name: 'Muscle-up', count: 3, set: 10, total: 30, done: false, color: '#FF8CF4' },
+      ],
+      progress: 0,
+      Note: '',
+      mainColor: '#CD7BFF',
     },
   ],
-  '2023-07-02': [
-    {
-      id: 1,
-      name: 'Jump Pull-up',
-      count: 10,
-      date: '2023.7.2',
-      time: '12:30pm',
-      emotion: 3,
-      description: 'Good! I like this exercise so much.',
-      color: '#F1B55B',
-    },
-    {
-      id: 2,
-      name: 'Hanging',
-      count: 15,
-      date: '2023.7.2',
-      time: '12:40pm',
-      emotion: 5,
-      description: 'Good!',
-      color: '#F47C7C',
-    },
-    {
-      id: 3,
-      name: 'Band Pull-up',
-      count: 20,
-      date: '2023.7.2',
-      time: '12:40pm',
-      emotion: 2,
-      description: 'Good!',
-      color: '#DFE152',
-    },
-    {
-      id: 4,
-      name: 'Muscle-up',
-      count: 20,
-      date: '2023.7.2',
-      time: '12:40pm',
-      emotion: 1,
-      description: 'Good!',
-      color: '#FF8CF4',
-    },
-    {
-      id: 5,
-      name: 'Archer Pull-up',
-      count: 20,
-      date: '2023.7.2',
-      time: '12:40pm',
-      emotion: 4,
-      description: 'Good!',
-      color: '#CD7BFF',
-    },
-  ],
-  '2023-07-03': [
-    {
-      id: 1,
-      name: 'Jump Pull-up',
-      count: 10,
-      date: '2023.7.3',
-      time: '12:30pm',
-      emotion: 3,
-      description: 'Good! I like this exercise so much.',
-      color: '#F1B55B',
-    },
-    {
-      id: 2,
-      name: 'Hanging',
-      count: 15,
-      date: '2023.7.3',
-      time: '12:40pm',
-      emotion: 5,
-      description: 'Good!',
-      color: '#F47C7C',
-    },
-    {
-      id: 2,
-      name: 'Hanging',
-      count: 15,
-      date: '2023.7.3',
-      time: '12:40pm',
-      emotion: 5,
-      description: 'Good!',
-      color: '#F47C7C',
-    },
-  ],
-  '2023-07-04': [
-    {
-      id: 4,
-      name: 'Muscle-up',
-      count: 20,
-      date: '2023.7.2',
-      time: '12:40pm',
-      emotion: 1,
-      description: 'Good!',
-      color: '#FF8CF4',
-    },
-    {
-      id: 5,
-      name: 'Archer Pull-up',
-      count: 20,
-      date: '2023.7.2',
-      time: '12:40pm',
-      emotion: 4,
-      description: 'Good!',
-      color: '#CD7BFF',
-    },
-    {
-      id: 2,
-      name: 'Hanging',
-      count: 15,
-      date: '2023.7.3',
-      time: '12:40pm',
-      emotion: 5,
-      description: 'Good!',
-      color: '#F47C7C',
-    },
-  ],
+};
+
+type Workout = {
+  id: number;
+  name: string;
+  count: number;
+  set: number;
+  total: number;
+  done: boolean;
+  color: string;
+};
+
+type Plan = {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  planDate: string;
+  planName: string;
+  planTime: string;
+  planType: string;
+  workout: Workout[];
+  progress: number;
+  Note: string;
+  mainColor: string;
+};
+
+export type PlanData = {
+  [date: string]: Plan[];
 };
