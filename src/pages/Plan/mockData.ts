@@ -11,9 +11,10 @@ export const SAMPLE_PLAN_DATA = {
       workout: [
         { id: 1, name: 'Jump Pull-up', count: 3, set: 5, total: 15, done: false, color: '#F1B55B' },
         { id: 2, name: 'Pull-up', count: 3, set: 10, total: 30, done: true, color: '#8EE14E' },
+        { id: 3, name: 'Band Pull-up', count: 3, set: 10, total: 30, done: true, color: '#DFE152' },
       ],
-      progress: 50,
-      Note: '열심히 했다!',
+      progress: 66,
+      note: '열심히 했다!',
       mainColor: '#F1B55B',
     },
     {
@@ -37,7 +38,7 @@ export const SAMPLE_PLAN_DATA = {
         { id: 2, name: 'Muscle-up', count: 3, set: 10, total: 30, done: false, color: '#FF8CF4' },
       ],
       progress: 0,
-      Note: '',
+      note: '',
       mainColor: '#CD7BFF',
     },
   ],
@@ -55,7 +56,7 @@ export const SAMPLE_PLAN_DATA = {
         { id: 2, name: 'Pull-up', count: 3, set: 10, total: 30, done: true, color: '#8EE14E' },
       ],
       progress: 50,
-      Note: '열심히 했다!',
+      note: '열심히 했다!',
       mainColor: '#F1B55B',
     },
     {
@@ -79,7 +80,7 @@ export const SAMPLE_PLAN_DATA = {
         { id: 2, name: 'Muscle-up', count: 3, set: 10, total: 30, done: false, color: '#FF8CF4' },
       ],
       progress: 0,
-      Note: '',
+      note: '',
       mainColor: '#CD7BFF',
     },
   ],
@@ -105,7 +106,7 @@ type Plan = {
   planType: string;
   workout: Workout[];
   progress: number;
-  Note: string;
+  note: string;
   mainColor: string;
 };
 
