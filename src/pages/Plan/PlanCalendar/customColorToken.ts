@@ -9,5 +9,5 @@ export const CUSTOM_COLOR_TOKEN = {
   colorTextDisabled: '#888787',
   colorTextLightSolid: '#000',
   colorBgElevated: '#000',
-  colorBorder: '#fff',
+  colorBorder: '#888',
 };
