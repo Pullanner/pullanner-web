@@ -13,8 +13,8 @@ export const ROUTE_PATH = {
   },
   plan: {
     index: '/plan',
-    newStrength: '/plan/new/strength',
-    newMaster: '/plan/new/master',
+    new: '/plan/new',
+    detail: '/plan/:id',
   },
   summary: '/summary',
   community: '/community',
