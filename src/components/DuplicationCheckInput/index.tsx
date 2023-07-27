@@ -5,7 +5,7 @@ import { InputStatusType, InputDescription } from './InputDescription';
 
 type AsyncValidateFunction<T> = (value: T) => Promise<boolean>;
 
-type DuplicationCheckFormProps = {
+type DuplicationCheckInputProps = {
   inputName: string;
   defaultValue?: string;
   minLength: number;
@@ -14,14 +14,14 @@ type DuplicationCheckFormProps = {
   validationFunction: AsyncValidateFunction<string>;
 };
 
-export const DuplicationCheckForm = ({
+export const DuplicationCheckInput = ({
   inputName,
   defaultValue = '',
   minLength,
   maxLength,
   setValidInputValue,
   validationFunction,
-}: DuplicationCheckFormProps) => {
+}: DuplicationCheckInputProps) => {
   const [inputValue, setInputValue] = useState(defaultValue);
   const [inputStatus, setInputStatus] = useState<InputStatusType>(INVALID_INPUT.status);
   const [showValidationResult, setValidationResultShowed] = useState(false);
@@ -54,7 +54,7 @@ export const DuplicationCheckForm = ({
   };
 
   return (
-    <form className="flex flex-col">
+    <div className="flex flex-col">
       <label className="mb-2.5 inline-block text-sm" htmlFor={inputName}>
         {inputName}
       </label>
@@ -85,6 +85,6 @@ export const DuplicationCheckForm = ({
         showValidationResult={showValidationResult}
         inputStatus={inputStatus}
       />
-    </form>
+    </div>
   );
 };

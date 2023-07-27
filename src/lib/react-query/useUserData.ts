@@ -31,8 +31,12 @@ export const useMutateNickname = () => {
 //   accessToken: string,
 //   setAccessToken: Dispatch<SetStateAction<string>>,
 // ) => {
-//   return useQuery([queryKeys.userData, accessToken, setAccessToken], () => {
-//     return getAuthRequest(API_PATH.user, accessToken, setAccessToken);
+//   return useQuery({
+//     queryKey: [queryKeys.userData, accessToken, setAccessToken],
+//     queryFn: () => {
+//       return getAuthRequest(API_PATH.user, accessToken, setAccessToken);
+//     },
+//     enabled: !!accessToken.length,
 //   });
 // };
 

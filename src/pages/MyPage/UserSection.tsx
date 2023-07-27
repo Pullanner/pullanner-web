@@ -9,13 +9,10 @@ type UserSectionProps = {
   email: string;
 };
 
-type MyPageEditButtonProps = Pick<UserSectionProps, 'nickname'>;
-
-const MyPageEditButton = ({ nickname }: MyPageEditButtonProps) => {
+const MyPageEditButton = () => {
   return (
     <Link
       to={ROUTE_PATH.myPage.edit}
-      state={{ nickname }}
       className="flex h-7 w-[6.25rem] items-center rounded-[1.25rem] border border-white"
     >
       <span className="px-3 text-xs">정보수정</span>
@@ -30,7 +27,7 @@ export const UserSection = ({ profileImage, nickname, email }: UserSectionProps)
       <ProfileImage imageUrl={profileImage} imageSize="6rem" />
       <span className="mt-[1.938rem] inline-block pb-[0.313rem]  text-main font-semibold">{`안녕하세요, ${nickname}님`}</span>
       <span className="inline-block pb-[1.125rem] text-xs text-gray-400">{email}</span>
-      <MyPageEditButton nickname={nickname} />
+      <MyPageEditButton />
     </section>
   );
 };
