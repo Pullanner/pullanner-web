@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
+import { ROUTE_PATH } from '@/constants';
+
 const NAVLINK_CLASS_VARIANTS = {
   active: 'flex flex-col justify-center items-center text-primary',
   inactive: 'flex flex-col justify-center items-center',
@@ -8,22 +10,22 @@ const NAVLINK_CLASS_VARIANTS = {
 const ICON_LINK_DATA = [
   {
     name: 'Roadmap',
-    linkPath: '/roadmap',
+    linkPath: ROUTE_PATH.roadmap.index,
     iconClass: 'icon-roadmap-icon',
   },
   {
-    name: 'Journal',
-    linkPath: '/journal',
+    name: 'Plan',
+    linkPath: ROUTE_PATH.plan.index,
     iconClass: 'icon-journal-icon',
   },
   {
     name: 'Summary',
-    linkPath: '/summary',
+    linkPath: ROUTE_PATH.summary,
     iconClass: 'icon-dashboard-icon',
   },
   {
     name: 'Community',
-    linkPath: '/community',
+    linkPath: ROUTE_PATH.community,
     iconClass: 'icon-community-icon',
   },
 ] as const;
