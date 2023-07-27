@@ -10,7 +10,6 @@ type JournalCardProps = {
   count: number;
   time: string;
   description: string;
-  emotion: number;
 };
 
 // TODO: 수정 & 삭제 기능 구현
@@ -25,14 +24,7 @@ const items: MenuProps['items'] = [
   },
 ];
 
-export const JournalCard = ({
-  color,
-  name,
-  count,
-  time,
-  description,
-  emotion,
-}: JournalCardProps) => {
+export const PlanCard = ({ color, name, count, time, description }: JournalCardProps) => {
   const [showDescription, setShowDescription] = useState(false);
 
   const handleJournalCardClick = () => {
@@ -49,7 +41,6 @@ export const JournalCard = ({
           onClick={handleJournalCardClick}
           className="grid w-full grid-cols-7 items-center"
         >
-          <img src={`/assets/images/emotion/${emotion}.svg`} alt="emotion" className="h-6 w-6" />
           <span style={{ color }} className="col-span-3 justify-self-start">
             {name}
           </span>

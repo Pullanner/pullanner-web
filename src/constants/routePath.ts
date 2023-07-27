@@ -11,9 +11,10 @@ export const ROUTE_PATH = {
     index: '/roadmap',
     detail: '/roadmap/:step',
   },
-  journal: {
-    index: '/journal',
-    new: '/journal/new',
+  plan: {
+    index: '/plan',
+    newStrength: '/plan/new/strength',
+    newMaster: '/plan/new/master',
   },
   summary: '/summary',
   community: '/community',

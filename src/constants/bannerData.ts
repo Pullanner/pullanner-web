@@ -5,10 +5,11 @@ export const BANNER_DATA = {
       '풀래너가 제공하는 단계별 풀업 로드맵을 차근차근 따라가며, 목표하는 풀업 동작을 달성해 보세요.',
     backgroundImgSrc: '/assets/images/banner/roadmap.png',
   },
-  journal: {
-    title: 'Pull-up Journal',
-    description: '풀래너에 나의 풀업 기록을 남겨볼까요? 꾸준히 기록하며 귀여운 뱃지도 모아보세요.',
-    backgroundImgSrc: '/assets/images/banner/journal.png',
+  plan: {
+    title: 'Pull-up Plan',
+    description:
+      '풀래너에 나의 풀업 계획을 세워볼까요? 꾸준히 계획을 달성하며 귀여운 뱃지도 모아보세요.',
+    backgroundImgSrc: '/assets/images/banner/plan.png',
   },
   summary: {
     title: 'Pull-up Summary',

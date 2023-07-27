@@ -12,7 +12,7 @@ import {
   Roadmap,
   RoadmapDetail,
   EditMyPage,
-  Journal,
+  Plan,
   rootLoader,
   Summary,
   Community,
@@ -66,8 +66,8 @@ const router = createBrowserRouter([
         element: <EditMyPage />,
       },
       {
-        path: ROUTE_PATH.journal.index,
-        element: <Journal />,
+        path: ROUTE_PATH.plan.index,
+        element: <Plan />,
       },
       {
         path: ROUTE_PATH.summary,
