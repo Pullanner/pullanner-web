@@ -50,10 +50,14 @@ export const EditMyPage = () => {
 
   return (
     <div>
-      <SaveButton
-        isActive={nicknameValue.length ? 'active' : 'inactive'}
-        handleButtonClick={handleSaveButtonClick}
-      />
+      <div className="flex w-full flex-row-reverse py-5">
+        <SaveButton
+          isActive={nicknameValue.length ? 'active' : 'inactive'}
+          handleButtonClick={handleSaveButtonClick}
+          width="5rem"
+          height="2rem"
+        />
+      </div>
       <div className="pb-[24.5rem]">
         <DuplicationCheckInput
           inputName="닉네임"

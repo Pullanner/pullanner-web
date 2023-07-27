@@ -1,23 +1,32 @@
 type SaveButtonProps = {
   isActive: 'active' | 'inactive';
   handleButtonClick: () => void;
+  width: string;
+  height: string;
+  text?: string;
+  className?: string;
 };
 
-const SAVE_BUTTON_STYLE = {
-  active: 'bg-primary text-black',
-  inactive: 'bg-[#4E4E4E] text-[#8A8A8A]',
-} as const;
-
-export const SaveButton = ({ isActive, handleButtonClick }: SaveButtonProps) => {
+export const SaveButton = ({
+  isActive,
+  handleButtonClick,
+  width,
+  height,
+  text = '저장',
+  className,
+}: SaveButtonProps) => {
   return (
-    <div className="flex w-full flex-row-reverse py-5">
-      <button
-        type="button"
-        className={`h-8 w-20 rounded-[0.313rem] ${SAVE_BUTTON_STYLE[isActive]}`}
-        onClick={handleButtonClick}
-      >
-        저장
-      </button>
-    </div>
+    <button
+      type="button"
+      className={`rounded-[0.313rem] bg-primary text-black ${className}`}
+      onClick={handleButtonClick}
+      style={{
+        opacity: isActive ? 1 : 0.5,
+        width,
+        height,
+      }}
+    >
+      {text}
+    </button>
   );
 };
