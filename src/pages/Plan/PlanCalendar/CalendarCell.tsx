@@ -1,17 +1,18 @@
-import { SAMPLE_JOURNAL_DATA } from '@/mocks/journal/data';
+import { PlanData } from '../mockData';
 
 import type { Dayjs } from 'dayjs';
 
 type CalendarCellProps = {
   date: Dayjs;
+  planData: PlanData;
 };
 
-export const CalendarCell = ({ date }: CalendarCellProps) => {
-  const MAX_JOURNAL_DOT_COUNT = 3;
-
+export const CalendarCell = ({ date, planData }: CalendarCellProps) => {
+  const MAX_PLAN_DOT_COUNT = 2;
   const dateKey = date.format('YYYY-MM-DD');
-  const journals = SAMPLE_JOURNAL_DATA[dateKey];
-  if (!journals) {
+  const plans = planData[dateKey];
+
+  if (!plans) {
     return (
       <div className="flex pt-1">
         <div className="h-1.5 w-1.5" />
@@ -21,12 +22,18 @@ export const CalendarCell = ({ date }: CalendarCellProps) => {
 
   return (
     <div className="flex justify-evenly pt-1">
-      {journals.map(({ color }, index) => {
-        if (index >= MAX_JOURNAL_DOT_COUNT) {
+      {plans.map(({ id, mainColor }, index) => {
+        if (index >= MAX_PLAN_DOT_COUNT) {
           return;
         }
 
-        return <div style={{ backgroundColor: color }} className="h-1.5 w-1.5 rounded-full" />;
+        return (
+          <div
+            key={id}
+            style={{ backgroundColor: mainColor }}
+            className="h-1.5 w-1.5 rounded-full"
+          />
+        );
       })}
     </div>
   );
