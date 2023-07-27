@@ -15,7 +15,7 @@ import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 const INPUT_LENGTH = {
   min: 2,
-  max: 15,
+  max: 8,
 } as const;
 
 export const EditMyPage = () => {
