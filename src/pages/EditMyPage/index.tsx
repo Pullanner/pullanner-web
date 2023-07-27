@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { validateNickname } from '@/apis/user';
 import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
-import { DuplicationCheckForm } from '@/components/DuplicationCheckForm';
+import { DuplicationCheckInput } from '@/components/DuplicationCheckInput';
 import { Modal } from '@/components/Modal';
 import { ModalButton } from '@/components/Modal/ModalButton';
 import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
@@ -55,7 +55,7 @@ export const EditMyPage = () => {
         handleButtonClick={handleSaveButtonClick}
       />
       <div className="pb-[24.5rem]">
-        <DuplicationCheckForm
+        <DuplicationCheckInput
           inputName="닉네임"
           defaultValue={nickname}
           minLength={INPUT_LENGTH.min}
