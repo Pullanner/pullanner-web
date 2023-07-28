@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
 
-const defaultInstance = axios.create({
+const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   timeout: 10000,
   headers: { 'Content-Type': 'application/json' },
@@ -18,11 +18,11 @@ const onErrorResponse = async (error: AxiosError | Error): Promise<AxiosError> =
   return Promise.reject(error);
 };
 
-const setupInterceptors = (instance: AxiosInstance): AxiosInstance => {
-  instance.interceptors.request.use(onRequest, onErrorResponse);
-  instance.interceptors.response.use(onResponse, onErrorResponse);
+const setupInterceptors = (anInstance: AxiosInstance): AxiosInstance => {
+  anInstance.interceptors.request.use(onRequest, onErrorResponse);
+  anInstance.interceptors.response.use(onResponse, onErrorResponse);
 
-  return instance;
+  return anInstance;
 };
 
-export const defaultInstanceWithInterceptors = setupInterceptors(defaultInstance);
+export const axiosInstance = setupInterceptors(instance);

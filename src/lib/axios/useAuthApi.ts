@@ -1,7 +1,7 @@
 import axios, { RawAxiosRequestHeaders, AxiosHeaders } from 'axios';
 
 import { ApiPathType } from '@/constants';
-import { authInstance } from '@/lib/axios/authInstance';
+import { axiosInstance } from '@/lib/axios/instance';
 import { reissueAccessToken } from '@/utils/reissueAccessToken';
 
 import type { Dispatch, SetStateAction } from 'react';
@@ -11,6 +11,8 @@ type Options = {
   params?: any;
 };
 
+const isDevMode = import.meta.env.DEV;
+
 export const getAuthRequest = async (
   apiPath: ApiPathType,
   accessToken: string,
@@ -18,7 +20,13 @@ export const getAuthRequest = async (
   options?: Options,
 ) => {
   try {
-    const { data } = await authInstance.get(apiPath, {
+    if (isDevMode) {
+      const { data } = await axios.get(apiPath, { ...options });
+
+      return data;
+    }
+
+    const { data } = await axiosInstance.get(apiPath, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -41,7 +49,13 @@ export const postAuthRequest = async <T>(
   setAccessToken: Dispatch<SetStateAction<string>>,
 ) => {
   try {
-    const { data } = await authInstance.post(apiPath, payload, {
+    if (isDevMode) {
+      const { data } = await axios.post(apiPath, payload);
+
+      return data;
+    }
+
+    const { data } = await axiosInstance.post(apiPath, payload, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

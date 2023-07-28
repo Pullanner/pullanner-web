@@ -1,10 +1,10 @@
-import { useSetAtom, useAtomValue } from 'jotai';
+import { useAtom, useSetAtom, useAtomValue } from 'jotai';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { API_PATH, ROUTE_PATH } from '@/constants';
-import { authInstance } from '@/lib/axios/authInstance';
+import { axiosInstance } from '@/lib/axios/instance';
 import { useUserData } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
@@ -15,8 +15,8 @@ import { TabSection } from './TabSection';
 import { UserSection } from './UserSection';
 
 export const MyPage = () => {
-  const { data, isSuccess } = useUserData();
-  const setAccessToken = useSetAtom(accessTokenAtom);
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const { data, isSuccess } = useUserData(accessToken, setAccessToken);
   const setLoginState = useSetAtom(loginStateAtom);
   const userData = useAtomValue(userDataAtom) as UserData;
   const setUserData = useSetAtom(userDataAtom);
@@ -29,7 +29,7 @@ export const MyPage = () => {
   }, [isSuccess, data, setUserData]);
 
   const handleLogoutButtonClick = () => {
-    authInstance.delete(API_PATH.token);
+    axiosInstance.delete(API_PATH.token);
     setLoginState(false);
     setAccessToken('');
     navigate(ROUTE_PATH.root);

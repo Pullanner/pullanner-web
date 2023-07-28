@@ -1,9 +1,16 @@
+import { useAtom } from 'jotai';
 import { useState, Dispatch, SetStateAction, ChangeEvent } from 'react';
+
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 
 import { VALID_INPUT, INVALID_INPUT, DUPLICATION_CHECK_BUTTON_STYLE } from './constants';
 import { InputStatusType, InputDescription } from './InputDescription';
 
-type AsyncValidateFunction<T> = (value: T) => Promise<boolean>;
+type AsyncValidateFunction = (
+  nickname: string,
+  accessToken: string,
+  setAccessToken: Dispatch<SetStateAction<string>>,
+) => Promise<boolean>;
 
 type DuplicationCheckInputProps = {
   inputName: string;
@@ -11,7 +18,7 @@ type DuplicationCheckInputProps = {
   minLength: number;
   maxLength: number;
   setValidInputValue: Dispatch<SetStateAction<string>>;
-  validationFunction: AsyncValidateFunction<string>;
+  validationFunction: AsyncValidateFunction;
 };
 
 export const DuplicationCheckInput = ({
@@ -25,6 +32,7 @@ export const DuplicationCheckInput = ({
   const [inputValue, setInputValue] = useState(defaultValue);
   const [inputStatus, setInputStatus] = useState<InputStatusType>(INVALID_INPUT.status);
   const [showValidationResult, setValidationResultShowed] = useState(false);
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const DuplicationCheckButtonState = inputValue.length >= minLength ? 'active' : 'inactive';
   let isFirstTyping = true;
 
@@ -39,7 +47,11 @@ export const DuplicationCheckInput = ({
 
   const handleDuplicationCheckButtonClick = async () => {
     try {
-      const isInputNotDuplicated = await validationFunction(inputValue);
+      const isInputNotDuplicated = await validationFunction(
+        inputValue,
+        accessToken,
+        setAccessToken,
+      );
       if (isInputNotDuplicated) {
         setInputStatus(VALID_INPUT.status);
         setValidInputValue(inputValue);
