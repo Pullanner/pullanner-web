@@ -1,15 +1,6 @@
-import { Calendar, Button, Select, ConfigProvider } from 'antd';
-import { useSetAtom } from 'jotai';
+import { Button, Select } from 'antd';
 
-import { selectedDateAtom } from '@/stores/atoms/selectedDateAtom';
-
-import { SAMPLE_JOURNAL_DATA } from './mockData';
-
-import type { Dayjs } from 'dayjs';
-
-const MAX_JOURNAL_DOT_COUNT = 3;
-
-const CalendarHeader = ({ value, onChange }) => {
+export const CalendarHeader = ({ value, onChange }) => {
   const start = 0;
   const end = 12;
   const monthOptions = [];
@@ -56,7 +47,7 @@ const CalendarHeader = ({ value, onChange }) => {
   };
 
   return (
-    <div className="p-2">
+    <div className="p-3">
       <div className="flex justify-between">
         <div className="flex gap-2">
           <Select
@@ -90,67 +81,5 @@ const CalendarHeader = ({ value, onChange }) => {
         </Button>
       </div>
     </div>
-  );
-};
-
-export const JournalCalendar = () => {
-  const setSelectedDate = useSetAtom(selectedDateAtom);
-
-  const handleDateChange = (newDate: Dayjs) => {
-    const newDateKey = newDate.format('YYYY-MM-DD');
-    setSelectedDate(newDateKey);
-  };
-
-  const cellRender = (date: Dayjs) => {
-    const dateKey = date.format('YYYY-MM-DD');
-    const journals = SAMPLE_JOURNAL_DATA[dateKey];
-    if (!journals) {
-      return (
-        <div className="flex pt-1">
-          <div className="h-1.5 w-1.5" />
-        </div>
-      );
-    }
-
-    return (
-      <div className="flex justify-evenly pt-1">
-        {journals.map(({ color }, index) => {
-          if (index >= MAX_JOURNAL_DOT_COUNT) {
-            return;
-          }
-
-          return <div style={{ backgroundColor: color }} className="h-1.5 w-1.5 rounded-full" />;
-        })}
-      </div>
-    );
-  };
-
-  return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorText: '#fff',
-          colorTextPlaceholder: '#fff',
-          colorBgContainer: '#272727',
-          colorPrimary: '#60EBD1',
-          controlItemBgHover: '#60EBD1',
-          colorIconHover: '#60EBD1',
-          controlItemBgActive: '#60EBD1',
-          colorTextDisabled: '#888787',
-          colorTextLightSolid: '#000',
-          colorBgElevated: '#000',
-          colorBorder: '#fff',
-        },
-      }}
-    >
-      <Calendar
-        fullscreen={false}
-        headerRender={({ value, onChange }) => {
-          return CalendarHeader({ value, onChange });
-        }}
-        onSelect={handleDateChange}
-        cellRender={cellRender}
-      />
-    </ConfigProvider>
   );
 };

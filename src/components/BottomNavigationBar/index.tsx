@@ -1,29 +1,31 @@
 import { NavLink } from 'react-router-dom';
 
+import { ROUTE_PATH } from '@/constants';
+
 const NAVLINK_CLASS_VARIANTS = {
-  active: 'flex flex-col justify-center items-center text-primary',
-  inactive: 'flex flex-col justify-center items-center',
+  active: 'flex flex-col justify-center items-center text-primary min-w-[70px]',
+  inactive: 'flex flex-col justify-center items-center min-w-[70px]',
 } as const;
 
 const ICON_LINK_DATA = [
   {
     name: 'Roadmap',
-    linkPath: '/roadmap',
+    linkPath: ROUTE_PATH.roadmap.index,
     iconClass: 'icon-roadmap-icon',
   },
   {
-    name: 'Journal',
-    linkPath: '/journal',
+    name: 'Plan',
+    linkPath: ROUTE_PATH.plan.index,
     iconClass: 'icon-journal-icon',
   },
   {
     name: 'Summary',
-    linkPath: '/summary',
+    linkPath: ROUTE_PATH.summary,
     iconClass: 'icon-dashboard-icon',
   },
   {
     name: 'Community',
-    linkPath: '/community',
+    linkPath: ROUTE_PATH.community,
     iconClass: 'icon-community-icon',
   },
 ] as const;
@@ -56,7 +58,7 @@ const IconLink = ({ iconLinkProps }: IconLinkProps) => {
 
 export const BottomNavigationBar = () => {
   return (
-    <nav className="flex h-20 w-[100%] justify-around rounded-t-[20px] border border-white bg-black">
+    <nav className="flex h-16 w-[100%] justify-evenly rounded-t-[20px] border-t-[1px] border-gray-500 bg-black">
       {ICON_LINK_DATA.map((iconLinkData: IconLinkData) => {
         return <IconLink key={iconLinkData.name} iconLinkProps={iconLinkData} />;
       })}
