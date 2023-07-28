@@ -11,6 +11,8 @@ type Options = {
   params?: any;
 };
 
+const isDevMode = import.meta.env.DEV;
+
 export const getAuthRequest = async (
   apiPath: ApiPathType,
   accessToken: string,
@@ -18,6 +20,11 @@ export const getAuthRequest = async (
   options?: Options,
 ) => {
   try {
+    if (isDevMode) {
+      const { data } = await axios.get(apiPath);
+
+      return data;
+    }
     const { data } = await axiosInstance.get(apiPath, {
       headers: {
         Authorization: `Bearer ${accessToken}`,

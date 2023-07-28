@@ -1,6 +1,8 @@
 import { atom } from 'jotai';
 
-export const accessTokenAtom = atom('');
+const initialValue = import.meta.env.DEV ? 'accessToken' : '';
+
+export const accessTokenAtom = atom(initialValue);
 
 export const readWriteAtom = atom(
   (get) => {

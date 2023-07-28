@@ -1,19 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { getUserDataTest, postUserDataTest } from '@/apis/user';
-// import { API_PATH } from '@/constants';
-// import { getAuthRequest, postAuthRequest } from '@/lib/axios/useAuthApi';
+import { postUserDataTest } from '@/apis/user';
+import { API_PATH } from '@/constants';
+import { getAuthRequest } from '@/lib/axios/useAuthApi';
 
 import { queryKeys } from './queryKeys';
 
-// import type { Dispatch, SetStateAction } from 'react';
-
-export const useUserData = () => {
-  return useQuery({
-    queryKey: [queryKeys.userData],
-    queryFn: getUserDataTest,
-  });
-};
+import type { Dispatch, SetStateAction } from 'react';
 
 export const useMutateNickname = () => {
   const queryClient = useQueryClient();
@@ -26,19 +19,18 @@ export const useMutateNickname = () => {
   });
 };
 
-// 실제 API 요청에 대한 useQuery
-// export const useUserData = (
-//   accessToken: string,
-//   setAccessToken: Dispatch<SetStateAction<string>>,
-// ) => {
-//   return useQuery({
-//     queryKey: [queryKeys.userData, accessToken, setAccessToken],
-//     queryFn: () => {
-//       return getAuthRequest(API_PATH.user, accessToken, setAccessToken);
-//     },
-//     enabled: !!accessToken.length,
-//   });
-// };
+export const useUserData = (
+  accessToken: string,
+  setAccessToken: Dispatch<SetStateAction<string>>,
+) => {
+  return useQuery({
+    queryKey: [queryKeys.userData, accessToken, setAccessToken],
+    queryFn: () => {
+      return getAuthRequest(API_PATH.user, accessToken, setAccessToken);
+    },
+    enabled: !!accessToken.length,
+  });
+};
 
 // 실제 API 요청에 대한 useMutateNickname
 // export const useMutateNickname = (
@@ -46,6 +38,7 @@ export const useMutateNickname = () => {
 //   setAccessToken: Dispatch<SetStateAction<string>>,
 // ) => {
 //   const queryClient = useQueryClient();
+
 //   return useMutation({
 //     mutationFn: (nickname: string) => {
 //       return postAuthRequest(API_PATH.user, { nickname }, accessToken, setAccessToken);

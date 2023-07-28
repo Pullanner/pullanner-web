@@ -1,4 +1,4 @@
-import { useSetAtom, useAtomValue } from 'jotai';
+import { useAtom, useSetAtom, useAtomValue } from 'jotai';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,8 +15,8 @@ import { TabSection } from './TabSection';
 import { UserSection } from './UserSection';
 
 export const MyPage = () => {
-  const { data, isSuccess } = useUserData();
-  const setAccessToken = useSetAtom(accessTokenAtom);
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const { data, isSuccess } = useUserData(accessToken, setAccessToken);
   const setLoginState = useSetAtom(loginStateAtom);
   const userData = useAtomValue(userDataAtom) as UserData;
   const setUserData = useSetAtom(userDataAtom);
