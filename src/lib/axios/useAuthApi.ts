@@ -25,6 +25,7 @@ export const getAuthRequest = async (
 
       return data;
     }
+
     const { data } = await axiosInstance.get(apiPath, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -48,6 +49,12 @@ export const postAuthRequest = async <T>(
   setAccessToken: Dispatch<SetStateAction<string>>,
 ) => {
   try {
+    if (isDevMode) {
+      const { data } = await axios.post(apiPath, payload);
+
+      return data;
+    }
+
     const { data } = await axiosInstance.post(apiPath, payload, {
       headers: {
         Authorization: `Bearer ${accessToken}`,

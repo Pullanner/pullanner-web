@@ -1,4 +1,4 @@
-import { useSetAtom, useAtomValue } from 'jotai';
+import { useAtom, useSetAtom, useAtomValue } from 'jotai';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ import { ModalButton } from '@/components/Modal/ModalButton';
 import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 const INPUT_LENGTH = {
@@ -29,7 +30,8 @@ export const EditMyPage = () => {
   const initialNicknameValue = nickname ?? '';
   const [nicknameValue, setNicknameValue] = useState(initialNicknameValue);
   const [showModal, setShowModal] = useState(false);
-  const { mutate } = useMutateNickname();
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const { mutate } = useMutateNickname(accessToken, setAccessToken);
   const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
