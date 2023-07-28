@@ -3,6 +3,7 @@ import { Calendar, ConfigProvider } from 'antd';
 import { useSetAtom } from 'jotai';
 
 import { selectedDateAtom } from '@/stores/atoms/selectedDateAtom';
+import { PlanData } from '@/types/plan';
 
 import { CalendarCell } from './CalendarCell';
 import { CalendarHeader } from './CalendarHeader';
@@ -10,7 +11,7 @@ import { CUSTOM_COLOR_TOKEN } from './customColorToken';
 
 import type { Dayjs } from 'dayjs';
 
-export const PlanCalendar = () => {
+export const PlanCalendar = ({ planData }: { planData: PlanData | undefined }) => {
   const setSelectedDate = useSetAtom(selectedDateAtom);
 
   const handleDateChange = (newDate: Dayjs) => {
@@ -25,7 +26,7 @@ export const PlanCalendar = () => {
     <ConfigProvider theme={{ token: CUSTOM_COLOR_TOKEN }}>
       <Calendar
         headerRender={({ value, onChange }) => CalendarHeader({ value, onChange })}
-        cellRender={(date) => CalendarCell({ date })}
+        cellRender={(date) => CalendarCell({ date, planData })}
         onSelect={handleDateChange}
         fullscreen={false}
       />

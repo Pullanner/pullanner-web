@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 
 type PlanCardProps = {
-  id: string;
+  id: number;
   planType: string;
   planName: string;
   progress: number;

@@ -1,15 +1,20 @@
-import { PlanData } from '../mockData';
+import { PlanData } from '@/types/plan';
 
 import type { Dayjs } from 'dayjs';
 
 type CalendarCellProps = {
   date: Dayjs;
-  planData: PlanData;
+  planData?: PlanData;
 };
 
 export const CalendarCell = ({ date, planData }: CalendarCellProps) => {
   const MAX_PLAN_DOT_COUNT = 2;
   const dateKey = date.format('YYYY-MM-DD');
+
+  if (!planData) {
+    return;
+  }
+
   const plans = planData[dateKey];
 
   if (!plans) {
