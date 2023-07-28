@@ -1,7 +1,7 @@
 import axios, { RawAxiosRequestHeaders, AxiosHeaders } from 'axios';
 
 import { ApiPathType } from '@/constants';
-import { authInstance } from '@/lib/axios/authInstance';
+import { axiosInstance } from '@/lib/axios/instance';
 import { reissueAccessToken } from '@/utils/reissueAccessToken';
 
 import type { Dispatch, SetStateAction } from 'react';
@@ -18,7 +18,7 @@ export const getAuthRequest = async (
   options?: Options,
 ) => {
   try {
-    const { data } = await authInstance.get(apiPath, {
+    const { data } = await axiosInstance.get(apiPath, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -41,7 +41,7 @@ export const postAuthRequest = async <T>(
   setAccessToken: Dispatch<SetStateAction<string>>,
 ) => {
   try {
-    const { data } = await authInstance.post(apiPath, payload, {
+    const { data } = await axiosInstance.post(apiPath, payload, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
