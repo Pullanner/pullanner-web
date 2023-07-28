@@ -21,7 +21,7 @@ export const getAuthRequest = async (
 ) => {
   try {
     if (isDevMode) {
-      const { data } = await axios.get(apiPath);
+      const { data } = await axios.get(apiPath, { ...options });
 
       return data;
     }
