@@ -1,5 +1,6 @@
 import { Button, Select } from 'antd';
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const CalendarHeader = ({ value, onChange }) => {
   const start = 0;
   const end = 12;
