@@ -13,6 +13,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        annie: ['Annie Use Your Telescope, cursive'],
       },
       fontSize: {
         main: '0.938rem',

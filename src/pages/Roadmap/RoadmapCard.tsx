@@ -14,9 +14,8 @@ export const RoadmapCard = ({ color, id, imageSrc, description, title }: Roadmap
       <Link to={`/roadmap/${id}`} className="relative">
         <img src={imageSrc} alt={description} />
         <p
-          className="absolute bottom-2 right-2 px-1 text-base tracking-widest text-black"
+          className="absolute bottom-2 right-2 px-1 font-annie text-base tracking-widest text-black"
           style={{
-            fontFamily: 'Annie Use Your Telescope, cursive',
             textShadow: '0.5px 0.5px 0.5px black',
             backgroundColor: color,
           }}
