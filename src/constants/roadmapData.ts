@@ -66,7 +66,7 @@ export const ROADMAP_DATA = [
   {
     id: 6,
     imageSrc: '/assets/images/roadmap/step6.svg',
-    title: 'Chest to Bar Pull-up',
+    title: 'Chest to Bar',
     difficulty: 4,
     description: `Chest to Bar 풀업은 일반 풀업보다 이동 범위를 더 크게 하여 풀업 바에 가슴이나 흉골이 닿게 합니다.
     상체를 더 많이 사용해야 하므로, 일반 풀업에 비해 등근육과 이두근을 더욱 강화시킬 수 있습니다. 
