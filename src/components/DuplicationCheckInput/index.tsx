@@ -54,6 +54,8 @@ export const DuplicationCheckInput = ({
   const handleDuplicationCheckButtonClick = async () => {
     try {
       if (duplicationCheckButtonState === BUTTON_STATE.inactive) {
+        setInputValue('');
+
         return;
       }
       const isInputNotDuplicated = await validationFunction(
