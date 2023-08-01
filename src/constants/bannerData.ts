@@ -21,6 +21,6 @@ export const BANNER_DATA = {
     title: 'Pullanner Community',
     description:
       '풀업에 대해 이야기 할 장소가 필요한가요? 자유롭게 이야기하고 함께 운동할 메이트도 찾아보세요.',
-    backgroundImgSrc: '/assets/images/banner/community.png',
+    backgroundImgSrc: '/assets/images/banner/community.jpeg',
   },
 } as const;
