@@ -77,7 +77,7 @@ export const DuplicationCheckInput = ({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex w-full flex-col">
       <label className="mb-2.5 inline-block text-sm" htmlFor={inputName}>
         {inputName}
       </label>
