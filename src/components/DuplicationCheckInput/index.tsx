@@ -21,6 +21,11 @@ type DuplicationCheckInputProps = {
   validationFunction: AsyncValidateFunction;
 };
 
+const BUTTON_STATE = {
+  active: 'active',
+  inactive: 'inactive',
+} as const;
+
 export const DuplicationCheckInput = ({
   inputName,
   defaultValue = '',
@@ -33,7 +38,8 @@ export const DuplicationCheckInput = ({
   const [inputStatus, setInputStatus] = useState<InputStatusType>(INVALID_INPUT.status);
   const [showValidationResult, setValidationResultShowed] = useState(false);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const DuplicationCheckButtonState = inputValue.length >= minLength ? 'active' : 'inactive';
+  const duplicationCheckButtonState =
+    inputValue.length >= minLength ? BUTTON_STATE.active : BUTTON_STATE.inactive;
   let isFirstTyping = true;
 
   const handleInputChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +52,12 @@ export const DuplicationCheckInput = ({
   };
 
   const handleDuplicationCheckButtonClick = async () => {
+    if (duplicationCheckButtonState === BUTTON_STATE.inactive) {
+      setInputValue('');
+
+      return;
+    }
+
     try {
       const isInputNotDuplicated = await validationFunction(
         inputValue,
@@ -66,7 +78,7 @@ export const DuplicationCheckInput = ({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex w-full flex-col">
       <label className="mb-2.5 inline-block text-sm" htmlFor={inputName}>
         {inputName}
       </label>
@@ -84,7 +96,7 @@ export const DuplicationCheckInput = ({
         />
         <button
           type="button"
-          className={`h-[1.875rem] w-[4.875rem] rounded-[0.313rem] text-base ${DUPLICATION_CHECK_BUTTON_STYLE[DuplicationCheckButtonState]}`}
+          className={`h-[1.875rem] w-[4.875rem] rounded-[0.313rem] text-base ${DUPLICATION_CHECK_BUTTON_STYLE[duplicationCheckButtonState]}`}
           onClick={handleDuplicationCheckButtonClick}
         >
           중복확인
