@@ -58,7 +58,7 @@ export const EditMyPage = () => {
     <div>
       <div className="flex w-full flex-row-reverse py-5">
         <SaveButton
-          isActive={nicknameValue.length ? 'active' : 'inactive'}
+          isActive={!!nicknameValue.length}
           handleButtonClick={handleSaveButtonClick}
           width="5rem"
           height="2rem"

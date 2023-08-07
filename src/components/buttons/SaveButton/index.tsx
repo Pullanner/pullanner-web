@@ -1,5 +1,5 @@
 type SaveButtonProps = {
-  isActive: 'active' | 'inactive';
+  isActive: boolean;
   handleButtonClick: () => void;
   width: string;
   height: string;
