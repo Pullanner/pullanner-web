@@ -17,6 +17,7 @@ import {
   Summary,
   Community,
   Setup,
+  SetNickname,
 } from '@/pages';
 import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
@@ -83,6 +84,12 @@ const router = createBrowserRouter([
   {
     path: ROUTE_PATH.setup.index,
     element: <Setup />,
+    children: [
+      {
+        path: ROUTE_PATH.setup.setNickname,
+        element: <SetNickname />,
+      },
+    ],
   },
 ]);
 

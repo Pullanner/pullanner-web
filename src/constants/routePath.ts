@@ -21,5 +21,6 @@ export const ROUTE_PATH = {
   deleteAccount: '/delete-account',
   setup: {
     index: '/setup',
+    setNickname: '/setup/set-nickname',
   },
 } as const;
