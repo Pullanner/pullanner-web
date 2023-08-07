@@ -1,10 +1,12 @@
 import { useAtom, useSetAtom, useAtomValue } from 'jotai';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { validateNickname } from '@/apis/user';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckInput } from '@/components/DuplicationCheckInput';
 import { Headline } from '@/components/Headline';
+import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
@@ -25,11 +27,13 @@ export const SetNickname = () => {
   const { mutate } = useMutateNickname(accessToken, setAccessToken);
   const userData = useAtomValue(userDataAtom) as UserData;
   const setUserData = useSetAtom(userDataAtom);
+  const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
     if (nickname.length) {
       mutate(nickname);
       setUserData({ ...userData, nickname });
+      navigate(ROUTE_PATH.setup.selectWorkout);
     }
   };
 
