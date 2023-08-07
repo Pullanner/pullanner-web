@@ -3,6 +3,8 @@ import { useAtom, useAtomValue } from 'jotai';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { Headline } from '@/components/Headline';
 import { ROADMAP_DATA } from '@/constants';
+import { usePostWorkoutData } from '@/lib/react-query/useWorkoutData';
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 import { workoutDataAtom } from '@/stores/atoms/workoutDataAtom';
 
@@ -18,9 +20,12 @@ const HANGING = 'Hanging';
 export const SelectWorkout = () => {
   const [workoutData, setWorkoutData] = useAtom(workoutDataAtom);
   const { nickname } = useAtomValue(userDataAtom) as UserData;
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const { mutate } = usePostWorkoutData(accessToken, setAccessToken);
 
   const handleSaveButtonClick = () => {
     setWorkoutData(workoutData);
+    mutate(workoutData);
   };
 
   return (
