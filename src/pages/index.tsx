@@ -13,3 +13,4 @@ export * from './Summary';
 export * from './Setup';
 export * from './SetNickname';
 export * from './SelectWorkout';
+export * from './SetupResult';

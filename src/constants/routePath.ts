@@ -23,5 +23,6 @@ export const ROUTE_PATH = {
     index: '/setup',
     setNickname: '/setup/set-nickname',
     selectWorkout: '/setup/select-workout',
+    result: '/setup/result',
   },
 } as const;

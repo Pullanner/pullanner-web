@@ -19,6 +19,7 @@ import {
   Setup,
   SetNickname,
   SelectWorkout,
+  SetupResult,
 } from '@/pages';
 import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: ROUTE_PATH.setup.selectWorkout,
         element: <SelectWorkout />,
+      },
+      {
+        path: ROUTE_PATH.setup.result,
+        element: <SetupResult />,
       },
     ],
   },
