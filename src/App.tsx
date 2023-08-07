@@ -18,6 +18,7 @@ import {
   Community,
   Setup,
   SetNickname,
+  SelectWorkout,
 } from '@/pages';
 import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: ROUTE_PATH.setup.setNickname,
         element: <SetNickname />,
+      },
+      {
+        path: ROUTE_PATH.setup.selectWorkout,
+        element: <SelectWorkout />,
       },
     ],
   },

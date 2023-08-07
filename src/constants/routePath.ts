@@ -22,5 +22,6 @@ export const ROUTE_PATH = {
   setup: {
     index: '/setup',
     setNickname: '/setup/set-nickname',
+    selectWorkout: '/setup/select-workout',
   },
 } as const;
