@@ -23,7 +23,7 @@ export const Root = () => {
   }, [isProductionMode, accessToken, setAccessToken]);
 
   useEffect(() => {
-    if (userData && !userData.nickname) {
+    if (!userData?.nickname) {
       navigate(ROUTE_PATH.setup.setNickname);
     }
   }, [userData, navigate]);
