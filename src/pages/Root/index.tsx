@@ -1,15 +1,19 @@
-import { useAtom } from 'jotai';
-import { useLayoutEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useAtom, useAtomValue } from 'jotai';
+import { useLayoutEffect, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { BottomNavigationBar } from '@/components/BottomNavigationBar';
 import { ScrollTopButton } from '@/components/buttons/ScrollTopButton';
 import { Header } from '@/components/Header';
+import { ROUTE_PATH } from '@/constants';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 import { initializeAccessToken } from '@/utils/initializeAccessToken';
 
 export const Root = () => {
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const userData = useAtomValue(userDataAtom) as UserData;
+  const navigate = useNavigate();
   const isProductionMode = import.meta.env.PROD;
 
   useLayoutEffect(() => {
@@ -17,6 +21,12 @@ export const Root = () => {
       initializeAccessToken(accessToken, setAccessToken);
     }
   }, [isProductionMode, accessToken, setAccessToken]);
+
+  useEffect(() => {
+    if (userData && !userData.nickname) {
+      navigate(ROUTE_PATH.setup.setNickname);
+    }
+  }, [userData, navigate]);
 
   return (
     <div className="flex h-screen w-screen flex-row items-center justify-center">
