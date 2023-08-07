@@ -1,8 +1,9 @@
 import { useAtom, useAtomValue } from 'jotai';
+import { useNavigate } from 'react-router-dom';
 
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { Headline } from '@/components/Headline';
-import { ROADMAP_DATA } from '@/constants';
+import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
 import { usePostWorkoutData } from '@/lib/react-query/useWorkoutData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
@@ -22,10 +23,12 @@ export const SelectWorkout = () => {
   const { nickname } = useAtomValue(userDataAtom) as UserData;
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const { mutate } = usePostWorkoutData(accessToken, setAccessToken);
+  const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
     setWorkoutData(workoutData);
     mutate(workoutData);
+    navigate(ROUTE_PATH.setup.result);
   };
 
   return (
