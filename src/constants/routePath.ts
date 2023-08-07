@@ -19,4 +19,7 @@ export const ROUTE_PATH = {
   summary: '/summary',
   community: '/community',
   deleteAccount: '/delete-account',
+  setup: {
+    index: '/setup',
+  },
 } as const;

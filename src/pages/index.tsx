@@ -10,3 +10,4 @@ export * from './EditMyPage';
 export * from './Plan';
 export * from './Community';
 export * from './Summary';
+export * from './Setup';

@@ -16,6 +16,7 @@ import {
   rootLoader,
   Summary,
   Community,
+  Setup,
 } from '@/pages';
 import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
         element: <Community />,
       },
     ],
+  },
+  {
+    path: ROUTE_PATH.setup.index,
+    element: <Setup />,
   },
 ]);
 
