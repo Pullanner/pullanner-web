@@ -19,4 +19,10 @@ export const ROUTE_PATH = {
   summary: '/summary',
   community: '/community',
   deleteAccount: '/delete-account',
+  setup: {
+    index: '/setup',
+    setNickname: '/setup/set-nickname',
+    selectWorkout: '/setup/select-workout',
+    result: '/setup/result',
+  },
 } as const;

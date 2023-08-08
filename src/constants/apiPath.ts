@@ -3,6 +3,7 @@ export const API_PATH = {
   nicknameValidation: '/api/users/duplicate',
   token: '/api/tokens',
   plans: '/api/plans',
+  workouts: '/api/workouts',
 } as const;
 
 export type ApiPathType = (typeof API_PATH)[keyof typeof API_PATH];
