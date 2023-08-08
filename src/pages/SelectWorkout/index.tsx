@@ -38,11 +38,11 @@ export const SelectWorkout = () => {
       </Headline>
       <p className="pb-16 text-xs text-[#D9D9D9]">{TEXT_CONTENTS.description}</p>
       <div className="flex w-full justify-center">
-        <p>{`${
+        <p>{`현재 가능한 풀업 동작 : ${
           workoutData.filter((workout) => {
             return workout.selected;
           }).length
-        } / ${workoutData.length}`}</p>
+        }`}</p>
       </div>
       <div className="grid grid-cols-4 gap-x-3.5 gap-y-6 px-5 pb-5">
         {ROADMAP_DATA.map(({ id, title, imageSrc, color }) => {
