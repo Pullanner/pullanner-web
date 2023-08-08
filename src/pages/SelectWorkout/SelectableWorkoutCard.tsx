@@ -20,7 +20,7 @@ export const SelecteableWorkoutCard = ({
   height,
   isActive,
 }: SelectableWorkoutCardProps) => {
-  const [isCardActive, setCardActive] = useState(false);
+  const [isCardSelected, setCardSelected] = useState(false);
   const setWorkoutData = useSetAtom(workoutDataAtom);
 
   const handleCardClick = ({ target }: MouseEvent<HTMLElement>) => {
@@ -37,7 +37,7 @@ export const SelecteableWorkoutCard = ({
 
       return newWorkout;
     });
-    setCardActive(!isCardActive);
+    setCardSelected(!isCardSelected);
   };
 
   if (isActive) {
@@ -74,14 +74,14 @@ export const SelecteableWorkoutCard = ({
           backgroundColor: color,
           width,
           height,
-          opacity: isCardActive ? '1' : '0.5',
-          borderWidth: isCardActive ? '3px' : '',
-          borderColor: isCardActive ? 'white' : '',
+          opacity: isCardSelected ? '1' : '0.5',
+          borderWidth: isCardSelected ? '3px' : '',
+          borderColor: isCardSelected ? 'white' : '',
         }}
         onClick={handleCardClick}
       >
         <img src={imageSrc} alt={title} />
-        {isCardActive && (
+        {isCardSelected && (
           <img
             className="absolute left-2 top-2"
             src="/assets/images/check-icon.png"
