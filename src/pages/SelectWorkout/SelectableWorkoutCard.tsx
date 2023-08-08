@@ -56,7 +56,7 @@ export const SelecteableWorkoutCard = ({
       >
         <img
           className="absolute left-2 top-2"
-          src="/assets/images/check-icon.png"
+          src="/assets/images/check-icon.svg"
           alt="check-icon"
         />
       </WorkoutCard>
@@ -84,7 +84,7 @@ export const SelecteableWorkoutCard = ({
         {isCardSelected && (
           <img
             className="absolute left-2 top-2"
-            src="/assets/images/check-icon.png"
+            src="/assets/images/check-icon.svg"
             alt="check-icon"
           />
         )}
