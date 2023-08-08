@@ -34,9 +34,7 @@ export const SelectWorkout = () => {
   return (
     <div className="flex flex-col items-center">
       <Headline descriptions={TEXT_CONTENTS.headline} classNames="pb-9 pt-[6.25rem]">
-        <p>
-          <span className="font-extrabold">{nickname}</span>님,
-        </p>
+        <span className="font-extrabold">{nickname}</span>님,
       </Headline>
       <p className="pb-16 text-xs text-[#D9D9D9]">{TEXT_CONTENTS.description}</p>
       <div className="grid grid-cols-4 gap-x-3.5 gap-y-6 px-5 pb-5">
