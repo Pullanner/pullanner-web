@@ -3,17 +3,11 @@ import { useState } from 'react';
 
 import { workoutDataAtom } from '@/stores/atoms/workoutDataAtom';
 
-import { WorkoutCard } from './WorkoutCard';
+import { WorkoutCard, WorkoutCardProps } from './WorkoutCard';
 
 import type { MouseEvent } from 'react';
 
-type WorkoutCardProps = {
-  id: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-  title: string;
-  imageSrc: string;
-  color: string;
-  width: string;
-  height: string;
+type SelectableWorkoutCardProps = Omit<WorkoutCardProps, 'additionalStyle' | 'children'> & {
   isActive?: boolean;
 };
 
@@ -25,7 +19,7 @@ export const SelecteableWorkoutCard = ({
   width,
   height,
   isActive,
-}: WorkoutCardProps) => {
+}: SelectableWorkoutCardProps) => {
   const [isCardActive, setCardActive] = useState(false);
   const setWorkoutData = useSetAtom(workoutDataAtom);
 
