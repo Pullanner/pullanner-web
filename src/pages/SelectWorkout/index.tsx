@@ -38,7 +38,7 @@ export const SelectWorkout = () => {
       </Headline>
       <p className="pb-16 text-xs text-[#D9D9D9]">{TEXT_CONTENTS.description}</p>
       <div className="flex w-full justify-center">
-        <p>{`현재 가능한 풀업 동작 : ${
+        <p className="pb-6 font-bold text-primary">{`현재 가능한 풀업 동작 : ${
           workoutData.filter((workout) => {
             return workout.selected;
           }).length
