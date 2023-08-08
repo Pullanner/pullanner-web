@@ -53,7 +53,7 @@ export const SelectWorkout = () => {
           );
         })}
       </div>
-      <div className="flex w-full flex-row-reverse px-7">
+      <div className="flex w-full justify-end px-7">
         <p>{`${
           workoutData.filter((workout) => {
             return workout.selected;
