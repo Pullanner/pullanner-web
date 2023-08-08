@@ -36,31 +36,33 @@ export const SelectWorkout = () => {
       <Headline descriptions={TEXT_CONTENTS.headline} classNames="pb-9 pt-[6.25rem]">
         <span className="font-extrabold">{nickname}</span>님,
       </Headline>
-      <p className="pb-16 text-xs text-[#D9D9D9]">{TEXT_CONTENTS.description}</p>
-      <div className="flex w-full justify-center">
-        <p className="pb-6 font-bold text-primary">{`현재 가능한 풀업 동작 : ${
-          workoutData.filter((workout) => {
-            return workout.selected;
-          }).length
-        }`}</p>
-      </div>
-      <div className="grid grid-cols-4 gap-x-3.5 gap-y-6 px-5 pb-5">
-        {ROADMAP_DATA.map(({ id, title, imageSrc, color }) => {
-          return (
-            <SelecteableWorkoutCard
-              key={id}
-              id={id}
-              title={title}
-              imageSrc={imageSrc}
-              color={color}
-              width="4.75rem"
-              height="6.375rem"
-              isActive={title === HANGING}
-            />
-          );
-        })}
-      </div>
-      <div className="flex justify-center pt-20">
+      <p className="pb-10 text-xs text-[#D9D9D9]">{TEXT_CONTENTS.description}</p>
+      <section className="bg-[#1E1E1E] py-4">
+        <div className="flex w-full justify-center">
+          <p className="pb-6 font-bold text-primary">{`현재 가능한 풀업 동작 : ${
+            workoutData.filter((workout) => {
+              return workout.selected;
+            }).length
+          }`}</p>
+        </div>
+        <div className="grid grid-cols-4 gap-x-3.5 gap-y-6 px-5 pb-5">
+          {ROADMAP_DATA.map(({ id, title, imageSrc, color }) => {
+            return (
+              <SelecteableWorkoutCard
+                key={id}
+                id={id}
+                title={title}
+                imageSrc={imageSrc}
+                color={color}
+                width="4.75rem"
+                height="6.375rem"
+                isActive={title === HANGING}
+              />
+            );
+          })}
+        </div>
+      </section>
+      <div className="flex justify-center pt-12">
         <SaveButton
           isActive
           handleButtonClick={handleSaveButtonClick}
