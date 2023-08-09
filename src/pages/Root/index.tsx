@@ -19,10 +19,10 @@ export const Root = () => {
   const isProductionMode = import.meta.env.PROD;
 
   useLayoutEffect(() => {
-    if (isProductionMode) {
+    if (isProductionMode && loginState) {
       initializeAccessToken(accessToken, setAccessToken);
     }
-  }, [isProductionMode, accessToken, setAccessToken]);
+  }, [isProductionMode, accessToken, setAccessToken, loginState]);
 
   useEffect(() => {
     if (loginState && !userData?.nickname) {
