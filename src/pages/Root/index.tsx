@@ -1,5 +1,4 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { useLayoutEffect, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import { BottomNavigationBar } from '@/components/BottomNavigationBar';
@@ -18,17 +17,13 @@ export const Root = () => {
   const navigate = useNavigate();
   const isProductionMode = import.meta.env.PROD;
 
-  useLayoutEffect(() => {
-    if (isProductionMode && loginState && !accessToken.length) {
-      initializeAccessToken(setAccessToken);
-    }
-  }, [isProductionMode, accessToken, setAccessToken, loginState]);
+  if (isProductionMode && loginState && !accessToken.length) {
+    initializeAccessToken(setAccessToken);
+  }
 
-  useEffect(() => {
-    if (loginState && !userData?.nickname) {
-      navigate(ROUTE_PATH.setup.setNickname);
-    }
-  }, [loginState, userData?.nickname, navigate]);
+  if (loginState && !userData?.nickname) {
+    navigate(ROUTE_PATH.setup.setNickname);
+  }
 
   return (
     <div className="flex h-screen w-screen flex-row items-center justify-center">
