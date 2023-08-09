@@ -19,8 +19,8 @@ export const Root = () => {
   const isProductionMode = import.meta.env.PROD;
 
   useLayoutEffect(() => {
-    if (isProductionMode && loginState) {
-      initializeAccessToken(accessToken, setAccessToken);
+    if (isProductionMode && loginState && !accessToken.length) {
+      initializeAccessToken(setAccessToken);
     }
   }, [isProductionMode, accessToken, setAccessToken, loginState]);
 
