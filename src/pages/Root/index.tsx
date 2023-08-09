@@ -1,28 +1,20 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import { BottomNavigationBar } from '@/components/BottomNavigationBar';
 import { ScrollTopButton } from '@/components/buttons/ScrollTopButton';
 import { Header } from '@/components/Header';
-import { ROUTE_PATH } from '@/constants';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
-import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 import { initializeAccessToken } from '@/utils/initializeAccessToken';
 
 export const Root = () => {
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const userData = useAtomValue(userDataAtom) as UserData;
   const loginState = useAtomValue(loginStateAtom);
-  const navigate = useNavigate();
   const isProductionMode = import.meta.env.PROD;
 
   if (isProductionMode && loginState && !accessToken.length) {
     initializeAccessToken(setAccessToken);
-  }
-
-  if (loginState && !userData?.nickname) {
-    navigate(ROUTE_PATH.setup.setNickname);
   }
 
   return (
