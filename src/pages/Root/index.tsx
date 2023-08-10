@@ -10,7 +10,7 @@ import { initializeAccessToken } from '@/utils/initializeAccessToken';
 
 export const Root = () => {
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const loginState = useAtomValue(loginStateAtom);
+  const loginState = useAtomValue(loginStateAtom) as boolean;
   const isProductionMode = import.meta.env.PROD;
 
   if (isProductionMode && loginState && !accessToken.length) {

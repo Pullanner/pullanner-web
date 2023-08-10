@@ -1,13 +1,7 @@
-import { atom } from 'jotai';
+import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 
-export const loginStateAtom = atom(false);
+const storage = createJSONStorage(() => {
+  return sessionStorage;
+});
 
-export const readWriteLoginState = atom(
-  (get) => {
-    return get(loginStateAtom);
-  },
-
-  (get, set, newLoginState: boolean) => {
-    return set(loginStateAtom, newLoginState);
-  },
-);
+export const loginStateAtom = atomWithStorage('loginState', false, storage);
