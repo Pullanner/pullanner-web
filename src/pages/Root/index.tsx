@@ -1,34 +1,24 @@
 import { useAtom, useAtomValue } from 'jotai';
-import { useLayoutEffect, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import { BottomNavigationBar } from '@/components/BottomNavigationBar';
 import { ScrollTopButton } from '@/components/buttons/ScrollTopButton';
 import { Header } from '@/components/Header';
-import { ROUTE_PATH } from '@/constants';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
-import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 import { initializeAccessToken } from '@/utils/initializeAccessToken';
 
 export const Root = () => {
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const userData = useAtomValue(userDataAtom) as UserData;
-  const loginState = useAtomValue(loginStateAtom);
-  const navigate = useNavigate();
+  const loginState = useAtomValue(loginStateAtom) as boolean;
   const isProductionMode = import.meta.env.PROD;
 
-  useLayoutEffect(() => {
-    if (isProductionMode) {
-      initializeAccessToken(accessToken, setAccessToken);
-    }
-  }, [isProductionMode, accessToken, setAccessToken]);
-
   useEffect(() => {
-    if (loginState && !userData?.nickname) {
-      navigate(ROUTE_PATH.setup.setNickname);
+    if (isProductionMode && loginState && !accessToken.length) {
+      initializeAccessToken(setAccessToken);
     }
-  }, [loginState, userData?.nickname, navigate]);
+  }, [isProductionMode, loginState, accessToken, setAccessToken]);
 
   return (
     <div className="flex h-screen w-screen flex-row items-center justify-center">

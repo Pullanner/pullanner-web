@@ -13,7 +13,7 @@ const BACK_BUTTON_VISIBILITY = {
 export const Header = () => {
   const location = useLocation();
   const isMainPage = location.pathname === ROUTE_PATH.roadmap.index ? 'true' : 'false';
-  const isLogin = useAtomValue(loginStateAtom);
+  const isLogin = useAtomValue(loginStateAtom) as boolean;
   const handleBackButtonClick = usePreviousPage();
 
   return (

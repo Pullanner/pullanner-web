@@ -1,17 +1,21 @@
-import { useSetAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ROUTE_PATH } from '@/constants/routePath';
+import { useUserData } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
+import { userDataAtom } from '@/stores/atoms/userDataAtom';
 import { getCookie } from '@/utils/cookie';
 
 const ACCESS_TOKEN_COOKIE_KEY = 'auth';
 
 export const LoginLoading = () => {
-  const setAccessToken = useSetAtom(accessTokenAtom);
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setLoginState = useSetAtom(loginStateAtom);
+  const setUserData = useSetAtom(userDataAtom);
+  const { data, isSuccess } = useUserData(accessToken, setAccessToken);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +25,14 @@ export const LoginLoading = () => {
       setLoginState(true);
       navigate(ROUTE_PATH.roadmap.index);
     }
-  }, [setAccessToken, setLoginState, navigate]);
+
+    if (isSuccess) {
+      setUserData(data);
+      if (!data.nickname) {
+        navigate(ROUTE_PATH.setup.setNickname);
+      }
+    }
+  }, [setAccessToken, setLoginState, navigate, data, isSuccess, setUserData]);
 
   return <div className="text-xl">Loading...</div>;
 };
