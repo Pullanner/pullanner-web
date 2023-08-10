@@ -23,13 +23,14 @@ export const LoginLoading = () => {
     if (accessTokenValue?.length) {
       setAccessToken(accessTokenValue);
       setLoginState(true);
-      navigate(ROUTE_PATH.roadmap.index);
     }
 
     if (isSuccess) {
       setUserData(data);
       if (!data.nickname) {
         navigate(ROUTE_PATH.setup.setNickname);
+      } else {
+        navigate(ROUTE_PATH.roadmap.index);
       }
     }
   }, [setAccessToken, setLoginState, navigate, data, isSuccess, setUserData]);
