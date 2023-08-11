@@ -1,3 +1,5 @@
+import { ROUTE_PATH } from '@/constants';
+
 type LoginButtonProps = {
   platform: 'google' | 'kakao' | 'naver';
   iconURL: string;
@@ -5,7 +7,9 @@ type LoginButtonProps = {
 };
 
 export const LoginButton = ({ platform, iconURL, style }: LoginButtonProps) => {
-  const AUTH_URL = `${import.meta.env.VITE_API_URL}/oauth2/authorization/${platform}`;
+  const AUTH_URL = import.meta.env.DEV
+    ? ROUTE_PATH.callback
+    : `${import.meta.env.VITE_API_URL}/oauth2/authorization/${platform}`;
 
   return (
     <a
