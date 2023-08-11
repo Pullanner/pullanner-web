@@ -17,8 +17,6 @@ const TEXT_CONTENTS = {
   description: 'Hanging(매달리기) 동작은 기본적으로 선택되어 있어요.',
 } as const;
 
-const HANGING = 'Hanging';
-
 export const SelectWorkout = () => {
   const [workoutData, setWorkoutData] = useAtom(workoutDataAtom);
   const { nickname } = useAtomValue(userDataAtom) as UserData;
@@ -48,6 +46,10 @@ export const SelectWorkout = () => {
         </div>
         <div className="grid grid-cols-4 gap-x-3.5 gap-y-6 px-5 pb-5">
           {ROADMAP_DATA.map(({ id, title, imageSrc, color }) => {
+            const workout = workoutData.find(({ name }) => {
+              return name === title;
+            });
+
             return (
               <SelecteableWorkoutCard
                 key={id}
@@ -57,7 +59,7 @@ export const SelectWorkout = () => {
                 color={color}
                 width="4.75rem"
                 height="6.375rem"
-                isActive={title === HANGING}
+                isActive={workout?.selected}
               />
             );
           })}

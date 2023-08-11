@@ -11,6 +11,8 @@ type SelectableWorkoutCardProps = Omit<WorkoutCardProps, 'additionalStyle' | 'ch
   isActive?: boolean;
 };
 
+const HANGING = 'Hanging';
+
 export const SelecteableWorkoutCard = ({
   id,
   title,
@@ -20,7 +22,7 @@ export const SelecteableWorkoutCard = ({
   height,
   isActive,
 }: SelectableWorkoutCardProps) => {
-  const [isCardSelected, setCardSelected] = useState(false);
+  const [isCardSelected, setCardSelected] = useState(isActive);
   const setWorkoutData = useSetAtom(workoutDataAtom);
 
   const handleCardClick = ({ target }: MouseEvent<HTMLElement>) => {
@@ -40,7 +42,7 @@ export const SelecteableWorkoutCard = ({
     setCardSelected(!isCardSelected);
   };
 
-  if (isActive) {
+  if (title === HANGING) {
     return (
       <WorkoutCard
         id={id}
