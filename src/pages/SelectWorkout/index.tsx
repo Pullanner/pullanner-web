@@ -1,6 +1,7 @@
 import { useAtom, useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
+import { BackButton } from '@/components/buttons/BackButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { Headline } from '@/components/Headline';
 import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
@@ -62,14 +63,17 @@ export const SelectWorkout = () => {
           })}
         </div>
       </section>
-      <div className="flex justify-center pt-12">
+      <div className="flex justify-center gap-x-4 px-5 pt-12">
+        <BackButton classNames="h-[2.75rem] w-[9.375rem] bg-[#CFCFCF] rounded-[0.313rem] text-sm text-black">
+          이전으로 가기
+        </BackButton>
         <SaveButton
           isActive
           handleButtonClick={handleSaveButtonClick}
-          width="21.875rem"
+          width="9.375rem"
           height="2.75rem"
           text="다음으로 가기"
-          className="font-extrabold"
+          className="text-sm"
         />
       </div>
     </div>
