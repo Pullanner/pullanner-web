@@ -17,12 +17,12 @@ export const LoginLoading = () => {
   const setUserData = useSetAtom(userDataAtom);
   const { data, isSuccess } = useUserData(accessToken, setAccessToken);
   const navigate = useNavigate();
+  setLoginState(true);
 
   useEffect(() => {
     const accessTokenValue = getCookie(ACCESS_TOKEN_COOKIE_KEY);
     if (accessTokenValue?.length) {
       setAccessToken(accessTokenValue);
-      setLoginState(true);
     }
 
     if (isSuccess) {

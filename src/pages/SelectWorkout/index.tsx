@@ -1,6 +1,7 @@
 import { useAtom, useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
+import { BackButton } from '@/components/buttons/BackButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { Headline } from '@/components/Headline';
 import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
@@ -15,8 +16,6 @@ const TEXT_CONTENTS = {
   headline: '가능한 풀업 동작을 알려주세요',
   description: 'Hanging(매달리기) 동작은 기본적으로 선택되어 있어요.',
 } as const;
-
-const HANGING = 'Hanging';
 
 export const SelectWorkout = () => {
   const [workoutData, setWorkoutData] = useAtom(workoutDataAtom);
@@ -47,6 +46,10 @@ export const SelectWorkout = () => {
         </div>
         <div className="grid grid-cols-4 gap-x-3.5 gap-y-6 px-5 pb-5">
           {ROADMAP_DATA.map(({ id, title, imageSrc, color }) => {
+            const workout = workoutData.find(({ name }) => {
+              return name === title;
+            });
+
             return (
               <SelecteableWorkoutCard
                 key={id}
@@ -56,20 +59,23 @@ export const SelectWorkout = () => {
                 color={color}
                 width="4.75rem"
                 height="6.375rem"
-                isActive={title === HANGING}
+                isActive={workout?.selected}
               />
             );
           })}
         </div>
       </section>
-      <div className="flex justify-center pt-12">
+      <div className="flex justify-center gap-x-4 px-5 pt-12">
+        <BackButton classNames="h-[2.75rem] w-[9.375rem] bg-[#CFCFCF] rounded-[0.313rem] text-sm text-black">
+          이전으로 가기
+        </BackButton>
         <SaveButton
           isActive
           handleButtonClick={handleSaveButtonClick}
-          width="21.875rem"
+          width="9.375rem"
           height="2.75rem"
           text="다음으로 가기"
-          className="font-extrabold"
+          className="text-sm"
         />
       </div>
     </div>
