@@ -16,12 +16,14 @@ export const MyPage = () => {
   const setAccessToken = useSetAtom(accessTokenAtom);
   const setLoginState = useSetAtom(loginStateAtom);
   const userData = useAtomValue(userDataAtom) as UserData;
+  const setUserData = useSetAtom(userDataAtom);
   const navigate = useNavigate();
 
   const handleLogoutButtonClick = () => {
     axiosInstance.delete(API_PATH.token);
     setLoginState(false);
     setAccessToken('');
+    setUserData(null);
     navigate(ROUTE_PATH.root);
   };
 
