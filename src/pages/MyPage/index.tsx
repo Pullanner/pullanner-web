@@ -1,5 +1,5 @@
 import { useSetAtom, useAtomValue } from 'jotai';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { DimmedButton } from '@/components/buttons/DimmedButton';
@@ -20,6 +20,7 @@ const MODAL_TEXT = '정말 로그아웃하시겠습니까?';
 
 export const MyPage = () => {
   const setAccessToken = useSetAtom(accessTokenAtom);
+  const loginState = useAtomValue(loginStateAtom) as boolean;
   const setLoginState = useSetAtom(loginStateAtom);
   const userData = useAtomValue(userDataAtom) as UserData;
   const setUserData = useSetAtom(userDataAtom);
@@ -43,6 +44,12 @@ export const MyPage = () => {
   const handleCancleButtonClick = () => {
     setShowModal(false);
   };
+
+  useEffect(() => {
+    if (!loginState) {
+      navigate(ROUTE_PATH.login);
+    }
+  }, [loginState, navigate]);
 
   // TODO: 추후에 로딩페이지로 교체하기
   if (!userData) {
