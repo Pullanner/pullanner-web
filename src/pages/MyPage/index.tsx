@@ -31,7 +31,9 @@ export const MyPage = () => {
   };
 
   const handleOkButtonClick = () => {
-    axiosInstance.delete(API_PATH.token);
+    if (import.meta.env.PROD) {
+      axiosInstance.delete(API_PATH.token);
+    }
     setLoginState(false);
     setAccessToken('');
     setUserData(null);
