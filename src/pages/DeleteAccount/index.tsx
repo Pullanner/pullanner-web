@@ -1,6 +1,9 @@
+import { useAtom } from 'jotai';
 import { useState, useRef } from 'react';
 
+import { sendAuthenticationCode } from '@/apis/user/sendAuthenticationCode';
 import { SaveButton } from '@/components/buttons/SaveButton';
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 
 import { AuthenticationCodeInput } from './AuthenticationCodeInput';
 import { DeleteAccountDescription } from './DeleteAccountDescription';
@@ -8,9 +11,11 @@ import { DeleteAccountDescription } from './DeleteAccountDescription';
 export const DeleteAccount = () => {
   const [isTimerActive, setTimerActive] = useState(false);
   const [isSendCodeButtonActive, setSendCodeButtonActive] = useState(true);
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSendCodeButtonClick = () => {
+    sendAuthenticationCode(accessToken, setAccessToken);
     setTimerActive(true);
     if (inputRef.current) {
       inputRef.current.focus();
