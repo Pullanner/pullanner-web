@@ -52,10 +52,22 @@ const postUserData = async (
   return res(ctx.status(200), ctx.json(USER_DATA));
 };
 
+const postAuthenticationCode = async (
+  req: RestRequest,
+  res: ResponseComposition<DefaultBodyType>,
+  ctx: RestContext,
+) => {
+  return res(
+    ctx.status(200),
+    ctx.json({ code: 'U06', message: '사용자의 이메일로 인증 코드가 발송되었습니다.' }),
+  );
+};
+
 const userHandler = [
   rest.get(API_PATH.user, getUserData),
   rest.get<NicknameValidationReqBody>(API_PATH.nicknameValidation, getNicknameValidation),
   rest.post(API_PATH.user, postUserData),
+  rest.post(API_PATH.userEmail, postAuthenticationCode),
 ];
 
 export default userHandler;
