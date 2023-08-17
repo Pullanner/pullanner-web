@@ -20,6 +20,7 @@ import {
   SetNickname,
   SelectWorkout,
   SetupResult,
+  DeleteAccount,
 } from '@/pages';
 import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: ROUTE_PATH.community,
         element: <Community />,
+      },
+      {
+        path: ROUTE_PATH.deleteAccount,
+        element: <DeleteAccount />,
       },
     ],
   },
