@@ -69,3 +69,33 @@ export const postAuthRequest = async <T>(
     }
   }
 };
+
+export const deleteAuthRequest = async (
+  apiPath: ApiPathType,
+  accessToken: string,
+  setAccessToken: Dispatch<SetStateAction<string>>,
+  options?: Options,
+) => {
+  try {
+    if (isDevMode) {
+      const { data } = await axios.delete(apiPath, { ...options });
+
+      return data;
+    }
+
+    const { data } = await axiosInstance.delete(apiPath, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      ...options,
+    });
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.code === '403') {
+      const newAccessToken = await reissueAccessToken();
+      setAccessToken(newAccessToken);
+    }
+    throw error;
+  }
+};
