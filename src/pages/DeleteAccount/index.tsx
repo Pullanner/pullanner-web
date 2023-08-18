@@ -1,8 +1,10 @@
+import { message } from 'antd';
 import { useAtom } from 'jotai';
 import { useState, useRef } from 'react';
 
 import { sendAuthenticationCode } from '@/apis/user/sendAuthenticationCode';
 import { SaveButton } from '@/components/buttons/SaveButton';
+import { SuccessIcon } from '@/components/icons/SuccessIcon';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 
 import { AuthenticationCodeInput } from './AuthenticationCodeInput';
@@ -12,13 +14,25 @@ export const DeleteAccount = () => {
   const [isTimerActive, setTimerActive] = useState(false);
   const [isSendCodeButtonActive, setSendCodeButtonActive] = useState(true);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const [messageApi, contextHolder] = message.useMessage();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSendCodeButtonClick = () => {
-    sendAuthenticationCode(accessToken, setAccessToken);
+  const handleSendCodeButtonClick = async () => {
     setTimerActive(true);
     if (inputRef.current) {
       inputRef.current.focus();
+    }
+    const isSuccess = await sendAuthenticationCode(accessToken, setAccessToken);
+    if (isSuccess) {
+      messageApi.open({
+        type: 'success',
+        content: '이메일로 인증 코드가 발송되었습니다.',
+        duration: 2,
+        style: {
+          marginTop: '75vh',
+        },
+        icon: SuccessIcon(),
+      });
     }
   };
 
@@ -39,6 +53,7 @@ export const DeleteAccount = () => {
         setSendCodeButtonActive={setSendCodeButtonActive}
         ref={inputRef}
       />
+      {contextHolder}
     </div>
   );
 };
