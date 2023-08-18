@@ -28,26 +28,26 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
     { isTimerActive, setSendCodeButtonActive }: AuthenticationCodeInputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
-    const [code, setCode] = useState('');
-    const [validateCodeButtonActive, setValidateCodeButtonActive] = useState(false);
+    const [authenticationCode, setAuthenticationCode] = useState('');
+    const [deleteAccountButtonActive, setDeleteAccountButtonActive] = useState(false);
 
-    const validateCodeButtonState = validateCodeButtonActive
+    const deleteAccountButtonState = deleteAccountButtonActive
       ? BUTTON_STATE.active
       : BUTTON_STATE.inactive;
 
-    const handleValidateCodeButtonClick = () => {
-      if (!validateCodeButtonActive) {
+    const handleDeleteAccountButtonClick = () => {
+      if (!deleteAccountButtonActive) {
         return;
       }
-      console.log(code);
+      console.log(authenticationCode);
     };
 
     const handleInputChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-      const numberValue = value.replace(/[^0-9]/g, '');
-      setCode(numberValue);
+      const inputNumberValue = value.replace(/[^0-9]/g, '');
+      setAuthenticationCode(inputNumberValue);
       setSendCodeButtonActive(false);
-      if (numberValue.length === MAX_INPUT_LENGTH) {
-        setValidateCodeButtonActive(true);
+      if (inputNumberValue.length === MAX_INPUT_LENGTH) {
+        setDeleteAccountButtonActive(true);
       }
     };
 
@@ -59,7 +59,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
             type="text"
             className="w-[9.25rem] bg-transparent text-base placeholder:text-[#8D8D8D] focus:bg-transparent focus:outline-none"
             maxLength={MAX_INPUT_LENGTH}
-            value={code}
+            value={authenticationCode}
             ref={ref}
             onChange={handleInputChange}
             placeholder="인증코드 6자리 입력"
@@ -69,8 +69,8 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
           {isTimerActive && <Timer limitTime={LIMIT_TIME} />}
           <button
             type="button"
-            className={`h-[1.875rem] w-[4.5rem] rounded-[0.313rem] text-base ${VALIDATE_CODE_BUTTON_STYLE[validateCodeButtonState]}`}
-            onClick={handleValidateCodeButtonClick}
+            className={`h-[1.875rem] w-[4.5rem] rounded-[0.313rem] text-base ${VALIDATE_CODE_BUTTON_STYLE[deleteAccountButtonState]}`}
+            onClick={handleDeleteAccountButtonClick}
           >
             회원탈퇴
           </button>
