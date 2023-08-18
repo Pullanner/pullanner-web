@@ -63,11 +63,38 @@ const postAuthenticationCode = async (
   );
 };
 
+type DeleteAccountReqBody = {
+  params: {
+    code: string;
+  };
+};
+
+const VALID_AUTHENTICATION_CODE = '123456';
+
+const deleteAccountWithAuthenticationCode = async (
+  req: RestRequest<DeleteAccountReqBody, PathParams<string>>,
+  res: ResponseComposition<DefaultBodyType>,
+  ctx: RestContext,
+) => {
+  const params = req.url.searchParams;
+  const authenticationCode = params.get('code');
+  const isAuthenticationCodeValid = authenticationCode === VALID_AUTHENTICATION_CODE;
+  if (isAuthenticationCodeValid) {
+    return res(
+      ctx.status(200),
+      ctx.json({ code: 'U08', message: '사용자의 회원 정보가 삭제되었습니다.' }),
+    );
+  }
+
+  return res(ctx.status(401), ctx.json({ code: 'U07', message: '유효하지 않은 인증 코드입니다.' }));
+};
+
 const userHandler = [
   rest.get(API_PATH.user, getUserData),
   rest.get<NicknameValidationReqBody>(API_PATH.nicknameValidation, getNicknameValidation),
   rest.post(API_PATH.user, postUserData),
   rest.post(API_PATH.userEmail, postAuthenticationCode),
+  rest.delete(API_PATH.user, deleteAccountWithAuthenticationCode),
 ];
 
 export default userHandler;
