@@ -1,4 +1,4 @@
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useState, forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,8 @@ import { ModalButton } from '@/components/Modal/ModalButton';
 import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
+import { userDataAtom } from '@/stores/atoms/userDataAtom';
 
 import { Timer } from './Timer';
 
@@ -53,6 +55,8 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
     const [isDeleteRequestFailed, setShowInvalidAuthenticationCodeDescription] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+    const setLoginState = useSetAtom(loginStateAtom);
+    const setUserData = useSetAtom(userDataAtom);
     const navigate = useNavigate();
 
     const deleteAccountButtonState = deleteAccountButtonActive
@@ -91,6 +95,8 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
 
     const handleOkButtonClick = () => {
       setShowModal(false);
+      setLoginState(false);
+      setUserData(null);
       navigate(ROUTE_PATH.roadmap.index);
     };
 
