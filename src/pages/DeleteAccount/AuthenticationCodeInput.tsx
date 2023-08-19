@@ -23,7 +23,7 @@ const TEXT_CONTENTS = {
     main: '회원탈퇴',
     sub: [
       'pullanner 회원탈퇴가 완료되었습니다.',
-      '그 동안 Pullanner 서비스를 이용해주셔서 감사합니다.',
+      '그동안 Pullanner 서비스를 이용해주셔서 감사합니다.',
     ],
   },
 } as const;
