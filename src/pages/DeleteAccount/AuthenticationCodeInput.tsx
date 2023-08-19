@@ -11,34 +11,16 @@ import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { userDataAtom } from '@/stores/atoms/userDataAtom';
 
+import {
+  MAX_INPUT_LENGTH,
+  TEXT_CONTENTS,
+  BUTTON_STATE,
+  VALIDATE_CODE_BUTTON_STYLE,
+  LIMIT_TIME,
+} from './constants';
 import { Timer } from './Timer';
 
 import type { ChangeEvent, Dispatch, SetStateAction, ForwardedRef } from 'react';
-
-const MAX_INPUT_LENGTH = 6;
-
-const TEXT_CONTENTS = {
-  invalidAuthenticationCodeDescription: '유효하지 않은 인증번호입니다.',
-  modal: {
-    main: '회원탈퇴',
-    sub: [
-      'pullanner 회원탈퇴가 완료되었습니다.',
-      '그동안 Pullanner 서비스를 이용해주셔서 감사합니다.',
-    ],
-  },
-} as const;
-
-const BUTTON_STATE = {
-  active: 'active',
-  inactive: 'inactive',
-} as const;
-
-const VALIDATE_CODE_BUTTON_STYLE = {
-  active: 'text-primary border border-primary',
-  inactive: 'text-gray-500 border border-gray-500',
-} as const;
-
-const LIMIT_TIME = 3 * 60 * 1000;
 
 type AuthenticationCodeInputProps = {
   isTimerActive: boolean;

@@ -1,10 +1,10 @@
 import { useTimer } from '@/hooks/useTimer';
 
+import { DECADE } from './constants';
+
 type TimerProps = {
   limitTime: number;
 };
-
-const DECADE = 10;
 
 export const Timer = ({ limitTime }: TimerProps) => {
   const { minutes, seconds } = useTimer(limitTime);
