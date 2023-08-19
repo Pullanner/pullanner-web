@@ -28,3 +28,8 @@
 .ant-picker-calendar .ant-picker-panel {
   border-top: 1px solid #555;
 }
+
+#success-icon {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
