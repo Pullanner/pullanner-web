@@ -79,7 +79,7 @@ export const EditMyPage = () => {
       {showModal && (
         <Modal>
           <ModalText textStyle="p-5">
-            <MainText textStyle="text-red-400">{MODAL_MAIN_TEXT}</MainText>
+            <MainText textStyle="mb-4 text-red-400">{MODAL_MAIN_TEXT}</MainText>
             <SubText>{MODAL_SUB_TEXT}</SubText>
           </ModalText>
           <div className="mb-2 flex w-full justify-around p-3">

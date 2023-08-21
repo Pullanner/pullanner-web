@@ -14,3 +14,4 @@ export * from './Setup';
 export * from './SetNickname';
 export * from './SelectWorkout';
 export * from './SetupResult';
+export * from './DeleteAccount';
