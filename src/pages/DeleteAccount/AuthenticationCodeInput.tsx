@@ -9,6 +9,7 @@ import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
+import { timerStateAtom } from '@/stores/atoms/timerStateAtom';
 import { userDataAtom } from '@/stores/atoms/userDataAtom';
 
 import {
@@ -23,13 +24,12 @@ import { Timer } from './Timer';
 import type { ChangeEvent, Dispatch, SetStateAction, ForwardedRef } from 'react';
 
 type AuthenticationCodeInputProps = {
-  isTimerActive: boolean;
   setSendCodeButtonActive: Dispatch<SetStateAction<boolean>>;
 };
 
 export const AuthenticationCodeInput = forwardRef<HTMLInputElement, AuthenticationCodeInputProps>(
   (
-    { isTimerActive, setSendCodeButtonActive }: AuthenticationCodeInputProps,
+    { setSendCodeButtonActive }: AuthenticationCodeInputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const [authenticationCode, setAuthenticationCode] = useState('');
@@ -37,6 +37,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
     const [isDeleteRequestFailed, setShowInvalidAuthenticationCodeDescription] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+    const [timerState, setTimerState] = useAtom(timerStateAtom);
     const setLoginState = useSetAtom(loginStateAtom);
     const setUserData = useSetAtom(userDataAtom);
     const navigate = useNavigate();
@@ -79,6 +80,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
       setShowModal(false);
       setLoginState(false);
       setUserData(null);
+      setTimerState({ isVisible: false, reset: false });
       navigate(ROUTE_PATH.roadmap.index);
     };
 
@@ -97,7 +99,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
             aria-label="authenticationCode"
             aria-describedby="valdationResult"
           />
-          {isTimerActive && <Timer limitTime={LIMIT_TIME} />}
+          {timerState.isVisible && <Timer limitTime={LIMIT_TIME} />}
           <button
             type="button"
             className={`h-[1.875rem] w-[4.5rem] rounded-[0.313rem] text-base ${VALIDATE_CODE_BUTTON_STYLE[deleteAccountButtonState]}`}

@@ -6,19 +6,24 @@ import { sendAuthenticationCode } from '@/apis/user/sendAuthenticationCode';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { SuccessIcon } from '@/components/icons/SuccessIcon';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { timerStateAtom } from '@/stores/atoms/timerStateAtom';
 
 import { AuthenticationCodeInput } from './AuthenticationCodeInput';
 import { DeleteAccountDescription } from './DeleteAccountDescription';
 
 export const DeleteAccount = () => {
-  const [isTimerActive, setTimerActive] = useState(false);
+  const [timerState, setTimerState] = useAtom(timerStateAtom);
   const [isSendCodeButtonActive, setSendCodeButtonActive] = useState(true);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const [messageApi, contextHolder] = message.useMessage();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSendCodeButtonClick = async () => {
-    setTimerActive(true);
+    if (timerState.isVisible) {
+      setTimerState({ ...timerState, reset: true });
+    } else {
+      setTimerState({ ...timerState, isVisible: true });
+    }
     if (inputRef.current) {
       inputRef.current.focus();
     }
@@ -48,11 +53,7 @@ export const DeleteAccount = () => {
         text="인증 코드 전송하기"
         className="text-sm"
       />
-      <AuthenticationCodeInput
-        isTimerActive={isTimerActive}
-        setSendCodeButtonActive={setSendCodeButtonActive}
-        ref={inputRef}
-      />
+      <AuthenticationCodeInput setSendCodeButtonActive={setSendCodeButtonActive} ref={inputRef} />
       {contextHolder}
     </div>
   );
