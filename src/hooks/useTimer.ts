@@ -1,4 +1,7 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useAtom } from 'jotai';
+import { useEffect, useState, useMemo, useRef } from 'react';
+
+import { timerStateAtom } from '@/stores/atoms/timerStateAtom';
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
@@ -10,22 +13,36 @@ export const useTimer = (deadline: number, interval = SECOND) => {
     return new Date(new Date().getTime() + deadline).getTime();
   }, [deadline]);
   const [timeSpan, setTimeSpan] = useState(targetTime - Date.now());
+  const [timerState, setTimerState] = useAtom(timerStateAtom);
+  const intervalIdRef = useRef<number>();
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    if (timerState.reset) {
+      clearInterval(intervalIdRef.current);
+      setTimeSpan(deadline);
+      setTimerState({ ...timerState, reset: false });
+    }
+    intervalIdRef.current = window.setInterval(() => {
       setTimeSpan((prevTimeSpan) => {
         return prevTimeSpan - interval;
       });
     }, interval);
+    const id = intervalIdRef.current;
 
     if (timeSpan < interval) {
-      clearInterval(intervalId);
+      clearInterval(id);
     }
 
     return () => {
-      clearInterval(intervalId);
+      clearInterval(id);
     };
   }, [interval, timeSpan]);
+
+  useEffect(() => {
+    return () => {
+      clearInterval(intervalIdRef.current);
+    };
+  }, []);
 
   return {
     days: Math.floor(timeSpan / DAY),
