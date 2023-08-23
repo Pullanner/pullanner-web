@@ -1,4 +1,4 @@
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useSetAtom, useAtomValue } from 'jotai';
 import { useState, forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import { ModalButton } from '@/components/Modal/ModalButton';
 import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { userDataAtom } from '@/stores/atoms/userDataAtom';
 
@@ -23,13 +24,12 @@ import { Timer } from './Timer';
 import type { ChangeEvent, Dispatch, SetStateAction, ForwardedRef } from 'react';
 
 type AuthenticationCodeInputProps = {
-  isTimerActive: boolean;
   setSendCodeButtonActive: Dispatch<SetStateAction<boolean>>;
 };
 
 export const AuthenticationCodeInput = forwardRef<HTMLInputElement, AuthenticationCodeInputProps>(
   (
-    { isTimerActive, setSendCodeButtonActive }: AuthenticationCodeInputProps,
+    { setSendCodeButtonActive }: AuthenticationCodeInputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const [authenticationCode, setAuthenticationCode] = useState('');
@@ -39,6 +39,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
     const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
     const setLoginState = useSetAtom(loginStateAtom);
     const setUserData = useSetAtom(userDataAtom);
+    const isTimerActive = useAtomValue(isTimerActiveAtom);
     const navigate = useNavigate();
 
     const deleteAccountButtonState = deleteAccountButtonActive

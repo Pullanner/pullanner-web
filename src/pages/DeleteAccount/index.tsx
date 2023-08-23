@@ -1,17 +1,18 @@
 import { message } from 'antd';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useState, useRef } from 'react';
 
 import { sendAuthenticationCode } from '@/apis/user/sendAuthenticationCode';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { SuccessIcon } from '@/components/icons/SuccessIcon';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
 
 import { AuthenticationCodeInput } from './AuthenticationCodeInput';
 import { DeleteAccountDescription } from './DeleteAccountDescription';
 
 export const DeleteAccount = () => {
-  const [isTimerActive, setTimerActive] = useState(false);
+  const setTimerActive = useSetAtom(isTimerActiveAtom);
   const [isSendCodeButtonActive, setSendCodeButtonActive] = useState(true);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const [messageApi, contextHolder] = message.useMessage();
@@ -48,11 +49,7 @@ export const DeleteAccount = () => {
         text="인증 코드 전송하기"
         className="text-sm"
       />
-      <AuthenticationCodeInput
-        isTimerActive={isTimerActive}
-        setSendCodeButtonActive={setSendCodeButtonActive}
-        ref={inputRef}
-      />
+      <AuthenticationCodeInput ref={inputRef} setSendCodeButtonActive={setSendCodeButtonActive} />
       {contextHolder}
     </div>
   );
