@@ -26,7 +26,7 @@ import type { ChangeEvent, ForwardedRef } from 'react';
 export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
   (_, ref: ForwardedRef<HTMLInputElement>) => {
     const [authenticationCode, setAuthenticationCode] = useState('');
-    const [deleteAccountButtonActive, setDeleteAccountButtonActive] = useState(false);
+    const [isDeleteAccountButtonActive, setDeleteAccountButtonActive] = useState(false);
     const [isDeleteRequestFailed, setShowInvalidAuthenticationCodeDescription] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
@@ -35,12 +35,12 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
     const isTimerActive = useAtomValue(isTimerActiveAtom);
     const navigate = useNavigate();
 
-    const deleteAccountButtonState = deleteAccountButtonActive
+    const deleteAccountButtonState = isDeleteAccountButtonActive
       ? BUTTON_STATE.active
       : BUTTON_STATE.inactive;
 
     const handleDeleteAccountButtonClick = async () => {
-      if (!deleteAccountButtonActive) {
+      if (!isDeleteAccountButtonActive) {
         return;
       }
 
@@ -62,9 +62,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
       setAuthenticationCode(inputNumberValue);
       setShowInvalidAuthenticationCodeDescription(false);
 
-      if (inputNumberValue.length === MAX_INPUT_LENGTH) {
-        setDeleteAccountButtonActive(true);
-      }
+      setDeleteAccountButtonActive(inputNumberValue.length === MAX_INPUT_LENGTH);
     };
 
     const handleOkButtonClick = () => {
