@@ -1,4 +1,7 @@
+import { useSetAtom } from 'jotai';
 import { useEffect, useState, useMemo, useRef } from 'react';
+
+import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
@@ -11,6 +14,7 @@ export const useTimer = (deadline: number, interval = SECOND) => {
   }, [deadline]);
   const [timeSpan, setTimeSpan] = useState(targetTime - Date.now());
   const timerIdRef = useRef<number>();
+  const setTimerActive = useSetAtom(isTimerActiveAtom);
 
   useEffect(() => {
     timerIdRef.current = window.setTimeout(() => {
@@ -21,12 +25,13 @@ export const useTimer = (deadline: number, interval = SECOND) => {
 
     if (timeSpan < interval) {
       clearTimeout(timerIdRef.current);
+      setTimerActive(false);
     }
 
     return () => {
       clearTimeout(timerIdRef.current);
     };
-  }, [interval, timeSpan]);
+  }, [interval, timeSpan, setTimerActive]);
 
   useEffect(() => {
     return () => {
