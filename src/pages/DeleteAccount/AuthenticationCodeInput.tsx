@@ -1,4 +1,4 @@
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom, useSetAtom, useAtomValue } from 'jotai';
 import { useState, forwardRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import { ModalButton } from '@/components/Modal/ModalButton';
 import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { userDataAtom } from '@/stores/atoms/userDataAtom';
 
@@ -20,33 +21,26 @@ import {
 } from './constants';
 import { Timer } from './Timer';
 
-import type { ChangeEvent, Dispatch, SetStateAction, ForwardedRef } from 'react';
+import type { ChangeEvent, ForwardedRef } from 'react';
 
-type AuthenticationCodeInputProps = {
-  isTimerActive: boolean;
-  setSendCodeButtonActive: Dispatch<SetStateAction<boolean>>;
-};
-
-export const AuthenticationCodeInput = forwardRef<HTMLInputElement, AuthenticationCodeInputProps>(
-  (
-    { isTimerActive, setSendCodeButtonActive }: AuthenticationCodeInputProps,
-    ref: ForwardedRef<HTMLInputElement>,
-  ) => {
+export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
+  (_, ref: ForwardedRef<HTMLInputElement>) => {
     const [authenticationCode, setAuthenticationCode] = useState('');
-    const [deleteAccountButtonActive, setDeleteAccountButtonActive] = useState(false);
+    const [isDeleteAccountButtonActive, setDeleteAccountButtonActive] = useState(false);
     const [isDeleteRequestFailed, setShowInvalidAuthenticationCodeDescription] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
     const setLoginState = useSetAtom(loginStateAtom);
     const setUserData = useSetAtom(userDataAtom);
+    const isTimerActive = useAtomValue(isTimerActiveAtom);
     const navigate = useNavigate();
 
-    const deleteAccountButtonState = deleteAccountButtonActive
+    const deleteAccountButtonState = isDeleteAccountButtonActive
       ? BUTTON_STATE.active
       : BUTTON_STATE.inactive;
 
     const handleDeleteAccountButtonClick = async () => {
-      if (!deleteAccountButtonActive) {
+      if (!isDeleteAccountButtonActive) {
         return;
       }
 
@@ -60,19 +54,15 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
         setShowModal(true);
       } else {
         setShowInvalidAuthenticationCodeDescription(true);
-        setSendCodeButtonActive(true);
       }
     };
 
     const handleInputChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
       const inputNumberValue = value.replace(/[^0-9]/g, '');
       setAuthenticationCode(inputNumberValue);
-      setSendCodeButtonActive(false);
       setShowInvalidAuthenticationCodeDescription(false);
 
-      if (inputNumberValue.length === MAX_INPUT_LENGTH) {
-        setDeleteAccountButtonActive(true);
-      }
+      setDeleteAccountButtonActive(inputNumberValue.length === MAX_INPUT_LENGTH);
     };
 
     const handleOkButtonClick = () => {

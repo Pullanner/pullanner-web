@@ -1,23 +1,26 @@
 import { message } from 'antd';
 import { useAtom } from 'jotai';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 import { sendAuthenticationCode } from '@/apis/user/sendAuthenticationCode';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { SuccessIcon } from '@/components/icons/SuccessIcon';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
 
 import { AuthenticationCodeInput } from './AuthenticationCodeInput';
 import { DeleteAccountDescription } from './DeleteAccountDescription';
 
 export const DeleteAccount = () => {
-  const [isTimerActive, setTimerActive] = useState(false);
-  const [isSendCodeButtonActive, setSendCodeButtonActive] = useState(true);
+  const [isTimerActive, setTimerActive] = useAtom(isTimerActiveAtom);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const [messageApi, contextHolder] = message.useMessage();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSendCodeButtonClick = async () => {
+    if (isTimerActive) {
+      return;
+    }
     setTimerActive(true);
     if (inputRef.current) {
       inputRef.current.focus();
@@ -41,18 +44,14 @@ export const DeleteAccount = () => {
       <h1 className="pb-3.5 pt-5 text-xl font-extrabold">회원 탈퇴</h1>
       <DeleteAccountDescription />
       <SaveButton
-        isActive={isSendCodeButtonActive}
+        isActive={!isTimerActive}
         handleButtonClick={handleSendCodeButtonClick}
         width="100%"
         height="2.75rem"
         text="인증 코드 전송하기"
         className="text-sm"
       />
-      <AuthenticationCodeInput
-        isTimerActive={isTimerActive}
-        setSendCodeButtonActive={setSendCodeButtonActive}
-        ref={inputRef}
-      />
+      <AuthenticationCodeInput ref={inputRef} />
       {contextHolder}
     </div>
   );
