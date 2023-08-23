@@ -21,17 +21,10 @@ import {
 } from './constants';
 import { Timer } from './Timer';
 
-import type { ChangeEvent, Dispatch, SetStateAction, ForwardedRef } from 'react';
+import type { ChangeEvent, ForwardedRef } from 'react';
 
-type AuthenticationCodeInputProps = {
-  setSendCodeButtonActive: Dispatch<SetStateAction<boolean>>;
-};
-
-export const AuthenticationCodeInput = forwardRef<HTMLInputElement, AuthenticationCodeInputProps>(
-  (
-    { setSendCodeButtonActive }: AuthenticationCodeInputProps,
-    ref: ForwardedRef<HTMLInputElement>,
-  ) => {
+export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
+  (_, ref: ForwardedRef<HTMLInputElement>) => {
     const [authenticationCode, setAuthenticationCode] = useState('');
     const [deleteAccountButtonActive, setDeleteAccountButtonActive] = useState(false);
     const [isDeleteRequestFailed, setShowInvalidAuthenticationCodeDescription] = useState(false);
@@ -61,14 +54,12 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement, Authenticati
         setShowModal(true);
       } else {
         setShowInvalidAuthenticationCodeDescription(true);
-        setSendCodeButtonActive(true);
       }
     };
 
     const handleInputChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
       const inputNumberValue = value.replace(/[^0-9]/g, '');
       setAuthenticationCode(inputNumberValue);
-      setSendCodeButtonActive(false);
       setShowInvalidAuthenticationCodeDescription(false);
 
       if (inputNumberValue.length === MAX_INPUT_LENGTH) {
