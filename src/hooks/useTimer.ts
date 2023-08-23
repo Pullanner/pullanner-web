@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;
@@ -10,22 +10,29 @@ export const useTimer = (deadline: number, interval = SECOND) => {
     return new Date(new Date().getTime() + deadline).getTime();
   }, [deadline]);
   const [timeSpan, setTimeSpan] = useState(targetTime - Date.now());
+  const timerIdRef = useRef<number>();
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    timerIdRef.current = window.setTimeout(() => {
       setTimeSpan((prevTimeSpan) => {
         return prevTimeSpan - interval;
       });
     }, interval);
 
     if (timeSpan < interval) {
-      clearInterval(intervalId);
+      clearTimeout(timerIdRef.current);
     }
 
     return () => {
-      clearInterval(intervalId);
+      clearTimeout(timerIdRef.current);
     };
   }, [interval, timeSpan]);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timerIdRef.current);
+    };
+  }, []);
 
   return {
     days: Math.floor(timeSpan / DAY),
