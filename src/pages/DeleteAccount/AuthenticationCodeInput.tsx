@@ -105,13 +105,9 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
           <Modal>
             <ModalText>
               <MainText textStyle="border-b-2 border-[#686868] py-5">
-                {TEXT_CONTENTS.modal.main}
+                {TEXT_CONTENTS.modal.title}
               </MainText>
-              <SubText textStyle="pt-6 pb-7">
-                {TEXT_CONTENTS.modal.sub.map((text) => {
-                  return <p key={text}>{text}</p>;
-                })}
-              </SubText>
+              <SubText textStyle="pt-6 pb-7">{TEXT_CONTENTS.modal.greeting}</SubText>
             </ModalText>
             <ModalButton text="확인" handler={handleOkButtonClick} isPrimary />
           </Modal>
