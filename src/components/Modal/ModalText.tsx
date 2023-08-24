@@ -6,7 +6,7 @@ type TextProps = {
 };
 
 export const ModalText = ({ children, textStyle = '' }: TextProps) => {
-  return <div className={`${textStyle}`}>{children}</div>;
+  return <div className={`${textStyle} text-center`}>{children}</div>;
 };
 
 export const MainText = ({ children, textStyle }: TextProps) => {
@@ -14,5 +14,5 @@ export const MainText = ({ children, textStyle }: TextProps) => {
 };
 
 export const SubText = ({ children, textStyle }: TextProps) => {
-  return <p className={`${textStyle} text-sm leading-6`}>{children}</p>;
+  return <p className={`${textStyle} px-5 text-sm leading-6`}>{children}</p>;
 };
