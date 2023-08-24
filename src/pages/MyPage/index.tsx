@@ -12,11 +12,10 @@ import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
+import { MODAL_TEXT } from './constants';
 import { ProgressSection } from './ProgressSection';
 import { TabSection } from './TabSection';
 import { UserSection } from './UserSection';
-
-const MODAL_TEXT = '정말 로그아웃하시겠습니까?';
 
 export const MyPage = () => {
   const setAccessToken = useSetAtom(accessTokenAtom);
