@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { Modal } from '@/components/Modal';
 import { ModalButton } from '@/components/Modal/ModalButton';
-import { SubText } from '@/components/Modal/ModalText';
+import { MainText, ModalText } from '@/components/Modal/ModalText';
 import { API_PATH, ROUTE_PATH } from '@/constants';
 import { axiosInstance } from '@/lib/axios/instance';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
@@ -68,8 +68,10 @@ export const MyPage = () => {
       </div>
       {showModal && (
         <Modal>
-          <SubText textStyle="p-5">{MODAL_TEXT}</SubText>
-          <div className="mb-5 flex w-full justify-around">
+          <ModalText textStyle="py-7">
+            <MainText>{MODAL_TEXT}</MainText>
+          </ModalText>
+          <div className="flex w-full">
             <ModalButton text="네" handler={handleOkButtonClick} />
             <ModalButton text="아니오" handler={handleCancleButtonClick} isPrimary />
           </div>
