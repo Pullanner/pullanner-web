@@ -6,15 +6,13 @@ import { validateNickname } from '@/apis/user';
 import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckInput } from '@/components/DuplicationCheckInput';
-import { Modal } from '@/components/Modal';
-import { ModalButton } from '@/components/Modal/ModalButton';
-import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
-import { INPUT_LENGTH, MODAL_TEXT } from './constants';
+import { INPUT_LENGTH } from './constants';
+import { DeleteAccountModal } from './DeleteAccountModal';
 
 export const EditMyPage = () => {
   const userData = useAtomValue(userDataAtom) as UserData;
@@ -37,10 +35,6 @@ export const EditMyPage = () => {
 
   const handleWithdrwalButtonClick = () => {
     setShowModal(true);
-  };
-
-  const handleOkButtonClick = () => {
-    navigate(ROUTE_PATH.deleteAccount);
   };
 
   const handleCancleButtonClick = () => {
@@ -69,30 +63,7 @@ export const EditMyPage = () => {
       </div>
 
       <DimmedButton name="회원탈퇴" handler={handleWithdrwalButtonClick} />
-      {showModal && (
-        <Modal>
-          <ModalText>
-            <MainText textStyle="py-5 border-b-2 border-[#686868]">{MODAL_TEXT.title}</MainText>
-            <SubText textStyle="pt-5 pb-7">
-              <p>{MODAL_TEXT.description}</p>
-              <p className="font-extrabold">{MODAL_TEXT.warning}</p>
-            </SubText>
-          </ModalText>
-          <div className="flex w-full">
-            <ModalButton
-              text="네"
-              handler={handleOkButtonClick}
-              imageUrl="/assets/images/emotion/2.svg"
-            />
-            <ModalButton
-              text="아니오"
-              handler={handleCancleButtonClick}
-              imageUrl="/assets/images/emotion/5.svg"
-              isPrimary
-            />
-          </div>
-        </Modal>
-      )}
+      {showModal && <DeleteAccountModal handleCancleButtonClick={handleCancleButtonClick} />}
     </div>
   );
 };
