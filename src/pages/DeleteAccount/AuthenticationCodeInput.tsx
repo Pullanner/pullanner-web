@@ -1,16 +1,9 @@
-import { useAtom, useSetAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { useState, forwardRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { deleteAccountWithAuthenticationCode } from '@/apis/user/deleteAccountWithAuthenticationCode';
-import { Modal } from '@/components/Modal';
-import { ModalButton } from '@/components/Modal/ModalButton';
-import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
-import { ROUTE_PATH } from '@/constants';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
-import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
-import { userDataAtom } from '@/stores/atoms/userDataAtom';
 
 import {
   MAX_INPUT_LENGTH,
@@ -19,6 +12,7 @@ import {
   VALIDATE_CODE_BUTTON_STYLE,
   LIMIT_TIME,
 } from './constants';
+import { DeleteAccountSuccessModal } from './DeleteAccountSuccessModal';
 import { Timer } from './Timer';
 
 import type { ChangeEvent, ForwardedRef } from 'react';
@@ -30,10 +24,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
     const [isDeleteRequestFailed, setShowInvalidAuthenticationCodeDescription] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-    const setLoginState = useSetAtom(loginStateAtom);
-    const setUserData = useSetAtom(userDataAtom);
     const isTimerActive = useAtomValue(isTimerActiveAtom);
-    const navigate = useNavigate();
 
     const deleteAccountButtonState = isDeleteAccountButtonActive
       ? BUTTON_STATE.active
@@ -65,13 +56,6 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
       setDeleteAccountButtonActive(inputNumberValue.length === MAX_INPUT_LENGTH);
     };
 
-    const handleOkButtonClick = () => {
-      setShowModal(false);
-      setLoginState(false);
-      setUserData(null);
-      navigate(ROUTE_PATH.roadmap.index);
-    };
-
     return (
       <div className="pt-6">
         <div className="flex h-11 items-center justify-between rounded-[0.313rem] bg-[#161616] px-2.5">
@@ -101,17 +85,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
             {TEXT_CONTENTS.invalidAuthenticationCodeDescription}
           </p>
         )}
-        {showModal && (
-          <Modal>
-            <ModalText>
-              <MainText textStyle="border-b-2 border-[#686868] py-5">
-                {TEXT_CONTENTS.modal.title}
-              </MainText>
-              <SubText textStyle="pt-6 pb-7">{TEXT_CONTENTS.modal.greeting}</SubText>
-            </ModalText>
-            <ModalButton text="확인" handler={handleOkButtonClick} isPrimary />
-          </Modal>
-        )}
+        {showModal && <DeleteAccountSuccessModal setShowModal={setShowModal} />}
       </div>
     );
   },
