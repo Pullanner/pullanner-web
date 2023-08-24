@@ -14,14 +14,7 @@ import { useMutateNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
-const INPUT_LENGTH = {
-  min: 2,
-  max: 8,
-} as const;
-
-const MODAL_MAIN_TEXT = '정말 탈퇴하시겠습니까?';
-const MODAL_SUB_TEXT1 = '회원 탈퇴시 Pullanner의 모든 데이터가 삭제됩니다.';
-const MODAL_SUB_TEXT2 = '삭제된 데이터는 복구할 수 없습니다.';
+import { INPUT_LENGTH, MODAL_TEXT } from './constants';
 
 export const EditMyPage = () => {
   const userData = useAtomValue(userDataAtom) as UserData;
@@ -79,10 +72,10 @@ export const EditMyPage = () => {
       {showModal && (
         <Modal>
           <ModalText>
-            <MainText textStyle="py-5 border-b-2 border-[#686868]">{MODAL_MAIN_TEXT}</MainText>
+            <MainText textStyle="py-5 border-b-2 border-[#686868]">{MODAL_TEXT.title}</MainText>
             <SubText textStyle="pt-5 pb-7">
-              <p>{MODAL_SUB_TEXT1}</p>
-              <p className="font-extrabold">{MODAL_SUB_TEXT2}</p>
+              <p>{MODAL_TEXT.description}</p>
+              <p className="font-extrabold">{MODAL_TEXT.warning}</p>
             </SubText>
           </ModalText>
           <div className="flex w-full">
