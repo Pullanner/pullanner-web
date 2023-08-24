@@ -103,22 +103,17 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
         )}
         {showModal && (
           <Modal>
-            <ModalText textStyle="flex flex-col items-center justify-center px-5 pt-5">
-              <MainText textStyle="pb-2.5">{TEXT_CONTENTS.modal.main}</MainText>
-              <div className="border-t-2 border-[#686868] pt-2.5 text-center">
+            <ModalText>
+              <MainText textStyle="border-b-2 border-[#686868] py-5">
+                {TEXT_CONTENTS.modal.main}
+              </MainText>
+              <SubText textStyle="pt-6 pb-7">
                 {TEXT_CONTENTS.modal.sub.map((text) => {
-                  return <SubText key={text}>{text}</SubText>;
+                  return <p key={text}>{text}</p>;
                 })}
-              </div>
+              </SubText>
             </ModalText>
-            <div className="mb-5 flex w-full justify-center pt-2.5">
-              <ModalButton
-                text="확인"
-                buttonStyle="w-[5.625rem] h-7"
-                handler={handleOkButtonClick}
-                isPrimary
-              />
-            </div>
+            <ModalButton text="확인" handler={handleOkButtonClick} isPrimary />
           </Modal>
         )}
       </div>
