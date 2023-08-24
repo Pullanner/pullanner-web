@@ -18,11 +18,11 @@ export const ModalButton = ({
   return (
     <button
       type="button"
-      className={`${primaryButtonStyle} ${buttonStyle} flex min-h-[2.5rem] min-w-[3.75rem] items-center justify-center gap-y-0.5 rounded-md bg-[#373737] p-2`}
+      className={`${primaryButtonStyle} ${buttonStyle} flex h-[3.125rem] w-full items-center justify-center gap-y-0.5 bg-[#373737] p-2`}
       onClick={handler}
     >
       {imageUrl && <img src={imageUrl} alt="emoticon" className="mr-1.5 h-5 w-5" />}
-      <span className="inline-block text-xs">{text}</span>
+      <span className="text-sm">{text}</span>
     </button>
   );
 };
