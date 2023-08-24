@@ -37,17 +37,17 @@ export const SetupResult = () => {
   const workoutData = useAtomValue(workoutDataAtom);
   const navigate = useNavigate();
 
-  const selectedWorkoutData = ROADMAP_DATA.filter(({ title }) => {
-    const workout = workoutData.find(({ name }) => {
-      return name === title;
+  const selectedWorkoutData = ROADMAP_DATA.filter(({ name }) => {
+    const workout = workoutData.find(({ name: workoutName }) => {
+      return name === workoutName;
     });
 
     return workout?.selected;
   });
 
-  const restWorkoutData = ROADMAP_DATA.filter(({ title }) => {
-    const workout = workoutData.find(({ name }) => {
-      return name === title;
+  const restWorkoutData = ROADMAP_DATA.filter(({ name }) => {
+    const workout = workoutData.find(({ name: workoutName }) => {
+      return name === workoutName;
     });
 
     return !workout?.selected;

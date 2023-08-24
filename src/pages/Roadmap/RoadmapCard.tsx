@@ -5,10 +5,10 @@ type RoadmapCardProps = {
   id: number;
   imageSrc: string;
   description: string;
-  title: string;
+  name: string;
 };
 
-export const RoadmapCard = ({ color, id, imageSrc, description, title }: RoadmapCardProps) => {
+export const RoadmapCard = ({ color, id, imageSrc, description, name }: RoadmapCardProps) => {
   return (
     <div className="rounded-xl" style={{ backgroundColor: color }}>
       <Link to={`/roadmap/${id}`} className="relative">
@@ -20,7 +20,7 @@ export const RoadmapCard = ({ color, id, imageSrc, description, title }: Roadmap
             backgroundColor: color,
           }}
         >
-          {title}
+          {name}
         </p>
       </Link>
     </div>

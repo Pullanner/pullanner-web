@@ -2,7 +2,7 @@ export const ROADMAP_DATA = [
   {
     id: 1,
     imageSrc: '/assets/images/roadmap/step1.svg',
-    title: 'Hanging',
+    name: 'Hanging',
     difficulty: 1,
     description: `철봉에서 매달리는 동작(Hanging)은 상체 근력을 향상시키고 전신의 안정성을 개선합니다.
       Hanging은 간단하지만 효과적인 운동입니다. 
@@ -14,7 +14,7 @@ export const ROADMAP_DATA = [
   {
     id: 2,
     imageSrc: '/assets/images/roadmap/step2.svg',
-    title: 'Jumping Pull-up',
+    name: 'Jumping Pull-up',
     difficulty: 1,
     description: `Jumping pull-up은 초보자나 근력이 부족한 사람들이 풀업을 수행하는 데 도움이 되는 운동입니다. 
     또한 상체 근력을 향상시키는 동시에 풀업 동작에 대한 기초를 다지는 데 도움이 됩니다. 
@@ -29,7 +29,7 @@ export const ROADMAP_DATA = [
   {
     id: 3,
     imageSrc: '/assets/images/roadmap/step3.svg',
-    title: 'Band Pull-up',
+    name: 'Band Pull-up',
     difficulty: 2,
     description: `풀업 동작을 수행할 때 철봉과 몸 사이에 풀업 밴드를 사용하는 운동입니다. 밴드는 몸에 걸쳐서 지원력을 제공하여 풀업 동작을 도와줍니다.
       밴드 풀업은 풀업 동작을 처음 시작하는 사람들이나 근력이 부족한 사람들에게 좋은 선택입니다. 점진적으로 강도를 높여가며 근력을 향상시킬 수 있고, 
@@ -41,7 +41,7 @@ export const ROADMAP_DATA = [
   {
     id: 4,
     imageSrc: '/assets/images/roadmap/step4.svg',
-    title: 'Chin-up',
+    name: 'Chin-up',
     difficulty: 3,
     description: `Chin-Up은 상체 근력을 향상시키는 운동 중 하나로, 특히 이두근, 등근육, 전완근 등 상체 근육을 타깃으로 하는 운동입니다. 
     Pull-up은 손등 방향이 얼굴을 향해서 수행하지만, Chin-up은 손바닥 방향이 얼굴을 향하도록 그립을 잡고 수행합니다.
@@ -53,7 +53,7 @@ export const ROADMAP_DATA = [
   {
     id: 5,
     imageSrc: '/assets/images/roadmap/step5.svg',
-    title: 'Pull-up',
+    name: 'Pull-up',
     difficulty: 3,
     description: `Pull-Up 운동은 상체 근력을 향상시키는 운동 중 하나로, 등근육, 이두근, 전완근 등을 강화하는 데 효과적입니다.
       또한 상체의 다른 근육들도 협력하여 전체적인 근력을 향상시킵니다.
@@ -66,7 +66,7 @@ export const ROADMAP_DATA = [
   {
     id: 6,
     imageSrc: '/assets/images/roadmap/step6.svg',
-    title: 'Chest to Bar',
+    name: 'Chest to Bar',
     difficulty: 4,
     description: `Chest to Bar 풀업은 일반 풀업보다 이동 범위를 더 크게 하여 풀업 바에 가슴이나 흉골이 닿게 합니다.
     상체를 더 많이 사용해야 하므로, 일반 풀업에 비해 등근육과 이두근을 더욱 강화시킬 수 있습니다. 
@@ -79,7 +79,7 @@ export const ROADMAP_DATA = [
   {
     id: 7,
     imageSrc: '/assets/images/roadmap/step7.svg',
-    title: 'Archer Pull-up',
+    name: 'Archer Pull-up',
     difficulty: 5,
     description: `Archer Pull-up은 활을 쏘는 자세를 하는 궁수와 같은 모습으로 풀업을 하는 동작입니다.
     어깨에 아주 강한 자극을 줄 수 있지만, 초보자가 무리한다면 어깨를 다칠 수 있습니다. 
@@ -91,7 +91,7 @@ export const ROADMAP_DATA = [
   {
     id: 8,
     imageSrc: '/assets/images/roadmap/step8.svg',
-    title: 'Muscle up',
+    name: 'Muscle up',
     difficulty: 5,
     description: `머슬업은 순간적으로 폭발적인 힘을 내며 강한 어깨와 팔꿈치가 받쳐 줘야 수행할 수 있는 동작입니다.
     어깨와 팔꿈치에 부상을 입을 수 있으니 주의해야 합니다.

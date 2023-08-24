@@ -15,7 +15,7 @@ export const RoadmapDetail = () => {
     return null;
   }
 
-  const { title, imageSrc, description, color, difficulty, link } = stepData;
+  const { name, imageSrc, description, color, difficulty, link } = stepData;
 
   return (
     <div className="flex flex-col items-center px-3">
@@ -23,7 +23,7 @@ export const RoadmapDetail = () => {
       <div className="mb-5 rounded-xl" style={{ backgroundColor: color }}>
         <img src={imageSrc} alt={description} />
       </div>
-      <h1 className="mb-1.5 text-xl font-bold">{title}</h1>
+      <h1 className="mb-1.5 text-xl font-bold">{name}</h1>
       <div className="mb-2 flex">
         <span className="mr-2">난이도</span>
         <Rate rateValue={difficulty} color={color} />

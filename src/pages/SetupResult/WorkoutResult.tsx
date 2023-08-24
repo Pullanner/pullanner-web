@@ -3,7 +3,7 @@ import { WorkoutCard } from '@/pages/SelectWorkout/WorkoutCard';
 type WorkoutInfo = {
   id: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
   imageSrc: string;
-  title: string;
+  name: string;
   difficulty: number;
   description: string;
   color: string;
@@ -28,12 +28,12 @@ export const WorkoutResult = ({ workoutData, textContents }: WorkoutResultProps)
       </p>
 
       <div className="flex flex-row flex-wrap justify-center gap-x-3.5 gap-y-5 pb-7">
-        {workoutData.map(({ id, title, imageSrc, color }) => {
+        {workoutData.map(({ id, name, imageSrc, color }) => {
           return (
             <WorkoutCard
               key={id}
               id={id}
-              title={title}
+              name={name}
               imageSrc={imageSrc}
               color={color}
               width="4.75rem"

@@ -8,7 +8,7 @@ export const Roadmap = () => {
     <>
       <Banner data={BANNER_DATA.roadmap} />
       <div className="m-3 grid grid-cols-2 gap-3">
-        {ROADMAP_DATA.map(({ color, imageSrc, id, description, title }) => {
+        {ROADMAP_DATA.map(({ color, imageSrc, id, description, name }) => {
           return (
             <RoadmapCard
               key={id}
@@ -16,7 +16,7 @@ export const Roadmap = () => {
               imageSrc={imageSrc}
               id={id}
               description={description}
-              title={title}
+              name={name}
             />
           );
         })}

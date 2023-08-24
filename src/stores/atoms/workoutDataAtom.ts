@@ -4,8 +4,8 @@ import { ROADMAP_DATA } from '@/constants';
 
 const HANGING = 'Hanging';
 
-const initialWorkoutData = ROADMAP_DATA.map(({ title }) => {
-  return { name: title, selected: title === HANGING };
+const initialWorkoutData = ROADMAP_DATA.map(({ name }) => {
+  return { name, selected: name === HANGING };
 });
 
 export type WorkoutData = typeof initialWorkoutData;

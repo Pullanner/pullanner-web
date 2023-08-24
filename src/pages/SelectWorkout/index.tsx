@@ -10,7 +10,7 @@ import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 import { workoutDataAtom } from '@/stores/atoms/workoutDataAtom';
 
-import { SelecteableWorkoutCard } from './SelectableWorkoutCard';
+import { SelectableWorkoutCard } from './SelectableWorkoutCard';
 
 const TEXT_CONTENTS = {
   headline: '가능한 풀업 동작을 알려주세요',
@@ -45,16 +45,16 @@ export const SelectWorkout = () => {
           }`}</p>
         </div>
         <div className="grid grid-cols-4 gap-x-3.5 gap-y-6 px-5 pb-5">
-          {ROADMAP_DATA.map(({ id, title, imageSrc, color }) => {
-            const workout = workoutData.find(({ name }) => {
-              return name === title;
+          {ROADMAP_DATA.map(({ id, name, imageSrc, color }) => {
+            const workout = workoutData.find(({ name: workoutName }) => {
+              return name === workoutName;
             });
 
             return (
-              <SelecteableWorkoutCard
+              <SelectableWorkoutCard
                 key={id}
                 id={id}
-                title={title}
+                name={name}
                 imageSrc={imageSrc}
                 color={color}
                 width="4.75rem"

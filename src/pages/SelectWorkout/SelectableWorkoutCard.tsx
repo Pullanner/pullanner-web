@@ -13,9 +13,9 @@ type SelectableWorkoutCardProps = Omit<WorkoutCardProps, 'additionalStyle' | 'ch
 
 const HANGING = 'Hanging';
 
-export const SelecteableWorkoutCard = ({
+export const SelectableWorkoutCard = ({
   id,
-  title,
+  name,
   imageSrc,
   color,
   width,
@@ -42,11 +42,11 @@ export const SelecteableWorkoutCard = ({
     setCardSelected(!isCardSelected);
   };
 
-  if (title === HANGING) {
+  if (name === HANGING) {
     return (
       <WorkoutCard
         id={id}
-        title={title}
+        name={name}
         imageSrc={imageSrc}
         color={color}
         width={width}
@@ -69,7 +69,7 @@ export const SelecteableWorkoutCard = ({
     <div className="flex flex-col items-center">
       <button
         id={`${id}`}
-        name={title}
+        name={name}
         type="button"
         className="relative cursor-default rounded-md"
         style={{
@@ -82,7 +82,7 @@ export const SelecteableWorkoutCard = ({
         }}
         onClick={handleCardClick}
       >
-        <img src={imageSrc} alt={title} />
+        <img src={imageSrc} alt={name} />
         {isCardSelected && (
           <img
             className="absolute left-2 top-2"
@@ -91,7 +91,7 @@ export const SelecteableWorkoutCard = ({
           />
         )}
       </button>
-      <p className="inline-block break-words pt-1 text-center text-xs tracking-tight">{title}</p>
+      <p className="inline-block break-words pt-1 text-center text-xs tracking-tight">{name}</p>
     </div>
   );
 };
