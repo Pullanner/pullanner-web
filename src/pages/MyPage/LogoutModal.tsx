@@ -24,7 +24,7 @@ export const LogoutModal = ({ handleCancleButtonClick }: LogoutModalProps) => {
 
   const handleOkButtonClick = () => {
     if (import.meta.env.PROD) {
-      axiosInstance.delete(API_PATH.token);
+      axiosInstance.delete(API_PATH.tokens);
     }
     setLoginState(false);
     setAccessToken('');

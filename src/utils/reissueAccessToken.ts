@@ -7,7 +7,7 @@ export const reissueAccessToken = async () => {
   try {
     const {
       data: { accessToken: newAccessToken },
-    } = await axiosInstance.post(API_PATH.token);
+    } = await axiosInstance.post(API_PATH.tokens);
 
     return newAccessToken;
   } catch (error) {

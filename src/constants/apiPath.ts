@@ -3,7 +3,7 @@ export const API_PATH = {
   userNicknameValidation: '/api/users/duplicate',
   userEmail: '/api/users/mail',
   userWorkouts: '/api/users/workouts',
-  token: '/api/tokens',
+  tokens: '/api/tokens',
   plans: '/api/plans',
 } as const;
 
