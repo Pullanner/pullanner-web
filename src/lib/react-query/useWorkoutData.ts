@@ -2,7 +2,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { API_PATH } from '@/constants';
 import { getAuthRequest, postAuthRequest } from '@/lib/axios/useAuthApi';
-import { WorkoutData } from '@/stores/atoms/workoutDataAtom';
+import { Workouts } from '@/mocks/users/workouts/data';
 
 import { queryKeys } from './queryKeys';
 
@@ -28,8 +28,8 @@ export const usePostWorkoutData = (
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (workoutData: WorkoutData) => {
-      return postAuthRequest(API_PATH.userWorkouts, { workoutData }, accessToken, setAccessToken);
+    mutationFn: (workouts: Workouts) => {
+      return postAuthRequest(API_PATH.userWorkouts, { workouts }, accessToken, setAccessToken);
     },
     onSuccess: () => {
       return queryClient.invalidateQueries({ queryKey: [queryKeys.userData] });
