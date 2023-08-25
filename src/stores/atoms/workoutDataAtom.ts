@@ -1,12 +1,8 @@
 import { atom } from 'jotai';
 
-import { ROADMAP_DATA } from '@/constants';
+export type WorkoutId = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
-const HANGING = 'Hanging';
-
-const initialWorkoutData = ROADMAP_DATA.map(({ name }) => {
-  return { name, selected: name === HANGING };
-});
+const initialWorkoutData = new Set<WorkoutId>([1]);
 
 export type WorkoutData = typeof initialWorkoutData;
 
