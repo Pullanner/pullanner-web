@@ -1,5 +1,5 @@
 export const API_PATH = {
-  user: '/api/users',
+  users: '/api/users',
   userNicknameValidation: '/api/users/duplicate',
   userEmail: '/api/users/mail',
   userWorkouts: '/api/users/workouts',

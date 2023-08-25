@@ -15,7 +15,7 @@ export const deleteAccountWithAuthenticationCode = async (
   try {
     const params = new URLSearchParams();
     params.append('code', code);
-    const data = await deleteAuthRequest(API_PATH.user, accessToken, setAccessToken, {
+    const data = await deleteAuthRequest(API_PATH.users, accessToken, setAccessToken, {
       params,
     });
 
