@@ -13,9 +13,14 @@ export const validateNickname = async (
   try {
     const params = new URLSearchParams();
     params.append('nickname', nickname);
-    const data = await getAuthRequest(API_PATH.nicknameValidation, accessToken, setAccessToken, {
-      params,
-    });
+    const data = await getAuthRequest(
+      API_PATH.userNicknameValidation,
+      accessToken,
+      setAccessToken,
+      {
+        params,
+      },
+    );
 
     return data.code === SUCCESS_RESPONSE_CODE;
   } catch (error) {

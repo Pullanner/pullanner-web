@@ -1,6 +1,6 @@
 export const API_PATH = {
   user: '/api/users',
-  nicknameValidation: '/api/users/duplicate',
+  userNicknameValidation: '/api/users/duplicate',
   userEmail: '/api/users/mail',
   token: '/api/tokens',
   plans: '/api/plans',

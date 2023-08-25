@@ -91,7 +91,7 @@ const deleteAccountWithAuthenticationCode = async (
 
 const userHandler = [
   rest.get(API_PATH.user, getUserData),
-  rest.get<NicknameValidationReqBody>(API_PATH.nicknameValidation, getNicknameValidation),
+  rest.get<NicknameValidationReqBody>(API_PATH.userNicknameValidation, getNicknameValidation),
   rest.post(API_PATH.user, postUserData),
   rest.post(API_PATH.userEmail, postAuthenticationCode),
   rest.delete(API_PATH.user, deleteAccountWithAuthenticationCode),
