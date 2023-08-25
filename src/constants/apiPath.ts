@@ -4,7 +4,7 @@ export const API_PATH = {
   userEmail: '/api/users/mail',
   token: '/api/tokens',
   plans: '/api/plans',
-  workouts: '/api/workouts',
+  userWorkouts: '/api/users/workouts',
 } as const;
 
 export type ApiPathType = (typeof API_PATH)[keyof typeof API_PATH];

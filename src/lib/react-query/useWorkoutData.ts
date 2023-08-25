@@ -15,7 +15,7 @@ export const useGetWorkoutData = (
   return useQuery({
     queryKey: [queryKeys.workouts, accessToken, setAccessToken],
     queryFn: () => {
-      return getAuthRequest(API_PATH.workouts, accessToken, setAccessToken);
+      return getAuthRequest(API_PATH.userWorkouts, accessToken, setAccessToken);
     },
     enabled: !!accessToken.length,
   });
@@ -29,7 +29,7 @@ export const usePostWorkoutData = (
 
   return useMutation({
     mutationFn: (workoutData: WorkoutData) => {
-      return postAuthRequest(API_PATH.workouts, { workoutData }, accessToken, setAccessToken);
+      return postAuthRequest(API_PATH.userWorkouts, { workoutData }, accessToken, setAccessToken);
     },
     onSuccess: () => {
       return queryClient.invalidateQueries({ queryKey: [queryKeys.userData] });

@@ -31,8 +31,8 @@ const postWorkoutData = async (
 };
 
 const workoutHandler = [
-  rest.get(API_PATH.workouts, getWorkoutData),
-  rest.post(API_PATH.workouts, postWorkoutData),
+  rest.get(API_PATH.userWorkouts, getWorkoutData),
+  rest.post(API_PATH.userWorkouts, postWorkoutData),
 ];
 
 export default workoutHandler;
