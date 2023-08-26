@@ -2,7 +2,7 @@ import { rest } from 'msw';
 
 import { API_PATH } from '@/constants';
 
-import { WORKOUTS_DATA } from './data';
+import { WORKOUT_DATA } from './data';
 
 import type {
   DefaultBodyType,
@@ -17,7 +17,7 @@ const getWorkoutData = (
   res: ResponseComposition<DefaultBodyType>,
   ctx: RestContext,
 ) => {
-  return res(ctx.status(200), ctx.json(WORKOUTS_DATA));
+  return res(ctx.status(200), ctx.json(WORKOUT_DATA));
 };
 
 const postWorkoutData = async (
@@ -31,8 +31,8 @@ const postWorkoutData = async (
 };
 
 const workoutHandler = [
-  rest.get(API_PATH.workouts, getWorkoutData),
-  rest.post(API_PATH.workouts, postWorkoutData),
+  rest.get(API_PATH.userWorkouts, getWorkoutData),
+  rest.post(API_PATH.userWorkouts, postWorkoutData),
 ];
 
 export default workoutHandler;

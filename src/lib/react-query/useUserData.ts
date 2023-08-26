@@ -14,7 +14,7 @@ export const useUserData = (
   return useQuery({
     queryKey: [queryKeys.userData, accessToken, setAccessToken],
     queryFn: () => {
-      return getAuthRequest(API_PATH.user, accessToken, setAccessToken);
+      return getAuthRequest(API_PATH.users, accessToken, setAccessToken);
     },
     enabled: !!accessToken.length,
   });
@@ -28,7 +28,7 @@ export const useMutateNickname = (
 
   return useMutation({
     mutationFn: (nickname: string) => {
-      return postAuthRequest(API_PATH.user, { nickname }, accessToken, setAccessToken);
+      return postAuthRequest(API_PATH.users, { nickname }, accessToken, setAccessToken);
     },
     onSuccess: () => {
       return queryClient.invalidateQueries({ queryKey: [queryKeys.userData] });

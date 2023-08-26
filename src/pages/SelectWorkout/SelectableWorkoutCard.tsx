@@ -1,7 +1,7 @@
 import { useSetAtom } from 'jotai';
 import { useState } from 'react';
 
-import { workoutDataAtom } from '@/stores/atoms/workoutDataAtom';
+import { workoutDataAtom, WorkoutId } from '@/stores/atoms/workoutDataAtom';
 
 import { WorkoutCard, WorkoutCardProps } from './WorkoutCard';
 
@@ -25,20 +25,22 @@ export const SelectableWorkoutCard = ({
   const [isCardSelected, setCardSelected] = useState(isActive);
   const setWorkoutData = useSetAtom(workoutDataAtom);
 
-  const handleCardClick = ({ target }: MouseEvent<HTMLElement>) => {
-    const cardName = (target as HTMLElement).closest('button')?.name;
-    setWorkoutData((prevWorkoutList) => {
-      const newWorkout = prevWorkoutList.map((workout) => {
-        const { name: workoutName, selected: workoutStatus } = workout;
-        if (workoutName === cardName) {
-          return { name: workoutName, selected: !workoutStatus };
-        }
+  const handleCardClick = ({ currentTarget }: MouseEvent<HTMLButtonElement>) => {
+    const cardId = Number(currentTarget.id) as WorkoutId;
 
-        return workout;
-      });
+    setWorkoutData((prevWorkoutData) => {
+      const hasCardId = prevWorkoutData.has(cardId);
+      const newWorkoutData = new Set<WorkoutId>(prevWorkoutData.values());
 
-      return newWorkout;
+      if (hasCardId) {
+        newWorkoutData.delete(cardId);
+      } else {
+        newWorkoutData.add(cardId);
+      }
+
+      return newWorkoutData;
     });
+
     setCardSelected(!isCardSelected);
   };
 
