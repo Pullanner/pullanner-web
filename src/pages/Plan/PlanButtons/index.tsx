@@ -1,19 +1,53 @@
+import { message } from 'antd';
 import { useAtomValue } from 'jotai';
 import { Link } from 'react-router-dom';
 
 import { ROUTE_PATH } from '@/constants';
+import { WarningIcon } from '@/icons/WarningIcon';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { selectedDateAtom } from '@/stores/atoms/selectedDateAtom';
+import { checkPastDate } from '@/utils/date';
+
+const PAST_PLAN_MESSAGE = '오늘 이전 날짜에는 플랜을 생성할 수 없어요.';
 
 export const PlanButtons = () => {
   const selectedDate = useAtomValue(selectedDateAtom);
   const isLoggedIn = useAtomValue(loginStateAtom);
-  const planLink = isLoggedIn ? ROUTE_PATH.plan.new : ROUTE_PATH.login;
+  const isPastDate = checkPastDate(selectedDate);
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const getPlanLink = () => {
+    if (!isLoggedIn) {
+      return ROUTE_PATH.login;
+    }
+    if (isPastDate) {
+      return '';
+    }
+
+    return ROUTE_PATH.plan.new;
+  };
+
+  const handlePlanButtonClick = () => {
+    if (isPastDate) {
+      messageApi.open({
+        type: 'warning',
+        content: PAST_PLAN_MESSAGE,
+        duration: 2,
+        style: {
+          marginTop: '75vh',
+        },
+        icon: WarningIcon(),
+      });
+    }
+  };
+
+  const planLink = getPlanLink();
 
   return (
     <div className="mb-3 flex justify-around p-3">
       <Link
         to={planLink}
+        onClick={handlePlanButtonClick}
         state={{ planType: 'strength', date: selectedDate }}
         className="flex items-center rounded-md bg-primary p-3 text-base text-black"
       >
@@ -21,11 +55,13 @@ export const PlanButtons = () => {
       </Link>
       <Link
         to={planLink}
+        onClick={handlePlanButtonClick}
         state={{ planType: 'master', date: selectedDate }}
         className="flex items-center rounded-md border-2 border-primary bg-zinc-800 p-3 text-base text-white"
       >
         <span>🏆 동작 마스터 플랜</span>
       </Link>
+      {contextHolder}
     </div>
   );
 };
