@@ -8,6 +8,7 @@ export * from './Roadmap';
 export * from './RoadmapDetail';
 export * from './EditMyPage';
 export * from './Plan';
+export * from './NewPlan';
 export * from './Community';
 export * from './Summary';
 export * from './Setup';
