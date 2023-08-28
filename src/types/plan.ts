@@ -1,11 +1,12 @@
+export type PullUpSteps = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 export type Workout = {
-  id: number;
+  id: PullUpSteps;
   name: string;
+  color: string;
   count: number;
   set: number;
   total: number;
-  done: boolean;
-  color: string;
 };
 
 export type Plan = {
