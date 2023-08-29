@@ -1,3 +1,14 @@
+export const WORKOUT_NAME = {
+  1: 'Hanging',
+  2: 'Jumping Pull-up',
+  3: 'Band Pull-up',
+  4: 'Chin-up',
+  5: 'Pull-up',
+  6: 'Chest to Bar',
+  7: 'Archer Pull-up',
+  8: 'Muscle up',
+} as const;
+
 export const ROADMAP_DATA = [
   {
     id: 1,
