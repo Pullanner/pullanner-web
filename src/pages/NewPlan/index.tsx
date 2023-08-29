@@ -1,11 +1,12 @@
 import { TimePicker } from 'antd';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { SelectablePullUpCard } from '@/components/PullUpCard/SelectablePullUpCard';
+import { WorkoutTable } from '@/components/WorkoutTable';
 import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
 import { impossiblePullUpAtom, possiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
 import { PullUpSteps, Workout } from '@/types/plan';
@@ -35,12 +36,18 @@ export const NewPlan = () => {
   const pullUpList =
     locationState.planType === 'strength' ? userPossiblePullUps : userImpossiblePullUps;
   const [selectedWorkouts, setSelectedWorkouts] = useState<Workout[]>([]);
+  const [planName, setPlanName] = useState('');
 
   if (!locationState?.planType) {
     navigate(ROUTE_PATH.plan.index);
 
     return null;
   }
+
+  const handlePlanInputChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
+    console.log(value);
+    setPlanName(value);
+  };
 
   const handlePlanSaveClick = () => {
     navigate(ROUTE_PATH.plan.index);
@@ -86,9 +93,18 @@ export const NewPlan = () => {
       <div>{locationState.date}</div>
       <form>
         <div>
-          <label htmlFor="pull-up-name">
+          <label htmlFor="plan-name">
             풀업 계획의 이름을 입력해주세요.
-            <input id="pull-up-name" maxLength={20} required minLength={1} />
+            <input
+              id="plan-name"
+              name="planName"
+              className="bg-[#2E2E2E] text-base"
+              maxLength={20}
+              required
+              minLength={1}
+              value={planName}
+              onChange={handlePlanInputChange}
+            />
           </label>
         </div>
         <div>
@@ -100,7 +116,7 @@ export const NewPlan = () => {
           />
         </div>
         <div>
-          <p>연습할 풀업 운동을 선택해주세요.</p>
+          <p>연습할 풀업 운동을 선택하고, 횟수와 세트를 입력해주세요.</p>
           <div className="flex">
             {pullUpList.map((workoutId) => {
               const workoutData = ROADMAP_DATA.find((v) => {
@@ -126,36 +142,7 @@ export const NewPlan = () => {
               );
             })}
           </div>
-          <div>
-            {selectedWorkouts.length > 0 && (
-              <table>
-                <thead>
-                  <tr>
-                    <th>Workout</th>
-                    <th>Count</th>
-                    <th>Set</th>
-                    <th>Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {selectedWorkouts.map((workout) => {
-                    return (
-                      <tr>
-                        <td style={{ color: workout.color }}>{workout.name}</td>
-                        <td>
-                          <input value={workout.count} className="w-6" />
-                        </td>
-                        <td>
-                          <input value={workout.set} className="w-6" />
-                        </td>
-                        <td>{workout.total}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            )}
-          </div>
+          <div>{selectedWorkouts.length > 0 && <WorkoutTable workouts={selectedWorkouts} />}</div>
         </div>
         <SaveButton isActive width="100%" height="44px" handleButtonClick={handlePlanSaveClick} />
       </form>
