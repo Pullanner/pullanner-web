@@ -13,10 +13,10 @@ import { userDataAtom } from '@/stores/atoms/userDataAtom';
 import { MODAL_TEXT } from './constants';
 
 type LogoutModalProps = {
-  handleCancleButtonClick: () => void;
+  handleCancelButtonClick: () => void;
 };
 
-export const LogoutModal = ({ handleCancleButtonClick }: LogoutModalProps) => {
+export const LogoutModal = ({ handleCancelButtonClick }: LogoutModalProps) => {
   const setAccessToken = useSetAtom(accessTokenAtom);
   const setLoginState = useSetAtom(loginStateAtom);
   const setUserData = useSetAtom(userDataAtom);
@@ -39,7 +39,7 @@ export const LogoutModal = ({ handleCancleButtonClick }: LogoutModalProps) => {
       </ModalText>
       <div className="flex w-full">
         <ModalButton text="네" handler={handleOkButtonClick} />
-        <ModalButton text="아니오" handler={handleCancleButtonClick} isPrimary />
+        <ModalButton text="아니오" handler={handleCancelButtonClick} isPrimary />
       </div>
     </Modal>
   );

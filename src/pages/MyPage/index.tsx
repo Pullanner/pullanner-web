@@ -22,7 +22,7 @@ export const MyPage = () => {
     setShowModal(true);
   };
 
-  const handleCancleButtonClick = () => {
+  const handleCancelButtonClick = () => {
     setShowModal(false);
   };
 
@@ -47,7 +47,7 @@ export const MyPage = () => {
       <div className="flex justify-center">
         <DimmedButton name="로그아웃" handler={handleLogoutButtonClick} />
       </div>
-      {showModal && <LogoutModal handleCancleButtonClick={handleCancleButtonClick} />}
+      {showModal && <LogoutModal handleCancelButtonClick={handleCancelButtonClick} />}
     </div>
   );
 };

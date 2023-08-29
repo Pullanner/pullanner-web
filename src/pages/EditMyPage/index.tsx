@@ -33,11 +33,11 @@ export const EditMyPage = () => {
     }
   };
 
-  const handleWithdrwalButtonClick = () => {
+  const handleWithdrawalButtonClick = () => {
     setShowModal(true);
   };
 
-  const handleCancleButtonClick = () => {
+  const handleCancelButtonClick = () => {
     setShowModal(false);
   };
 
@@ -62,8 +62,8 @@ export const EditMyPage = () => {
         />
       </div>
 
-      <DimmedButton name="회원탈퇴" handler={handleWithdrwalButtonClick} />
-      {showModal && <DeleteAccountModal handleCancleButtonClick={handleCancleButtonClick} />}
+      <DimmedButton name="회원탈퇴" handler={handleWithdrawalButtonClick} />
+      {showModal && <DeleteAccountModal handleCancelButtonClick={handleCancelButtonClick} />}
     </div>
   );
 };

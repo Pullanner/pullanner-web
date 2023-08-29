@@ -8,10 +8,10 @@ import { ROUTE_PATH } from '@/constants';
 import { MODAL_TEXT } from './constants';
 
 type DeleteAccountModalProps = {
-  handleCancleButtonClick: () => void;
+  handleCancelButtonClick: () => void;
 };
 
-export const DeleteAccountModal = ({ handleCancleButtonClick }: DeleteAccountModalProps) => {
+export const DeleteAccountModal = ({ handleCancelButtonClick }: DeleteAccountModalProps) => {
   const navigate = useNavigate();
 
   const handleOkButtonClick = () => {
@@ -35,7 +35,7 @@ export const DeleteAccountModal = ({ handleCancleButtonClick }: DeleteAccountMod
         />
         <ModalButton
           text="아니오"
-          handler={handleCancleButtonClick}
+          handler={handleCancelButtonClick}
           imageUrl="/assets/images/emotion/5.svg"
           isPrimary
         />
