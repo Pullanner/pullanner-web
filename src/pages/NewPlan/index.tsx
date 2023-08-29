@@ -5,14 +5,12 @@ import { ChangeEvent, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SaveButton } from '@/components/buttons/SaveButton';
-import { Modal } from '@/components/Modal';
-import { ModalButton } from '@/components/Modal/ModalButton';
-import { MainText, SubText } from '@/components/Modal/ModalText';
 import { SelectablePullUpCard } from '@/components/PullUpCard/SelectablePullUpCard';
 import { WorkoutTable } from '@/components/WorkoutTable';
-import { ROADMAP_DATA, ROUTE_PATH, WORKOUT_NAME } from '@/constants';
+import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
 import { impossiblePullUpAtom, possiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
 import { PullUpSteps, Workout } from '@/types/plan';
+import { convertToUTCDate } from '@/utils/date';
 
 import type { Dayjs } from 'dayjs';
 
@@ -40,8 +38,7 @@ export const NewPlan = () => {
     locationState.planType === 'strength' ? userPossiblePullUps : userImpossiblePullUps;
   const [selectedWorkouts, setSelectedWorkouts] = useState<Workout[]>([]);
   const [planName, setPlanName] = useState('');
-  const [currentWorkoutId, setCurrentWorkoutId] = useState<PullUpSteps>();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [planDateTime, setPlanDateTime] = useState('');
 
   if (!locationState?.planType) {
     navigate(ROUTE_PATH.plan.index);
@@ -50,52 +47,39 @@ export const NewPlan = () => {
   }
 
   const handlePlanInputChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-    console.log(value);
     setPlanName(value);
   };
 
+  // TODO: POST request
   const handlePlanSaveClick = () => {
+    console.log(planDateTime);
     navigate(ROUTE_PATH.plan.index);
   };
 
   const handleTimePickerChange = (_: Dayjs | null, selectedTime: string) => {
-    console.log(selectedTime);
+    if (!selectedTime) {
+      setPlanDateTime('');
+
+      return;
+    }
+    const planDateTimeUtc = convertToUTCDate(locationState.date, selectedTime);
+    setPlanDateTime(planDateTimeUtc);
   };
 
-  const handleDeleteCancelClick = () => {
-    setIsModalOpen(false);
+  const addWorkoutRow = (id: PullUpSteps, name: string, color: string) => {
+    setSelectedWorkouts((prev) => {
+      return [...prev, { id, name, color, count: 0, set: 0, total: 0 }];
+    });
   };
 
-  const handleDeleteConfirmClick = () => {
+  const deleteWorkoutRow = (id: PullUpSteps) => {
     setSelectedWorkouts((prev) => {
       const filtered = prev.filter((w) => {
-        return w.id !== currentWorkoutId;
+        return w.id !== id;
       });
 
       return filtered;
     });
-    setIsModalOpen(false);
-  };
-
-  const handlePullUpCardClick = ({
-    isCardSelected,
-    id,
-    name,
-    color,
-  }: {
-    isCardSelected: boolean;
-    id: PullUpSteps;
-    name: string;
-    color: string;
-  }) => {
-    if (isCardSelected) {
-      setCurrentWorkoutId(id);
-      setIsModalOpen(true);
-    } else {
-      setSelectedWorkouts((prev) => {
-        return [...prev, { id, name, color, count: 0, set: 0, total: 0 }];
-      });
-    }
   };
 
   return (
@@ -152,25 +136,21 @@ export const NewPlan = () => {
                   height=""
                   imageSrc={imageSrc}
                   color={color}
-                  onClick={handlePullUpCardClick}
+                  onAdd={addWorkoutRow}
+                  onDelete={deleteWorkoutRow}
                 />
               );
             })}
           </div>
           <div>{selectedWorkouts.length > 0 && <WorkoutTable workouts={selectedWorkouts} />}</div>
         </div>
-        <SaveButton isActive width="100%" height="44px" handleButtonClick={handlePlanSaveClick} />
+        <SaveButton
+          isActive={false}
+          width="100%"
+          height="44px"
+          handleButtonClick={handlePlanSaveClick}
+        />
       </form>
-      {isModalOpen && currentWorkoutId && (
-        <Modal>
-          <MainText>{WORKOUT_NAME[currentWorkoutId]}</MainText>
-          <SubText>확인을 클릭하면 해당 운동이 삭제됩니다.</SubText>
-          <div className="flex">
-            <ModalButton text="확인" handler={handleDeleteConfirmClick} />
-            <ModalButton text="취소" isPrimary handler={handleDeleteCancelClick} />
-          </div>
-        </Modal>
-      )}
     </div>
   );
 };
