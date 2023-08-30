@@ -36,7 +36,13 @@ export const usePostWorkoutData = (
 
   return useMutation({
     mutationFn: (workouts: Workouts) => {
-      return postAuthRequest(API_PATH.userWorkouts, { workouts }, accessToken, setAccessToken);
+      return excuteAuthRequestWithErrorHandling({
+        authRequest: (token) => {
+          return postAuthRequest(API_PATH.userWorkouts, { workouts }, token);
+        },
+        accessToken,
+        setAccessToken,
+      });
     },
     onSuccess: () => {
       return queryClient.invalidateQueries({ queryKey: [queryKeys.userData] });

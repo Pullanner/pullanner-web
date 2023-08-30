@@ -35,7 +35,13 @@ export const useMutateNickname = (
 
   return useMutation({
     mutationFn: (nickname: string) => {
-      return postAuthRequest(API_PATH.users, { nickname }, accessToken, setAccessToken);
+      return excuteAuthRequestWithErrorHandling({
+        authRequest: (token) => {
+          return postAuthRequest(API_PATH.users, { nickname }, token);
+        },
+        accessToken,
+        setAccessToken,
+      });
     },
     onSuccess: () => {
       return queryClient.invalidateQueries({ queryKey: [queryKeys.userData] });

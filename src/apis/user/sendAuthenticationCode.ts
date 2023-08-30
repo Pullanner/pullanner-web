@@ -1,4 +1,5 @@
 import { API_PATH } from '@/constants';
+import { excuteAuthRequestWithErrorHandling } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { postAuthRequest } from '@/lib/axios/useAuthApi';
 
 import type { Dispatch, SetStateAction } from 'react';
@@ -10,7 +11,13 @@ export const sendAuthenticationCode = async (
   setAccessToken: Dispatch<SetStateAction<string>>,
 ) => {
   try {
-    const data = await postAuthRequest(API_PATH.userEmail, {}, accessToken, setAccessToken);
+    const data = await excuteAuthRequestWithErrorHandling({
+      authRequest: (token) => {
+        return postAuthRequest(API_PATH.userEmail, {}, token);
+      },
+      accessToken,
+      setAccessToken,
+    });
 
     return data.code === SUCCESS_RESPONSE_CODE;
   } catch (error) {
