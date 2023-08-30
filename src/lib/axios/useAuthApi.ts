@@ -34,32 +34,20 @@ export const getAuthRequest = async (
   return data;
 };
 
-export const postAuthRequest = async <T>(
-  apiPath: string,
-  payload: T,
-  accessToken: string,
-  setAccessToken: Dispatch<SetStateAction<string>>,
-) => {
-  try {
-    if (isDevMode) {
-      const { data } = await axios.post(apiPath, payload);
-
-      return data;
-    }
-
-    const { data } = await axiosInstance.post(apiPath, payload, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+export const postAuthRequest = async <T>(apiPath: string, payload: T, accessToken: string) => {
+  if (isDevMode) {
+    const { data } = await axios.post(apiPath, payload);
 
     return data;
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.code === '403') {
-      const newAccessToken = await reissueAccessToken();
-      setAccessToken(newAccessToken);
-    }
   }
+
+  const { data } = await axiosInstance.post(apiPath, payload, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  return data;
 };
 
 export const deleteAuthRequest = async (
