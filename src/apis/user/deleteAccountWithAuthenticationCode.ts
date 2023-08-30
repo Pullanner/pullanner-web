@@ -1,6 +1,7 @@
 import { isAxiosError } from 'axios';
 
 import { API_PATH } from '@/constants';
+import { excuteAuthRequestWithErrorHandling } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { deleteAuthRequest } from '@/lib/axios/useAuthApi';
 
 import type { Dispatch, SetStateAction } from 'react';
@@ -15,8 +16,14 @@ export const deleteAccountWithAuthenticationCode = async (
   try {
     const params = new URLSearchParams();
     params.append('code', code);
-    const data = await deleteAuthRequest(API_PATH.users, accessToken, setAccessToken, {
-      params,
+    const data = await excuteAuthRequestWithErrorHandling({
+      authRequest: (token) => {
+        return deleteAuthRequest(API_PATH.users, token, {
+          params,
+        });
+      },
+      accessToken,
+      setAccessToken,
     });
 
     return data.code === VALID_CODE;
