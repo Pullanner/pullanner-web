@@ -1,4 +1,5 @@
 import { API_PATH } from '@/constants';
+import { excuteAuthRequestWithErrorHandling } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { getAuthRequest } from '@/lib/axios/useAuthApi';
 
 import type { Dispatch, SetStateAction } from 'react';
@@ -13,14 +14,15 @@ export const validateNickname = async (
   try {
     const params = new URLSearchParams();
     params.append('nickname', nickname);
-    const data = await getAuthRequest(
-      API_PATH.userNicknameValidation,
+    const data = await excuteAuthRequestWithErrorHandling({
+      authRequest: (token) => {
+        return getAuthRequest(API_PATH.userNicknameValidation, token, {
+          params,
+        });
+      },
       accessToken,
       setAccessToken,
-      {
-        params,
-      },
-    );
+    });
 
     return data.code === SUCCESS_RESPONSE_CODE;
   } catch (error) {

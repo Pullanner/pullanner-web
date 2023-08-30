@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { API_PATH } from '@/constants';
+import { excuteAuthRequestWithErrorHandling } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { getAuthRequest, postAuthRequest } from '@/lib/axios/useAuthApi';
 import { Workouts } from '@/mocks/users/workouts/data';
 
@@ -15,7 +16,13 @@ export const useGetWorkoutData = (
   return useQuery({
     queryKey: [queryKeys.workouts, accessToken, setAccessToken],
     queryFn: () => {
-      return getAuthRequest(API_PATH.userWorkouts, accessToken, setAccessToken);
+      return excuteAuthRequestWithErrorHandling({
+        authRequest: (token) => {
+          return getAuthRequest(API_PATH.userWorkouts, token);
+        },
+        accessToken,
+        setAccessToken,
+      });
     },
     enabled: !!accessToken.length,
   });

@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { API_PATH } from '@/constants';
+import { excuteAuthRequestWithErrorHandling } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { getAuthRequest, postAuthRequest } from '@/lib/axios/useAuthApi';
 
 import { queryKeys } from './queryKeys';
@@ -14,7 +15,13 @@ export const useUserData = (
   return useQuery({
     queryKey: [queryKeys.userData, accessToken, setAccessToken],
     queryFn: () => {
-      return getAuthRequest(API_PATH.users, accessToken, setAccessToken);
+      return excuteAuthRequestWithErrorHandling({
+        authRequest: (token) => {
+          return getAuthRequest(API_PATH.users, token);
+        },
+        accessToken,
+        setAccessToken,
+      });
     },
     enabled: !!accessToken.length,
   });
