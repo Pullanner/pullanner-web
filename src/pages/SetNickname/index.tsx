@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { validateNickname } from '@/apis/user';
 import { SaveButton } from '@/components/buttons/SaveButton';
-import { DuplicationCheckInput } from '@/components/DuplicationCheckInput';
 import { Headline } from '@/components/Headline';
+import { DuplicationCheckInput } from '@/components/inputs/DuplicationCheckInput';
 import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
