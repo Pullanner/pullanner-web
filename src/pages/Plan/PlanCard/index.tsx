@@ -1,6 +1,8 @@
 import { Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
 
+import { PLAN_TYPE } from '@/constants';
+
 import type { MenuProps } from 'antd';
 
 type PlanCardProps = {
@@ -37,7 +39,7 @@ export const PlanCard = ({ planType, planName, progress, id }: PlanCardProps) =>
     <div className="my-2 rounded-md bg-zinc-800">
       <div className="flex items-center justify-between p-2">
         <Link to={`/plan/${id}`} className="flex w-full items-center justify-between">
-          <span className="">{`${planType === 'strength' ? '💪' : '🏆'} ${planName}`}</span>
+          <span className="">{`${planType === PLAN_TYPE.strength ? '💪' : '🏆'} ${planName}`}</span>
           <span className="text-sm text-zinc-200">{progress}%</span>
         </Link>
         <Dropdown
