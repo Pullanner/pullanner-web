@@ -1,4 +1,4 @@
-import { TimePicker } from 'antd';
+import { TimePicker, message } from 'antd';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
 import { ChangeEvent, useState } from 'react';
@@ -7,17 +7,30 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { SelectablePullUpCard } from '@/components/PullUpCard/SelectablePullUpCard';
 import { WorkoutTable } from '@/components/WorkoutTable';
-import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
+import {
+  NEW_PLAN_DESCRIPTION,
+  PLAN_MESSAGE,
+  PLAN_TIME_FORMAT,
+  PLAN_TYPE,
+  ROADMAP_DATA,
+  ROUTE_PATH,
+} from '@/constants';
+import { WarningIcon } from '@/icons/WarningIcon';
 import { impossiblePullUpAtom, possiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
+import { workoutPlanAtom } from '@/stores/atoms/workoutPlanAtom';
 import { PullUpSteps, Workout } from '@/types/plan';
-import { convertToUTCDate } from '@/utils/date';
+import { checkPastDateTime, convertToUTCDate } from '@/utils/date';
 
 import type { Dayjs } from 'dayjs';
 
-const format = 'HH:mm';
-const NEW_PLAN_DESCRIPTION = {
-  strength: '가능한 풀업 동작을 반복해서 연습하며 근력을 키워보아요.',
-  master: '아직 불가능한 풀업 동작을 가능할 때까지 제대로 연습해볼까요?',
+const PAST_TIME_PLAN_MESSAGE_OPTION = {
+  type: 'warning' as const,
+  content: PLAN_MESSAGE.pastTime,
+  duration: 2,
+  style: {
+    marginTop: '75vh',
+  },
+  icon: WarningIcon(),
 };
 
 type PlanType = keyof typeof NEW_PLAN_DESCRIPTION;
@@ -31,16 +44,19 @@ type LocationStateType = {
 
 export const NewPlan = () => {
   const { state: locationState }: LocationStateType = useLocation();
+  const planType = locationState?.planType;
+  const planDate = locationState?.date;
   const navigate = useNavigate();
   const userPossiblePullUps = useAtomValue(possiblePullUpAtom);
   const userImpossiblePullUps = useAtomValue(impossiblePullUpAtom);
-  const pullUpList =
-    locationState.planType === 'strength' ? userPossiblePullUps : userImpossiblePullUps;
+  const pullUpList = planType === PLAN_TYPE.strength ? userPossiblePullUps : userImpossiblePullUps;
   const [selectedWorkouts, setSelectedWorkouts] = useState<Workout[]>([]);
   const [planName, setPlanName] = useState('');
   const [planDateTime, setPlanDateTime] = useState('');
+  const workouts = useAtomValue(workoutPlanAtom);
+  const [messageApi, contextHolder] = message.useMessage();
 
-  if (!locationState?.planType) {
+  if (!planType) {
     navigate(ROUTE_PATH.plan.index);
 
     return null;
@@ -52,8 +68,14 @@ export const NewPlan = () => {
 
   // TODO: POST request
   const handlePlanSaveClick = () => {
-    console.log(planDateTime);
-    navigate(ROUTE_PATH.plan.index);
+    const userWorkoutPlan = {
+      planType,
+      planName,
+      planDateTime,
+      workouts,
+    };
+    console.log(userWorkoutPlan);
+    // navigate(ROUTE_PATH.plan.index);
   };
 
   const handleTimePickerChange = (_: Dayjs | null, selectedTime: string) => {
@@ -62,8 +84,12 @@ export const NewPlan = () => {
 
       return;
     }
-    const planDateTimeUtc = convertToUTCDate(locationState.date, selectedTime);
+    const planDateTimeUtc = convertToUTCDate(planDate, selectedTime);
     setPlanDateTime(planDateTimeUtc);
+    const isPast = checkPastDateTime(planDate, selectedTime);
+    if (isPast) {
+      messageApi.open(PAST_TIME_PLAN_MESSAGE_OPTION);
+    }
   };
 
   const addWorkoutRow = (id: PullUpSteps, name: string, color: string) => {
@@ -84,12 +110,9 @@ export const NewPlan = () => {
 
   return (
     <div>
-      <img
-        src={`/assets/images/banner/${locationState.planType}.jpg`}
-        alt={locationState.planType}
-      />
-      <p>{NEW_PLAN_DESCRIPTION[locationState.planType]}</p>
-      <div>{locationState.date}</div>
+      <img src={`/assets/images/banner/${planType}.jpg`} alt={planType} />
+      <p>{NEW_PLAN_DESCRIPTION[planType]}</p>
+      <div>{planDate}</div>
       <form>
         <div>
           <label htmlFor="plan-name">
@@ -109,8 +132,8 @@ export const NewPlan = () => {
         <div>
           <p>풀업 운동을 언제 할까요?</p>
           <TimePicker
-            defaultValue={dayjs('12:00', format)}
-            format={format}
+            defaultValue={dayjs('12:00', PLAN_TIME_FORMAT)}
+            format={PLAN_TIME_FORMAT}
             onChange={handleTimePickerChange}
           />
         </div>
@@ -144,13 +167,9 @@ export const NewPlan = () => {
           </div>
           <div>{selectedWorkouts.length > 0 && <WorkoutTable workouts={selectedWorkouts} />}</div>
         </div>
-        <SaveButton
-          isActive={false}
-          width="100%"
-          height="44px"
-          handleButtonClick={handlePlanSaveClick}
-        />
+        <SaveButton isActive width="100%" height="44px" handleButtonClick={handlePlanSaveClick} />
       </form>
+      {contextHolder}
     </div>
   );
 };
