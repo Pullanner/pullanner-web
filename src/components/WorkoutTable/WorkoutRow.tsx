@@ -1,24 +1,12 @@
-import { useState } from 'react';
-
-import { NumericInput } from '@/components/NumericInput';
+import { NumericInput } from '@/components/inputs/NumericInput';
 import { Workout } from '@/types/plan';
+
+import { useWorkout } from './useWorkout';
 
 type WorkoutRowProps = Pick<Workout, 'id' | 'name' | 'color'>;
 
 export const WorkoutRow = ({ id, color, name }: WorkoutRowProps) => {
-  const [total, setTotal] = useState(0);
-  const [workoutCount, setWorkoutCount] = useState('');
-  const [workoutSet, setWorkoutSet] = useState('');
-
-  const handleWorkoutCountChange = (value: string) => {
-    setWorkoutCount(value);
-    setTotal(Number(value) * Number(workoutSet));
-  };
-
-  const handleWorkoutSetChange = (value: string) => {
-    setWorkoutSet(value);
-    setTotal(Number(workoutCount) * Number(value));
-  };
+  const { count, set, total, handleWorkoutCountChange, handleWorkoutSetChange } = useWorkout(id);
 
   return (
     <tr key={id}>
@@ -27,7 +15,7 @@ export const WorkoutRow = ({ id, color, name }: WorkoutRowProps) => {
         <NumericInput
           inputName="workoutCount"
           onChange={handleWorkoutCountChange}
-          value={workoutCount}
+          value={count}
           maxLength={3}
         />
       </td>
@@ -35,7 +23,7 @@ export const WorkoutRow = ({ id, color, name }: WorkoutRowProps) => {
         <NumericInput
           inputName="workoutSet"
           onChange={handleWorkoutSetChange}
-          value={workoutSet}
+          value={set}
           maxLength={3}
         />
       </td>
