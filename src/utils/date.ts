@@ -1,10 +1,17 @@
 import dayjs from 'dayjs';
 
-export const checkPastDate = (dateString: string): boolean => {
-  const inputDate = dayjs(dateString);
+export const checkPastDate = (date: string): boolean => {
+  const inputDate = dayjs(date);
   const today = dayjs();
 
   return inputDate.isBefore(today, 'day');
+};
+
+export const checkPastDateTime = (date: string, time: string): boolean => {
+  const inputDate = dayjs(`${date} ${time}`);
+  const now = dayjs();
+
+  return inputDate.isBefore(now, 'minute');
 };
 
 export const convertToUTCDate = (dateString: string, timeString: string) => {
