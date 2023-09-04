@@ -148,10 +148,9 @@ export const NewPlan = () => {
             </div>
             <TimePicker
               status={planDateTime ? '' : 'error'}
-              defaultValue={dayjs('12:00', PLAN_TIME_FORMAT)}
               format={PLAN_TIME_FORMAT}
               onChange={handleTimePickerChange}
-              placeholder="운동 시간"
+              placeholder="운동 시각"
             />
           </div>
           <div>
