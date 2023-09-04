@@ -1,16 +1,16 @@
-import { Workout } from '@/types/plan';
+import { SelectedWorkoutType } from '@/types/plan';
 
 import { WorkoutRow } from './WorkoutRow';
 
-export const WorkoutTable = ({ workouts }: { workouts: Workout[] }) => {
+export const WorkoutTable = ({ workouts }: { workouts: SelectedWorkoutType[] }) => {
   return (
-    <table>
-      <thead>
+    <table className="w-full">
+      <thead className="bg-[#414141]">
         <tr>
           <th>Workout</th>
           <th>Count</th>
           <th>Set</th>
-          <th>Total</th>
+          <th className="p-2">Total</th>
         </tr>
       </thead>
       <tbody>

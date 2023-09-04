@@ -1,17 +1,19 @@
 import { NumericInput } from '@/components/inputs/NumericInput';
-import { Workout } from '@/types/plan';
+import { SelectedWorkoutType } from '@/types/plan';
 
 import { useWorkout } from './useWorkout';
 
-type WorkoutRowProps = Pick<Workout, 'id' | 'name' | 'color'>;
+type WorkoutRowProps = Pick<SelectedWorkoutType, 'id' | 'name' | 'color'>;
 
 export const WorkoutRow = ({ id, color, name }: WorkoutRowProps) => {
   const { count, set, total, handleWorkoutCountChange, handleWorkoutSetChange } = useWorkout(id);
 
   return (
     <tr key={id}>
-      <td style={{ color }}>{name}</td>
-      <td>
+      <td style={{ color }} className="p-2" align="center">
+        {name}
+      </td>
+      <td align="center">
         <NumericInput
           inputName="workoutCount"
           onChange={handleWorkoutCountChange}
@@ -19,7 +21,7 @@ export const WorkoutRow = ({ id, color, name }: WorkoutRowProps) => {
           maxLength={3}
         />
       </td>
-      <td>
+      <td align="center">
         <NumericInput
           inputName="workoutSet"
           onChange={handleWorkoutSetChange}
@@ -27,7 +29,7 @@ export const WorkoutRow = ({ id, color, name }: WorkoutRowProps) => {
           maxLength={3}
         />
       </td>
-      <td>{total}</td>
+      <td align="center">{total}</td>
     </tr>
   );
 };
