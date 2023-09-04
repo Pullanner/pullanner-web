@@ -1,4 +1,4 @@
-import { TimePicker, message } from 'antd';
+import { TimePicker, message, Input } from 'antd';
 import dayjs from 'dayjs';
 import { useAtomValue } from 'jotai';
 import { ChangeEvent, useState } from 'react';
@@ -18,7 +18,7 @@ import {
 import { WarningIcon } from '@/icons/WarningIcon';
 import { impossiblePullUpAtom, possiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
 import { workoutPlanAtom } from '@/stores/atoms/workoutPlanAtom';
-import { PullUpSteps, Workout } from '@/types/plan';
+import { PullUpSteps, SelectedWorkoutType } from '@/types/plan';
 import { checkPastDateTime, convertToUTCDate } from '@/utils/date';
 
 import type { Dayjs } from 'dayjs';
@@ -50,7 +50,7 @@ export const NewPlan = () => {
   const userPossiblePullUps = useAtomValue(possiblePullUpAtom);
   const userImpossiblePullUps = useAtomValue(impossiblePullUpAtom);
   const pullUpList = planType === PLAN_TYPE.strength ? userPossiblePullUps : userImpossiblePullUps;
-  const [selectedWorkouts, setSelectedWorkouts] = useState<Workout[]>([]);
+  const [selectedWorkouts, setSelectedWorkouts] = useState<SelectedWorkoutType[]>([]);
   const [planName, setPlanName] = useState('');
   const [planDateTime, setPlanDateTime] = useState('');
   const workouts = useAtomValue(workoutPlanAtom);
@@ -111,64 +111,87 @@ export const NewPlan = () => {
   return (
     <div>
       <img src={`/assets/images/banner/${planType}.jpg`} alt={planType} />
-      <p>{NEW_PLAN_DESCRIPTION[planType]}</p>
-      <div>{planDate}</div>
-      <form>
-        <div>
-          <label htmlFor="plan-name">
-            풀업 계획의 이름을 입력해주세요.
-            <input
-              id="plan-name"
-              name="planName"
-              className="bg-[#2E2E2E] text-base"
+      <div className="bg-slate-500 p-5">
+        <p>{NEW_PLAN_DESCRIPTION[planType]}</p>
+      </div>
+      <div className="border-b-2 border-white p-4 text-center font-bold">
+        {dayjs(planDate).format('dddd, MMMM DD, YYYY')}
+      </div>
+      <div className="p-5">
+        <form className="flex flex-col gap-5">
+          <div>
+            <div>
+              <p className="py-2">😎 이번 풀업 계획의 이름은 뭘로 할까요?</p>
+            </div>
+            <Input
+              status={planName.length ? '' : 'error'}
+              showCount
               maxLength={20}
-              required
-              minLength={1}
+              allowClear
               value={planName}
               onChange={handlePlanInputChange}
+              placeholder="1자 이상 20자 이하로 입력해주세요"
             />
-          </label>
-        </div>
-        <div>
-          <p>풀업 운동을 언제 할까요?</p>
-          <TimePicker
-            defaultValue={dayjs('12:00', PLAN_TIME_FORMAT)}
-            format={PLAN_TIME_FORMAT}
-            onChange={handleTimePickerChange}
-          />
-        </div>
-        <div>
-          <p>연습할 풀업 운동을 선택하고, 횟수와 세트를 입력해주세요.</p>
-          <div className="flex">
-            {pullUpList.map((workoutId) => {
-              const workoutData = ROADMAP_DATA.find((v) => {
-                return v.id === workoutId;
-              });
-
-              if (!workoutData) {
-                return null;
-              }
-
-              const { id, name, imageSrc, color } = workoutData;
-
-              return (
-                <SelectablePullUpCard
-                  id={id}
-                  name={name}
-                  width=""
-                  height=""
-                  imageSrc={imageSrc}
-                  color={color}
-                  onAdd={addWorkoutRow}
-                  onDelete={deleteWorkoutRow}
-                />
-              );
-            })}
           </div>
-          <div>{selectedWorkouts.length > 0 && <WorkoutTable workouts={selectedWorkouts} />}</div>
-        </div>
-        <SaveButton isActive width="100%" height="44px" handleButtonClick={handlePlanSaveClick} />
-      </form>
+          <div>
+            <div>
+              <p className="py-2">⏰ 풀업 운동을 언제 할까요?</p>
+              <p className="mb-2 text-sm">
+                플랜 날짜가 오늘이면, 현재 시각보다 이후의 시각으로 설정해주세요.
+              </p>
+            </div>
+            <TimePicker
+              status={planDateTime ? '' : 'error'}
+              defaultValue={dayjs('12:00', PLAN_TIME_FORMAT)}
+              format={PLAN_TIME_FORMAT}
+              onChange={handleTimePickerChange}
+              placeholder="운동 시간"
+            />
+          </div>
+          <div>
+            <div>
+              <p className="py-2">💪 어떤 풀업 운동을 해볼까요?</p>
+              <p className="mb-2 text-sm ">
+                연습할 풀업 운동을 선택 후, 횟수(Count)와 세트(Set)를 입력해주세요.
+              </p>
+              {planType === PLAN_TYPE.strength && (
+                <p className="mb-2 text-sm">Hanging은 횟수 대신 초(Second) 단위로 입력해주세요.</p>
+              )}
+            </div>
+            <div className="flex flex-wrap justify-center gap-3">
+              {pullUpList.map((workoutId) => {
+                const workoutData = ROADMAP_DATA.find((v) => {
+                  return v.id === workoutId;
+                });
+
+                if (!workoutData) {
+                  return null;
+                }
+
+                const { id, name, imageSrc, color } = workoutData;
+
+                return (
+                  <SelectablePullUpCard
+                    id={id}
+                    name={name}
+                    width="100px"
+                    height=""
+                    imageSrc={imageSrc}
+                    color={color}
+                    onAdd={addWorkoutRow}
+                    onDelete={deleteWorkoutRow}
+                  />
+                );
+              })}
+            </div>
+            <div className="py-5">
+              {selectedWorkouts.length > 0 && <WorkoutTable workouts={selectedWorkouts} />}
+            </div>
+          </div>
+          <SaveButton isActive width="100%" height="44px" handleButtonClick={handlePlanSaveClick} />
+        </form>
+      </div>
+
       {contextHolder}
     </div>
   );
