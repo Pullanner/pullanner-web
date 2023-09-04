@@ -28,3 +28,8 @@
 .ant-picker-calendar .ant-picker-panel {
   border-top: 1px solid #555;
 }
+
+.ant-btn-primary {
+  background-color: #60ebd1;
+  color: black;
+}
