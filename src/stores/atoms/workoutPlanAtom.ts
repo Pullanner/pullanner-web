@@ -2,7 +2,7 @@ import { atom } from 'jotai';
 
 import { Workout } from '@/types/plan';
 
-type WorkoutPlanType = Pick<Workout, 'count' | 'set'> & { step: number };
+type WorkoutPlanType = Omit<Workout, 'done'>;
 
 export const workoutPlanAtom = atom<WorkoutPlanType[]>([]);
 
