@@ -111,7 +111,13 @@ export const NewPlan = () => {
   return (
     <div>
       <img src={`/assets/images/banner/${planType}.jpg`} alt={planType} />
-      <div className="bg-slate-500 p-5">
+      <div
+        className="p-5"
+        style={{
+          backgroundColor: planType === PLAN_TYPE.master ? '#8BB3FF85' : '#F1B55B',
+          color: planType === PLAN_TYPE.master ? 'white' : 'black',
+        }}
+      >
         <p>{NEW_PLAN_DESCRIPTION[planType]}</p>
       </div>
       <div className="border-b-2 border-white p-4 text-center font-bold">
