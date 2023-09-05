@@ -39,6 +39,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
         authenticationCode,
         accessToken,
         setAccessToken,
+        setModalType,
       );
 
       if (isAuthenticationCodeVaild) {

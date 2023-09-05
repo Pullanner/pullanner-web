@@ -22,7 +22,7 @@ export const EditMyPage = () => {
   const [nicknameValue, setNicknameValue] = useState(initialNicknameValue);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
-  const { mutate } = useMutateNickname(accessToken, setAccessToken);
+  const { mutate } = useMutateNickname(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
