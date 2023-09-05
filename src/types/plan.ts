@@ -1,10 +1,10 @@
 export type PullUpSteps = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 export type Workout = {
+  step: PullUpSteps;
   count: number;
   set: number;
   done: boolean;
-  step: PullUpSteps;
 };
 
 export type PlanType = 'strength' | 'master';
@@ -24,13 +24,4 @@ export type Plan = {
 
 export type PlanData = {
   [date: string]: Plan[];
-};
-
-export type SelectedWorkoutType = {
-  id: PullUpSteps;
-  name: string;
-  color: string;
-  count: number;
-  set: number;
-  total: number;
 };
