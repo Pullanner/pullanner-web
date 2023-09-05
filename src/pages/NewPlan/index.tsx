@@ -1,7 +1,7 @@
 import { TimePicker, message, Input } from 'antd';
 import dayjs from 'dayjs';
 import { useAtom, useAtomValue } from 'jotai';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SaveButton } from '@/components/buttons/SaveButton';
@@ -61,6 +61,13 @@ export const NewPlan = () => {
   const { checkPlanComplete } = usePlanComplete();
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const { mutate: postPlan } = usePostPlan(accessToken, setAccessToken);
+
+  useEffect(() => {
+    return () => {
+      setWorkoutPlan([]);
+      setIsPlanComplete(false);
+    };
+  }, []);
 
   if (!planType) {
     navigate(ROUTE_PATH.plan.index);
