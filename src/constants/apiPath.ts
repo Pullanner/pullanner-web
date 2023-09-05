@@ -7,4 +7,4 @@ export const API_PATH = {
   plans: '/api/plans',
 } as const;
 
-export type ApiPathType = (typeof API_PATH)[keyof typeof API_PATH];
+export type ApiPathType = (typeof API_PATH)[keyof typeof API_PATH] | `/api/plans/${string}`;
