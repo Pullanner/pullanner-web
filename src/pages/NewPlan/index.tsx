@@ -1,12 +1,13 @@
 import { TimePicker, message, Input } from 'antd';
 import dayjs from 'dayjs';
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 import { ChangeEvent, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { SelectablePullUpCard } from '@/components/PullUpCard/SelectablePullUpCard';
 import { WorkoutTable } from '@/components/WorkoutTable';
+import { usePlanComplete } from '@/components/WorkoutTable/hooks/usePlanComplete';
 import {
   NEW_PLAN_DESCRIPTION,
   PLAN_MESSAGE,
@@ -17,8 +18,8 @@ import {
 } from '@/constants';
 import { WarningIcon } from '@/icons/WarningIcon';
 import { impossiblePullUpAtom, possiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
-import { workoutPlanAtom } from '@/stores/atoms/workoutPlanAtom';
-import { PullUpSteps, SelectedWorkoutType } from '@/types/plan';
+import { planCompleteAtom, workoutPlanAtom } from '@/stores/atoms/workoutPlanAtom';
+import { PullUpSteps } from '@/types/plan';
 import { checkPastDateTime, convertToUTCDate } from '@/utils/date';
 
 import type { Dayjs } from 'dayjs';
@@ -50,11 +51,12 @@ export const NewPlan = () => {
   const userPossiblePullUps = useAtomValue(possiblePullUpAtom);
   const userImpossiblePullUps = useAtomValue(impossiblePullUpAtom);
   const pullUpList = planType === PLAN_TYPE.strength ? userPossiblePullUps : userImpossiblePullUps;
-  const [selectedWorkouts, setSelectedWorkouts] = useState<SelectedWorkoutType[]>([]);
   const [planName, setPlanName] = useState('');
   const [planDateTime, setPlanDateTime] = useState('');
-  const workouts = useAtomValue(workoutPlanAtom);
+  const [workoutPlan, setWorkoutPlan] = useAtom(workoutPlanAtom);
   const [messageApi, contextHolder] = message.useMessage();
+  const isPlanComplete = useAtomValue(planCompleteAtom);
+  const { checkPlanComplete } = usePlanComplete();
 
   if (!planType) {
     navigate(ROUTE_PATH.plan.index);
@@ -72,7 +74,7 @@ export const NewPlan = () => {
       planType,
       planName,
       planDateTime,
-      workouts,
+      workouts: workoutPlan,
     };
     console.log(userWorkoutPlan);
     // navigate(ROUTE_PATH.plan.index);
@@ -89,22 +91,27 @@ export const NewPlan = () => {
     const isPast = checkPastDateTime(planDate, selectedTime);
     if (isPast) {
       messageApi.open(PAST_TIME_PLAN_MESSAGE_OPTION);
+      setPlanDateTime('');
     }
   };
 
-  const addWorkoutRow = (id: PullUpSteps, name: string, color: string) => {
-    setSelectedWorkouts((prev) => {
-      return [...prev, { id, name, color, count: 0, set: 0, total: 0 }];
+  const addWorkoutRow = (step: PullUpSteps) => {
+    setWorkoutPlan((prev) => {
+      const updatedWorkoutPlan = [...prev, { step, count: 0, set: 0, done: false }];
+      checkPlanComplete(updatedWorkoutPlan);
+
+      return updatedWorkoutPlan;
     });
   };
 
-  const deleteWorkoutRow = (id: PullUpSteps) => {
-    setSelectedWorkouts((prev) => {
-      const filtered = prev.filter((w) => {
-        return w.id !== id;
+  const deleteWorkoutRow = (step: PullUpSteps) => {
+    setWorkoutPlan((prev) => {
+      const updatedWorkoutPlan = prev.filter((w) => {
+        return w.step !== step;
       });
+      checkPlanComplete(updatedWorkoutPlan);
 
-      return filtered;
+      return updatedWorkoutPlan;
     });
   };
 
@@ -189,11 +196,15 @@ export const NewPlan = () => {
                 );
               })}
             </div>
-            <div className="py-5">
-              {selectedWorkouts.length > 0 && <WorkoutTable workouts={selectedWorkouts} />}
-            </div>
+            <div className="py-5">{workoutPlan.length > 0 && <WorkoutTable />}</div>
           </div>
-          <SaveButton isActive width="100%" height="44px" handleButtonClick={handlePlanSaveClick} />
+          <SaveButton
+            isActive={!!(planName && planDateTime) && isPlanComplete}
+            width="100%"
+            height="44px"
+            handleButtonClick={handlePlanSaveClick}
+            isDisabled={!isPlanComplete}
+          />
         </form>
       </div>
 
