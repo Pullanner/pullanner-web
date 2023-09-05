@@ -208,7 +208,7 @@ export const NewPlan = () => {
             width="100%"
             height="44px"
             handleButtonClick={handlePlanSaveClick}
-            isDisabled={!isPlanComplete}
+            isDisabled={!planName || !planDateTime || !isPlanComplete}
           />
         </form>
       </div>
