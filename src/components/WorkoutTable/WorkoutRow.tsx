@@ -1,15 +1,16 @@
 import { NumericInput } from '@/components/inputs/NumericInput';
-import { SelectedWorkoutType } from '@/types/plan';
+import { WORKOUT_NAME_COLOR } from '@/constants';
+import { PullUpSteps } from '@/types/plan';
 
-import { useWorkout } from './useWorkout';
+import { useWorkout } from './hooks/useWorkout';
 
-type WorkoutRowProps = Pick<SelectedWorkoutType, 'id' | 'name' | 'color'>;
+export const WorkoutRow = ({ step }: { step: PullUpSteps }) => {
+  const { count, set, total, handleWorkoutCountChange, handleWorkoutSetChange } = useWorkout(step);
 
-export const WorkoutRow = ({ id, color, name }: WorkoutRowProps) => {
-  const { count, set, total, handleWorkoutCountChange, handleWorkoutSetChange } = useWorkout(id);
+  const { color, name } = WORKOUT_NAME_COLOR[step];
 
   return (
-    <tr key={id}>
+    <tr>
       <td style={{ color }} className="p-2" align="center">
         {name}
       </td>

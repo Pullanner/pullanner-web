@@ -1,8 +1,12 @@
-import { SelectedWorkoutType } from '@/types/plan';
+import { useAtomValue } from 'jotai';
+
+import { workoutPlanAtom } from '@/stores/atoms/workoutPlanAtom';
 
 import { WorkoutRow } from './WorkoutRow';
 
-export const WorkoutTable = ({ workouts }: { workouts: SelectedWorkoutType[] }) => {
+export const WorkoutTable = () => {
+  const workouts = useAtomValue(workoutPlanAtom);
+
   return (
     <table className="w-full">
       <thead className="bg-[#414141]">
@@ -14,8 +18,8 @@ export const WorkoutTable = ({ workouts }: { workouts: SelectedWorkoutType[] }) 
         </tr>
       </thead>
       <tbody>
-        {workouts.map(({ id, name, color }) => {
-          return <WorkoutRow id={id} key={id} name={name} color={color} />;
+        {workouts.map(({ step }) => {
+          return <WorkoutRow key={step} step={step} />;
         })}
       </tbody>
     </table>
