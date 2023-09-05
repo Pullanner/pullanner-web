@@ -17,6 +17,8 @@ import {
   ROUTE_PATH,
 } from '@/constants';
 import { WarningIcon } from '@/icons/WarningIcon';
+import { usePostPlan } from '@/lib/react-query/usePlans';
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { impossiblePullUpAtom, possiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
 import { planCompleteAtom, workoutPlanAtom } from '@/stores/atoms/workoutPlanAtom';
 import { PullUpSteps } from '@/types/plan';
@@ -57,6 +59,8 @@ export const NewPlan = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const isPlanComplete = useAtomValue(planCompleteAtom);
   const { checkPlanComplete } = usePlanComplete();
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const { mutate: postPlan } = usePostPlan(accessToken, setAccessToken);
 
   if (!planType) {
     navigate(ROUTE_PATH.plan.index);
@@ -68,7 +72,6 @@ export const NewPlan = () => {
     setPlanName(value);
   };
 
-  // TODO: POST request
   const handlePlanSaveClick = () => {
     const userWorkoutPlan = {
       planType,
@@ -76,8 +79,9 @@ export const NewPlan = () => {
       planDateTime,
       workouts: workoutPlan,
     };
-    console.log(userWorkoutPlan);
-    // navigate(ROUTE_PATH.plan.index);
+    postPlan(userWorkoutPlan);
+    setWorkoutPlan([]);
+    navigate(ROUTE_PATH.plan.index);
   };
 
   const handleTimePickerChange = (_: Dayjs | null, selectedTime: string) => {
