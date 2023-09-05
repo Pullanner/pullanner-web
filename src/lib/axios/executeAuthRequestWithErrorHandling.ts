@@ -1,6 +1,6 @@
 import { isAxiosError } from 'axios';
 
-import { reissueAccessToken } from '@/utils/reissueAccessToken';
+import { initializeAccessToken } from '@/utils/initializeAccessToken';
 
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -28,8 +28,7 @@ export const excuteAuthRequestWithErrorHandling = async ({
     if (isAxiosError<ResponseData>(error) && error.response) {
       const { status, data } = error.response;
       if (status === 401 && data.code === 'A03') {
-        const newAccessToken = await reissueAccessToken();
-        setAccessToken(newAccessToken);
+        const newAccessToken = await initializeAccessToken(setAccessToken);
         const retriedResponse = await authRequest(newAccessToken);
 
         return retriedResponse;
