@@ -1,9 +1,9 @@
 import { useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
-import { Modal } from '@/components/Modal';
-import { ModalButton } from '@/components/Modal/ModalButton';
-import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
+import { Modal } from '@/components/modals/Modal';
+import { ModalButton } from '@/components/modals/Modal/ModalButton';
+import { MainText, SubText, ModalText } from '@/components/modals/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { userDataAtom } from '@/stores/atoms/userDataAtom';

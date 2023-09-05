@@ -1,9 +1,9 @@
 import { useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
-import { Modal } from '@/components/Modal';
-import { ModalButton } from '@/components/Modal/ModalButton';
-import { MainText, ModalText } from '@/components/Modal/ModalText';
+import { Modal } from '@/components/modals/Modal';
+import { ModalButton } from '@/components/modals/Modal/ModalButton';
+import { MainText, ModalText } from '@/components/modals/Modal/ModalText';
 import { API_PATH, ROUTE_PATH } from '@/constants';
 import { axiosInstance } from '@/lib/axios/instance';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';

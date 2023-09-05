@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Modal } from '@/components/Modal';
-import { ModalButton } from '@/components/Modal/ModalButton';
-import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
+import { Modal } from '@/components/modals/Modal';
+import { ModalButton } from '@/components/modals/Modal/ModalButton';
+import { MainText, SubText, ModalText } from '@/components/modals/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 
 import { MODAL_TEXT } from './constants';
