@@ -1,10 +1,10 @@
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useState, forwardRef } from 'react';
 
 import { deleteAccountWithAuthenticationCode } from '@/apis/user/deleteAccountWithAuthenticationCode';
-import { DeleteAccountSuccessModal } from '@/components/modals/DeleteAccountSuccessModal';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 
 import {
   MAX_INPUT_LENGTH,
@@ -22,9 +22,9 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
     const [authenticationCode, setAuthenticationCode] = useState('');
     const [isDeleteAccountButtonActive, setDeleteAccountButtonActive] = useState(false);
     const [isDeleteRequestFailed, setShowInvalidAuthenticationCodeDescription] = useState(false);
-    const [showModal, setShowModal] = useState(false);
     const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
     const isTimerActive = useAtomValue(isTimerActiveAtom);
+    const setModalType = useSetAtom(modalTypeAtom);
 
     const deleteAccountButtonState = isDeleteAccountButtonActive
       ? BUTTON_STATE.active
@@ -42,7 +42,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
       );
 
       if (isAuthenticationCodeVaild) {
-        setShowModal(true);
+        setModalType('deleteAccountSuccess');
       } else {
         setShowInvalidAuthenticationCodeDescription(true);
       }
@@ -85,7 +85,6 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
             {INVALID_AUTHORIZATION_CODE_DESCRIPTION}
           </p>
         )}
-        {showModal && <DeleteAccountSuccessModal setShowModal={setShowModal} />}
       </div>
     );
   },

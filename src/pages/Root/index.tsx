@@ -6,6 +6,7 @@ import { BottomNavigationBar } from '@/components/BottomNavigationBar';
 import { ScrollTopButton } from '@/components/buttons/ScrollTopButton';
 import { Header } from '@/components/Header';
 import { DeleteAccountModal } from '@/components/modals/DeleteAccountModal';
+import { DeleteAccountSuccessModal } from '@/components/modals/DeleteAccountSuccessModal';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
@@ -36,6 +37,7 @@ export const Root = () => {
         <BottomNavigationBar />
       </div>
       {modalType === 'deleteAccount' && <DeleteAccountModal />}
+      {modalType === 'deleteAccountSuccess' && <DeleteAccountSuccessModal />}
     </div>
   );
 };
