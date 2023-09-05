@@ -16,12 +16,20 @@ export type Plan = {
   planDateTime: string;
   planName: string;
   planType: PlanType;
-  workout: Workout[];
+  workouts: Workout[];
   progress: number;
   note: string;
   mainWorkoutStep: PullUpSteps;
 };
 
-export type PlanData = {
+export type NewPlan = Pick<Plan, 'planDateTime' | 'planName' | 'planType' | 'workouts'>;
+
+export type CheckedPlan = Pick<Plan, 'workouts' | 'note'>;
+
+export type Plans = {
   [date: string]: Plan[];
+};
+
+export type PlanData = {
+  data: { [date: string]: Plan[] };
 };
