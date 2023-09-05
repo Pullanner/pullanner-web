@@ -9,6 +9,11 @@ type ResponseData = {
   message: string;
 };
 
+const RESPONSE_CODE = {
+  expiredRefreshToken: 'A02',
+  hijackedRefreshToken: 'A03',
+} as const;
+
 export const reissueAccessToken = async (setModalType: SetModalType) => {
   try {
     const {
@@ -19,10 +24,10 @@ export const reissueAccessToken = async (setModalType: SetModalType) => {
   } catch (error) {
     if (isAxiosError<ResponseData>(error) && error.response) {
       const { status, data } = error.response;
-      if (status === 401 && data.code === 'A02') {
+      if (status === 401 && data.code === RESPONSE_CODE.expiredRefreshToken) {
         setModalType('loginExpiration');
       }
-      if (status === 401 && data.code === 'A03') {
+      if (status === 401 && data.code === RESPONSE_CODE.hijackedRefreshToken) {
         setModalType('accountHijacking');
       }
     }
