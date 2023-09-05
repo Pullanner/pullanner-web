@@ -18,14 +18,14 @@ import { initializeAccessToken } from '@/utils/initializeAccessToken';
 export const Root = () => {
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const loginState = useAtomValue(loginStateAtom) as boolean;
-  const modalType = useAtomValue(modalTypeAtom);
+  const [modalType, setModalType] = useAtom(modalTypeAtom);
   const isProductionMode = import.meta.env.PROD;
 
   useEffect(() => {
     if (isProductionMode && loginState && !accessToken.length) {
-      initializeAccessToken(setAccessToken);
+      initializeAccessToken(setAccessToken, setModalType);
     }
-  }, [isProductionMode, loginState, accessToken, setAccessToken]);
+  }, [isProductionMode, loginState, accessToken, setAccessToken, setModalType]);
 
   return (
     <div className="flex h-screen w-screen flex-row items-center justify-center">
