@@ -22,7 +22,7 @@ export const Root = () => {
   const isProductionMode = import.meta.env.PROD;
 
   useEffect(() => {
-    if (isProductionMode && loginState && !accessToken.length) {
+    if (isProductionMode && loginState && !accessToken?.length) {
       initializeAccessToken(setAccessToken, setModalType);
     }
   }, [isProductionMode, loginState, accessToken, setAccessToken, setModalType]);
