@@ -1,11 +1,11 @@
-import { useAtomValue } from 'jotai';
-import { useState, useEffect } from 'react';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { DimmedButton } from '@/components/buttons/DimmedButton';
-import { LogoutModal } from '@/components/modals/LogoutModal';
 import { ROUTE_PATH } from '@/constants';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 import { ProgressSection } from './ProgressSection';
@@ -15,15 +15,11 @@ import { UserSection } from './UserSection';
 export const MyPage = () => {
   const loginState = useAtomValue(loginStateAtom) as boolean;
   const userData = useAtomValue(userDataAtom) as UserData;
+  const setModalType = useSetAtom(modalTypeAtom);
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
 
   const handleLogoutButtonClick = () => {
-    setShowModal(true);
-  };
-
-  const handleCancleButtonClick = () => {
-    setShowModal(false);
+    setModalType('logout');
   };
 
   useEffect(() => {
@@ -47,7 +43,6 @@ export const MyPage = () => {
       <div className="flex justify-center">
         <DimmedButton name="로그아웃" handler={handleLogoutButtonClick} />
       </div>
-      {showModal && <LogoutModal handleCancleButtonClick={handleCancleButtonClick} />}
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { ScrollTopButton } from '@/components/buttons/ScrollTopButton';
 import { Header } from '@/components/Header';
 import { DeleteAccountModal } from '@/components/modals/DeleteAccountModal';
 import { DeleteAccountSuccessModal } from '@/components/modals/DeleteAccountSuccessModal';
+import { LogoutModal } from '@/components/modals/LogoutModal';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
@@ -38,6 +39,7 @@ export const Root = () => {
       </div>
       {modalType === 'deleteAccount' && <DeleteAccountModal />}
       {modalType === 'deleteAccountSuccess' && <DeleteAccountSuccessModal />}
+      {modalType === 'logout' && <LogoutModal />}
     </div>
   );
 };
