@@ -10,7 +10,7 @@ import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { userDataAtom } from '@/stores/atoms/userDataAtom';
 
-import { MODAL_TEXT } from '../../../pages/MyPage/constants';
+const MODAL_TEXT = '정말 로그아웃하시겠습니까?';
 
 type LogoutModalProps = {
   handleCancleButtonClick: () => void;

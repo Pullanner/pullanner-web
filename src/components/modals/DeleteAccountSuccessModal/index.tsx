@@ -8,9 +8,12 @@ import { ROUTE_PATH } from '@/constants';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { userDataAtom } from '@/stores/atoms/userDataAtom';
 
-import { TEXT_CONTENTS } from '../../../pages/DeleteAccount/constants';
-
 import type { Dispatch, SetStateAction } from 'react';
+
+const MODAL_TEXT = {
+  title: '회원 탈퇴가 완료되었습니다',
+  greeting: '그동안 Pullanner를 이용해주셔서 감사합니다.',
+} as const;
 
 type DeleteAccountSuccessModalProps = {
   setShowModal: Dispatch<SetStateAction<boolean>>;
@@ -31,10 +34,8 @@ export const DeleteAccountSuccessModal = ({ setShowModal }: DeleteAccountSuccess
   return (
     <Modal>
       <ModalText>
-        <MainText textStyle="border-b-2 border-[#686868] py-5">
-          {TEXT_CONTENTS.modal.title}
-        </MainText>
-        <SubText textStyle="pt-6 pb-7">{TEXT_CONTENTS.modal.greeting}</SubText>
+        <MainText textStyle="border-b-2 border-[#686868] py-5">{MODAL_TEXT.title}</MainText>
+        <SubText textStyle="pt-6 pb-7">{MODAL_TEXT.greeting}</SubText>
       </ModalText>
       <ModalButton text="확인" handler={handleOkButtonClick} isPrimary />
     </Modal>

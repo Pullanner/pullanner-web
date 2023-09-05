@@ -8,7 +8,7 @@ import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
 
 import {
   MAX_INPUT_LENGTH,
-  TEXT_CONTENTS,
+  INVALID_AUTHORIZATION_CODE_DESCRIPTION,
   BUTTON_STATE,
   VALIDATE_CODE_BUTTON_STYLE,
   LIMIT_TIME,
@@ -82,7 +82,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
         </div>
         {isDeleteRequestFailed && (
           <p id="valdationResult" className="pt-3 text-sm text-[#FF5E62]">
-            {TEXT_CONTENTS.invalidAuthenticationCodeDescription}
+            {INVALID_AUTHORIZATION_CODE_DESCRIPTION}
           </p>
         )}
         {showModal && <DeleteAccountSuccessModal setShowModal={setShowModal} />}
