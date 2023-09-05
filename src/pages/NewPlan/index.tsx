@@ -57,7 +57,7 @@ export const NewPlan = () => {
   const [planDateTime, setPlanDateTime] = useState('');
   const [workoutPlan, setWorkoutPlan] = useAtom(workoutPlanAtom);
   const [messageApi, contextHolder] = message.useMessage();
-  const isPlanComplete = useAtomValue(planCompleteAtom);
+  const [isPlanComplete, setIsPlanComplete] = useAtom(planCompleteAtom);
   const { checkPlanComplete } = usePlanComplete();
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const { mutate: postPlan } = usePostPlan(accessToken, setAccessToken);
@@ -81,6 +81,7 @@ export const NewPlan = () => {
     };
     postPlan(userWorkoutPlan);
     setWorkoutPlan([]);
+    setIsPlanComplete(false);
     navigate(ROUTE_PATH.plan.index);
   };
 
