@@ -7,12 +7,12 @@ import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckInput } from '@/components/inputs/DuplicationCheckInput';
 import { ROUTE_PATH } from '@/constants';
-import { useMutateNickname } from '@/lib/react-query/useUserData';
+import { usePostNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
-import { INPUT_LENGTH } from './constants';
-import { DeleteAccountModal } from './DeleteAccountModal';
+import { NICKNAME_LENGTH } from './constants';
 
 export const EditMyPage = () => {
   const userData = useAtomValue(userDataAtom) as UserData;
@@ -20,25 +20,21 @@ export const EditMyPage = () => {
   const { nickname } = userData;
   const initialNicknameValue = nickname ?? '';
   const [nicknameValue, setNicknameValue] = useState(initialNicknameValue);
-  const [showModal, setShowModal] = useState(false);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const { mutate } = useMutateNickname(accessToken, setAccessToken);
+  const setModalType = useSetAtom(modalTypeAtom);
+  const { mutate: postNickname } = usePostNickname(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
     if (nicknameValue.length) {
-      mutate(nicknameValue);
+      postNickname(nicknameValue);
       setUserData({ ...userData, nickname: nicknameValue });
       navigate(ROUTE_PATH.myPage.index);
     }
   };
 
   const handleWithdrwalButtonClick = () => {
-    setShowModal(true);
-  };
-
-  const handleCancleButtonClick = () => {
-    setShowModal(false);
+    setModalType('deleteAccount');
   };
 
   return (
@@ -55,15 +51,14 @@ export const EditMyPage = () => {
         <DuplicationCheckInput
           inputName="닉네임"
           defaultValue={nickname}
-          minLength={INPUT_LENGTH.min}
-          maxLength={INPUT_LENGTH.max}
+          minLength={NICKNAME_LENGTH.min}
+          maxLength={NICKNAME_LENGTH.max}
           setValidInputValue={setNicknameValue}
           validationFunction={validateNickname}
         />
       </div>
 
       <DimmedButton name="회원탈퇴" handler={handleWithdrwalButtonClick} />
-      {showModal && <DeleteAccountModal handleCancleButtonClick={handleCancleButtonClick} />}
     </div>
   );
 };

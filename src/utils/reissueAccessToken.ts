@@ -1,9 +1,20 @@
-import axios, { AxiosResponse } from 'axios';
+import { isAxiosError } from 'axios';
 
 import { API_PATH } from '@/constants';
 import { axiosInstance } from '@/lib/axios/instance';
+import type { SetModalType } from '@/stores/atoms/modalTypeAtom';
 
-export const reissueAccessToken = async () => {
+type ResponseData = {
+  code: string;
+  message: string;
+};
+
+const RESPONSE_CODE = {
+  expiredRefreshToken: 'A02',
+  hijackedRefreshToken: 'A03',
+} as const;
+
+export const reissueAccessToken = async (setModalType: SetModalType) => {
   try {
     const {
       data: { accessToken: newAccessToken },
@@ -11,20 +22,13 @@ export const reissueAccessToken = async () => {
 
     return newAccessToken;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const { status } = error.response as AxiosResponse;
-      switch (status) {
-        case 401:
-          console.log('your account is hijacked');
-          console.log('Please logout now');
-          // TODO: Logout 화면 구성 후 추가할 코드 : window.location.href = '/logout';
-          break;
-        case 403:
-          console.log('Refresh token is expired');
-          window.location.href = '/login';
-          break;
-        default:
-          break;
+    if (isAxiosError<ResponseData>(error) && error.response) {
+      const { status, data } = error.response;
+      if (status === 401 && data.code === RESPONSE_CODE.expiredRefreshToken) {
+        setModalType('loginExpiration');
+      }
+      if (status === 401 && data.code === RESPONSE_CODE.hijackedRefreshToken) {
+        setModalType('accountHijacking');
       }
     }
   }

@@ -7,8 +7,9 @@ import { SaveButton } from '@/components/buttons/SaveButton';
 import { Headline } from '@/components/Headline';
 import { DuplicationCheckInput } from '@/components/inputs/DuplicationCheckInput';
 import { ROUTE_PATH } from '@/constants';
-import { useMutateNickname } from '@/lib/react-query/useUserData';
+import { usePostNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 const INPUT_LENGTH = {
@@ -24,14 +25,15 @@ const DESCRIPTION_TEXT = [
 export const SetNickname = () => {
   const [nickname, setNickname] = useState('');
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const { mutate } = useMutateNickname(accessToken, setAccessToken);
+  const setModalType = useSetAtom(modalTypeAtom);
+  const { mutate: postNickname } = usePostNickname(accessToken, setAccessToken, setModalType);
   const userData = useAtomValue(userDataAtom) as UserData;
   const setUserData = useSetAtom(userDataAtom);
   const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
     if (nickname.length) {
-      mutate(nickname);
+      postNickname(nickname);
       setUserData({ ...userData, nickname });
       navigate(ROUTE_PATH.setup.selectWorkout);
     }

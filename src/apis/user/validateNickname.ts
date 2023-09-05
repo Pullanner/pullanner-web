@@ -1,5 +1,7 @@
 import { API_PATH } from '@/constants';
+import { handleAuthRequest } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { getAuthRequest } from '@/lib/axios/useAuthApi';
+import type { SetModalType } from '@/stores/atoms/modalTypeAtom';
 
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -9,18 +11,21 @@ export const validateNickname = async (
   nickname: string,
   accessToken: string,
   setAccessToken: Dispatch<SetStateAction<string>>,
+  setModalType: SetModalType,
 ) => {
   try {
     const params = new URLSearchParams();
     params.append('nickname', nickname);
-    const data = await getAuthRequest(
-      API_PATH.userNicknameValidation,
+    const data = await handleAuthRequest({
+      authRequest: (token) => {
+        return getAuthRequest(API_PATH.userNicknameValidation, token, {
+          params,
+        });
+      },
       accessToken,
       setAccessToken,
-      {
-        params,
-      },
-    );
+      setModalType,
+    });
 
     return data.code === SUCCESS_RESPONSE_CODE;
   } catch (error) {

@@ -1,21 +1,29 @@
+import { useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
-import { Modal } from '@/components/Modal';
-import { ModalButton } from '@/components/Modal/ModalButton';
-import { MainText, SubText, ModalText } from '@/components/Modal/ModalText';
+import { Modal } from '@/components/modals/Modal';
+import { ModalButton } from '@/components/modals/Modal/ModalButton';
+import { MainText, SubText, ModalText } from '@/components/modals/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 
-import { MODAL_TEXT } from './constants';
+const MODAL_TEXT = {
+  title: '회원 탈퇴',
+  description: 'Pullanner의 모든 데이터가 삭제됩니다.',
+  warning: '삭제된 데이터는 복구할 수 없습니다.',
+} as const;
 
-type DeleteAccountModalProps = {
-  handleCancleButtonClick: () => void;
-};
-
-export const DeleteAccountModal = ({ handleCancleButtonClick }: DeleteAccountModalProps) => {
+export const DeleteAccountModal = () => {
+  const setModalType = useSetAtom(modalTypeAtom);
   const navigate = useNavigate();
 
   const handleOkButtonClick = () => {
+    setModalType(null);
     navigate(ROUTE_PATH.deleteAccount);
+  };
+
+  const handleCancleButtonClick = () => {
+    setModalType(null);
   };
 
   return (
