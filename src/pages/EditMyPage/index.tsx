@@ -6,10 +6,10 @@ import { validateNickname } from '@/apis/user';
 import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckInput } from '@/components/inputs/DuplicationCheckInput';
-import { DeleteAccountModal } from '@/components/modals/DeleteAccountModal';
 import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 import { NICKNAME_LENGTH } from './constants';
@@ -20,8 +20,8 @@ export const EditMyPage = () => {
   const { nickname } = userData;
   const initialNicknameValue = nickname ?? '';
   const [nicknameValue, setNicknameValue] = useState(initialNicknameValue);
-  const [showModal, setShowModal] = useState(false);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const setModalType = useSetAtom(modalTypeAtom);
   const { mutate } = useMutateNickname(accessToken, setAccessToken);
   const navigate = useNavigate();
 
@@ -34,11 +34,7 @@ export const EditMyPage = () => {
   };
 
   const handleWithdrwalButtonClick = () => {
-    setShowModal(true);
-  };
-
-  const handleCancleButtonClick = () => {
-    setShowModal(false);
+    setModalType('deleteAccount');
   };
 
   return (
@@ -63,7 +59,6 @@ export const EditMyPage = () => {
       </div>
 
       <DimmedButton name="회원탈퇴" handler={handleWithdrwalButtonClick} />
-      {showModal && <DeleteAccountModal handleCancleButtonClick={handleCancleButtonClick} />}
     </div>
   );
 };

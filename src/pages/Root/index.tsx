@@ -5,13 +5,16 @@ import { Outlet } from 'react-router-dom';
 import { BottomNavigationBar } from '@/components/BottomNavigationBar';
 import { ScrollTopButton } from '@/components/buttons/ScrollTopButton';
 import { Header } from '@/components/Header';
+import { DeleteAccountModal } from '@/components/modals/DeleteAccountModal';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { initializeAccessToken } from '@/utils/initializeAccessToken';
 
 export const Root = () => {
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const loginState = useAtomValue(loginStateAtom) as boolean;
+  const modalType = useAtomValue(modalTypeAtom);
   const isProductionMode = import.meta.env.PROD;
 
   useEffect(() => {
@@ -32,6 +35,7 @@ export const Root = () => {
         </div>
         <BottomNavigationBar />
       </div>
+      {modalType === 'deleteAccount' && <DeleteAccountModal />}
     </div>
   );
 };
