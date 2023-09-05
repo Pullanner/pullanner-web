@@ -27,15 +27,11 @@ export const excuteAuthRequestWithErrorHandling = async ({
   } catch (error) {
     if (isAxiosError<ResponseData>(error) && error.response) {
       const { status, data } = error.response;
-      if (status === 401 && data.code === 'A03') {
+      if (status === 401 && data.code === 'A02') {
         const newAccessToken = await initializeAccessToken(setAccessToken);
         const retriedResponse = await authRequest(newAccessToken);
 
         return retriedResponse;
-      }
-
-      if (status === 401 && data.code === 'A04') {
-        console.log(data.message);
       }
     }
   }

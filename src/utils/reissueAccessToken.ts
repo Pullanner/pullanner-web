@@ -1,7 +1,12 @@
-import axios, { AxiosResponse } from 'axios';
+import { isAxiosError } from 'axios';
 
 import { API_PATH } from '@/constants';
 import { axiosInstance } from '@/lib/axios/instance';
+
+type ResponseData = {
+  code: string;
+  message: string;
+};
 
 export const reissueAccessToken = async () => {
   try {
@@ -11,20 +16,13 @@ export const reissueAccessToken = async () => {
 
     return newAccessToken;
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const { status } = error.response as AxiosResponse;
-      switch (status) {
-        case 401:
-          console.log('your account is hijacked');
-          console.log('Please logout now');
-          // TODO: Logout 화면 구성 후 추가할 코드 : window.location.href = '/logout';
-          break;
-        case 403:
-          console.log('Refresh token is expired');
-          window.location.href = '/login';
-          break;
-        default:
-          break;
+    if (isAxiosError<ResponseData>(error) && error.response) {
+      const { status, data } = error.response;
+      if (status === 401 && data.code === 'A02') {
+        console.log('로그인이 만료되었습니다.');
+      }
+      if (status === 401 && data.code === 'A03') {
+        console.log('계정이 도용된 것으로 의심됩니다.');
       }
     }
   }
