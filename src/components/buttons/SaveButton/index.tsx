@@ -5,6 +5,7 @@ type SaveButtonProps = {
   height: string;
   text?: string;
   className?: string;
+  isDisabled?: boolean;
 };
 
 export const SaveButton = ({
@@ -14,6 +15,7 @@ export const SaveButton = ({
   height,
   text = '저장',
   className,
+  isDisabled = false,
 }: SaveButtonProps) => {
   return (
     <button
@@ -25,6 +27,7 @@ export const SaveButton = ({
         width,
         height,
       }}
+      disabled={isDisabled}
     >
       {text}
     </button>
