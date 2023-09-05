@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ROUTE_PATH } from '@/constants/routePath';
-import { useUserData } from '@/lib/react-query/useUserData';
+import { useGetUserData } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
@@ -17,7 +17,7 @@ export const LoginLoading = () => {
   const setLoginState = useSetAtom(loginStateAtom);
   const setUserData = useSetAtom(userDataAtom);
   const setModalType = useSetAtom(modalTypeAtom);
-  const { data, isSuccess } = useUserData(accessToken, setAccessToken, setModalType);
+  const { data, isSuccess } = useGetUserData(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
   setLoginState(true);
 

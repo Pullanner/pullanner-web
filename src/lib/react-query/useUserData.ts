@@ -9,7 +9,7 @@ import { queryKeys } from './queryKeys';
 
 import type { Dispatch, SetStateAction } from 'react';
 
-export const useUserData = (
+export const useGetUserData = (
   accessToken: string,
   setAccessToken: Dispatch<SetStateAction<string>>,
   setModalType: SetModalType,
@@ -30,7 +30,7 @@ export const useUserData = (
   });
 };
 
-export const useMutateNickname = (
+export const usePostNickname = (
   accessToken: string,
   setAccessToken: Dispatch<SetStateAction<string>>,
   setModalType: SetModalType,

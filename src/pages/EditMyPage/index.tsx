@@ -7,7 +7,7 @@ import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckInput } from '@/components/inputs/DuplicationCheckInput';
 import { ROUTE_PATH } from '@/constants';
-import { useMutateNickname } from '@/lib/react-query/useUserData';
+import { usePostNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
@@ -22,7 +22,7 @@ export const EditMyPage = () => {
   const [nicknameValue, setNicknameValue] = useState(initialNicknameValue);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
-  const { mutate } = useMutateNickname(accessToken, setAccessToken, setModalType);
+  const { mutate } = usePostNickname(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
