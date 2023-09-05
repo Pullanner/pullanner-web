@@ -9,6 +9,7 @@ import { DuplicationCheckInput } from '@/components/inputs/DuplicationCheckInput
 import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 const INPUT_LENGTH = {
@@ -24,7 +25,8 @@ const DESCRIPTION_TEXT = [
 export const SetNickname = () => {
   const [nickname, setNickname] = useState('');
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const { mutate } = useMutateNickname(accessToken, setAccessToken);
+  const setModalType = useSetAtom(modalTypeAtom);
+  const { mutate } = useMutateNickname(accessToken, setAccessToken, setModalType);
   const userData = useAtomValue(userDataAtom) as UserData;
   const setUserData = useSetAtom(userDataAtom);
   const navigate = useNavigate();

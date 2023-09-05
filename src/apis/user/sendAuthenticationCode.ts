@@ -1,6 +1,7 @@
 import { API_PATH } from '@/constants';
 import { excuteAuthRequestWithErrorHandling } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { postAuthRequest } from '@/lib/axios/useAuthApi';
+import type { SetModalType } from '@/stores/atoms/modalTypeAtom';
 
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -9,6 +10,7 @@ const SUCCESS_RESPONSE_CODE = 'U06';
 export const sendAuthenticationCode = async (
   accessToken: string,
   setAccessToken: Dispatch<SetStateAction<string>>,
+  setModalType: SetModalType,
 ) => {
   try {
     const data = await excuteAuthRequestWithErrorHandling({
@@ -17,6 +19,7 @@ export const sendAuthenticationCode = async (
       },
       accessToken,
       setAccessToken,
+      setModalType,
     });
 
     return data.code === SUCCESS_RESPONSE_CODE;
