@@ -2,13 +2,14 @@ import { isAxiosError } from 'axios';
 
 import { API_PATH } from '@/constants';
 import { axiosInstance } from '@/lib/axios/instance';
+import type { SetModalType } from '@/stores/atoms/modalTypeAtom';
 
 type ResponseData = {
   code: string;
   message: string;
 };
 
-export const reissueAccessToken = async () => {
+export const reissueAccessToken = async (setModalType: SetModalType) => {
   try {
     const {
       data: { accessToken: newAccessToken },
@@ -19,10 +20,10 @@ export const reissueAccessToken = async () => {
     if (isAxiosError<ResponseData>(error) && error.response) {
       const { status, data } = error.response;
       if (status === 401 && data.code === 'A02') {
-        console.log('로그인이 만료되었습니다.');
+        setModalType('loginExpiration');
       }
       if (status === 401 && data.code === 'A03') {
-        console.log('계정이 도용된 것으로 의심됩니다.');
+        setModalType('accountHijacking');
       }
     }
   }
