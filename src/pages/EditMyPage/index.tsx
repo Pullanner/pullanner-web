@@ -12,7 +12,7 @@ import { useMutateNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
-import { INPUT_LENGTH } from './constants';
+import { NICKNAME_LENGTH } from './constants';
 
 export const EditMyPage = () => {
   const userData = useAtomValue(userDataAtom) as UserData;
@@ -55,8 +55,8 @@ export const EditMyPage = () => {
         <DuplicationCheckInput
           inputName="닉네임"
           defaultValue={nickname}
-          minLength={INPUT_LENGTH.min}
-          maxLength={INPUT_LENGTH.max}
+          minLength={NICKNAME_LENGTH.min}
+          maxLength={NICKNAME_LENGTH.max}
           setValidInputValue={setNicknameValue}
           validationFunction={validateNickname}
         />
