@@ -8,7 +8,7 @@ import { ROUTE_PATH } from '@/constants';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { userDataAtom } from '@/stores/atoms/userDataAtom';
 
-import { TEXT_CONTENTS } from './constants';
+import { TEXT_CONTENTS } from '../../../pages/DeleteAccount/constants';
 
 import type { Dispatch, SetStateAction } from 'react';
 

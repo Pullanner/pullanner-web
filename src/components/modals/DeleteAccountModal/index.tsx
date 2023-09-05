@@ -5,7 +5,7 @@ import { ModalButton } from '@/components/modals/Modal/ModalButton';
 import { MainText, SubText, ModalText } from '@/components/modals/Modal/ModalText';
 import { ROUTE_PATH } from '@/constants';
 
-import { MODAL_TEXT } from './constants';
+import { MODAL_TEXT } from '../../../pages/EditMyPage/constants';
 
 type DeleteAccountModalProps = {
   handleCancleButtonClick: () => void;

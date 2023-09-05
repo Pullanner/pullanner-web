@@ -2,6 +2,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { useState, forwardRef } from 'react';
 
 import { deleteAccountWithAuthenticationCode } from '@/apis/user/deleteAccountWithAuthenticationCode';
+import { DeleteAccountSuccessModal } from '@/components/modals/DeleteAccountSuccessModal';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
 
@@ -12,7 +13,6 @@ import {
   VALIDATE_CODE_BUTTON_STYLE,
   LIMIT_TIME,
 } from './constants';
-import { DeleteAccountSuccessModal } from './DeleteAccountSuccessModal';
 import { Timer } from './Timer';
 
 import type { ChangeEvent, ForwardedRef } from 'react';

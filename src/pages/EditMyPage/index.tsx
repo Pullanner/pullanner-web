@@ -6,13 +6,13 @@ import { validateNickname } from '@/apis/user';
 import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckInput } from '@/components/inputs/DuplicationCheckInput';
+import { DeleteAccountModal } from '@/components/modals/DeleteAccountModal';
 import { ROUTE_PATH } from '@/constants';
 import { useMutateNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 import { INPUT_LENGTH } from './constants';
-import { DeleteAccountModal } from './DeleteAccountModal';
 
 export const EditMyPage = () => {
   const userData = useAtomValue(userDataAtom) as UserData;

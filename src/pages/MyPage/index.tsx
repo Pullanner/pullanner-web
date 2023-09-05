@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { DimmedButton } from '@/components/buttons/DimmedButton';
+import { LogoutModal } from '@/components/modals/LogoutModal';
 import { ROUTE_PATH } from '@/constants';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
-import { LogoutModal } from './LogoutModal';
 import { ProgressSection } from './ProgressSection';
 import { TabSection } from './TabSection';
 import { UserSection } from './UserSection';
