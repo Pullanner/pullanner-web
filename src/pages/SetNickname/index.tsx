@@ -26,14 +26,14 @@ export const SetNickname = () => {
   const [nickname, setNickname] = useState('');
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
-  const { mutate } = usePostNickname(accessToken, setAccessToken, setModalType);
+  const { mutate: postNickname } = usePostNickname(accessToken, setAccessToken, setModalType);
   const userData = useAtomValue(userDataAtom) as UserData;
   const setUserData = useSetAtom(userDataAtom);
   const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
     if (nickname.length) {
-      mutate(nickname);
+      postNickname(nickname);
       setUserData({ ...userData, nickname });
       navigate(ROUTE_PATH.setup.selectWorkout);
     }

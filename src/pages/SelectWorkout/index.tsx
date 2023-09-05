@@ -23,12 +23,12 @@ export const SelectWorkout = () => {
   const { nickname } = useAtomValue(userDataAtom) as UserData;
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
-  const { mutate } = usePostWorkoutData(accessToken, setAccessToken, setModalType);
+  const { mutate: postWorkoutData } = usePostWorkoutData(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
     setWorkoutData(workoutData);
-    mutate([...workoutData.values()]);
+    postWorkoutData([...workoutData.values()]);
     navigate(ROUTE_PATH.setup.result);
   };
 

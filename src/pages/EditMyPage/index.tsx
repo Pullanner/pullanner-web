@@ -22,12 +22,12 @@ export const EditMyPage = () => {
   const [nicknameValue, setNicknameValue] = useState(initialNicknameValue);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
-  const { mutate } = usePostNickname(accessToken, setAccessToken, setModalType);
+  const { mutate: postNickname } = usePostNickname(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
     if (nicknameValue.length) {
-      mutate(nicknameValue);
+      postNickname(nicknameValue);
       setUserData({ ...userData, nickname: nicknameValue });
       navigate(ROUTE_PATH.myPage.index);
     }
