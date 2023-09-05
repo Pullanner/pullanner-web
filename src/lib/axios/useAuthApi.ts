@@ -99,3 +99,31 @@ export const deleteAuthRequest = async (
     throw error;
   }
 };
+
+export const patchAuthRequest = async <T>(
+  apiPath: string,
+  payload: T,
+  accessToken: string,
+  setAccessToken: Dispatch<SetStateAction<string>>,
+) => {
+  try {
+    if (isDevMode) {
+      const { data } = await axios.patch(apiPath, payload);
+
+      return data;
+    }
+
+    const { data } = await axiosInstance.patch(apiPath, payload, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.code === '403') {
+      const newAccessToken = await reissueAccessToken();
+      setAccessToken(newAccessToken);
+    }
+  }
+};
