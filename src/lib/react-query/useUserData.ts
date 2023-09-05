@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { API_PATH } from '@/constants';
-import { excuteAuthRequestWithErrorHandling } from '@/lib/axios/executeAuthRequestWithErrorHandling';
+import { handleAuthRequest } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { getAuthRequest, postAuthRequest } from '@/lib/axios/useAuthApi';
 import type { SetModalType } from '@/stores/atoms/modalTypeAtom';
 
@@ -17,7 +17,7 @@ export const useGetUserData = (
   return useQuery({
     queryKey: [queryKeys.userData, accessToken, setAccessToken],
     queryFn: () => {
-      return excuteAuthRequestWithErrorHandling({
+      return handleAuthRequest({
         authRequest: (token) => {
           return getAuthRequest(API_PATH.users, token);
         },
@@ -39,7 +39,7 @@ export const usePostNickname = (
 
   return useMutation({
     mutationFn: (nickname: string) => {
-      return excuteAuthRequestWithErrorHandling({
+      return handleAuthRequest({
         authRequest: (token) => {
           return postAuthRequest(API_PATH.users, { nickname }, token);
         },

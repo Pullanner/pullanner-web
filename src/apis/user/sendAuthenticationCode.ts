@@ -1,5 +1,5 @@
 import { API_PATH } from '@/constants';
-import { excuteAuthRequestWithErrorHandling } from '@/lib/axios/executeAuthRequestWithErrorHandling';
+import { handleAuthRequest } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { postAuthRequest } from '@/lib/axios/useAuthApi';
 import type { SetModalType } from '@/stores/atoms/modalTypeAtom';
 
@@ -13,7 +13,7 @@ export const sendAuthenticationCode = async (
   setModalType: SetModalType,
 ) => {
   try {
-    const data = await excuteAuthRequestWithErrorHandling({
+    const data = await handleAuthRequest({
       authRequest: (token) => {
         return postAuthRequest(API_PATH.userEmail, {}, token);
       },

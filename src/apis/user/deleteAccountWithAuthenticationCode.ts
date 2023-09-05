@@ -1,7 +1,7 @@
 import { isAxiosError } from 'axios';
 
 import { API_PATH } from '@/constants';
-import { excuteAuthRequestWithErrorHandling } from '@/lib/axios/executeAuthRequestWithErrorHandling';
+import { handleAuthRequest } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { deleteAuthRequest } from '@/lib/axios/useAuthApi';
 import type { SetModalType } from '@/stores/atoms/modalTypeAtom';
 
@@ -18,7 +18,7 @@ export const deleteAccountWithAuthenticationCode = async (
   try {
     const params = new URLSearchParams();
     params.append('code', code);
-    const data = await excuteAuthRequestWithErrorHandling({
+    const data = await handleAuthRequest({
       authRequest: (token) => {
         return deleteAuthRequest(API_PATH.users, token, {
           params,

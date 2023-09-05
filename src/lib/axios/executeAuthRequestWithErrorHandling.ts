@@ -17,7 +17,7 @@ type Paramters = {
   setModalType: SetModalType;
 };
 
-export const excuteAuthRequestWithErrorHandling = async ({
+export const handleAuthRequest = async ({
   authRequest,
   accessToken,
   setAccessToken,

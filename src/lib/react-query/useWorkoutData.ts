@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { API_PATH } from '@/constants';
-import { excuteAuthRequestWithErrorHandling } from '@/lib/axios/executeAuthRequestWithErrorHandling';
+import { handleAuthRequest } from '@/lib/axios/executeAuthRequestWithErrorHandling';
 import { getAuthRequest, postAuthRequest } from '@/lib/axios/useAuthApi';
 import { Workouts } from '@/mocks/users/workouts/data';
 import type { SetModalType } from '@/stores/atoms/modalTypeAtom';
@@ -18,7 +18,7 @@ export const useGetWorkoutData = (
   return useQuery({
     queryKey: [queryKeys.workouts, accessToken, setAccessToken],
     queryFn: () => {
-      return excuteAuthRequestWithErrorHandling({
+      return handleAuthRequest({
         authRequest: (token) => {
           return getAuthRequest(API_PATH.userWorkouts, token);
         },
@@ -40,7 +40,7 @@ export const usePostWorkoutData = (
 
   return useMutation({
     mutationFn: (workouts: Workouts) => {
-      return excuteAuthRequestWithErrorHandling({
+      return handleAuthRequest({
         authRequest: (token) => {
           return postAuthRequest(API_PATH.userWorkouts, { workouts }, token);
         },
