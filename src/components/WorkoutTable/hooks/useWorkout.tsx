@@ -1,22 +1,26 @@
-import { useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { useState } from 'react';
 
 import { workoutPlanAtom } from '@/stores/atoms/workoutPlanAtom';
 import { PullUpSteps } from '@/types/plan';
 
-export const useWorkout = (id: PullUpSteps) => {
+import { usePlanComplete } from './usePlanComplete';
+
+export const useWorkout = (step: PullUpSteps) => {
   const [total, setTotal] = useState(0);
-  const [workoutCountSet, setWorkoutCountSet] = useState({ step: id, count: 0, set: 0 });
-  const setWorkoutPlan = useSetAtom(workoutPlanAtom);
+  const [workoutCountSet, setWorkoutCountSet] = useState({ step, count: 0, set: 0, done: false });
+  const [workoutPlan, setWorkoutPlan] = useAtom(workoutPlanAtom);
+  const { checkPlanComplete } = usePlanComplete();
 
   const updateWorkoutPlan = () => {
-    setWorkoutPlan((prev) => {
-      const filtered = prev.filter((workout) => {
-        return workout.step !== id;
-      });
-
-      return [...filtered, workoutCountSet];
+    const updatedWorkoutPlan = [...workoutPlan];
+    const workoutIndex = updatedWorkoutPlan.findIndex((workout) => {
+      return workout.step === step;
     });
+    updatedWorkoutPlan[workoutIndex] = workoutCountSet;
+
+    setWorkoutPlan(updatedWorkoutPlan);
+    checkPlanComplete(updatedWorkoutPlan);
   };
 
   const handleWorkoutCountChange = (value: string) => {
