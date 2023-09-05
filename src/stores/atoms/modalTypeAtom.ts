@@ -2,7 +2,13 @@ import { atom } from 'jotai';
 
 import type { SetStateAction } from 'react';
 
-type ModalType = 'deleteAccount' | 'deleteAccountSuccess' | 'logout' | 'loginExpiration' | null;
+type ModalType =
+  | 'deleteAccount'
+  | 'deleteAccountSuccess'
+  | 'logout'
+  | 'loginExpiration'
+  | 'accountHijacking'
+  | null;
 
 type SetAtom<Args extends any[], Result> = (...args: Args) => Result;
 

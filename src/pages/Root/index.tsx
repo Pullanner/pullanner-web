@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import { BottomNavigationBar } from '@/components/BottomNavigationBar';
 import { ScrollTopButton } from '@/components/buttons/ScrollTopButton';
 import { Header } from '@/components/Header';
+import { AccountHijackingModal } from '@/components/modals/AccountHijackingModal';
 import { DeleteAccountModal } from '@/components/modals/DeleteAccountModal';
 import { DeleteAccountSuccessModal } from '@/components/modals/DeleteAccountSuccessModal';
 import { LoginExpirationModal } from '@/components/modals/LoginExpirationModal';
@@ -42,6 +43,7 @@ export const Root = () => {
       {modalType === 'deleteAccountSuccess' && <DeleteAccountSuccessModal />}
       {modalType === 'logout' && <LogoutModal />}
       {modalType === 'loginExpiration' && <LoginExpirationModal />}
+      {modalType === 'accountHijacking' && <AccountHijackingModal />}
     </div>
   );
 };
