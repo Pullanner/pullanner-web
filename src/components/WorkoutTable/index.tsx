@@ -17,7 +17,7 @@ export const WorkoutTable = () => {
           <th className="p-2">Total</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="before:block before:leading-[4px] before:text-transparent before:content-['-']">
         {workouts.map(({ step }) => {
           return <WorkoutRow key={step} step={step} />;
         })}
