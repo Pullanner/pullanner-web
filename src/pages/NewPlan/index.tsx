@@ -169,7 +169,7 @@ export const NewPlan = () => {
               status={planDateTime ? '' : 'error'}
               format={PLAN_TIME_FORMAT}
               onChange={handleTimePickerChange}
-              placeholder="운동 시각"
+              placeholder="12:00"
             />
           </div>
           <div>
