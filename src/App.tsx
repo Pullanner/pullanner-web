@@ -21,6 +21,7 @@ import {
   SelectWorkout,
   SetupResult,
   DeleteAccount,
+  NewPlan,
 } from '@/pages';
 import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: ROUTE_PATH.plan.index,
         element: <Plan />,
+      },
+      {
+        path: ROUTE_PATH.plan.new,
+        element: <NewPlan />,
       },
       {
         path: ROUTE_PATH.summary,

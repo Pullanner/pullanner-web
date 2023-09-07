@@ -1,8 +1,9 @@
-import { useAtomValue } from 'jotai';
+import { useAtom, useAtomValue } from 'jotai';
 
 import { Banner } from '@/components/Banner';
 import { BANNER_DATA } from '@/constants';
-import { useGetPlans } from '@/lib/react-query/useGetPlan';
+import { useGetAllPlans } from '@/lib/react-query/usePlans';
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { selectedDateAtom } from '@/stores/atoms/selectedDateAtom';
 
 import { PlanButtons } from './PlanButtons';
@@ -11,7 +12,8 @@ import { PlanCard } from './PlanCard';
 
 export const Plan = () => {
   const selectedDate = useAtomValue(selectedDateAtom);
-  const { data: plans, isSuccess } = useGetPlans();
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const { data: plans, isSuccess } = useGetAllPlans(accessToken, setAccessToken);
 
   return (
     <>

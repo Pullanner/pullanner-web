@@ -1,27 +1,35 @@
+export type PullUpSteps = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 export type Workout = {
-  id: number;
-  name: string;
+  step: PullUpSteps;
   count: number;
   set: number;
-  total: number;
   done: boolean;
-  color: string;
 };
+
+export type PlanType = 'strength' | 'master';
 
 export type Plan = {
   id: number;
   createdAt: string;
   updatedAt: string;
-  planDate: string;
+  planDateTime: string;
   planName: string;
-  planTime: string;
-  planType: string;
-  workout: Workout[];
+  planType: PlanType;
+  workouts: Workout[];
   progress: number;
   note: string;
-  mainColor: string;
+  mainWorkoutStep: PullUpSteps;
+};
+
+export type NewPlan = Pick<Plan, 'planDateTime' | 'planName' | 'planType' | 'workouts'>;
+
+export type CheckedPlan = Pick<Plan, 'workouts' | 'note'>;
+
+export type Plans = {
+  [date: string]: Plan[];
 };
 
 export type PlanData = {
-  [date: string]: Plan[];
+  data: { [date: string]: Plan[] };
 };

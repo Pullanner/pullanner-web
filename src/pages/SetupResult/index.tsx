@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { BackButton } from '@/components/buttons/BackButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { Headline } from '@/components/Headline';
-import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
+import { PLAN_TYPE_KR, ROADMAP_DATA, ROUTE_PATH } from '@/constants';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 import { workoutDataAtom } from '@/stores/atoms/workoutDataAtom';
 
@@ -19,12 +19,12 @@ const TEXT_CONTENTS = {
   },
   selectedWorkout: {
     title: '가능한 풀업 동작',
-    plan: '💪근력 키우기 플랜',
+    plan: PLAN_TYPE_KR.strength,
     description: '을 통해  더욱 근력을 향상시켜볼 수 있어요',
   },
   restWorkout: {
     title: '연습이 필요한 풀업 동작',
-    plan: '🏆 동작 마스터 플랜',
+    plan: PLAN_TYPE_KR.master,
     description: '을 통해 풀업 동작을 완성시켜볼 수 있어요',
   },
   edit: {

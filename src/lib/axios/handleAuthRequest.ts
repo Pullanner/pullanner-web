@@ -10,7 +10,7 @@ type ResponseData = {
   message: string;
 };
 
-type Paramters = {
+type HandleAuthRequestParams = {
   authRequest: (accessToken: string) => Promise<any>;
   accessToken: string;
   setAccessToken: Dispatch<SetStateAction<string>>;
@@ -22,7 +22,7 @@ export const handleAuthRequest = async ({
   accessToken,
   setAccessToken,
   setModalType,
-}: Paramters) => {
+}: HandleAuthRequestParams) => {
   try {
     const response = await authRequest(accessToken);
 

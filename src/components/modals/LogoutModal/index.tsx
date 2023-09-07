@@ -31,7 +31,7 @@ export const LogoutModal = () => {
     navigate(ROUTE_PATH.root);
   };
 
-  const handleCancleButtonClick = () => {
+  const handleCancelButtonClick = () => {
     setModalType(null);
   };
 
@@ -42,7 +42,7 @@ export const LogoutModal = () => {
       </ModalText>
       <div className="flex w-full">
         <ModalButton text="네" handler={handleOkButtonClick} />
-        <ModalButton text="아니오" handler={handleCancleButtonClick} isPrimary />
+        <ModalButton text="아니오" handler={handleCancelButtonClick} isPrimary />
       </div>
     </Modal>
   );

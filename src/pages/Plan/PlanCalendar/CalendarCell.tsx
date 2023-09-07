@@ -1,10 +1,11 @@
-import { PlanData } from '@/types/plan';
+import { WORKOUT_NAME_COLOR } from '@/constants';
+import { Plans } from '@/types/plan';
 
 import type { Dayjs } from 'dayjs';
 
 type CalendarCellProps = {
   date: Dayjs;
-  planData?: PlanData;
+  planData?: Plans;
 };
 
 export const CalendarCell = ({ date, planData }: CalendarCellProps) => {
@@ -17,7 +18,7 @@ export const CalendarCell = ({ date, planData }: CalendarCellProps) => {
 
   const plans = planData[dateKey];
 
-  if (!plans) {
+  if (!plans || plans.length === 0) {
     return (
       <div className="flex pt-1">
         <div className="h-1.5 w-1.5" />
@@ -27,10 +28,12 @@ export const CalendarCell = ({ date, planData }: CalendarCellProps) => {
 
   return (
     <div className="flex justify-evenly pt-1">
-      {plans.map(({ id, mainColor }, index) => {
+      {plans.map(({ id, mainWorkoutStep }, index) => {
         if (index >= MAX_PLAN_DOT_COUNT) {
           return;
         }
+
+        const mainColor = WORKOUT_NAME_COLOR[mainWorkoutStep].color;
 
         return (
           <div

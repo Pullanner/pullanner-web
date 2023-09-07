@@ -33,7 +33,7 @@ export const EditMyPage = () => {
     }
   };
 
-  const handleWithdrwalButtonClick = () => {
+  const handleWithdrawalButtonClick = () => {
     setModalType('deleteAccount');
   };
 
@@ -58,7 +58,7 @@ export const EditMyPage = () => {
         />
       </div>
 
-      <DimmedButton name="회원탈퇴" handler={handleWithdrwalButtonClick} />
+      <DimmedButton name="회원탈퇴" handler={handleWithdrawalButtonClick} />
     </div>
   );
 };

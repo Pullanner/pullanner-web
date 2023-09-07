@@ -22,7 +22,7 @@ export const DeleteAccountModal = () => {
     navigate(ROUTE_PATH.deleteAccount);
   };
 
-  const handleCancleButtonClick = () => {
+  const handleCancelButtonClick = () => {
     setModalType(null);
   };
 
@@ -43,7 +43,7 @@ export const DeleteAccountModal = () => {
         />
         <ModalButton
           text="아니오"
-          handler={handleCancleButtonClick}
+          handler={handleCancelButtonClick}
           imageUrl="/assets/images/emotion/5.svg"
           isPrimary
         />

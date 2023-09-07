@@ -4,7 +4,7 @@ import { useRef } from 'react';
 
 import { sendAuthenticationCode } from '@/apis/user/sendAuthenticationCode';
 import { SaveButton } from '@/components/buttons/SaveButton';
-import { SuccessIcon } from '@/components/icons/SuccessIcon';
+import { SuccessIcon } from '@/icons/SuccessIcon';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';

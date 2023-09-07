@@ -1,5 +1,5 @@
 import { API_PATH } from '@/constants';
-import { handleAuthRequest } from '@/lib/axios/executeAuthRequestWithErrorHandling';
+import { handleAuthRequest } from '@/lib/axios/handleAuthRequest';
 import { postAuthRequest } from '@/lib/axios/useAuthApi';
 import type { SetModalType } from '@/stores/atoms/modalTypeAtom';
 

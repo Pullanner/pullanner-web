@@ -67,3 +67,19 @@ export const deleteAuthRequest = async (
 
   return data;
 };
+
+export const patchAuthRequest = async <T>(apiPath: string, payload: T, accessToken: string) => {
+  if (isDevMode) {
+    const { data } = await axios.patch(apiPath, payload);
+
+    return data;
+  }
+
+  const { data } = await axiosInstance.patch(apiPath, payload, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  return data;
+};

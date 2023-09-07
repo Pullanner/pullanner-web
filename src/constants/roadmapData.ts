@@ -1,3 +1,25 @@
+export const WORKOUT_NAME = {
+  1: 'Hanging',
+  2: 'Jumping Pull-up',
+  3: 'Band Pull-up',
+  4: 'Chin-up',
+  5: 'Pull-up',
+  6: 'Chest to Bar',
+  7: 'Archer Pull-up',
+  8: 'Muscle up',
+} as const;
+
+export const WORKOUT_NAME_COLOR = {
+  1: { name: 'Hanging', color: '#F47C7C' },
+  2: { name: 'Jumping Pull-up', color: '#F1B55B' },
+  3: { name: 'Band Pull-up', color: '#DFE152' },
+  4: { name: 'Chin-up', color: '#8EE14E' },
+  5: { name: 'Pull-up', color: '#60EBD1' },
+  6: { name: 'Chest to Bar', color: '#8BB3FF' },
+  7: { name: 'Archer Pull-up', color: '#CD7BFF' },
+  8: { name: 'Muscle up', color: '#FF8CF4' },
+} as const;
+
 export const ROADMAP_DATA = [
   {
     id: 1,

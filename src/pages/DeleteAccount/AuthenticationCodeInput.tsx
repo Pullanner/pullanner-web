@@ -35,14 +35,14 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
         return;
       }
 
-      const isAuthenticationCodeVaild = await deleteAccountWithAuthenticationCode(
+      const isAuthenticationCodeValid = await deleteAccountWithAuthenticationCode(
         authenticationCode,
         accessToken,
         setAccessToken,
         setModalType,
       );
 
-      if (isAuthenticationCodeVaild) {
+      if (isAuthenticationCodeValid) {
         setModalType('deleteAccountSuccess');
       } else {
         setShowInvalidAuthenticationCodeDescription(true);
@@ -70,7 +70,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
             onChange={handleInputChange}
             placeholder="인증코드 6자리 입력"
             aria-label="authenticationCode"
-            aria-describedby="valdationResult"
+            aria-describedby="validationResult"
           />
           {isTimerActive && <Timer limitTime={LIMIT_TIME} />}
           <button
@@ -82,7 +82,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
           </button>
         </div>
         {isDeleteRequestFailed && (
-          <p id="valdationResult" className="pt-3 text-sm text-[#FF5E62]">
+          <p id="validationResult" className="pt-3 text-sm text-[#FF5E62]">
             {INVALID_AUTHORIZATION_CODE_DESCRIPTION}
           </p>
         )}
