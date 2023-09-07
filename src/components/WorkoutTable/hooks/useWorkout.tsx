@@ -7,7 +7,6 @@ import { PullUpSteps } from '@/types/plan';
 import { usePlanComplete } from './usePlanComplete';
 
 export const useWorkout = (step: PullUpSteps) => {
-  const [total, setTotal] = useState(0);
   const [workoutCountSet, setWorkoutCountSet] = useState({ step, count: 0, set: 0, done: false });
   const [workoutPlan, setWorkoutPlan] = useAtom(workoutPlanAtom);
   const { checkPlanComplete } = usePlanComplete();
@@ -28,8 +27,6 @@ export const useWorkout = (step: PullUpSteps) => {
     setWorkoutCountSet((prev) => {
       return { ...prev, count };
     });
-
-    setTotal(count * workoutCountSet.set);
     updateWorkoutPlan();
   };
 
@@ -38,15 +35,12 @@ export const useWorkout = (step: PullUpSteps) => {
     setWorkoutCountSet((prev) => {
       return { ...prev, set };
     });
-
-    setTotal(workoutCountSet.count * set);
     updateWorkoutPlan();
   };
 
   return {
-    count: workoutCountSet.count.toString(),
-    set: workoutCountSet.set.toString(),
-    total,
+    count: workoutCountSet.count,
+    set: workoutCountSet.set,
     handleWorkoutCountChange,
     handleWorkoutSetChange,
   };

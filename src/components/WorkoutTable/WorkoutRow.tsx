@@ -5,8 +5,7 @@ import { PullUpSteps } from '@/types/plan';
 import { useWorkout } from './hooks/useWorkout';
 
 export const WorkoutRow = ({ step }: { step: PullUpSteps }) => {
-  const { count, set, total, handleWorkoutCountChange, handleWorkoutSetChange } = useWorkout(step);
-
+  const { count, set, handleWorkoutCountChange, handleWorkoutSetChange } = useWorkout(step);
   const { color, name } = WORKOUT_NAME_COLOR[step];
 
   return (
@@ -18,7 +17,7 @@ export const WorkoutRow = ({ step }: { step: PullUpSteps }) => {
         <NumericInput
           inputName="workoutCount"
           onChange={handleWorkoutCountChange}
-          value={count}
+          value={count.toString()}
           maxLength={3}
         />
       </td>
@@ -26,11 +25,11 @@ export const WorkoutRow = ({ step }: { step: PullUpSteps }) => {
         <NumericInput
           inputName="workoutSet"
           onChange={handleWorkoutSetChange}
-          value={set}
+          value={set.toString()}
           maxLength={3}
         />
       </td>
-      <td align="center">{total}</td>
+      <td align="center">{count * set}</td>
     </tr>
   );
 };
