@@ -2,7 +2,7 @@ import { message } from 'antd';
 import { useAtomValue } from 'jotai';
 import { Link } from 'react-router-dom';
 
-import { PLAN_MESSAGE, PLAN_TYPE, ROUTE_PATH } from '@/constants';
+import { PLAN_MESSAGE, PLAN_TYPE, PLAN_TYPE_KR, ROUTE_PATH } from '@/constants';
 import { WarningIcon } from '@/icons/WarningIcon';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { selectedDateAtom } from '@/stores/atoms/selectedDateAtom';
@@ -50,8 +50,7 @@ export const PlanButtons = () => {
     if (userImpossiblePullUps.length <= 0) {
       messageApi.open({
         type: 'warning',
-        content:
-          '모든 풀업 운동이 가능해서 마스터 할 동작이 없어요! 대신, 근력 키우기 플랜을 만들 수 있어요.',
+        content: `모든 풀업 운동이 가능해서 마스터 할 동작이 없어요! 대신, [${PLAN_TYPE_KR.strength}]을 만들 수 있어요.`,
         duration: 5,
         style: {
           marginTop: '75vh',
@@ -72,7 +71,7 @@ export const PlanButtons = () => {
         state={{ planType: PLAN_TYPE.strength, date: selectedDate }}
         className="flex items-center rounded-md bg-primary p-3 text-base text-black"
       >
-        <span>💪 근력 키우기 플랜</span>
+        <span>{PLAN_TYPE_KR.strength}</span>
       </Link>
       <Link
         to={masterPlanLink}
@@ -80,7 +79,7 @@ export const PlanButtons = () => {
         state={{ planType: PLAN_TYPE.master, date: selectedDate }}
         className="flex items-center rounded-md border-2 border-primary bg-zinc-800 p-3 text-base text-white"
       >
-        <span>🏆 동작 마스터 플랜</span>
+        <span>${PLAN_TYPE_KR.master}</span>
       </Link>
       {contextHolder}
     </div>
