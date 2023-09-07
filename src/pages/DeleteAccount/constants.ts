@@ -1,12 +1,6 @@
 export const MAX_INPUT_LENGTH = 6;
 
-export const TEXT_CONTENTS = {
-  invalidAuthenticationCodeDescription: '유효하지 않은 인증번호입니다.',
-  modal: {
-    title: '회원 탈퇴가 완료되었습니다',
-    greeting: '그동안 Pullanner를 이용해주셔서 감사합니다.',
-  },
-} as const;
+export const INVALID_AUTHORIZATION_CODE_DESCRIPTION = '유효하지 않은 인증번호입니다.';
 
 export const BUTTON_STATE = {
   active: 'active',

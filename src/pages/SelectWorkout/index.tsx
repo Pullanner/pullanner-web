@@ -1,4 +1,4 @@
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
 import { BackButton } from '@/components/buttons/BackButton';
@@ -7,6 +7,7 @@ import { Headline } from '@/components/Headline';
 import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
 import { usePostWorkoutData } from '@/lib/react-query/useWorkoutData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 import { workoutDataAtom } from '@/stores/atoms/workoutDataAtom';
 
@@ -21,12 +22,13 @@ export const SelectWorkout = () => {
   const [workoutData, setWorkoutData] = useAtom(workoutDataAtom);
   const { nickname } = useAtomValue(userDataAtom) as UserData;
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const { mutate } = usePostWorkoutData(accessToken, setAccessToken);
+  const setModalType = useSetAtom(modalTypeAtom);
+  const { mutate: postWorkoutData } = usePostWorkoutData(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
 
   const handleSaveButtonClick = () => {
     setWorkoutData(workoutData);
-    mutate([...workoutData.values()]);
+    postWorkoutData([...workoutData.values()]);
     navigate(ROUTE_PATH.setup.result);
   };
 

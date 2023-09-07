@@ -13,5 +13,3 @@ export const MY_PAGE_TAB_STYLE = {
   active: 'w-36 h-8 border-b border-primary text-center text-main font-bold',
   inActive: 'w-36 h-8 text-gray-500 text-center text-main font-normal',
 } as const;
-
-export const MODAL_TEXT = '정말 로그아웃하시겠습니까?';

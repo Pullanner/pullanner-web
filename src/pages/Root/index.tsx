@@ -5,20 +5,27 @@ import { Outlet } from 'react-router-dom';
 import { BottomNavigationBar } from '@/components/BottomNavigationBar';
 import { ScrollTopButton } from '@/components/buttons/ScrollTopButton';
 import { Header } from '@/components/Header';
+import { AccountHijackingModal } from '@/components/modals/AccountHijackingModal';
+import { DeleteAccountModal } from '@/components/modals/DeleteAccountModal';
+import { DeleteAccountSuccessModal } from '@/components/modals/DeleteAccountSuccessModal';
+import { LoginExpirationModal } from '@/components/modals/LoginExpirationModal';
+import { LogoutModal } from '@/components/modals/LogoutModal';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { initializeAccessToken } from '@/utils/initializeAccessToken';
 
 export const Root = () => {
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const loginState = useAtomValue(loginStateAtom) as boolean;
+  const [modalType, setModalType] = useAtom(modalTypeAtom);
   const isProductionMode = import.meta.env.PROD;
 
   useEffect(() => {
-    if (isProductionMode && loginState && !accessToken.length) {
-      initializeAccessToken(setAccessToken);
+    if (isProductionMode && loginState && !accessToken?.length) {
+      initializeAccessToken(setAccessToken, setModalType);
     }
-  }, [isProductionMode, loginState, accessToken, setAccessToken]);
+  }, [isProductionMode, loginState, accessToken, setAccessToken, setModalType]);
 
   return (
     <div className="flex h-screen w-screen flex-row items-center justify-center">
@@ -32,6 +39,11 @@ export const Root = () => {
         </div>
         <BottomNavigationBar />
       </div>
+      {modalType === 'deleteAccount' && <DeleteAccountModal />}
+      {modalType === 'deleteAccountSuccess' && <DeleteAccountSuccessModal />}
+      {modalType === 'logout' && <LogoutModal />}
+      {modalType === 'loginExpiration' && <LoginExpirationModal />}
+      {modalType === 'accountHijacking' && <AccountHijackingModal />}
     </div>
   );
 };
