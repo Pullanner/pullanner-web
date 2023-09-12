@@ -1,27 +1,19 @@
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { ROUTE_PATH } from '@/constants';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
-import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 import { ProgressSection } from './ProgressSection';
-import { TabSection } from './TabSection';
 import { UserSection } from './UserSection';
 import { WorkoutDashboard } from './WorkoutDashboard';
 
 export const MyPage = () => {
   const loginState = useAtomValue(loginStateAtom) as boolean;
   const userData = useAtomValue(userDataAtom) as UserData;
-  const setModalType = useSetAtom(modalTypeAtom);
   const navigate = useNavigate();
-
-  const handleLogoutButtonClick = () => {
-    setModalType('logout');
-  };
 
   useEffect(() => {
     if (!loginState) {
@@ -40,11 +32,7 @@ export const MyPage = () => {
     <div>
       <UserSection profileImage={profileImage} nickname={nickname} email={email} />
       <ProgressSection journalCount={journalCount} level={level} />
-      <TabSection />
       <WorkoutDashboard />
-      <div className="flex justify-center">
-        <DimmedButton name="로그아웃" handler={handleLogoutButtonClick} />
-      </div>
     </div>
   );
 };
