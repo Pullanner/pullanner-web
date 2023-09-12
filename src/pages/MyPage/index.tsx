@@ -26,12 +26,12 @@ export const MyPage = () => {
     return <div>Loading...</div>;
   }
 
-  const { profileImage, nickname, email, journalCount, level } = userData;
+  const { profileImage, nickname, email, planCount, level } = userData;
 
   return (
     <div>
       <UserSection profileImage={profileImage} nickname={nickname} email={email} />
-      <ProgressSection journalCount={journalCount} level={level} />
+      <ProgressSection planCount={planCount} level={level} />
       <WorkoutDashboard />
     </div>
   );
