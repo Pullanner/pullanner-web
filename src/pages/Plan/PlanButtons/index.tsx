@@ -79,7 +79,7 @@ export const PlanButtons = () => {
         state={{ planType: PLAN_TYPE.master, date: selectedDate }}
         className="flex items-center rounded-md border-2 border-primary bg-zinc-800 p-3 text-base text-white"
       >
-        <span>${PLAN_TYPE_KR.master}</span>
+        <span>{PLAN_TYPE_KR.master}</span>
       </Link>
       {contextHolder}
     </div>
