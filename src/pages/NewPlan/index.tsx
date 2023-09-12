@@ -5,7 +5,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SaveButton } from '@/components/buttons/SaveButton';
-import { SelectablePullUpCard } from '@/components/PullUpCard/SelectablePullUpCard';
+import { SelectablePullUpCard } from '@/components/cards/SelectablePullupCard';
 import { WorkoutTable } from '@/components/WorkoutTable';
 import { usePlanComplete } from '@/components/WorkoutTable/hooks/usePlanComplete';
 import {

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { BackButton } from '@/components/buttons/BackButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
+import { SelectableWorkoutCard } from '@/components/cards/SelectableWorkoutCard';
 import { Headline } from '@/components/Headline';
 import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
 import { usePostWorkoutData } from '@/lib/react-query/useWorkoutData';
@@ -10,8 +11,6 @@ import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 import { workoutDataAtom } from '@/stores/atoms/workoutDataAtom';
-
-import { SelectableWorkoutCard } from './SelectableWorkoutCard';
 
 const TEXT_CONTENTS = {
   headline: '가능한 풀업 동작을 알려주세요',

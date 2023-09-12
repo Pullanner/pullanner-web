@@ -1,4 +1,4 @@
-import { WorkoutCard } from '@/pages/SelectWorkout/WorkoutCard';
+import { WorkoutCard } from '@/components/cards/WorkoutCard';
 
 type WorkoutInfo = {
   id: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
