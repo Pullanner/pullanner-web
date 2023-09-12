@@ -11,6 +11,7 @@ import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 import { ProgressSection } from './ProgressSection';
 import { TabSection } from './TabSection';
 import { UserSection } from './UserSection';
+import { WorkoutDashboard } from './WorkoutDashboard';
 
 export const MyPage = () => {
   const loginState = useAtomValue(loginStateAtom) as boolean;
@@ -40,6 +41,7 @@ export const MyPage = () => {
       <UserSection profileImage={profileImage} nickname={nickname} email={email} />
       <ProgressSection journalCount={journalCount} level={level} />
       <TabSection />
+      <WorkoutDashboard />
       <div className="flex justify-center">
         <DimmedButton name="로그아웃" handler={handleLogoutButtonClick} />
       </div>
