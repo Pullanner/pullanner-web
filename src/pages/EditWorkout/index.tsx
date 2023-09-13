@@ -32,10 +32,10 @@ export const EditWorkout = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <Headline descriptions={TEXT_CONTENTS.headline} classNames="pb-9 pt-12">
+      <Headline descriptions={TEXT_CONTENTS.headline} classNames="py-10">
         <span className="font-extrabold">{nickname}</span>님,
       </Headline>
-      <p className="pb-10 text-xs text-[#D9D9D9]">{TEXT_CONTENTS.description}</p>
+      <p className="pb-5 text-xs text-[#D9D9D9]">{TEXT_CONTENTS.description}</p>
       <section className="bg-[#1E1E1E] py-4">
         <div className="flex w-full justify-center">
           <p className="pb-1 pt-2 font-bold text-primary">{`현재 가능한 풀업 동작 : ${workoutData.size}`}</p>
@@ -59,7 +59,7 @@ export const EditWorkout = () => {
           })}
         </div>
       </section>
-      <div className="pt-14">
+      <div className="pt-5">
         <SaveButton
           isActive
           handleButtonClick={handleSaveButtonClick}
