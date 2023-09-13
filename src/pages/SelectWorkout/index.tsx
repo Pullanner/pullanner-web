@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { BackButton } from '@/components/buttons/BackButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
-import { SelectableWorkoutCard } from '@/components/cards/SelectableWorkoutCard';
 import { Headline } from '@/components/Headline';
-import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
+import { SelectableWorkoutDashboard } from '@/components/SelectableWorkoutDashboard';
+import { ROUTE_PATH } from '@/constants';
 import { usePostWorkoutData } from '@/lib/react-query/useWorkoutData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
@@ -37,29 +37,7 @@ export const SelectWorkout = () => {
         <span className="font-extrabold">{nickname}</span>님,
       </Headline>
       <p className="pb-10 text-xs text-[#D9D9D9]">{TEXT_CONTENTS.description}</p>
-      <section className="bg-[#1E1E1E] py-4">
-        <div className="flex w-full justify-center">
-          <p className="pb-6 font-bold text-primary">{`현재 가능한 풀업 동작 : ${workoutData.size}`}</p>
-        </div>
-        <div className="grid grid-cols-4 gap-x-3.5 gap-y-6 px-5 pb-5">
-          {ROADMAP_DATA.map(({ id, name, imageSrc, color }) => {
-            const isCardSelected = workoutData.has(id);
-
-            return (
-              <SelectableWorkoutCard
-                key={id}
-                id={id}
-                name={name}
-                imageSrc={imageSrc}
-                color={color}
-                width="4.75rem"
-                height="6.375rem"
-                isActive={isCardSelected}
-              />
-            );
-          })}
-        </div>
-      </section>
+      <SelectableWorkoutDashboard />
       <div className="flex justify-center gap-x-4 px-5 pt-12">
         <BackButton classNames="h-[2.75rem] w-[9.375rem] bg-[#CFCFCF] rounded-[0.313rem] text-sm text-black">
           이전으로 가기
