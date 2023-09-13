@@ -1,26 +1,18 @@
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { Link } from 'react-router-dom';
 
 import { WorkoutCard } from '@/components/cards/WorkoutCard';
 import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
-import { useGetWorkoutData } from '@/lib/react-query/useWorkoutData';
-import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
-import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
+import { workoutDataAtom } from '@/stores/atoms/workoutDataAtom';
 
 const TEXT_CONTENTS = '나의 풀업현황';
 
 export const WorkoutDashboard = () => {
-  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const setModalType = useSetAtom(modalTypeAtom);
-  const { data } = useGetWorkoutData(accessToken, setAccessToken, setModalType);
+  const workoutData = useAtomValue(workoutDataAtom);
 
-  if (!data) {
+  if (!workoutData) {
     return <div>Loading...</div>;
   }
-
-  console.log(data);
-
-  const { workouts: workoutData } = data;
 
   return (
     <section className="w-full bg-[#1E1E1E] p-5 text-center">
@@ -32,7 +24,7 @@ export const WorkoutDashboard = () => {
       </div>
       <div className="grid grid-cols-4 gap-x-3.5 gap-y-5">
         {ROADMAP_DATA.map(({ id, name, imageSrc, color }) => {
-          const isCardSelected = workoutData.includes(id);
+          const isCardSelected = workoutData.has(id);
 
           return (
             <WorkoutCard
