@@ -8,7 +8,7 @@ import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 import { ProgressSection } from './ProgressSection';
 import { UserSection } from './UserSection';
-import { WorkoutDashboard } from './WorkoutDashboard';
+import { WorkoutSection } from './WorkoutSection';
 
 export const MyPage = () => {
   const loginState = useAtomValue(loginStateAtom) as boolean;
@@ -32,7 +32,7 @@ export const MyPage = () => {
     <div>
       <UserSection profileImage={profileImage} nickname={nickname} email={email} />
       <ProgressSection planCount={planCount} level={level} />
-      <WorkoutDashboard />
+      <WorkoutSection />
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { workoutDataAtom } from '@/stores/atoms/workoutDataAtom';
 
 const TEXT_CONTENTS = '나의 풀업현황';
 
-export const WorkoutDashboard = () => {
+export const WorkoutSection = () => {
   const workoutData = useAtomValue(workoutDataAtom);
 
   if (!workoutData) {
