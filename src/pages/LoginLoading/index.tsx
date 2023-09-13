@@ -42,7 +42,9 @@ export const LoginLoading = () => {
     if (isUserDataFetched && isWorkoutDataFetched) {
       setUserData(userData);
       const { workouts: workoutIDList } = workoutData;
-      setWorkoutData(new Set(workoutIDList));
+      if (workoutIDList.length) {
+        setWorkoutData(new Set(workoutIDList));
+      }
       if (!userData.nickname) {
         navigate(ROUTE_PATH.setup.setNickname);
       } else {
