@@ -13,7 +13,7 @@ export const ProgressSection = ({ planCount, level }: ProgressSectionProps) => {
   const percent = getPercent(currentPlanCount, MAX_JOURNAL_COUNT_BY_LEVEL[currentLevel]);
 
   return (
-    <section className="w-full px-5 pb-12">
+    <section className="w-full px-5 pb-10">
       <div className="flex justify-between pb-2">
         <span className="text-sm font-semibold text-primary">{`LEVEL ${currentLevel}`}</span>
         <span className="text-xs">{`${currentPlanCount} / ${MAX_JOURNAL_COUNT_BY_LEVEL[currentLevel]} Exp`}</span>

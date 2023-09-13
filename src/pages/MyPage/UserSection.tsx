@@ -8,7 +8,7 @@ type UserSectionProps = {
 
 export const UserSection = ({ profileImage, nickname, email }: UserSectionProps) => {
   return (
-    <section className="flex items-center py-12 pl-5">
+    <section className="flex items-center py-10 pl-5">
       <ProfileImage imageUrl={profileImage} imageSize="6rem" />
       <div className="ml-6 flex flex-col gap-y-3">
         <span className="inline-block text-base font-extrabold">{nickname}</span>
