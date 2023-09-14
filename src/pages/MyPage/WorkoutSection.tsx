@@ -5,7 +5,7 @@ import { WorkoutCard } from '@/components/cards/WorkoutCard';
 import { ROADMAP_DATA, ROUTE_PATH } from '@/constants';
 import { workoutDataAtom } from '@/stores/atoms/workoutDataAtom';
 
-const TEXT_CONTENTS = '나의 풀업현황';
+const TEXT_CONTENTS = '나의 풀업 현황';
 
 export const WorkoutSection = () => {
   const workoutData = useAtomValue(workoutDataAtom);

@@ -14,7 +14,7 @@ export const SelectableWorkoutDashboard = () => {
   return (
     <section className="bg-[#1E1E1E] px-5 py-4">
       <div className="flex w-full justify-center">
-        <p className="pb-5 font-bold text-primary">{`현재 가능한 풀업 동작 : ${workoutData.size}`}</p>
+        <p className="pb-5 font-bold text-primary">{`현재 가능한 풀업 동작 수 : ${workoutData.size}`}</p>
       </div>
       <div className="grid grid-cols-4 gap-x-3.5 gap-y-6">
         {ROADMAP_DATA.map(({ id, name, imageSrc, color }) => {
