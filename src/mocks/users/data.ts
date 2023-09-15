@@ -8,6 +8,7 @@ export const USER_DATA = {
   oauthProvider: 'Google',
   level: 1,
   experiencePoint: 10,
+  joinDate: '2023-09-14T15:34:48',
 };
 
 export const USER_NICKNAMES = ['Bongcheol', 'Milli', 'Ikjo', 'Sohui'];
