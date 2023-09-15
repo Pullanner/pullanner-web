@@ -12,7 +12,7 @@ export type UserData = {
   profileImage: string;
   oauthProvider: string;
   level: 1 | 2 | 3 | 4 | 5;
-  planCount: number;
+  experiencePoint: number;
 };
 
 export const userDataAtom = atomWithStorage('userData', null, storage);
