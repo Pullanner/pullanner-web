@@ -10,6 +10,7 @@ module.exports = {
         naver: '#00BF18',
         kakao: '#FBE950',
         primary: '#60EBD1',
+        sectionBackground: '#1E1E1E',
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],

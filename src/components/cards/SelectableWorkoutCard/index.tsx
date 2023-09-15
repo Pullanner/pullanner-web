@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { workoutDataAtom, WorkoutId } from '@/stores/atoms/workoutDataAtom';
 
-import { WorkoutCard, WorkoutCardProps } from './WorkoutCard';
+import { WorkoutCard, WorkoutCardProps } from '../WorkoutCard';
 
 import type { MouseEvent } from 'react';
 

@@ -19,6 +19,7 @@ export const ROUTE_PATH = {
   summary: '/summary',
   community: '/community',
   deleteAccount: '/delete-account',
+  editWorkout: '/edit-workout',
   setup: {
     index: '/setup',
     setNickname: '/setup/set-nickname',

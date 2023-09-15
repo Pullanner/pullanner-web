@@ -15,15 +15,20 @@ import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 import { NICKNAME_LENGTH } from './constants';
 
 export const EditMyPage = () => {
-  const userData = useAtomValue(userDataAtom) as UserData;
-  const setUserData = useSetAtom(userDataAtom);
-  const { nickname } = userData;
-  const initialNicknameValue = nickname ?? '';
-  const [nicknameValue, setNicknameValue] = useState(initialNicknameValue);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
+  const setUserData = useSetAtom(userDataAtom);
+  const userData = useAtomValue(userDataAtom) as UserData;
+  const [nicknameValue, setNicknameValue] = useState('');
   const { mutate: postNickname } = usePostNickname(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
+
+  // TODO: 추후에 로딩페이지로 교체하기
+  if (!userData) {
+    return <div>Loading...</div>;
+  }
+
+  const { nickname } = userData;
 
   const handleSaveButtonClick = () => {
     if (nicknameValue.length) {

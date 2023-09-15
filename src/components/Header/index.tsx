@@ -5,6 +5,8 @@ import { BackButton } from '@/components/buttons/BackButton';
 import { ROUTE_PATH } from '@/constants';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 
+import { ProfileImageDropdown } from './ProfileImageDropdown';
+
 const BACK_BUTTON_VISIBILITY = {
   true: 'invisible',
   false: 'visible',
@@ -24,9 +26,7 @@ export const Header = () => {
         <img src="/assets/images/logo.svg" alt="Logo" />
       </Link>
       {isLogin ? (
-        <Link to={ROUTE_PATH.myPage.index}>
-          <img src="/assets/images/user-icon.svg" alt="userIcon" />
-        </Link>
+        <ProfileImageDropdown />
       ) : (
         <Link to={ROUTE_PATH.login}>
           <img src="/assets/images/user-icon.svg" alt="userIcon" />

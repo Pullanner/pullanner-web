@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { PullUpSteps } from '@/types/plan';
 
-import { WorkoutCardProps } from './index';
+import { WorkoutCardProps } from '../WorkoutCard';
 
 type SelectableWorkoutCardProps = Omit<WorkoutCardProps, 'additionalStyle' | 'children'> & {
   isSelected?: boolean;

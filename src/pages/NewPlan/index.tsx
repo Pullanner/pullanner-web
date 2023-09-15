@@ -1,11 +1,11 @@
 import { TimePicker, message, Input } from 'antd';
 import dayjs from 'dayjs';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SaveButton } from '@/components/buttons/SaveButton';
-import { SelectablePullUpCard } from '@/components/PullUpCard/SelectablePullUpCard';
+import { SelectablePullUpCard } from '@/components/cards/SelectablePullupCard';
 import { WorkoutTable } from '@/components/WorkoutTable';
 import { usePlanComplete } from '@/components/WorkoutTable/hooks/usePlanComplete';
 import {
@@ -19,6 +19,7 @@ import {
 import { WarningIcon } from '@/icons/WarningIcon';
 import { usePostPlan } from '@/lib/react-query/usePlans';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { impossiblePullUpAtom, possiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
 import { planCompleteAtom, workoutPlanAtom } from '@/stores/atoms/workoutPlanAtom';
 import { PullUpSteps } from '@/types/plan';
@@ -60,7 +61,8 @@ export const NewPlan = () => {
   const [isPlanComplete, setIsPlanComplete] = useAtom(planCompleteAtom);
   const { checkPlanComplete } = usePlanComplete();
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const { mutate: postPlan } = usePostPlan(accessToken, setAccessToken);
+  const setModalType = useSetAtom(modalTypeAtom);
+  const { mutate: postPlan } = usePostPlan(accessToken, setAccessToken, setModalType);
 
   useEffect(() => {
     return () => {

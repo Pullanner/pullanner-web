@@ -60,7 +60,7 @@ export const SetupResult = () => {
           <span className="font-extrabold">{nickname}</span>님,
         </p>
       </Headline>
-      <section className="h-full w-full bg-[#1E1E1E] px-5 text-center">
+      <section className="h-full w-full bg-sectionBackground px-5 text-center">
         <p className="pb-7 pt-3.5 text-xl font-extrabold">{TEXT_CONTENTS.section.title}</p>
         <WorkoutResult
           workoutData={selectedWorkoutData}

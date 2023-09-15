@@ -22,8 +22,8 @@ import {
   SetupResult,
   DeleteAccount,
   NewPlan,
+  EditWorkout,
 } from '@/pages';
-import { MyPostList, MyCommentList } from '@/pages/MyPage/TabSection';
 
 const queryClient = new QueryClient();
 
@@ -48,16 +48,6 @@ const router = createBrowserRouter([
       {
         path: ROUTE_PATH.myPage.index,
         element: <MyPage />,
-        children: [
-          {
-            index: true,
-            element: <MyPostList />,
-          },
-          {
-            path: ROUTE_PATH.myPage.comment,
-            element: <MyCommentList />,
-          },
-        ],
       },
       {
         path: ROUTE_PATH.roadmap.index,
@@ -90,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: ROUTE_PATH.deleteAccount,
         element: <DeleteAccount />,
+      },
+      {
+        path: ROUTE_PATH.editWorkout,
+        element: <EditWorkout />,
       },
     ],
   },
