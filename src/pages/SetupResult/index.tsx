@@ -60,7 +60,7 @@ export const SetupResult = () => {
           <span className="font-extrabold">{nickname}</span>님,
         </p>
       </Headline>
-      <section className="h-full w-full bg-sectionBackground px-5 text-center">
+      <section className="h-full w-full bg-gray-6 px-5 text-center">
         <p className="pb-7 pt-3.5 text-xl font-extrabold">{TEXT_CONTENTS.section.title}</p>
         <WorkoutResult
           workoutData={selectedWorkoutData}
@@ -68,9 +68,9 @@ export const SetupResult = () => {
         />
         <WorkoutResult workoutData={restWorkoutData} textContents={TEXT_CONTENTS.restWorkout} />
       </section>
-      <p className="py-7 text-xs text-[#D9D9D9]">{TEXT_CONTENTS.edit.description}</p>
+      <p className="py-7 text-xs text-gray-1">{TEXT_CONTENTS.edit.description}</p>
       <div className="flex justify-center gap-x-4 px-5">
-        <BackButton classNames="h-[2.75rem] w-[9.375rem] bg-[#CFCFCF] rounded-[0.313rem] text-sm text-black">
+        <BackButton classNames="h-[2.75rem] w-[9.375rem] bg-gray-1 rounded-[0.313rem] text-sm text-black">
           이전으로 가기
         </BackButton>
         <SaveButton

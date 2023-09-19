@@ -86,7 +86,7 @@ export const DuplicationCheckInput = ({
       <label className="mb-2.5 inline-block text-sm" htmlFor={inputName}>
         {inputName}
       </label>
-      <div className="flex h-11 items-center justify-between rounded-[0.313rem] bg-[#161616] px-3">
+      <div className="flex h-11 items-center justify-between rounded-[0.313rem] bg-gray-6 px-3">
         <input
           id={inputName}
           name={inputName}

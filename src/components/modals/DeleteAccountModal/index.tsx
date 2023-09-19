@@ -29,7 +29,7 @@ export const DeleteAccountModal = () => {
   return (
     <Modal>
       <ModalText>
-        <MainText textStyle="py-5 border-b-2 border-[#686868]">{MODAL_TEXT.title}</MainText>
+        <MainText textStyle="py-5 border-b-2 border-gray-3">{MODAL_TEXT.title}</MainText>
         <SubText textStyle="pt-5 pb-7">
           <p>{MODAL_TEXT.description}</p>
           <p className="font-extrabold">{MODAL_TEXT.warning}</p>

@@ -59,11 +59,11 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
 
     return (
       <div className="pt-6">
-        <div className="flex h-11 items-center justify-between rounded-[0.313rem] bg-[#161616] px-2.5">
+        <div className="flex h-11 items-center justify-between rounded-[0.313rem] bg-gray-5 px-2.5">
           <input
             id="authenticationCode"
             type="text"
-            className="w-[9.25rem] bg-transparent text-base placeholder:text-[#8D8D8D] focus:bg-transparent focus:outline-none"
+            className="w-[9.25rem] bg-transparent text-base placeholder:text-gray-2 focus:bg-transparent focus:outline-none"
             maxLength={MAX_INPUT_LENGTH}
             value={authenticationCode}
             ref={ref}
@@ -82,7 +82,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
           </button>
         </div>
         {isDeleteRequestFailed && (
-          <p id="validationResult" className="pt-3 text-sm text-[#FF5E62]">
+          <p id="validationResult" className="pt-3 text-sm text-fail">
             {INVALID_AUTHORIZATION_CODE_DESCRIPTION}
           </p>
         )}

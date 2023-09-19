@@ -12,7 +12,7 @@ export const SelectableWorkoutDashboard = () => {
   }
 
   return (
-    <section className="bg-sectionBackground px-5 py-4">
+    <section className="bg-gray-6 px-5 py-4">
       <div className="flex w-full justify-center">
         <p className="pb-5 font-bold text-primary">{`현재 가능한 풀업 동작 수 : ${workoutData.size}`}</p>
       </div>

@@ -1,11 +1,11 @@
 export const VALID_INPUT = {
   status: 'valid',
-  description: { text: '사용 가능한 닉네임입니다.', style: 'text-[#63B0FF]' },
+  description: { text: '사용 가능한 닉네임입니다.', style: 'text-success' },
 } as const;
 
 export const INVALID_INPUT = {
   status: 'invalid',
-  description: { text: '이미 존재하는 닉네임입니다.', style: 'text-[#FF5E62]' },
+  description: { text: '이미 존재하는 닉네임입니다.', style: 'text-fail' },
 } as const;
 
 export const DUPLICATION_CHECK_BUTTON_STYLE = {

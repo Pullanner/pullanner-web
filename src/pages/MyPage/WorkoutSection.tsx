@@ -15,7 +15,7 @@ export const WorkoutSection = () => {
   }
 
   return (
-    <section className="w-full bg-sectionBackground p-5 text-center">
+    <section className="w-full bg-gray-6 p-5 text-center">
       <div className="flex justify-between pb-2">
         <span className="font-extrabold">{TEXT_CONTENTS}</span>
         <Link to={ROUTE_PATH.editWorkout}>

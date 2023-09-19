@@ -35,7 +35,7 @@ export const EditWorkout = () => {
       <Headline descriptions={TEXT_CONTENTS.headline} classNames="py-10">
         <span className="font-extrabold">{nickname}</span>님,
       </Headline>
-      <p className="pb-5 text-xs text-[#D9D9D9]">{TEXT_CONTENTS.description}</p>
+      <p className="pb-5 text-xs text-gray-1">{TEXT_CONTENTS.description}</p>
       <SelectableWorkoutDashboard />
       <div className="pt-5">
         <SaveButton
