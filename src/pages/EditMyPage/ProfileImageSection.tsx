@@ -1,6 +1,8 @@
+import { useSetAtom } from 'jotai';
 import { useState, useRef, type ChangeEvent } from 'react';
 
 import { ProfileImage } from '@/components/ProfileImage';
+import { profileImageDataAtom } from '@/stores/atoms/profileImageDataAtom';
 
 type ProfileImageSectionProps = {
   originalProfileImage: string;
@@ -9,6 +11,7 @@ type ProfileImageSectionProps = {
 export const ProfileImageSection = ({ originalProfileImage }: ProfileImageSectionProps) => {
   const [profileImageUrl, setProfileImageUrl] = useState(originalProfileImage);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const setProfileImageData = useSetAtom(profileImageDataAtom);
 
   const handleProfileImageEditButtonClick = () => {
     if (fileInputRef?.current) {
@@ -19,6 +22,9 @@ export const ProfileImageSection = ({ originalProfileImage }: ProfileImageSectio
   const handleFileInputChange = ({ currentTarget }: ChangeEvent<HTMLInputElement>) => {
     if (currentTarget.files) {
       const [file] = currentTarget.files;
+      const formData = new FormData();
+      formData.append('profileImage', file);
+      setProfileImageData(formData);
       const imageUrl = URL.createObjectURL(file);
       setProfileImageUrl(imageUrl);
     }
