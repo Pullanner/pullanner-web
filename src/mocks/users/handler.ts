@@ -89,12 +89,29 @@ const deleteAccountWithAuthenticationCode = async (
   return res(ctx.status(401), ctx.json({ code: 'U07', message: '유효하지 않은 인증 코드입니다.' }));
 };
 
+type BodyType = {
+  profileImage: Blob;
+};
+
+const uploadProfileImage = async (
+  req: RestRequest<BodyType>,
+  res: ResponseComposition<DefaultBodyType>,
+  ctx: RestContext,
+) => {
+  const { profileImage } = req.body;
+  const imageUrl = URL.createObjectURL(profileImage);
+  USER_DATA.profileImage = imageUrl;
+
+  return res(ctx.status(200), ctx.json(USER_DATA));
+};
+
 const userHandler = [
   rest.get(API_PATH.users, getUserData),
   rest.get<NicknameValidationReqBody>(API_PATH.userNicknameValidation, getNicknameValidation),
   rest.post(API_PATH.users, postUserData),
   rest.post(API_PATH.userEmail, postAuthenticationCode),
   rest.delete(API_PATH.users, deleteAccountWithAuthenticationCode),
+  rest.patch(API_PATH.users, uploadProfileImage),
 ];
 
 export default userHandler;
