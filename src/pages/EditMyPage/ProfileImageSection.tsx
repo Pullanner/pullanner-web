@@ -1,17 +1,18 @@
 import { useSetAtom } from 'jotai';
-import { useState, useRef, type ChangeEvent } from 'react';
+import { useRef, type ChangeEvent } from 'react';
 
 import { ProfileImage } from '@/components/ProfileImage';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { profileImageDataAtom } from '@/stores/atoms/profileImageDataAtom';
 
 type ProfileImageSectionProps = {
-  originalProfileImage: string;
+  profileImage: string;
 };
 
-export const ProfileImageSection = ({ originalProfileImage }: ProfileImageSectionProps) => {
-  const [profileImageUrl, setProfileImageUrl] = useState(originalProfileImage);
+export const ProfileImageSection = ({ profileImage }: ProfileImageSectionProps) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const setProfileImageData = useSetAtom(profileImageDataAtom);
+  const setModalType = useSetAtom(modalTypeAtom);
 
   const handleProfileImageEditButtonClick = () => {
     if (fileInputRef?.current) {
@@ -25,15 +26,14 @@ export const ProfileImageSection = ({ originalProfileImage }: ProfileImageSectio
       const formData = new FormData();
       formData.append('profileImage', file);
       setProfileImageData(formData);
-      const imageUrl = URL.createObjectURL(file);
-      setProfileImageUrl(imageUrl);
+      setModalType('uploadProfileImage');
     }
   };
 
   return (
     <section className="flex justify-center py-14">
       <div className="relative">
-        <ProfileImage imageUrl={profileImageUrl} imageSize="9rem" />
+        <ProfileImage imageUrl={profileImage} imageSize="9rem" />
         <button
           type="button"
           className="absolute -bottom-1.5 right-4 h-9 w-9"

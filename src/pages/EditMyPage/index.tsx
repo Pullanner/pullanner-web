@@ -45,7 +45,7 @@ export const EditMyPage = () => {
 
   return (
     <div>
-      {profileImage && <ProfileImageSection originalProfileImage={profileImage} />}
+      {profileImage && <ProfileImageSection profileImage={profileImage} />}
       <div className="flex w-full flex-row-reverse py-5">
         <SaveButton
           isActive={!!nicknameValue.length}
