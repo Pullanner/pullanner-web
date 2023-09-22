@@ -1,4 +1,5 @@
 import { ProfileImage } from '@/components/ProfileImage';
+import { parseDateIntoYearMonthDay } from '@/utils/date';
 
 type UserSectionProps = {
   profileImage: string;
@@ -8,8 +9,7 @@ type UserSectionProps = {
 };
 
 export const UserSection = ({ profileImage, nickname, email, joinDate }: UserSectionProps) => {
-  const joinDateWithoutTime = joinDate.split('T')[0];
-  const [year, month, day] = joinDateWithoutTime.split('-');
+  const { year, month, day } = parseDateIntoYearMonthDay(joinDate);
 
   return (
     <section className="flex items-center py-10 pl-5">
