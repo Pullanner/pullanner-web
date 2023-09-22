@@ -1,10 +1,12 @@
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useMemo } from 'react';
 
+import { uploadProfileImage } from '@/apis/user/uploadProfileImage';
 import { Modal } from '@/components/modals/Modal';
 import { ModalButton } from '@/components/modals/Modal/ModalButton';
 import { MainText, ModalText } from '@/components/modals/Modal/ModalText';
 import { ProfileImage } from '@/components/ProfileImage';
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { profileImageDataAtom } from '@/stores/atoms/profileImageDataAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
@@ -12,6 +14,7 @@ import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 const MODAL_TEXT = '이 프로필 이미지로 변경하시겠습니까?';
 
 export const UploadProfileImageModal = () => {
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const profileImageData = useAtomValue(profileImageDataAtom);
   const userData = useAtomValue(userDataAtom) as UserData;
   const setUserData = useSetAtom(userDataAtom);
@@ -24,6 +27,7 @@ export const UploadProfileImageModal = () => {
   }, [profileImageData]);
 
   const handleOkButtonClick = () => {
+    uploadProfileImage(profileImageData, accessToken, setAccessToken, setModalType);
     setUserData({ ...userData, profileImage });
     setModalType(null);
   };
