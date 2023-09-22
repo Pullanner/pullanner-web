@@ -46,15 +46,7 @@ export const EditMyPage = () => {
   return (
     <div>
       {profileImage && <ProfileImageSection profileImage={profileImage} />}
-      <div className="flex w-full flex-row-reverse py-5">
-        <SaveButton
-          isActive={!!nicknameValue.length}
-          handleButtonClick={handleSaveButtonClick}
-          width="5rem"
-          height="2rem"
-        />
-      </div>
-      <div className="pb-[24.5rem]">
+      <div className="pb-6">
         <DuplicationCheckInput
           inputName="닉네임"
           defaultValue={nickname}
@@ -64,7 +56,14 @@ export const EditMyPage = () => {
           validationFunction={validateNickname}
         />
       </div>
-
+      <div className="pb-[12.5rem]">
+        <SaveButton
+          isActive={!!nicknameValue.length}
+          handleButtonClick={handleSaveButtonClick}
+          width="21.875rem"
+          height="2.75rem"
+        />
+      </div>
       <DimmedButton name="회원탈퇴" handler={handleWithdrawalButtonClick} />
     </div>
   );
