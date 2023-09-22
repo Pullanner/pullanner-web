@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { validateNickname } from '@/apis/user';
-import { DimmedButton } from '@/components/buttons/DimmedButton';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckInput } from '@/components/inputs/DuplicationCheckInput';
 import { ROUTE_PATH } from '@/constants';
@@ -60,7 +59,7 @@ export const EditMyPage = () => {
           validationFunction={validateNickname}
         />
       </div>
-      <div className="pb-[12.5rem]">
+      <div className="pb-44">
         <SaveButton
           isActive={!!nicknameValue.length}
           handleButtonClick={handleSaveButtonClick}
@@ -68,7 +67,15 @@ export const EditMyPage = () => {
           height="2.75rem"
         />
       </div>
-      <DimmedButton name="회원탈퇴" handler={handleWithdrawalButtonClick} />
+      <div className="flex justify-center">
+        <button
+          type="button"
+          className="text-sm text-gray-2 underline"
+          onClick={handleWithdrawalButtonClick}
+        >
+          회원탈퇴
+        </button>
+      </div>
     </div>
   );
 };
