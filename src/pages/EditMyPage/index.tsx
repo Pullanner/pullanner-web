@@ -13,6 +13,7 @@ import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 import { NICKNAME_LENGTH } from './constants';
+import { ProfileImageSection } from './ProfileImageSection';
 
 export const EditMyPage = () => {
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
@@ -28,7 +29,7 @@ export const EditMyPage = () => {
     return <div>Loading...</div>;
   }
 
-  const { nickname } = userData;
+  const { nickname, profileImage } = userData;
 
   const handleSaveButtonClick = () => {
     if (nicknameValue.length) {
@@ -44,6 +45,7 @@ export const EditMyPage = () => {
 
   return (
     <div>
+      {profileImage && <ProfileImageSection originalProfileImage={profileImage} />}
       <div className="flex w-full flex-row-reverse py-5">
         <SaveButton
           isActive={!!nicknameValue.length}
