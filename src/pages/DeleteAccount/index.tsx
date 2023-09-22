@@ -2,7 +2,7 @@ import { message } from 'antd';
 import { useAtom, useSetAtom } from 'jotai';
 import { useRef } from 'react';
 
-import { sendAuthenticationCode } from '@/apis/user/sendAuthenticationCode';
+import { sendAuthenticationCode } from '@/apis/user';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { SuccessIcon } from '@/icons/SuccessIcon';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';

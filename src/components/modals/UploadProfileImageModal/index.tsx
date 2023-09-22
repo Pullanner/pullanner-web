@@ -1,7 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useMemo } from 'react';
 
-import { uploadProfileImage } from '@/apis/user/uploadProfileImage';
+import { uploadProfileImage } from '@/apis/user';
 import { Modal } from '@/components/modals/Modal';
 import { ModalButton } from '@/components/modals/Modal/ModalButton';
 import { MainText, ModalText } from '@/components/modals/Modal/ModalText';

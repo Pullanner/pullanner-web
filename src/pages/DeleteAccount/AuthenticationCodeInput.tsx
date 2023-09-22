@@ -1,7 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useState, forwardRef } from 'react';
 
-import { deleteAccountWithAuthenticationCode } from '@/apis/user/deleteAccountWithAuthenticationCode';
+import { deleteAccountWithAuthenticationCode } from '@/apis/user';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
