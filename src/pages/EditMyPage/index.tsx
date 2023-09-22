@@ -20,7 +20,11 @@ export const EditMyPage = () => {
   const setModalType = useSetAtom(modalTypeAtom);
   const setUserData = useSetAtom(userDataAtom);
   const userData = useAtomValue(userDataAtom) as UserData;
-  const [nicknameValue, setNicknameValue] = useState('');
+  const [nicknameValue, setNicknameValue] = useState(() => {
+    const { nickname } = userData;
+
+    return nickname;
+  });
   const { mutate: postNickname } = usePostNickname(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
 
@@ -29,7 +33,7 @@ export const EditMyPage = () => {
     return <div>Loading...</div>;
   }
 
-  const { nickname, profileImage } = userData;
+  const { profileImage } = userData;
 
   const handleSaveButtonClick = () => {
     if (nicknameValue.length) {
@@ -49,7 +53,7 @@ export const EditMyPage = () => {
       <div className="pb-6">
         <DuplicationCheckInput
           inputName="닉네임"
-          defaultValue={nickname}
+          defaultValue={nicknameValue}
           minLength={NICKNAME_LENGTH.min}
           maxLength={NICKNAME_LENGTH.max}
           setValidInputValue={setNicknameValue}
