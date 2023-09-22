@@ -1,16 +1,21 @@
 import { Dropdown, ConfigProvider } from 'antd';
-import { useSetAtom } from 'jotai';
+import { useSetAtom, useAtomValue } from 'jotai';
 import { Link } from 'react-router-dom';
 
 import { ROUTE_PATH } from '@/constants';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
+import { userDataAtom, UserData } from '@/stores/atoms/userDataAtom';
 
 import { CUSTOM_COLOR_TOKEN } from './customColorToken';
 
 import type { MenuProps } from 'antd';
 
+const DEFAULT_PROFILE_IMAGE_URL = '/assets/images/user-icon.svg';
+
 export const ProfileImageDropdown = () => {
   const setModalType = useSetAtom(modalTypeAtom);
+  const userData = useAtomValue(userDataAtom) as UserData;
+  const imageUrl = userData ? userData.profileImage : DEFAULT_PROFILE_IMAGE_URL;
 
   const handleLogoutButtonClick = () => {
     setModalType('logout');
@@ -42,7 +47,7 @@ export const ProfileImageDropdown = () => {
   return (
     <ConfigProvider theme={{ token: CUSTOM_COLOR_TOKEN }}>
       <Dropdown menu={{ items, selectable: true }} placement="bottomRight" trigger={['click']}>
-        <img src="/assets/images/user-icon.svg" alt="userIcon" />
+        <img className="h-[1.125rem] w-[1.125rem] rounded-full" src={imageUrl} alt="userIcon" />
       </Dropdown>
     </ConfigProvider>
   );
