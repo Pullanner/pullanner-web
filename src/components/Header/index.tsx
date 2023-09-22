@@ -20,7 +20,11 @@ export const Header = () => {
   return (
     <header className="flex items-center justify-between bg-black p-5">
       <BackButton classNames={`${BACK_BUTTON_VISIBILITY[isMainPage]}`}>
-        <img src="/assets/images/back-button.svg" alt="backButton" />
+        <img
+          className="h-[1.125rem] w-[1.125rem]"
+          src="/assets/images/back-button.svg"
+          alt="backButton"
+        />
       </BackButton>
       <Link to={ROUTE_PATH.roadmap.index}>
         <img src="/assets/images/logo.svg" alt="Logo" />
@@ -29,7 +33,11 @@ export const Header = () => {
         <ProfileImageDropdown />
       ) : (
         <Link to={ROUTE_PATH.login}>
-          <img src="/assets/images/user-icon.svg" alt="userIcon" />
+          <img
+            className="h-[1.125rem] w-[1.125rem]"
+            src="/assets/images/user-icon.svg"
+            alt="userIcon"
+          />
         </Link>
       )}
     </header>
