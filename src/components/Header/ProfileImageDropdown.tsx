@@ -47,7 +47,7 @@ export const ProfileImageDropdown = () => {
   return (
     <ConfigProvider theme={{ token: CUSTOM_COLOR_TOKEN }}>
       <Dropdown menu={{ items, selectable: true }} placement="bottomRight" trigger={['click']}>
-        <img className="h-[1.125rem] w-[1.125rem] rounded-full" src={imageUrl} alt="userIcon" />
+        <img className="h-8 w-8 rounded-full" src={imageUrl} alt="userIcon" />
       </Dropdown>
     </ConfigProvider>
   );

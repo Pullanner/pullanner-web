@@ -19,7 +19,7 @@ export const Header = () => {
 
   return (
     <header className="flex items-center justify-between bg-black p-5">
-      <BackButton classNames={`${BACK_BUTTON_VISIBILITY[isMainPage]}`}>
+      <BackButton classNames={`h-8 w-8 ${BACK_BUTTON_VISIBILITY[isMainPage]}`}>
         <img
           className="h-[1.125rem] w-[1.125rem]"
           src="/assets/images/back-button.svg"
