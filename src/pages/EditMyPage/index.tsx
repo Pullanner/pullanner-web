@@ -1,5 +1,5 @@
 import { useAtom, useSetAtom, useAtomValue } from 'jotai';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { validateNickname } from '@/apis/user';
@@ -19,9 +19,15 @@ export const EditMyPage = () => {
   const setModalType = useSetAtom(modalTypeAtom);
   const setUserData = useSetAtom(userDataAtom);
   const userData = useAtomValue(userDataAtom) as UserData;
-  const [nicknameValue, setNicknameValue] = useState(userData.nickname);
+  const [nicknameValue, setNicknameValue] = useState('');
   const { mutate: postNickname } = usePostNickname(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userData) {
+      setNicknameValue(userData.nickname);
+    }
+  }, [userData]);
 
   // TODO: 추후에 로딩페이지로 교체하기
   if (!userData) {
