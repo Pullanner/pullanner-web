@@ -19,11 +19,7 @@ export const EditMyPage = () => {
   const setModalType = useSetAtom(modalTypeAtom);
   const setUserData = useSetAtom(userDataAtom);
   const userData = useAtomValue(userDataAtom) as UserData;
-  const [nicknameValue, setNicknameValue] = useState(() => {
-    const { nickname } = userData;
-
-    return nickname;
-  });
+  const [nicknameValue, setNicknameValue] = useState(userData.nickname);
   const { mutate: postNickname } = usePostNickname(accessToken, setAccessToken, setModalType);
   const navigate = useNavigate();
 
