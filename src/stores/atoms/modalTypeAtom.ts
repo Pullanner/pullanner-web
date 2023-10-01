@@ -8,6 +8,7 @@ type ModalType =
   | 'logout'
   | 'loginExpiration'
   | 'accountHijacking'
+  | 'uploadProfileImage'
   | null;
 
 type SetAtom<Args extends any[], Result> = (...args: Args) => Result;

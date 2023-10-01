@@ -9,7 +9,7 @@ export const WorkoutTable = () => {
 
   return (
     <table className="w-full">
-      <thead className="bg-[#414141]">
+      <thead className="bg-gray-4">
         <tr>
           <th>Workout</th>
           <th>Count</th>

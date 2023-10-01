@@ -22,3 +22,10 @@ export const convertToUTCDate = (dateString: string, timeString: string) => {
 
   return utcDate.toISOString();
 };
+
+export const parseDateIntoYearMonthDay = (dateString: string) => {
+  const joinDateWithoutTime = dateString.split('T')[0];
+  const [year, month, day] = joinDateWithoutTime.split('-');
+
+  return { year, month, day };
+};

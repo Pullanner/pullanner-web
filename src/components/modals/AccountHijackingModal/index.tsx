@@ -37,7 +37,7 @@ export const AccountHijackingModal = () => {
   return (
     <Modal>
       <ModalText>
-        <MainText textStyle="border-b-2 border-[#686868] py-5">{MODAL_TEXT.title}</MainText>
+        <MainText textStyle="border-b-2 border-gray-3 py-5">{MODAL_TEXT.title}</MainText>
         <SubText textStyle="pt-6 pb-7">{MODAL_TEXT.description}</SubText>
       </ModalText>
       <ModalButton text="확인" handler={handleOkButtonClick} isPrimary />

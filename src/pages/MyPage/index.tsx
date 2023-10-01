@@ -26,12 +26,17 @@ export const MyPage = () => {
     return <div>Loading...</div>;
   }
 
-  const { profileImage, nickname, email, planCount, level } = userData;
+  const { profileImage, nickname, email, experiencePoint, level, joinDate } = userData;
 
   return (
     <div>
-      <UserSection profileImage={profileImage} nickname={nickname} email={email} />
-      <ProgressSection planCount={planCount} level={level} />
+      <UserSection
+        profileImage={profileImage}
+        nickname={nickname}
+        email={email}
+        joinDate={joinDate}
+      />
+      <ProgressSection experiencePoint={experiencePoint} level={level} />
       <WorkoutSection />
     </div>
   );

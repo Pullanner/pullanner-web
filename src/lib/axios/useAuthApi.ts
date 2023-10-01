@@ -68,9 +68,14 @@ export const deleteAuthRequest = async (
   return data;
 };
 
-export const patchAuthRequest = async <T>(apiPath: string, payload: T, accessToken: string) => {
+export const patchAuthRequest = async <T>(
+  apiPath: string,
+  payload: T,
+  accessToken: string,
+  options?: Options,
+) => {
   if (isDevMode) {
-    const { data } = await axios.patch(apiPath, payload);
+    const { data } = await axios.patch(apiPath, payload, { ...options });
 
     return data;
   }
@@ -79,6 +84,7 @@ export const patchAuthRequest = async <T>(apiPath: string, payload: T, accessTok
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
+    ...options,
   });
 
   return data;

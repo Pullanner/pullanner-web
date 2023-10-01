@@ -26,7 +26,7 @@ export const NumericInput = ({ inputName, onChange, value, maxLength }: NumericI
       value={value}
       onChange={handleChange}
       onBlur={handleBlur}
-      className="w-10 rounded-md bg-[#2e2e2e] p-1 text-center"
+      className="w-10 rounded-md bg-gray-4 p-1 text-center"
       required
     />
   );
