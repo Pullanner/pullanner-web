@@ -82,7 +82,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
           </button>
         </div>
         {isDeleteRequestFailed && (
-          <p id="validationResult" className="pt-3 text-sm text-fail">
+          <p id="validationResult" className="pt-3 text-sm text-invalid">
             {INVALID_AUTHORIZATION_CODE_DESCRIPTION}
           </p>
         )}
