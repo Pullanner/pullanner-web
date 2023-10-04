@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { validateNickname } from '@/apis/user';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { DuplicationCheckInput } from '@/components/inputs/DuplicationCheckInput';
+import { DeleteAccountModal } from '@/components/modals/DeleteAccountModal';
 import { ROUTE_PATH } from '@/constants';
 import { usePostNickname } from '@/lib/react-query/useUserData';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
@@ -16,7 +17,7 @@ import { ProfileImageSection } from './ProfileImageSection';
 
 export const EditMyPage = () => {
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-  const setModalType = useSetAtom(modalTypeAtom);
+  const [modalType, setModalType] = useAtom(modalTypeAtom);
   const setUserData = useSetAtom(userDataAtom);
   const userData = useAtomValue(userDataAtom) as UserData;
   const [nicknameValue, setNicknameValue] = useState('');
@@ -78,6 +79,7 @@ export const EditMyPage = () => {
           회원탈퇴
         </button>
       </div>
+      {modalType === 'deleteAccount' && <DeleteAccountModal />}
     </div>
   );
 };

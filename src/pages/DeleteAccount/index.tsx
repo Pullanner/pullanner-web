@@ -1,9 +1,10 @@
 import { message } from 'antd';
-import { useAtom, useSetAtom } from 'jotai';
+import { useAtom } from 'jotai';
 import { useRef } from 'react';
 
 import { sendAuthenticationCode } from '@/apis/user';
 import { SaveButton } from '@/components/buttons/SaveButton';
+import { DeleteAccountSuccessModal } from '@/components/modals/DeleteAccountSuccessModal';
 import { SuccessIcon } from '@/icons/SuccessIcon';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
@@ -15,9 +16,9 @@ import { DeleteAccountDescription } from './DeleteAccountDescription';
 export const DeleteAccount = () => {
   const [isTimerActive, setTimerActive] = useAtom(isTimerActiveAtom);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const [modalType, setModalType] = useAtom(modalTypeAtom);
   const [messageApi, contextHolder] = message.useMessage();
   const inputRef = useRef<HTMLInputElement>(null);
-  const setModalType = useSetAtom(modalTypeAtom);
 
   const handleSendCodeButtonClick = async () => {
     if (isTimerActive) {
@@ -55,6 +56,7 @@ export const DeleteAccount = () => {
       />
       <AuthenticationCodeInput ref={inputRef} />
       {contextHolder}
+      {modalType === 'deleteAccountSuccess' && <DeleteAccountSuccessModal />}
     </div>
   );
 };

@@ -1,6 +1,7 @@
-import { useSetAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { useRef, type ChangeEvent } from 'react';
 
+import { UploadProfileImageModal } from '@/components/modals/UploadProfileImageModal';
 import { ProfileImage } from '@/components/ProfileImage';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { profileImageDataAtom } from '@/stores/atoms/profileImageDataAtom';
@@ -12,7 +13,7 @@ type ProfileImageSectionProps = {
 export const ProfileImageSection = ({ profileImage }: ProfileImageSectionProps) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const setProfileImageData = useSetAtom(profileImageDataAtom);
-  const setModalType = useSetAtom(modalTypeAtom);
+  const [modalType, setModalType] = useAtom(modalTypeAtom);
 
   const handleProfileImageEditButtonClick = () => {
     if (fileInputRef?.current) {
@@ -50,6 +51,7 @@ export const ProfileImageSection = ({ profileImage }: ProfileImageSectionProps) 
         ref={fileInputRef}
         onChange={handleFileInputChange}
       />
+      {modalType === 'uploadProfileImage' && <UploadProfileImageModal />}
     </section>
   );
 };

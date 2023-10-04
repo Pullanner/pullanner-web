@@ -6,11 +6,8 @@ import { BottomNavigationBar } from '@/components/BottomNavigationBar';
 import { ScrollTopButton } from '@/components/buttons/ScrollTopButton';
 import { Header } from '@/components/Header';
 import { AccountHijackingModal } from '@/components/modals/AccountHijackingModal';
-import { DeleteAccountModal } from '@/components/modals/DeleteAccountModal';
-import { DeleteAccountSuccessModal } from '@/components/modals/DeleteAccountSuccessModal';
 import { LoginExpirationModal } from '@/components/modals/LoginExpirationModal';
 import { LogoutModal } from '@/components/modals/LogoutModal';
-import { UploadProfileImageModal } from '@/components/modals/UploadProfileImageModal';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
@@ -40,12 +37,9 @@ export const Root = () => {
         </div>
         <BottomNavigationBar />
       </div>
-      {modalType === 'deleteAccount' && <DeleteAccountModal />}
-      {modalType === 'deleteAccountSuccess' && <DeleteAccountSuccessModal />}
-      {modalType === 'logout' && <LogoutModal />}
-      {modalType === 'loginExpiration' && <LoginExpirationModal />}
       {modalType === 'accountHijacking' && <AccountHijackingModal />}
-      {modalType === 'uploadProfileImage' && <UploadProfileImageModal />}
+      {modalType === 'loginExpiration' && <LoginExpirationModal />}
+      {modalType === 'logout' && <LogoutModal />}
     </div>
   );
 };
