@@ -19,7 +19,7 @@ const INPUT_LENGTH = {
 
 const DESCRIPTION_TEXT = [
   'Pullanner에 오신 것을 환영합니다!',
-  '사용하실 닉네임을 알려주세요',
+  '사용하실 닉네임을 입력해주세요',
 ] as const;
 
 export const SetNickname = () => {
