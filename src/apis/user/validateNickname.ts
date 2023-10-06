@@ -29,8 +29,6 @@ export const validateNickname = async (
 
     return data.code === SUCCESS_RESPONSE_CODE;
   } catch (error) {
-    console.log(error);
-
-    return false;
+    throw new Error();
   }
 };
