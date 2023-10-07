@@ -55,7 +55,7 @@ export const SetupResult = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <Headline descriptions={TEXT_CONTENTS.headline.description} classNames="px-5 pb-9 pt-10">
+      <Headline descriptions={TEXT_CONTENTS.headline.description} classNames="px-5 pb-9 pt-14">
         <p>
           <span className="font-extrabold">{nickname}</span>님,
         </p>
