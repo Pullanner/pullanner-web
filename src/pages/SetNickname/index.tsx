@@ -41,7 +41,7 @@ export const SetNickname = () => {
 
   return (
     <div className="flex flex-col items-center px-5">
-      <Headline descriptions={DESCRIPTION_TEXT} classNames="pt-[6.25rem]" />
+      <Headline descriptions={DESCRIPTION_TEXT} classNames="pt-14" />
       <figure className="pb-9 pt-12">
         <img src="/assets/images/greeting-bongcheol.svg" alt="greetingBongcheol" />
       </figure>
@@ -52,7 +52,7 @@ export const SetNickname = () => {
         setValidInputValue={setNickname}
         validationFunction={validateNickname}
       />
-      <div className="flex justify-center pt-44">
+      <div className="flex justify-center pt-28">
         <SaveButton
           isActive={!!nickname.length}
           handleButtonClick={handleSaveButtonClick}
