@@ -22,14 +22,16 @@ const LOGIN_MESSAGE = '로그인 후 풀래너의 다양한 기능을 사용해�
 
 export const Login = () => {
   return (
-    <div className="mt-24 flex flex-col items-center">
-      <h1 className="mb-9">
-        <img src="/assets/images/logo.svg" alt="Logo" />
-      </h1>
-      <h3 className="mb-9 text-sm font-normal">{LOGIN_MESSAGE}</h3>
-      {LOGIN_BUTTON_DATA.map(({ platform, iconURL, style }) => {
-        return <LoginButton key={platform} platform={platform} iconURL={iconURL} style={style} />;
-      })}
+    <div className="flex flex-col items-center">
+      <figure className="my-16">
+        <img src="/assets/images/banner/login.jpg" alt="loginBanner" />
+      </figure>
+      <div className="mx-5">
+        <h1 className="mb-9 text-sm font-normal">{LOGIN_MESSAGE}</h1>
+        {LOGIN_BUTTON_DATA.map(({ platform, iconURL, style }) => {
+          return <LoginButton key={platform} platform={platform} iconURL={iconURL} style={style} />;
+        })}
+      </div>
     </div>
   );
 };

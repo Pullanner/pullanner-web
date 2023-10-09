@@ -33,12 +33,12 @@ export const SelectWorkout = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <Headline descriptions={TEXT_CONTENTS.headline} classNames="pb-9 pt-[6.25rem]">
+      <Headline descriptions={TEXT_CONTENTS.headline} classNames="pb-8 pt-14">
         <span className="font-extrabold">{nickname}</span>님,
       </Headline>
-      <p className="pb-10 text-xs text-gray-1">{TEXT_CONTENTS.description}</p>
+      <p className="pb-8 text-xs text-gray-1">{TEXT_CONTENTS.description}</p>
       <SelectableWorkoutDashboard />
-      <div className="flex justify-center gap-x-4 px-5 pt-12">
+      <div className="flex justify-center gap-x-4 px-5 pt-6">
         <BackButton classNames="h-[2.75rem] w-[9.375rem] bg-gray-1 rounded-[0.313rem] text-sm text-black">
           이전으로 가기
         </BackButton>

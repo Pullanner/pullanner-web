@@ -29,12 +29,12 @@ export const Root = () => {
     <div className="flex h-screen w-screen flex-row items-center justify-center">
       <div className="h-[100%] w-[100%] bg-black sm:h-[50rem] sm:max-h-[90vh] sm:w-96">
         <Header />
-        <div className="flex h-[calc(100%-124px)] flex-col items-center">
+        <main className="flex h-[calc(100%-124px)] flex-col items-center">
           <div className="relative overflow-y-auto" id="outlet-container">
             <Outlet />
             <ScrollTopButton />
           </div>
-        </div>
+        </main>
         <BottomNavigationBar />
       </div>
       {modalType === 'accountHijacking' && <AccountHijackingModal />}
