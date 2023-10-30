@@ -1,7 +1,12 @@
+import { useAtom, useSetAtom } from 'jotai';
 import { useState, type MouseEvent } from 'react';
 import { LineChart, Legend, Line, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
 import { COLOR_BY_WORKOUT, FULL_MONTH_NAME_BY_ABBREVIATION } from '@/constants';
+import { useGetMonthWorkoutCount } from '@/lib/react-query/useMonthWorkoutCount';
+import type { MonthWorkoutCount } from '@/mocks/summaries/monthWorkoutCount/data';
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 
 import { MonthDropdown } from './MonthDropdown';
 
@@ -15,235 +20,26 @@ type WorkoutNames =
   | 'Archer Pull-Up'
   | 'Muscle Up';
 
-type LineChartData = {
-  [K in WorkoutNames]: {
-    month: keyof typeof FULL_MONTH_NAME_BY_ABBREVIATION;
-    totalCount: number;
-  }[];
-};
-
-const LINE_CHART_DATA: LineChartData = {
-  Hanging: [
-    {
-      month: 'May',
-      totalCount: 200,
-    },
-    {
-      month: 'Jun',
-      totalCount: 300,
-    },
-    {
-      month: 'Jul',
-      totalCount: 400,
-    },
-    {
-      month: 'Aug',
-      totalCount: 300,
-    },
-    {
-      month: 'Sep',
-      totalCount: 200,
-    },
-    {
-      month: 'Oct',
-      totalCount: 100,
-    },
-  ],
-  'Jumping Pull-Up': [
-    {
-      month: 'May',
-      totalCount: 200,
-    },
-    {
-      month: 'Jun',
-      totalCount: 300,
-    },
-    {
-      month: 'Jul',
-      totalCount: 400,
-    },
-    {
-      month: 'Aug',
-      totalCount: 300,
-    },
-    {
-      month: 'Sep',
-      totalCount: 200,
-    },
-    {
-      month: 'Oct',
-      totalCount: 100,
-    },
-  ],
-  'Band Pull-Up': [
-    {
-      month: 'May',
-      totalCount: 200,
-    },
-    {
-      month: 'Jun',
-      totalCount: 300,
-    },
-    {
-      month: 'Jul',
-      totalCount: 400,
-    },
-    {
-      month: 'Aug',
-      totalCount: 300,
-    },
-    {
-      month: 'Sep',
-      totalCount: 200,
-    },
-    {
-      month: 'Oct',
-      totalCount: 100,
-    },
-  ],
-  'Chin-Up': [
-    {
-      month: 'May',
-      totalCount: 200,
-    },
-    {
-      month: 'Jun',
-      totalCount: 300,
-    },
-    {
-      month: 'Jul',
-      totalCount: 400,
-    },
-    {
-      month: 'Aug',
-      totalCount: 300,
-    },
-    {
-      month: 'Sep',
-      totalCount: 200,
-    },
-    {
-      month: 'Oct',
-      totalCount: 100,
-    },
-  ],
-  'Pull-Up': [
-    {
-      month: 'May',
-      totalCount: 200,
-    },
-    {
-      month: 'Jun',
-      totalCount: 300,
-    },
-    {
-      month: 'Jul',
-      totalCount: 400,
-    },
-    {
-      month: 'Aug',
-      totalCount: 300,
-    },
-    {
-      month: 'Sep',
-      totalCount: 200,
-    },
-    {
-      month: 'Oct',
-      totalCount: 100,
-    },
-  ],
-  'Chest to Bar': [
-    {
-      month: 'May',
-      totalCount: 200,
-    },
-    {
-      month: 'Jun',
-      totalCount: 300,
-    },
-    {
-      month: 'Jul',
-      totalCount: 400,
-    },
-    {
-      month: 'Aug',
-      totalCount: 300,
-    },
-    {
-      month: 'Sep',
-      totalCount: 200,
-    },
-    {
-      month: 'Oct',
-      totalCount: 100,
-    },
-  ],
-  'Archer Pull-Up': [
-    {
-      month: 'May',
-      totalCount: 200,
-    },
-    {
-      month: 'Jun',
-      totalCount: 300,
-    },
-    {
-      month: 'Jul',
-      totalCount: 400,
-    },
-    {
-      month: 'Aug',
-      totalCount: 300,
-    },
-    {
-      month: 'Sep',
-      totalCount: 200,
-    },
-    {
-      month: 'Oct',
-      totalCount: 100,
-    },
-  ],
-  'Muscle Up': [
-    {
-      month: 'May',
-      totalCount: 200,
-    },
-    {
-      month: 'Jun',
-      totalCount: 300,
-    },
-    {
-      month: 'Jul',
-      totalCount: 400,
-    },
-    {
-      month: 'Aug',
-      totalCount: 300,
-    },
-    {
-      month: 'Sep',
-      totalCount: 200,
-    },
-    {
-      month: 'Oct',
-      totalCount: 100,
-    },
-  ],
-};
-
 export const MonthlyTotalCountByEachWorkoutChart = () => {
   const [workoutName, setWorkoutName] = useState<WorkoutNames>('Hanging');
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const setModalType = useSetAtom(modalTypeAtom);
+  const { data } = useGetMonthWorkoutCount(accessToken, setAccessToken, setModalType);
+
+  if (!data) {
+    return null;
+  }
+
+  const monthWorkoutCountData = data as MonthWorkoutCount;
+
+  const MOST_WORKOUT_MONTH = monthWorkoutCountData[workoutName].reduce((prevWorkout, workout) => {
+    return prevWorkout.totalCount >= workout.totalCount ? prevWorkout : workout;
+  }).month;
 
   const handleDropdownItemClick = ({ currentTarget }: MouseEvent<HTMLButtonElement>) => {
     const selectedWorkoutName = currentTarget.name as WorkoutNames;
     setWorkoutName(selectedWorkoutName);
   };
-
-  const MOST_WORKOUT_MONTH = LINE_CHART_DATA[workoutName].reduce((prevWorkoutData, workoutData) => {
-    return prevWorkoutData.totalCount >= workoutData.totalCount ? prevWorkoutData : workoutData;
-  }).month;
 
   return (
     <section className="w-full pb-8 pt-5">
@@ -255,7 +51,7 @@ export const MonthlyTotalCountByEachWorkoutChart = () => {
           </span>
           에 {workoutName}을 가장 많이 하셨어요!
         </p>
-        <LineChart width={350} height={350} data={LINE_CHART_DATA[workoutName]}>
+        <LineChart width={350} height={350} data={monthWorkoutCountData[workoutName]}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="month" />
           <YAxis />
