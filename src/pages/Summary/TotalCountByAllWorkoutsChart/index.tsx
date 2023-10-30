@@ -1,27 +1,32 @@
+import { useAtom, useSetAtom } from 'jotai';
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart } from 'recharts';
 
-const RADAR_CHART_DATA = [
-  { workout: 'Hanging', totalCount: 600 },
-  { workout: 'Jumping Pull-Up', totalCount: 500 },
-  { workout: 'Band Pull-Up', totalCount: 300 },
-  { workout: 'Chin-Up', totalCount: 200 },
-  { workout: 'Pull-Up', totalCount: 100 },
-  { workout: 'Chest to Bar', totalCount: 50 },
-  { workout: 'Archer Pull-Up', totalCount: 0 },
-  { workout: 'Muscle Up', totalCount: 0 },
-];
-
-const MOST_WORKOUT_NAME = RADAR_CHART_DATA.reduce((prevWorkoutData, workoutData) => {
-  return prevWorkoutData.totalCount >= workoutData.totalCount ? prevWorkoutData : workoutData;
-}).workout;
+import { useGetTotalWorkoutCount } from '@/lib/react-query/useTotalWorkoutCount';
+import type { TotalWorkoutCount } from '@/mocks/summaries/totalWorkoutCount/data';
+import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
+import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 
 export const TotalCountByAllWorkoutsChart = () => {
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
+  const setModalType = useSetAtom(modalTypeAtom);
+  const { data } = useGetTotalWorkoutCount(accessToken, setAccessToken, setModalType);
+
+  if (!data) {
+    return null;
+  }
+
+  const { totalCountByWorkout: totalCountByWorkoutData } = data as TotalWorkoutCount;
+
+  const MOST_WORKOUT_NAME = totalCountByWorkoutData.reduce((prevWorkoutData, workoutData) => {
+    return prevWorkoutData.totalCount >= workoutData.totalCount ? prevWorkoutData : workoutData;
+  }).workout;
+
   return (
     <section className="flex w-full flex-col items-center bg-gray-6 py-4">
       <p className="text-center text-xs">
         <span className="text-primary">{MOST_WORKOUT_NAME}</span>을 가장 많이 하셨어요!
       </p>
-      <RadarChart outerRadius={70} width={350} height={230} data={RADAR_CHART_DATA}>
+      <RadarChart outerRadius={70} width={350} height={230} data={totalCountByWorkoutData}>
         <PolarGrid />
         <PolarAngleAxis dataKey="workout" style={{ fontSize: '14px', color: '#505050' }} />
         <PolarRadiusAxis angle={30} style={{ fontSize: '12px' }} />
