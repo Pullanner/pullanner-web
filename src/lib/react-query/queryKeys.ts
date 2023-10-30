@@ -3,4 +3,5 @@ export const queryKeys = {
   plans: 'plans',
   workouts: 'workouts',
   totalWorkoutCount: 'totalWorkoutCount',
+  monthWorkoutCount: 'monthWorkoutCount',
 } as const;
