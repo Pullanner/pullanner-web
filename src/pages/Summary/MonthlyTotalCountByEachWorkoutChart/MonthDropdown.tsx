@@ -1,5 +1,7 @@
-import { Dropdown, type MenuProps } from 'antd';
+import { Dropdown, ConfigProvider, type MenuProps } from 'antd';
 import { type MouseEvent } from 'react';
+
+import { CUSTOM_COLOR_TOKEN } from './customColorToken';
 
 type MonthDropdownProps = {
   handleDropdownItemClick: ({ currentTarget }: MouseEvent<HTMLButtonElement>) => void;
@@ -76,11 +78,13 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
 
   return (
     <div className="pb-3 pl-3">
-      <Dropdown menu={{ items, selectable: true }} placement="bottomLeft" trigger={['click']}>
-        <div className="inline-block rounded-md bg-gray-4 px-2 py-1 text-sm hover:bg-gray-3">
-          {workoutName}
-        </div>
-      </Dropdown>
+      <ConfigProvider theme={{ token: CUSTOM_COLOR_TOKEN }}>
+        <Dropdown menu={{ items, selectable: true }} placement="bottomLeft" trigger={['click']}>
+          <div className="inline-block rounded-md bg-gray-4 px-2 py-1 text-sm hover:bg-gray-3">
+            {workoutName}
+          </div>
+        </Dropdown>
+      </ConfigProvider>
     </div>
   );
 };
