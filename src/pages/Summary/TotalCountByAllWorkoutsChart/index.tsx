@@ -2,7 +2,6 @@ import { useAtom, useSetAtom } from 'jotai';
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart } from 'recharts';
 
 import { useGetTotalWorkoutCount } from '@/lib/react-query/useTotalWorkoutCount';
-import type { TotalWorkoutCount } from '@/mocks/summaries/totalWorkoutCount/data';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 
@@ -15,7 +14,7 @@ export const TotalCountByAllWorkoutsChart = () => {
     return null;
   }
 
-  const { totalCountByWorkout: totalCountByWorkoutData } = data as TotalWorkoutCount;
+  const { totalCountByWorkout: totalCountByWorkoutData } = data;
 
   const MOST_WORKOUT_NAME = totalCountByWorkoutData.reduce((prevWorkoutData, workoutData) => {
     return prevWorkoutData.totalCount >= workoutData.totalCount ? prevWorkoutData : workoutData;
