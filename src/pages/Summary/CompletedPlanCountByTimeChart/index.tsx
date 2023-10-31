@@ -2,7 +2,6 @@ import { useAtom, useSetAtom } from 'jotai';
 import { Bar, BarChart, Legend, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
 import { useGetCompletedPlanCount } from '@/lib/react-query/useCompletedPlanCount';
-import type { CompletedPlanCount } from '@/mocks/summaries/completedPlanCount/data';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 
@@ -15,7 +14,7 @@ export const CompletedPlanCountByTimeChart = () => {
     return null;
   }
 
-  const { completedPlanCountByTime: completedPlanCountByTimeData } = data as CompletedPlanCount;
+  const { completedPlanCountByTime: completedPlanCountByTimeData } = data;
 
   const MOST_WORKOUT_TIME = completedPlanCountByTimeData.reduce((prevWorkout, workout) => {
     return prevWorkout.thisMonth >= workout.thisMonth ? prevWorkout : workout;
