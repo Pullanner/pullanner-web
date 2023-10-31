@@ -4,7 +4,6 @@ import { LineChart, Legend, Line, CartesianGrid, Tooltip, XAxis, YAxis } from 'r
 
 import { COLOR_BY_WORKOUT, FULL_MONTH_NAME_BY_ABBREVIATION } from '@/constants';
 import { useGetMonthWorkoutCount } from '@/lib/react-query/useMonthWorkoutCount';
-import type { MonthWorkoutCount } from '@/mocks/summaries/monthWorkoutCount/data';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 
@@ -24,13 +23,15 @@ export const MonthlyTotalCountByEachWorkoutChart = () => {
   const [workoutName, setWorkoutName] = useState<WorkoutNames>('Hanging');
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
-  const { data } = useGetMonthWorkoutCount(accessToken, setAccessToken, setModalType);
+  const { data: monthWorkoutCountData } = useGetMonthWorkoutCount(
+    accessToken,
+    setAccessToken,
+    setModalType,
+  );
 
-  if (!data) {
+  if (!monthWorkoutCountData) {
     return null;
   }
-
-  const monthWorkoutCountData = data as MonthWorkoutCount;
 
   const MOST_WORKOUT_MONTH = monthWorkoutCountData[workoutName].reduce((prevWorkout, workout) => {
     return prevWorkout.totalCount >= workout.totalCount ? prevWorkout : workout;
