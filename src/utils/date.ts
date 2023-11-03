@@ -29,3 +29,11 @@ export const parseDateIntoYearMonthDay = (dateString: string) => {
 
   return { year, month, day };
 };
+
+export const getDaysSinceSpecificDate = (dateString: string) => {
+  const specificDateWithoutTime = dateString.split('T')[0];
+  const nowDate = dayjs();
+  const daysSinceSpecificDate = nowDate.diff(specificDateWithoutTime, 'day');
+
+  return daysSinceSpecificDate;
+};
