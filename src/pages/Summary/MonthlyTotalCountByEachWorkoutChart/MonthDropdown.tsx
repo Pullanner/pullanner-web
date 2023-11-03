@@ -1,6 +1,8 @@
 import { Dropdown, ConfigProvider, type MenuProps } from 'antd';
 import { type MouseEvent } from 'react';
 
+import { DownArrowIcon } from '@/icons/DownArrowIcon';
+
 import { CUSTOM_COLOR_TOKEN } from './customColorToken';
 
 type MonthDropdownProps = {
@@ -80,8 +82,11 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
     <div className="pb-3 pl-3">
       <ConfigProvider theme={{ token: CUSTOM_COLOR_TOKEN }}>
         <Dropdown menu={{ items, selectable: true }} placement="bottomLeft" trigger={['click']}>
-          <div className="inline-block rounded-md bg-gray-4 px-2 py-1 text-sm hover:bg-gray-3">
-            {workoutName}
+          <div className="inline-block rounded-md bg-gray-4 px-2.5 py-1.5 text-sm hover:bg-gray-3">
+            <div className="flex items-center justify-center gap-2">
+              <span>{workoutName}</span>
+              <DownArrowIcon />
+            </div>
           </div>
         </Dropdown>
       </ConfigProvider>
