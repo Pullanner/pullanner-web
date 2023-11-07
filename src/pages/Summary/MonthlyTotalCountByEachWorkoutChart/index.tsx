@@ -2,7 +2,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import { useState, type MouseEvent } from 'react';
 import { LineChart, Legend, Line, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
-import { COLOR_BY_WORKOUT, FULL_MONTH_NAME_BY_ABBREVIATION } from '@/constants';
+import { COLOR_BY_WORKOUT, MONTH_NAME_IN_KOREAN } from '@/constants';
 import { useGetMonthWorkoutCount } from '@/lib/react-query/useMonthWorkoutCount';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
@@ -29,34 +29,43 @@ export const MonthlyTotalCountByEachWorkoutChart = () => {
     return null;
   }
 
-  const { data: monthWorkoutCountData } = data;
+  const { data: allMonthWorkoutCountData } = data;
 
-  const MOST_WORKOUT_MONTH = monthWorkoutCountData[workoutName].reduce((prevWorkout, workout) => {
-    return prevWorkout.totalCount >= workout.totalCount ? prevWorkout : workout;
-  }).month;
+  const MOST_WORKOUT_MONTH = allMonthWorkoutCountData[workoutName].reduce(
+    (prevWorkout, workout) => {
+      return prevWorkout.totalCount >= workout.totalCount ? prevWorkout : workout;
+    },
+  ).month;
 
   const handleDropdownItemClick = ({ currentTarget }: MouseEvent<HTMLButtonElement>) => {
     const selectedWorkoutName = currentTarget.name as WorkoutNames;
     setWorkoutName(selectedWorkoutName);
   };
 
+  const monthWorkoutCountData = allMonthWorkoutCountData[workoutName].map(
+    ({ month, totalCount }) => {
+      return {
+        월: MONTH_NAME_IN_KOREAN[month],
+        '운동 횟수': totalCount,
+      };
+    },
+  );
+
   return (
     <section className="w-full pb-8 pt-5">
       <MonthDropdown handleDropdownItemClick={handleDropdownItemClick} workoutName={workoutName} />
       <div className="flex w-full flex-col items-center bg-gray-6 py-4">
         <p className="pb-4 text-center text-xs">
-          <span className="text-primary">
-            {FULL_MONTH_NAME_BY_ABBREVIATION[MOST_WORKOUT_MONTH]}
-          </span>
-          에 {workoutName}을 가장 많이 하셨어요!
+          <span className="text-primary">{MONTH_NAME_IN_KOREAN[MOST_WORKOUT_MONTH]}</span>에{' '}
+          {workoutName}을 가장 많이 하셨어요!
         </p>
-        <LineChart width={350} height={350} data={monthWorkoutCountData[workoutName]}>
+        <LineChart width={350} height={350} data={monthWorkoutCountData}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
+          <XAxis dataKey="월" />
           <YAxis />
           <Tooltip
             labelFormatter={(value) => {
-              return `month : ${value}`;
+              return value;
             }}
             labelStyle={{ color: COLOR_BY_WORKOUT[workoutName] }}
             contentStyle={{
@@ -66,7 +75,7 @@ export const MonthlyTotalCountByEachWorkoutChart = () => {
           <Legend />
           <Line
             type="monotone"
-            dataKey="totalCount"
+            dataKey="운동 횟수"
             dot={false}
             stroke={COLOR_BY_WORKOUT[workoutName]}
           />

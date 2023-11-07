@@ -1,4 +1,4 @@
-import { FULL_MONTH_NAME_BY_ABBREVIATION } from '@/constants';
+import { MONTH_NAME_IN_KOREAN } from '@/constants';
 
 type WorkoutNames =
   | 'Hanging'
@@ -13,7 +13,7 @@ type WorkoutNames =
 export type MonthWorkoutCount = {
   data: {
     [K in WorkoutNames]: {
-      month: keyof typeof FULL_MONTH_NAME_BY_ABBREVIATION;
+      month: keyof typeof MONTH_NAME_IN_KOREAN;
       totalCount: number;
     }[];
   };

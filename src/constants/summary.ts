@@ -9,17 +9,17 @@ export const COLOR_BY_WORKOUT = {
   'Muscle Up': '#FF8CF4',
 };
 
-export const FULL_MONTH_NAME_BY_ABBREVIATION = {
-  JAN: 'January',
-  FEB: 'February',
-  MAR: 'March',
-  APR: 'April',
-  MAY: 'May',
-  JUN: 'June',
-  JUL: 'July',
-  AUG: 'August',
-  SEP: 'September',
-  OCT: 'October',
-  NOV: 'November',
-  DEC: 'December',
+export const MONTH_NAME_IN_KOREAN = {
+  JAN: '1월',
+  FEB: '2월',
+  MAR: '3월',
+  APR: '4월',
+  MAY: '5월',
+  JUN: '6월',
+  JUL: '7월',
+  AUG: '8월',
+  SEP: '9월',
+  OCT: '10월',
+  NOV: '11월',
+  DEC: '12월',
 };
