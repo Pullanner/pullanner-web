@@ -10,16 +10,16 @@ export const COLOR_BY_WORKOUT = {
 };
 
 export const FULL_MONTH_NAME_BY_ABBREVIATION = {
-  Jan: 'January',
-  Feb: 'February',
-  Mar: 'March',
-  Apr: 'April',
-  May: 'May',
-  Jun: 'June',
-  Jul: 'July',
-  Aug: 'August',
-  Sep: 'September',
-  Oct: 'October',
-  Nov: 'November',
-  Dec: 'December',
+  JAN: 'January',
+  FEB: 'February',
+  MAR: 'March',
+  APR: 'April',
+  MAY: 'May',
+  JUN: 'June',
+  JUL: 'July',
+  AUG: 'August',
+  SEP: 'September',
+  OCT: 'October',
+  NOV: 'November',
+  DEC: 'December',
 };

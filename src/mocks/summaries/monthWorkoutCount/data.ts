@@ -23,209 +23,209 @@ export const MONTH_WORKOUT_COUNT_DATA = {
   data: {
     Hanging: [
       {
-        month: 'May',
+        month: 'MAY',
         totalCount: 200,
       },
       {
-        month: 'Jun',
+        month: 'JUN',
         totalCount: 300,
       },
       {
-        month: 'Jul',
+        month: 'JUL',
         totalCount: 400,
       },
       {
-        month: 'Aug',
+        month: 'AUG',
         totalCount: 300,
       },
       {
-        month: 'Sep',
+        month: 'SEP',
         totalCount: 200,
       },
       {
-        month: 'Oct',
+        month: 'OCT',
         totalCount: 100,
       },
     ],
     'Jumping Pull-Up': [
       {
-        month: 'May',
+        month: 'MAY',
         totalCount: 300,
       },
       {
-        month: 'Jun',
+        month: 'JUN',
         totalCount: 400,
       },
       {
-        month: 'Jul',
+        month: 'JUL',
         totalCount: 300,
       },
       {
-        month: 'Aug',
+        month: 'AUG',
         totalCount: 200,
       },
       {
-        month: 'Sep',
+        month: 'SEP',
         totalCount: 100,
       },
       {
-        month: 'Oct',
+        month: 'OCT',
         totalCount: 100,
       },
     ],
     'Band Pull-Up': [
       {
-        month: 'May',
+        month: 'MAY',
         totalCount: 500,
       },
       {
-        month: 'Jun',
+        month: 'JUN',
         totalCount: 400,
       },
       {
-        month: 'Jul',
+        month: 'JUL',
         totalCount: 300,
       },
       {
-        month: 'Aug',
+        month: 'AUG',
         totalCount: 200,
       },
       {
-        month: 'Sep',
+        month: 'SEP',
         totalCount: 100,
       },
       {
-        month: 'Oct',
+        month: 'OCT',
         totalCount: 200,
       },
     ],
     'Chin-Up': [
       {
-        month: 'May',
+        month: 'MAY',
         totalCount: 100,
       },
       {
-        month: 'Jun',
+        month: 'JUN',
         totalCount: 200,
       },
       {
-        month: 'Jul',
+        month: 'JUL',
         totalCount: 300,
       },
       {
-        month: 'Aug',
+        month: 'AUG',
         totalCount: 400,
       },
       {
-        month: 'Sep',
+        month: 'SEP',
         totalCount: 300,
       },
       {
-        month: 'Oct',
+        month: 'OCT',
         totalCount: 200,
       },
     ],
     'Pull-Up': [
       {
-        month: 'May',
+        month: 'MAY',
         totalCount: 100,
       },
       {
-        month: 'Jun',
+        month: 'JUN',
         totalCount: 100,
       },
       {
-        month: 'Jul',
+        month: 'JUL',
         totalCount: 200,
       },
       {
-        month: 'Aug',
+        month: 'AUG',
         totalCount: 300,
       },
       {
-        month: 'Sep',
+        month: 'SEP',
         totalCount: 400,
       },
       {
-        month: 'Oct',
+        month: 'OCT',
         totalCount: 300,
       },
     ],
     'Chest to Bar': [
       {
-        month: 'May',
+        month: 'MAY',
         totalCount: 200,
       },
       {
-        month: 'Jun',
+        month: 'JUN',
         totalCount: 100,
       },
       {
-        month: 'Jul',
+        month: 'JUL',
         totalCount: 200,
       },
       {
-        month: 'Aug',
+        month: 'AUG',
         totalCount: 300,
       },
       {
-        month: 'Sep',
+        month: 'SEP',
         totalCount: 400,
       },
       {
-        month: 'Oct',
+        month: 'OCT',
         totalCount: 500,
       },
     ],
     'Archer Pull-Up': [
       {
-        month: 'May',
+        month: 'MAY',
         totalCount: 500,
       },
       {
-        month: 'Jun',
+        month: 'JUN',
         totalCount: 300,
       },
       {
-        month: 'Jul',
+        month: 'JUL',
         totalCount: 400,
       },
       {
-        month: 'Aug',
+        month: 'AUG',
         totalCount: 300,
       },
       {
-        month: 'Sep',
+        month: 'SEP',
         totalCount: 200,
       },
       {
-        month: 'Oct',
+        month: 'OCT',
         totalCount: 100,
       },
     ],
     'Muscle Up': [
       {
-        month: 'May',
+        month: 'MAY',
         totalCount: 300,
       },
       {
-        month: 'Jun',
+        month: 'JUN',
         totalCount: 450,
       },
       {
-        month: 'Jul',
+        month: 'JUL',
         totalCount: 400,
       },
       {
-        month: 'Aug',
+        month: 'AUG',
         totalCount: 300,
       },
       {
-        month: 'Sep',
+        month: 'SEP',
         totalCount: 200,
       },
       {
-        month: 'Oct',
+        month: 'OCT',
         totalCount: 200,
       },
     ],
