@@ -23,15 +23,13 @@ export const MonthlyTotalCountByEachWorkoutChart = () => {
   const [workoutName, setWorkoutName] = useState<WorkoutNames>('Hanging');
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
-  const { data: monthWorkoutCountData } = useGetMonthWorkoutCount(
-    accessToken,
-    setAccessToken,
-    setModalType,
-  );
+  const { data } = useGetMonthWorkoutCount(accessToken, setAccessToken, setModalType);
 
-  if (!monthWorkoutCountData) {
+  if (!data) {
     return null;
   }
+
+  const { data: monthWorkoutCountData } = data;
 
   const MOST_WORKOUT_MONTH = monthWorkoutCountData[workoutName].reduce((prevWorkout, workout) => {
     return prevWorkout.totalCount >= workout.totalCount ? prevWorkout : workout;
