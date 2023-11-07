@@ -69,7 +69,10 @@ export const MonthlyTotalCountByEachWorkoutChart = () => {
             }}
             labelStyle={{ color: COLOR_BY_WORKOUT[workoutName] }}
             contentStyle={{
-              paddingRight: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '3px',
+              paddingRight: '10px',
             }}
           />
           <Legend />
