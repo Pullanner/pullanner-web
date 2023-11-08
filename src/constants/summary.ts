@@ -23,3 +23,10 @@ export const MONTH_NAME_IN_KOREAN = {
   NOV: '11월',
   DEC: '12월',
 };
+
+export const TIME_NAME_IN_KOREAN = {
+  night: '새벽',
+  morning: '아침',
+  afternoon: '낮',
+  evening: '밤',
+};
