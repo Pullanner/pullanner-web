@@ -7,7 +7,7 @@ export const COLOR_BY_WORKOUT = {
   'Chest to Bar': '#8BB3FF',
   'Archer Pull-Up': '#CD7BFF',
   'Muscle Up': '#FF8CF4',
-};
+} as const;
 
 export const MONTH_NAME_IN_KOREAN = {
   JAN: '1월',
@@ -22,11 +22,11 @@ export const MONTH_NAME_IN_KOREAN = {
   OCT: '10월',
   NOV: '11월',
   DEC: '12월',
-};
+} as const;
 
 export const TIME_NAME_IN_KOREAN = {
   night: '새벽',
   morning: '아침',
   afternoon: '낮',
   evening: '밤',
-};
+} as const;
