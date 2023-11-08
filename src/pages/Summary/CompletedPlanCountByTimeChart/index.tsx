@@ -25,8 +25,8 @@ export const CompletedPlanCountByTimeChart = () => {
     ({ time, thisMonth, prevMonth }) => {
       return {
         시간대: TIME_NAME_IN_KOREAN[time],
-        '이번달 플랜수': thisMonth,
-        '저번달 플랜수': prevMonth,
+        '이번달 플랜 수': thisMonth,
+        '저번달 플랜 수': prevMonth,
       };
     },
   );
@@ -48,8 +48,8 @@ export const CompletedPlanCountByTimeChart = () => {
           labelStyle={{ color: 'black' }}
         />
         <Legend />
-        <Bar dataKey="저번달 플랜수" fill="#8D8D8D" />
-        <Bar dataKey="이번달 플랜수" fill="#60EBD1" />
+        <Bar dataKey="저번달 플랜 수" fill="#8D8D8D" />
+        <Bar dataKey="이번달 플랜 수" fill="#60EBD1" />
       </BarChart>
     </section>
   );
