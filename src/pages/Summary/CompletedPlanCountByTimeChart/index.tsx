@@ -37,7 +37,7 @@ export const CompletedPlanCountByTimeChart = () => {
         주로 <span className="text-primary">{TIME_NAME_IN_KOREAN[MOST_WORKOUT_TIME]}</span>에
         운동하시네요!
       </p>
-      <BarChart width={350} height={300} data={completedPlanCountByTimeData}>
+      <BarChart width={330} height={300} data={completedPlanCountByTimeData}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="시간대" />
         <YAxis />
