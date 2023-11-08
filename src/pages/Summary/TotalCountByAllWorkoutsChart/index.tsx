@@ -16,14 +16,14 @@ export const TotalCountByAllWorkoutsChart = () => {
 
   const { totalCountByWorkout: totalCountByWorkoutData } = data;
 
-  const MOST_WORKOUT_NAME = totalCountByWorkoutData.reduce((prevWorkoutData, workoutData) => {
+  const mostCommonWorkoutName = totalCountByWorkoutData.reduce((prevWorkoutData, workoutData) => {
     return prevWorkoutData.totalCount >= workoutData.totalCount ? prevWorkoutData : workoutData;
   }).workout;
 
   return (
     <section className="flex w-full flex-col items-center bg-gray-6 py-4">
       <p className="text-center text-xs">
-        <span className="text-primary">{MOST_WORKOUT_NAME}</span>을 가장 많이 하셨어요!
+        <span className="text-primary">{mostCommonWorkoutName}</span>을 가장 많이 하셨어요!
       </p>
       <RadarChart outerRadius={70} width={350} height={230} data={totalCountByWorkoutData}>
         <PolarGrid />

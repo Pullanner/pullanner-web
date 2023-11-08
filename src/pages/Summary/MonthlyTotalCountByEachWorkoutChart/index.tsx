@@ -31,7 +31,7 @@ export const MonthlyTotalCountByEachWorkoutChart = () => {
 
   const { data: allMonthWorkoutCountData } = data;
 
-  const MOST_WORKOUT_MONTH = allMonthWorkoutCountData[workoutName].reduce(
+  const monthWithTheMostWorkout = allMonthWorkoutCountData[workoutName].reduce(
     (prevWorkout, workout) => {
       return prevWorkout.totalCount >= workout.totalCount ? prevWorkout : workout;
     },
@@ -56,7 +56,7 @@ export const MonthlyTotalCountByEachWorkoutChart = () => {
       <MonthDropdown handleDropdownItemClick={handleDropdownItemClick} workoutName={workoutName} />
       <div className="flex w-full flex-col items-center bg-gray-6 py-4">
         <p className="pb-4 text-center text-xs">
-          <span className="text-primary">{MONTH_NAME_IN_KOREAN[MOST_WORKOUT_MONTH]}</span>에{' '}
+          <span className="text-primary">{MONTH_NAME_IN_KOREAN[monthWithTheMostWorkout]}</span>에{' '}
           {workoutName}을 가장 많이 하셨어요!
         </p>
         <LineChart width={350} height={350} data={monthWorkoutCountData}>
