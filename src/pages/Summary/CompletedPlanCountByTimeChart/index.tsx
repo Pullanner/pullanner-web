@@ -1,6 +1,7 @@
 import { useAtom, useSetAtom } from 'jotai';
 import { Bar, BarChart, Legend, CartesianGrid, Tooltip, XAxis, YAxis } from 'recharts';
 
+import { TIME_NAME_IN_KOREAN } from '@/constants';
 import { useGetCompletedPlanCount } from '@/lib/react-query/useCompletedPlanCount';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
@@ -14,30 +15,41 @@ export const CompletedPlanCountByTimeChart = () => {
     return null;
   }
 
-  const { completedPlanCountByTime: completedPlanCountByTimeData } = data;
+  const { completedPlanCountByTime: completedPlanCountData } = data;
 
-  const MOST_WORKOUT_TIME = completedPlanCountByTimeData.reduce((prevWorkout, workout) => {
+  const timeWithTheMostWorkout = completedPlanCountData.reduce((prevWorkout, workout) => {
     return prevWorkout.thisMonth >= workout.thisMonth ? prevWorkout : workout;
   }).time;
+
+  const completedPlanCountByTimeData = completedPlanCountData.map(
+    ({ time, thisMonth, prevMonth }) => {
+      return {
+        시간대: TIME_NAME_IN_KOREAN[time],
+        '이번달 플랜 수': thisMonth,
+        '저번달 플랜 수': prevMonth,
+      };
+    },
+  );
 
   return (
     <section className="flex w-full flex-col items-center bg-gray-6 py-4">
       <p className="pb-4 text-center text-xs">
-        주로 <span className="text-primary">{MOST_WORKOUT_TIME}</span>에 운동하시네요!
+        주로 <span className="text-primary">{TIME_NAME_IN_KOREAN[timeWithTheMostWorkout]}</span>에
+        운동하시네요!
       </p>
-      <BarChart width={350} height={300} data={completedPlanCountByTimeData}>
+      <BarChart width={330} height={300} data={completedPlanCountByTimeData}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="time" />
+        <XAxis dataKey="시간대" />
         <YAxis />
         <Tooltip
           labelFormatter={(value) => {
-            return `time : ${value}`;
+            return `시간대 : ${value}`;
           }}
           labelStyle={{ color: 'black' }}
         />
         <Legend />
-        <Bar dataKey="prevMonth" fill="#8D8D8D" />
-        <Bar dataKey="thisMonth" fill="#60EBD1" />
+        <Bar dataKey="저번달 플랜 수" fill="#8D8D8D" />
+        <Bar dataKey="이번달 플랜 수" fill="#60EBD1" />
       </BarChart>
     </section>
   );
