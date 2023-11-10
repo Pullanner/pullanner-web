@@ -2,13 +2,13 @@ import { MONTH_NAME_IN_KOREAN } from '@/constants';
 
 type WorkoutNames =
   | 'Hanging'
-  | 'Jumping Pull-Up'
-  | 'Band Pull-Up'
-  | 'Chin-Up'
-  | 'Pull-Up'
+  | 'Jumping Pull-up'
+  | 'Band Pull-up'
+  | 'Chin-up'
+  | 'Pull-up'
   | 'Chest to Bar'
-  | 'Archer Pull-Up'
-  | 'Muscle Up';
+  | 'Archer Pull-up'
+  | 'Muscle up';
 
 export type MonthWorkoutCount = {
   data: {
@@ -47,7 +47,7 @@ export const MONTH_WORKOUT_COUNT_DATA = {
         totalCount: 100,
       },
     ],
-    'Jumping Pull-Up': [
+    'Jumping Pull-up': [
       {
         month: 'MAY',
         totalCount: 300,
@@ -73,117 +73,117 @@ export const MONTH_WORKOUT_COUNT_DATA = {
         totalCount: 100,
       },
     ],
-    'Band Pull-Up': [
-      {
-        month: 'MAY',
-        totalCount: 500,
-      },
-      {
-        month: 'JUN',
-        totalCount: 400,
-      },
-      {
-        month: 'JUL',
-        totalCount: 300,
-      },
-      {
-        month: 'AUG',
-        totalCount: 200,
-      },
-      {
-        month: 'SEP',
-        totalCount: 100,
-      },
-      {
-        month: 'OCT',
-        totalCount: 200,
-      },
-    ],
-    'Chin-Up': [
-      {
-        month: 'MAY',
-        totalCount: 100,
-      },
-      {
-        month: 'JUN',
-        totalCount: 200,
-      },
-      {
-        month: 'JUL',
-        totalCount: 300,
-      },
-      {
-        month: 'AUG',
-        totalCount: 400,
-      },
-      {
-        month: 'SEP',
-        totalCount: 300,
-      },
-      {
-        month: 'OCT',
-        totalCount: 200,
-      },
-    ],
-    'Pull-Up': [
-      {
-        month: 'MAY',
-        totalCount: 100,
-      },
-      {
-        month: 'JUN',
-        totalCount: 100,
-      },
-      {
-        month: 'JUL',
-        totalCount: 200,
-      },
-      {
-        month: 'AUG',
-        totalCount: 300,
-      },
-      {
-        month: 'SEP',
-        totalCount: 400,
-      },
-      {
-        month: 'OCT',
-        totalCount: 300,
-      },
-    ],
-    'Chest to Bar': [
-      {
-        month: 'MAY',
-        totalCount: 200,
-      },
-      {
-        month: 'JUN',
-        totalCount: 100,
-      },
-      {
-        month: 'JUL',
-        totalCount: 200,
-      },
-      {
-        month: 'AUG',
-        totalCount: 300,
-      },
-      {
-        month: 'SEP',
-        totalCount: 400,
-      },
-      {
-        month: 'OCT',
-        totalCount: 500,
-      },
-    ],
-    'Archer Pull-Up': [
+    'Band Pull-up': [
       {
         month: 'MAY',
         totalCount: 500,
       },
       {
         month: 'JUN',
+        totalCount: 400,
+      },
+      {
+        month: 'JUL',
+        totalCount: 300,
+      },
+      {
+        month: 'AUG',
+        totalCount: 200,
+      },
+      {
+        month: 'SEP',
+        totalCount: 100,
+      },
+      {
+        month: 'OCT',
+        totalCount: 200,
+      },
+    ],
+    'Chin-up': [
+      {
+        month: 'MAY',
+        totalCount: 100,
+      },
+      {
+        month: 'JUN',
+        totalCount: 200,
+      },
+      {
+        month: 'JUL',
+        totalCount: 300,
+      },
+      {
+        month: 'AUG',
+        totalCount: 400,
+      },
+      {
+        month: 'SEP',
+        totalCount: 300,
+      },
+      {
+        month: 'OCT',
+        totalCount: 200,
+      },
+    ],
+    'Pull-up': [
+      {
+        month: 'MAY',
+        totalCount: 100,
+      },
+      {
+        month: 'JUN',
+        totalCount: 100,
+      },
+      {
+        month: 'JUL',
+        totalCount: 200,
+      },
+      {
+        month: 'AUG',
+        totalCount: 300,
+      },
+      {
+        month: 'SEP',
+        totalCount: 400,
+      },
+      {
+        month: 'OCT',
+        totalCount: 300,
+      },
+    ],
+    'Chest to Bar Pull-up': [
+      {
+        month: 'MAY',
+        totalCount: 200,
+      },
+      {
+        month: 'JUN',
+        totalCount: 100,
+      },
+      {
+        month: 'JUL',
+        totalCount: 200,
+      },
+      {
+        month: 'AUG',
+        totalCount: 300,
+      },
+      {
+        month: 'SEP',
+        totalCount: 400,
+      },
+      {
+        month: 'OCT',
+        totalCount: 500,
+      },
+    ],
+    'Archer Pull-up': [
+      {
+        month: 'MAY',
+        totalCount: 500,
+      },
+      {
+        month: 'JUN',
         totalCount: 300,
       },
       {
@@ -203,7 +203,7 @@ export const MONTH_WORKOUT_COUNT_DATA = {
         totalCount: 100,
       },
     ],
-    'Muscle Up': [
+    'Muscle up': [
       {
         month: 'MAY',
         totalCount: 300,

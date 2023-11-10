@@ -23,32 +23,32 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
     {
       key: '2',
       label: (
-        <button type="button" name="Jumping Pull-Up" onClick={handleDropdownItemClick}>
-          Jumping Pull-Up
+        <button type="button" name="Jumping Pull-up" onClick={handleDropdownItemClick}>
+          Jumping Pull-up
         </button>
       ),
     },
     {
       key: '3',
       label: (
-        <button type="button" name="Band Pull-Up" onClick={handleDropdownItemClick}>
-          Band Pull-Up
+        <button type="button" name="Band Pull-up" onClick={handleDropdownItemClick}>
+          Band Pull-up
         </button>
       ),
     },
     {
       key: '4',
       label: (
-        <button type="button" name="Chin-Up" onClick={handleDropdownItemClick}>
-          Chin-Up
+        <button type="button" name="Chin-up" onClick={handleDropdownItemClick}>
+          Chin-up
         </button>
       ),
     },
     {
       key: '5',
       label: (
-        <button type="button" name="Pull-Up" onClick={handleDropdownItemClick}>
-          Pull-Up
+        <button type="button" name="Pull-up" onClick={handleDropdownItemClick}>
+          Pull-up
         </button>
       ),
     },
@@ -63,16 +63,16 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
     {
       key: '7',
       label: (
-        <button type="button" name="Archer Pull-Up" onClick={handleDropdownItemClick}>
-          Archer Pull-Up
+        <button type="button" name="Archer Pull-up" onClick={handleDropdownItemClick}>
+          Archer Pull-up
         </button>
       ),
     },
     {
       key: '8',
       label: (
-        <button type="button" name="Muscle Up" onClick={handleDropdownItemClick}>
-          Muscle Up
+        <button type="button" name="Muscle up" onClick={handleDropdownItemClick}>
+          Muscle up
         </button>
       ),
     },
