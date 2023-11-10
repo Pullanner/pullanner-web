@@ -1,12 +1,12 @@
 export const COLOR_BY_WORKOUT = {
   Hanging: '#F47C7C',
-  'Jumping Pull-Up': '#F1B55B',
-  'Band Pull-Up': '#DFE152',
-  'Chin-Up': '#8EE14E',
-  'Pull-Up': '#60EBD1',
+  'Jumping Pull-up': '#F1B55B',
+  'Band Pull-up': '#DFE152',
+  'Chin-up': '#8EE14E',
+  'Pull-up': '#60EBD1',
   'Chest to Bar': '#8BB3FF',
-  'Archer Pull-Up': '#CD7BFF',
-  'Muscle Up': '#FF8CF4',
+  'Archer Pull-up': '#CD7BFF',
+  'Muscle up': '#FF8CF4',
 } as const;
 
 export const MONTH_NAME_IN_KOREAN = {

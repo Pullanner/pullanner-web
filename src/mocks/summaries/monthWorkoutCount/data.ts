@@ -2,13 +2,13 @@ import { MONTH_NAME_IN_KOREAN } from '@/constants';
 
 type WorkoutNames =
   | 'Hanging'
-  | 'Jumping Pull-Up'
-  | 'Band Pull-Up'
-  | 'Chin-Up'
-  | 'Pull-Up'
+  | 'Jumping Pull-up'
+  | 'Band Pull-up'
+  | 'Chin-up'
+  | 'Pull-up'
   | 'Chest to Bar'
-  | 'Archer Pull-Up'
-  | 'Muscle Up';
+  | 'Archer Pull-up'
+  | 'Muscle up';
 
 export type MonthWorkoutCount = {
   data: {
@@ -47,7 +47,7 @@ export const MONTH_WORKOUT_COUNT_DATA = {
         totalCount: 100,
       },
     ],
-    'Jumping Pull-Up': [
+    'Jumping Pull-up': [
       {
         month: 'MAY',
         totalCount: 300,
@@ -73,7 +73,7 @@ export const MONTH_WORKOUT_COUNT_DATA = {
         totalCount: 100,
       },
     ],
-    'Band Pull-Up': [
+    'Band Pull-up': [
       {
         month: 'MAY',
         totalCount: 500,
@@ -99,7 +99,7 @@ export const MONTH_WORKOUT_COUNT_DATA = {
         totalCount: 200,
       },
     ],
-    'Chin-Up': [
+    'Chin-up': [
       {
         month: 'MAY',
         totalCount: 100,
@@ -125,7 +125,7 @@ export const MONTH_WORKOUT_COUNT_DATA = {
         totalCount: 200,
       },
     ],
-    'Pull-Up': [
+    'Pull-up': [
       {
         month: 'MAY',
         totalCount: 100,
@@ -177,7 +177,7 @@ export const MONTH_WORKOUT_COUNT_DATA = {
         totalCount: 500,
       },
     ],
-    'Archer Pull-Up': [
+    'Archer Pull-up': [
       {
         month: 'MAY',
         totalCount: 500,
@@ -203,7 +203,7 @@ export const MONTH_WORKOUT_COUNT_DATA = {
         totalCount: 100,
       },
     ],
-    'Muscle Up': [
+    'Muscle up': [
       {
         month: 'MAY',
         totalCount: 300,
