@@ -11,13 +11,13 @@ import { MonthDropdown } from './MonthDropdown';
 
 type WorkoutNames =
   | 'Hanging'
-  | 'Jumping Pull-Up'
-  | 'Band Pull-Up'
-  | 'Chin-Up'
-  | 'Pull-Up'
+  | 'Jumping Pull-up'
+  | 'Band Pull-up'
+  | 'Chin-up'
+  | 'Pull-up'
   | 'Chest to Bar'
-  | 'Archer Pull-Up'
-  | 'Muscle Up';
+  | 'Archer Pull-up'
+  | 'Muscle up';
 
 export const MonthlyTotalCountByEachWorkoutChart = () => {
   const [workoutName, setWorkoutName] = useState<WorkoutNames>('Hanging');
