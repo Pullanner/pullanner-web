@@ -1,8 +1,9 @@
 import { MONTH_NAME_IN_KOREAN } from '@/constants';
+import { StepIdForWorkout } from '@/types/workout';
 
 export type MonthWorkoutCount = {
   workoutCountPerMonth: {
-    step: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+    step: StepIdForWorkout;
     data: {
       month: keyof typeof MONTH_NAME_IN_KOREAN;
       totalCount: number;

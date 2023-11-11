@@ -1,6 +1,8 @@
+import { StepIdForWorkout } from '@/types/workout';
+
 export type TotalWorkoutCount = {
   totalCountByWorkout: {
-    step: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+    step: StepIdForWorkout;
     totalCount: number;
   }[];
 };
