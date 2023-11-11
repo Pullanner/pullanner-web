@@ -1,14 +1,3 @@
-export const COLOR_BY_WORKOUT = {
-  Hanging: '#F47C7C',
-  'Jumping Pull-up': '#F1B55B',
-  'Band Pull-up': '#DFE152',
-  'Chin-up': '#8EE14E',
-  'Pull-up': '#60EBD1',
-  'Chest to Bar': '#8BB3FF',
-  'Archer Pull-up': '#CD7BFF',
-  'Muscle up': '#FF8CF4',
-} as const;
-
 export const MONTH_NAME_IN_KOREAN = {
   JAN: '1월',
   FEB: '2월',

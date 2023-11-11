@@ -1,7 +1,8 @@
 import { WorkoutCard } from '@/components/cards/WorkoutCard';
+import { StepIdForWorkout } from '@/types/workout';
 
 type WorkoutInfo = {
-  id: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  id: StepIdForWorkout;
   imageSrc: string;
   name: string;
   difficulty: number;
