@@ -1,21 +1,23 @@
 import { Dropdown, ConfigProvider, type MenuProps } from 'antd';
 import { type MouseEvent } from 'react';
 
+import { WORKOUT_NAME } from '@/constants';
 import { DownArrowIcon } from '@/icons/DownArrowIcon';
+import { StepIdForWorkout } from '@/types/workout';
 
 import { CUSTOM_COLOR_TOKEN } from './customColorToken';
 
 type MonthDropdownProps = {
   handleDropdownItemClick: ({ currentTarget }: MouseEvent<HTMLButtonElement>) => void;
-  workoutName: string;
+  stepId: StepIdForWorkout;
 };
 
-export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDropdownProps) => {
+export const MonthDropdown = ({ handleDropdownItemClick, stepId }: MonthDropdownProps) => {
   const items: MenuProps['items'] = [
     {
       key: '1',
       label: (
-        <button type="button" name="Hanging" onClick={handleDropdownItemClick}>
+        <button type="button" id="1" onClick={handleDropdownItemClick}>
           Hanging
         </button>
       ),
@@ -23,7 +25,7 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
     {
       key: '2',
       label: (
-        <button type="button" name="Jumping Pull-up" onClick={handleDropdownItemClick}>
+        <button type="button" id="2" onClick={handleDropdownItemClick}>
           Jumping Pull-up
         </button>
       ),
@@ -31,7 +33,7 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
     {
       key: '3',
       label: (
-        <button type="button" name="Band Pull-up" onClick={handleDropdownItemClick}>
+        <button type="button" id="3" onClick={handleDropdownItemClick}>
           Band Pull-up
         </button>
       ),
@@ -39,7 +41,7 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
     {
       key: '4',
       label: (
-        <button type="button" name="Chin-up" onClick={handleDropdownItemClick}>
+        <button type="button" id="4" onClick={handleDropdownItemClick}>
           Chin-up
         </button>
       ),
@@ -47,7 +49,7 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
     {
       key: '5',
       label: (
-        <button type="button" name="Pull-up" onClick={handleDropdownItemClick}>
+        <button type="button" id="5" onClick={handleDropdownItemClick}>
           Pull-up
         </button>
       ),
@@ -55,7 +57,7 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
     {
       key: '6',
       label: (
-        <button type="button" name="Chest to Bar" onClick={handleDropdownItemClick}>
+        <button type="button" id="6" onClick={handleDropdownItemClick}>
           Chest to Bar
         </button>
       ),
@@ -63,7 +65,7 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
     {
       key: '7',
       label: (
-        <button type="button" name="Archer Pull-up" onClick={handleDropdownItemClick}>
+        <button type="button" id="7" onClick={handleDropdownItemClick}>
           Archer Pull-up
         </button>
       ),
@@ -71,7 +73,7 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
     {
       key: '8',
       label: (
-        <button type="button" name="Muscle up" onClick={handleDropdownItemClick}>
+        <button type="button" id="8" onClick={handleDropdownItemClick}>
           Muscle up
         </button>
       ),
@@ -84,7 +86,7 @@ export const MonthDropdown = ({ handleDropdownItemClick, workoutName }: MonthDro
         <Dropdown menu={{ items, selectable: true }} placement="bottomLeft" trigger={['click']}>
           <div className="inline-block rounded-md bg-gray-4 px-2.5 py-1.5 text-sm hover:bg-gray-3">
             <div className="flex items-center justify-center gap-2">
-              <span>{workoutName}</span>
+              <span>{WORKOUT_NAME[stepId]}</span>
               <DownArrowIcon />
             </div>
           </div>
