@@ -24,16 +24,16 @@ export const convertToUTCDate = (dateString: string, timeString: string) => {
 };
 
 export const parseDateIntoYearMonthDay = (dateString: string) => {
-  const joinDateWithoutTime = dateString.split('T')[0];
-  const [year, month, day] = joinDateWithoutTime.split('-');
+  const [date] = dateString.split('T');
+  const [year, month, day] = date.split('-');
 
   return { year, month, day };
 };
 
 export const getDaysSinceSpecificDate = (dateString: string) => {
-  const specificDateWithoutTime = dateString.split('T')[0];
+  const [date] = dateString.split('T');
   const nowDate = dayjs();
-  const daysSinceSpecificDate = nowDate.diff(specificDateWithoutTime, 'day');
+  const daysSinceSpecificDate = nowDate.diff(date, 'day');
 
   return daysSinceSpecificDate;
 };
