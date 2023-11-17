@@ -30,6 +30,12 @@ export const parseDateIntoYearMonthDay = (dateString: string) => {
   return { year, month, day };
 };
 
+export const parseDateIntoYearMonth = (dateString: string) => {
+  const [year, month, _] = dateString.split('-');
+
+  return { year, month };
+};
+
 export const getDaysSinceSpecificDate = (dateString: string) => {
   const [date] = dateString.split('T');
   const nowDate = dayjs();
