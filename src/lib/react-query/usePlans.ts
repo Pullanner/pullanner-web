@@ -9,6 +9,7 @@ import { queryKeys } from './queryKeys';
 import type { Dispatch, SetStateAction } from 'react';
 
 export const useGetAllPlans = (
+  selectedDate: string,
   accessToken: string,
   setAccessToken: Dispatch<SetStateAction<string>>,
   setModalType: SetModalType,
@@ -16,7 +17,7 @@ export const useGetAllPlans = (
   return useQuery({
     queryKey: [queryKeys.plans, accessToken, setAccessToken],
     queryFn: () => {
-      return getAllPlans(accessToken, setAccessToken, setModalType);
+      return getAllPlans(selectedDate, accessToken, setAccessToken, setModalType);
     },
     enabled: !!accessToken,
   });
