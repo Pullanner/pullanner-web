@@ -15,9 +15,6 @@ export const PlanCalendar = ({ planData }: { planData: Plans | undefined }) => {
   const setSelectedDate = useSetAtom(selectedDateAtom);
 
   const handleDateChange = (newDate: Dayjs) => {
-    // TODO: 날짜가 변경될 때  API 호출 로직 짜기
-    // 날짜 변경 -> API를 매번 호출하는 것이 아니라 달이 바뀌었을 때만 호출될 수 있도록.
-    // TODO: 호출 시  슬래시 방식 or string 방식
     const selectedDate = newDate.format('YYYY-MM-DD');
     setSelectedDate(selectedDate);
   };

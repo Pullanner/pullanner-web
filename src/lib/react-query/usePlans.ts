@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getAllPlans, getPlanById, postPlan } from '@/apis/plans';
 import { SetModalType } from '@/stores/atoms/modalTypeAtom';
 import { NewPlan } from '@/types/plan';
+import { parseDateIntoYearMonth } from '@/utils/date';
 
 import { queryKeys } from './queryKeys';
 
@@ -14,8 +15,10 @@ export const useGetAllPlans = (
   setAccessToken: Dispatch<SetStateAction<string>>,
   setModalType: SetModalType,
 ) => {
+  const { year, month } = parseDateIntoYearMonth(selectedDate);
+
   return useQuery({
-    queryKey: [queryKeys.plans, accessToken, setAccessToken],
+    queryKey: [queryKeys.plans, year, month, accessToken, setAccessToken],
     queryFn: () => {
       return getAllPlans(selectedDate, accessToken, setAccessToken, setModalType);
     },
