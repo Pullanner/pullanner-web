@@ -1,22 +1,54 @@
 import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
 import utc from 'dayjs/plugin/utc';
 import { rest } from 'msw';
 
 import { API_PATH } from '@/constants';
-import { NewPlan, Plan, PullUpSteps } from '@/types/plan';
+import { NewPlan, Plan, Plans, PullUpSteps } from '@/types/plan';
 
 import { SAMPLE_PLAN_DATA } from './data';
 
 import type { DefaultBodyType, ResponseComposition, RestContext, RestRequest } from 'msw';
 
 dayjs.extend(utc);
+dayjs.extend(isBetween);
+
+type AllPlansReqBody = {
+  params: {
+    year: string;
+    month: string;
+  };
+};
 
 const getAllPlans = (
-  req: RestRequest,
+  req: RestRequest<AllPlansReqBody>,
   res: ResponseComposition<DefaultBodyType>,
   ctx: RestContext,
 ) => {
-  return res(ctx.status(200), ctx.json(SAMPLE_PLAN_DATA));
+  const params = req.url.searchParams;
+  const year = params.get('year');
+  const month = params.get('month');
+
+  const startOfMonth = `${year}-${month}-01`;
+  const startOfData = dayjs(startOfMonth).subtract(14, 'day').format('YYYY-MM-DD');
+  const endOfMonth = dayjs(startOfMonth).endOf('month');
+  const endOfData = dayjs(endOfMonth).add(14, 'day').format('YYYY-MM-DD');
+
+  const { data: allPlanData } = SAMPLE_PLAN_DATA;
+  const daysOfData = Object.keys(allPlanData).filter((date) => {
+    return dayjs(date).isBetween(startOfData, endOfData, 'day');
+  });
+  const planDataByDay = daysOfData.reduce((obj, date) => {
+    const copiedObj = obj;
+    copiedObj[date] = allPlanData[date];
+
+    return copiedObj;
+  }, {} as Plans);
+  const planData = {
+    data: planDataByDay,
+  };
+
+  return res(ctx.status(200), ctx.json(planData));
 };
 
 const postPlan = async (
