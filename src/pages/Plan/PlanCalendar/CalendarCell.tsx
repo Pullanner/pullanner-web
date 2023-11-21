@@ -1,4 +1,4 @@
-import { WORKOUT_NAME_COLOR } from '@/constants';
+import { WORKOUT_NAME_COLOR, DATE_FORMAT_YYYY_MM_DD } from '@/constants';
 import { Plans } from '@/types/plan';
 
 import type { Dayjs } from 'dayjs';
@@ -10,7 +10,7 @@ type CalendarCellProps = {
 
 export const CalendarCell = ({ date, planData }: CalendarCellProps) => {
   const MAX_PLAN_DOT_COUNT = 2;
-  const dateKey = date.format('YYYY-MM-DD');
+  const dateKey = date.format(DATE_FORMAT_YYYY_MM_DD);
 
   if (!planData) {
     return;

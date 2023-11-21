@@ -1,5 +1,7 @@
 import dayjs from 'dayjs';
 
+import { DATE_FORMAT_YYYY_MM_DD } from '@/constants';
+
 export const checkPastDate = (date: string): boolean => {
   const inputDate = dayjs(date);
   const today = dayjs();
@@ -45,13 +47,13 @@ export const getDaysSinceSpecificDate = (dateString: string) => {
 };
 
 export const getEndDateOfMonth = (dateString: string) => {
-  return dayjs(dateString).endOf('month').format('YYYY-MM-DD');
+  return dayjs(dateString).endOf('month').format(DATE_FORMAT_YYYY_MM_DD);
 };
 
 export const getDateSubtractedByDays = (dateString: string, days: number) => {
-  return dayjs(dateString).subtract(days, 'day').format('YYYY-MM-DD');
+  return dayjs(dateString).subtract(days, 'day').format(DATE_FORMAT_YYYY_MM_DD);
 };
 
 export const getDateAddedByDays = (dateString: string, days: number) => {
-  return dayjs(dateString).add(days, 'day').format('YYYY-MM-DD');
+  return dayjs(dateString).add(days, 'day').format(DATE_FORMAT_YYYY_MM_DD);
 };

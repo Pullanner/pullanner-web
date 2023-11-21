@@ -2,6 +2,7 @@
 import { Calendar, ConfigProvider } from 'antd';
 import { useSetAtom } from 'jotai';
 
+import { DATE_FORMAT_YYYY_MM_DD } from '@/constants';
 import { selectedDateAtom } from '@/stores/atoms/selectedDateAtom';
 import type { Plans } from '@/types/plan';
 
@@ -15,7 +16,7 @@ export const PlanCalendar = ({ planData }: { planData: Plans | undefined }) => {
   const setSelectedDate = useSetAtom(selectedDateAtom);
 
   const handleDateChange = (newDate: Dayjs) => {
-    const selectedDate = newDate.format('YYYY-MM-DD');
+    const selectedDate = newDate.format(DATE_FORMAT_YYYY_MM_DD);
     setSelectedDate(selectedDate);
   };
 
