@@ -5,6 +5,7 @@ import { rest } from 'msw';
 
 import { API_PATH } from '@/constants';
 import { NewPlan, Plan, Plans, PullUpSteps } from '@/types/plan';
+import { getDateAddedByDays, getDateSubtractedByDays, getEndDateOfMonth } from '@/utils/date';
 
 import { SAMPLE_PLAN_DATA } from './data';
 
@@ -30,9 +31,9 @@ const getAllPlans = (
   const month = params.get('month');
 
   const startOfMonth = `${year}-${month}-01`;
-  const startOfData = dayjs(startOfMonth).subtract(14, 'day').format('YYYY-MM-DD');
-  const endOfMonth = dayjs(startOfMonth).endOf('month');
-  const endOfData = dayjs(endOfMonth).add(14, 'day').format('YYYY-MM-DD');
+  const startOfData = getDateSubtractedByDays(startOfMonth, 14);
+  const endOfMonth = getEndDateOfMonth(startOfMonth);
+  const endOfData = getDateAddedByDays(endOfMonth, 14);
 
   const { data: allPlanData } = SAMPLE_PLAN_DATA;
   const daysOfData = Object.keys(allPlanData).filter((date) => {

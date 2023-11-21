@@ -43,3 +43,15 @@ export const getDaysSinceSpecificDate = (dateString: string) => {
 
   return daysSinceSpecificDate;
 };
+
+export const getEndDateOfMonth = (dateString: string) => {
+  return dayjs(dateString).endOf('month').format('YYYY-MM-DD');
+};
+
+export const getDateSubtractedByDays = (dateString: string, days: number) => {
+  return dayjs(dateString).subtract(days, 'day').format('YYYY-MM-DD');
+};
+
+export const getDateAddedByDays = (dateString: string, days: number) => {
+  return dayjs(dateString).add(days, 'day').format('YYYY-MM-DD');
+};
