@@ -15,7 +15,12 @@ export const Plan = () => {
   const selectedDate = useAtomValue(selectedDateAtom);
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
-  const { data: plans, isSuccess } = useGetAllPlans(accessToken, setAccessToken, setModalType);
+  const { data: plans, isSuccess } = useGetAllPlans(
+    selectedDate,
+    accessToken,
+    setAccessToken,
+    setModalType,
+  );
 
   return (
     <>

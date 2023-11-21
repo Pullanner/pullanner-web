@@ -1,7 +1,9 @@
 import dayjs from 'dayjs';
 import { atom } from 'jotai';
 
-export const selectedDateAtom = atom(dayjs().format('YYYY-MM-DD'));
+import { DATE_FORMAT_YYYY_MM_DD } from '@/constants';
+
+export const selectedDateAtom = atom(dayjs().format(DATE_FORMAT_YYYY_MM_DD));
 
 export const readWriteAtom = atom(
   (get) => {

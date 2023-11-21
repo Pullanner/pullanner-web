@@ -8,6 +8,7 @@ import {
 } from '@/lib/axios/useAuthApi';
 import type { SetModalType } from '@/stores/atoms/modalTypeAtom';
 import type { Plans, Plan, NewPlan, CheckedPlan } from '@/types/plan';
+import { parseDateIntoYearMonth } from '@/utils/date';
 
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -17,14 +18,19 @@ type ServerResponse = {
 };
 
 export const getAllPlans = async (
+  selectedDate: string,
   accessToken: string,
   setAccessToken: Dispatch<SetStateAction<string>>,
   setModalType: SetModalType,
 ): Promise<Plans | undefined> => {
   try {
+    const { year, month } = parseDateIntoYearMonth(selectedDate);
+    const params = new URLSearchParams();
+    params.append('year', year);
+    params.append('month', month);
     const response = await handleAuthRequest({
       authRequest: (token) => {
-        return getAuthRequest(API_PATH.plans, token);
+        return getAuthRequest(API_PATH.plans, token, { params });
       },
       accessToken,
       setAccessToken,

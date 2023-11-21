@@ -1,5 +1,7 @@
 import dayjs from 'dayjs';
 
+import { DATE_FORMAT_YYYY_MM_DD } from '@/constants';
+
 export const checkPastDate = (date: string): boolean => {
   const inputDate = dayjs(date);
   const today = dayjs();
@@ -24,16 +26,34 @@ export const convertToUTCDate = (dateString: string, timeString: string) => {
 };
 
 export const parseDateIntoYearMonthDay = (dateString: string) => {
-  const joinDateWithoutTime = dateString.split('T')[0];
-  const [year, month, day] = joinDateWithoutTime.split('-');
+  const [date] = dateString.split('T');
+  const [year, month, day] = date.split('-');
 
   return { year, month, day };
 };
 
+export const parseDateIntoYearMonth = (dateString: string) => {
+  const [year, month, _] = dateString.split('-');
+
+  return { year, month };
+};
+
 export const getDaysSinceSpecificDate = (dateString: string) => {
-  const specificDateWithoutTime = dateString.split('T')[0];
+  const [date] = dateString.split('T');
   const nowDate = dayjs();
-  const daysSinceSpecificDate = nowDate.diff(specificDateWithoutTime, 'day');
+  const daysSinceSpecificDate = nowDate.diff(date, 'day');
 
   return daysSinceSpecificDate;
+};
+
+export const getEndDateOfMonth = (dateString: string) => {
+  return dayjs(dateString).endOf('month').format(DATE_FORMAT_YYYY_MM_DD);
+};
+
+export const getDateSubtractedByDays = (dateString: string, days: number) => {
+  return dayjs(dateString).subtract(days, 'day').format(DATE_FORMAT_YYYY_MM_DD);
+};
+
+export const getDateAddedByDays = (dateString: string, days: number) => {
+  return dayjs(dateString).add(days, 'day').format(DATE_FORMAT_YYYY_MM_DD);
 };
