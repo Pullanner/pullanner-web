@@ -62,13 +62,13 @@ export const DuplicationCheckInput = ({
     }
 
     try {
-      const isInputNotDuplicated = await validationFunction(
+      const isInputValid = await validationFunction(
         inputValue,
         accessToken,
         setAccessToken,
         setModalType,
       );
-      if (isInputNotDuplicated) {
+      if (isInputValid) {
         setInputStatus(VALID_INPUT.status);
         setValidInputValue(inputValue);
       } else {
