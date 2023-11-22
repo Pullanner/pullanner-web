@@ -35,7 +35,7 @@ const getNicknameValidation = async (
   const nickname = params.get('nickname');
   const isNicknameDuplicated = nickname ? USER_NICKNAMES.includes(nickname) : false;
   if (isNicknameDuplicated) {
-    return res(ctx.status(200), ctx.json({ code: 'U03', message: '이미 존재하는 닉네임입니다' }));
+    return res(ctx.status(400), ctx.json({ code: 'U03', message: '이미 존재하는 닉네임입니다' }));
   }
 
   return res(ctx.status(200), ctx.json({ code: 'U04', message: '사용 가능한 닉네임입니다.' }));
