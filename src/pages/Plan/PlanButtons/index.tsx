@@ -16,7 +16,7 @@ export const PlanButtons = () => {
   const isPastDate = checkPastDate(selectedDate);
   const [messageApi, contextHolder] = message.useMessage();
   const userImpossiblePullUps = useAtomValue(impossiblePullUpAtom);
-  const isAllMaster = userImpossiblePullUps.length <= 0;
+  const isAllMaster = userImpossiblePullUps.length === 0;
 
   const getPlanLink = (planType: PlanType) => {
     if (!isLoggedIn) {
@@ -47,7 +47,7 @@ export const PlanButtons = () => {
   const masterPlanLink = getPlanLink(PLAN_TYPE.master);
 
   const handleMasterButtonClick = () => {
-    if (userImpossiblePullUps.length <= 0) {
+    if (isAllMaster) {
       messageApi.open({
         type: 'warning',
         content: `모든 풀업 운동이 가능해서 마스터 할 동작이 없어요! 대신, [${PLAN_TYPE_KR.strength}]을 만들 수 있어요.`,
