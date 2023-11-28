@@ -1,5 +1,5 @@
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { useState, forwardRef } from 'react';
+import { useAtom, useSetAtom } from 'jotai';
+import { useState, forwardRef, useEffect } from 'react';
 
 import { deleteAccountWithAuthenticationCode } from '@/apis/user';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
@@ -23,7 +23,7 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
     const [isDeleteAccountButtonActive, setDeleteAccountButtonActive] = useState(false);
     const [isDeleteRequestFailed, setShowInvalidAuthenticationCodeDescription] = useState(false);
     const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
-    const isTimerActive = useAtomValue(isTimerActiveAtom);
+    const [isTimerActive, setTimerActive] = useAtom(isTimerActiveAtom);
     const setModalType = useSetAtom(modalTypeAtom);
 
     const deleteAccountButtonState = isDeleteAccountButtonActive
@@ -56,6 +56,12 @@ export const AuthenticationCodeInput = forwardRef<HTMLInputElement>(
 
       setDeleteAccountButtonActive(inputNumberValue.length === MAX_INPUT_LENGTH);
     };
+
+    useEffect(() => {
+      return () => {
+        setTimerActive(false);
+      };
+    }, []);
 
     return (
       <div className="pt-6">
