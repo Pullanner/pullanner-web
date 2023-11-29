@@ -1,5 +1,7 @@
 import { Input } from 'antd';
 
+import { NEW_PLAN_TITLE } from '@/constants';
+
 import type { ChangeEvent } from 'react';
 
 type PlanNameSectionProps = {
@@ -11,7 +13,7 @@ export const PlanNameSection = ({ planName, handlePlanInputChange }: PlanNameSec
   return (
     <section>
       <div>
-        <p className="py-2">😎 이번 풀업 계획의 이름은 뭘로 할까요?</p>
+        <p className="py-2">{NEW_PLAN_TITLE.planName}</p>
       </div>
       <Input
         status={planName.length ? '' : 'error'}

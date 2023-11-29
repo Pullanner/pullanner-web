@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { SelectablePullUpCard } from '@/components/cards/SelectablePullupCard';
 import { WorkoutTable } from '@/components/WorkoutTable';
 import { usePlanComplete } from '@/components/WorkoutTable/hooks/usePlanComplete';
-import { PLAN_TYPE, ROADMAP_DATA } from '@/constants';
+import { NEW_PLAN_TITLE, PLAN_TYPE, ROADMAP_DATA, WORKOUT_TABLE_DESCRIPTION } from '@/constants';
 import { workoutPlanAtom } from '@/stores/atoms/workoutPlanAtom';
 import type { PlanType, PullUpSteps } from '@/types/plan';
 import { StepIdForWorkout } from '@/types/workout';
@@ -40,12 +40,10 @@ export const WorkoutTableSection = ({ planType, pullUpList }: WorkoutTableSectio
   return (
     <section>
       <div>
-        <p className="py-2">💪 어떤 풀업 운동을 해볼까요?</p>
-        <p className="mb-2 text-sm ">
-          연습할 풀업 운동을 선택 후, 횟수(Count)와 세트(Set)를 입력해주세요.
-        </p>
+        <p className="py-2">{NEW_PLAN_TITLE.workoutTable}</p>
+        <p className="mb-2 text-sm ">{WORKOUT_TABLE_DESCRIPTION.manual}</p>
         {planType === PLAN_TYPE.strength && (
-          <p className="mb-2 text-sm">Hanging은 횟수 대신 초(Second) 단위로 입력해주세요.</p>
+          <p className="mb-2 text-sm">{WORKOUT_TABLE_DESCRIPTION.hanging}</p>
         )}
       </div>
       <div className="flex flex-wrap justify-center gap-3">
