@@ -1,41 +1,29 @@
-import { TimePicker, message, Input } from 'antd';
+import { message } from 'antd';
 import dayjs from 'dayjs';
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SaveButton } from '@/components/buttons/SaveButton';
-import { SelectablePullUpCard } from '@/components/cards/SelectablePullupCard';
-import { WorkoutTable } from '@/components/WorkoutTable';
-import { usePlanComplete } from '@/components/WorkoutTable/hooks/usePlanComplete';
 import {
   NEW_PLAN_DESCRIPTION,
   PLAN_MESSAGE,
-  PLAN_TIME_FORMAT,
   PLAN_TYPE,
-  ROADMAP_DATA,
   ROUTE_PATH,
+  WARNING_MESSAGE_OPTION,
 } from '@/constants';
-import { WarningIcon } from '@/icons/WarningIcon';
 import { usePostPlan } from '@/lib/react-query/usePlans';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 import { impossiblePullUpAtom, possiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
 import { planCompleteAtom, workoutPlanAtom } from '@/stores/atoms/workoutPlanAtom';
-import { PullUpSteps } from '@/types/plan';
 import { checkPastDateTime, convertToUTCDate } from '@/utils/date';
 
-import type { Dayjs } from 'dayjs';
+import { PlanNameSection } from './PlanNameSection';
+import { WorkoutTableSection } from './WorkoutTableSection';
+import { WorkoutTimeSection } from './WorkoutTimeSection';
 
-const PAST_TIME_PLAN_MESSAGE_OPTION = {
-  type: 'warning' as const,
-  content: PLAN_MESSAGE.pastTime,
-  duration: 2,
-  style: {
-    marginTop: '75vh',
-  },
-  icon: WarningIcon(),
-};
+import type { Dayjs } from 'dayjs';
 
 type PlanType = keyof typeof NEW_PLAN_DESCRIPTION;
 
@@ -59,7 +47,6 @@ export const NewPlan = () => {
   const [workoutPlan, setWorkoutPlan] = useAtom(workoutPlanAtom);
   const [messageApi, contextHolder] = message.useMessage();
   const [isPlanComplete, setIsPlanComplete] = useAtom(planCompleteAtom);
-  const { checkPlanComplete } = usePlanComplete();
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
   const { mutate: postPlan } = usePostPlan(accessToken, setAccessToken, setModalType);
@@ -104,29 +91,9 @@ export const NewPlan = () => {
     setPlanDateTime(planDateTimeUtc);
     const isPast = checkPastDateTime(planDate, selectedTime);
     if (isPast) {
-      messageApi.open(PAST_TIME_PLAN_MESSAGE_OPTION);
+      messageApi.open({ ...WARNING_MESSAGE_OPTION, content: PLAN_MESSAGE.pastTime });
       setPlanDateTime('');
     }
-  };
-
-  const addWorkoutRow = (step: PullUpSteps) => {
-    setWorkoutPlan((prev) => {
-      const updatedWorkoutPlan = [...prev, { step, count: 0, set: 0, done: false }];
-      checkPlanComplete(updatedWorkoutPlan);
-
-      return updatedWorkoutPlan;
-    });
-  };
-
-  const deleteWorkoutRow = (step: PullUpSteps) => {
-    setWorkoutPlan((prev) => {
-      const updatedWorkoutPlan = prev.filter((w) => {
-        return w.step !== step;
-      });
-      checkPlanComplete(updatedWorkoutPlan);
-
-      return updatedWorkoutPlan;
-    });
   };
 
   return (
@@ -146,72 +113,12 @@ export const NewPlan = () => {
       </div>
       <div className="p-5">
         <form className="flex flex-col gap-5">
-          <div>
-            <div>
-              <p className="py-2">😎 이번 풀업 계획의 이름은 뭘로 할까요?</p>
-            </div>
-            <Input
-              status={planName.length ? '' : 'error'}
-              showCount
-              maxLength={20}
-              allowClear
-              value={planName}
-              onChange={handlePlanInputChange}
-              placeholder="1자 이상 20자 이하로 입력해주세요"
-            />
-          </div>
-          <div>
-            <div>
-              <p className="py-2">⏰ 풀업 운동을 언제 할까요?</p>
-              <p className="mb-2 text-sm">
-                플랜 날짜가 오늘이면, 현재 시각보다 이후의 시각으로 설정해주세요.
-              </p>
-            </div>
-            <TimePicker
-              status={planDateTime ? '' : 'error'}
-              format={PLAN_TIME_FORMAT}
-              onChange={handleTimePickerChange}
-              placeholder="12:00"
-            />
-          </div>
-          <div>
-            <div>
-              <p className="py-2">💪 어떤 풀업 운동을 해볼까요?</p>
-              <p className="mb-2 text-sm ">
-                연습할 풀업 운동을 선택 후, 횟수(Count)와 세트(Set)를 입력해주세요.
-              </p>
-              {planType === PLAN_TYPE.strength && (
-                <p className="mb-2 text-sm">Hanging은 횟수 대신 초(Second) 단위로 입력해주세요.</p>
-              )}
-            </div>
-            <div className="flex flex-wrap justify-center gap-3">
-              {pullUpList.map((workoutId) => {
-                const workoutData = ROADMAP_DATA.find((v) => {
-                  return v.id === workoutId;
-                });
-
-                if (!workoutData) {
-                  return null;
-                }
-
-                const { id, name, imageSrc, color } = workoutData;
-
-                return (
-                  <SelectablePullUpCard
-                    id={id}
-                    name={name}
-                    width="100px"
-                    height=""
-                    imageSrc={imageSrc}
-                    color={color}
-                    onAdd={addWorkoutRow}
-                    onDelete={deleteWorkoutRow}
-                  />
-                );
-              })}
-            </div>
-            <div className="py-5">{workoutPlan.length > 0 && <WorkoutTable />}</div>
-          </div>
+          <PlanNameSection planName={planName} handlePlanInputChange={handlePlanInputChange} />
+          <WorkoutTimeSection
+            planDateTime={planDateTime}
+            handleTimePickerChange={handleTimePickerChange}
+          />
+          <WorkoutTableSection planType={planType} pullUpList={pullUpList} />
           <SaveButton
             isActive={!!(planName && planDateTime) && isPlanComplete}
             width="100%"

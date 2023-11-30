@@ -15,3 +15,5 @@ export const VALIDATE_CODE_BUTTON_STYLE = {
 export const LIMIT_TIME = 3 * 60 * 1000;
 
 export const DECADE = 10;
+
+export const AUTHORIZATION_CODE_SENT_SUCCESSFULLY = '이메일로 인증 코드가 발송되었습니다.';
