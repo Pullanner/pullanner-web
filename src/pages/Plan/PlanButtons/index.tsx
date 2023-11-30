@@ -13,12 +13,12 @@ import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { selectedDateAtom } from '@/stores/atoms/selectedDateAtom';
 import { impossiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
 import { PlanType } from '@/types/plan';
-import { checkPastDate } from '@/utils/date';
+import { checkAfterDate } from '@/utils/date';
 
 export const PlanButtons = () => {
   const selectedDate = useAtomValue(selectedDateAtom);
   const isLoggedIn = useAtomValue(loginStateAtom);
-  const isPastDate = checkPastDate(selectedDate);
+  const isAfterDate = checkAfterDate(selectedDate);
   const [messageApi, contextHolder] = message.useMessage();
   const userImpossiblePullUps = useAtomValue(impossiblePullUpAtom);
   const isAllMaster = userImpossiblePullUps.length === 0;
@@ -27,7 +27,7 @@ export const PlanButtons = () => {
     if (!isLoggedIn) {
       return ROUTE_PATH.login;
     }
-    if (isPastDate || (planType === PLAN_TYPE.master && isAllMaster)) {
+    if (!isAfterDate || (planType === PLAN_TYPE.master && isAllMaster)) {
       return '';
     }
 
@@ -35,10 +35,10 @@ export const PlanButtons = () => {
   };
 
   const handlePlanButtonClick = () => {
-    if (isPastDate) {
+    if (!isAfterDate) {
       messageApi.open({
         ...WARNING_MESSAGE_OPTION,
-        content: PLAN_MESSAGE.pastDate,
+        content: PLAN_MESSAGE.afterDate,
       });
     }
   };

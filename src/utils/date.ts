@@ -16,6 +16,13 @@ export const checkPastDateTime = (date: string, time: string): boolean => {
   return inputDate.isBefore(now, 'minute');
 };
 
+export const checkAfterDate = (date: string): boolean => {
+  const inputDate = dayjs(date);
+  const today = dayjs();
+
+  return inputDate.isAfter(today, 'day');
+};
+
 export const convertToUTCDate = (dateString: string, timeString: string) => {
   const [year, month, day] = dateString.split('-').map(Number);
   const [hour, minute] = timeString.split(':').map(Number);

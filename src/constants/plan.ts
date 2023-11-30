@@ -11,7 +11,7 @@ export const PLAN_TYPE_KR = {
 } as const;
 
 export const PLAN_MESSAGE = {
-  pastDate: '오늘 이전 날짜에는 플랜을 생성할 수 없어요.',
+  afterDate: '오늘 이후 날짜부터 플랜을 생성할 수 있습니다.',
   pastTime: '현재 시각 이전으로는 플랜을 생성할 수 없어요.',
   allMaster: `모든 풀업 운동이 가능해서 마스터 할 동작이 없어요! 대신, [${PLAN_TYPE_KR.strength}]을 만들 수 있어요.`,
 } as const;
