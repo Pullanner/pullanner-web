@@ -5,8 +5,13 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { SaveButton } from '@/components/buttons/SaveButton';
-import { NEW_PLAN_DESCRIPTION, PLAN_MESSAGE, PLAN_TYPE, ROUTE_PATH } from '@/constants';
-import { WarningIcon } from '@/icons/WarningIcon';
+import {
+  NEW_PLAN_DESCRIPTION,
+  PLAN_MESSAGE,
+  PLAN_TYPE,
+  ROUTE_PATH,
+  WARNING_MESSAGE_OPTION,
+} from '@/constants';
 import { usePostPlan } from '@/lib/react-query/usePlans';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
@@ -19,16 +24,6 @@ import { WorkoutTableSection } from './WorkoutTableSection';
 import { WorkoutTimeSection } from './WorkoutTimeSection';
 
 import type { Dayjs } from 'dayjs';
-
-const PAST_TIME_PLAN_MESSAGE_OPTION = {
-  type: 'warning' as const,
-  content: PLAN_MESSAGE.pastTime,
-  duration: 2,
-  style: {
-    marginTop: '75vh',
-  },
-  icon: WarningIcon(),
-};
 
 type PlanType = keyof typeof NEW_PLAN_DESCRIPTION;
 
@@ -96,7 +91,7 @@ export const NewPlan = () => {
     setPlanDateTime(planDateTimeUtc);
     const isPast = checkPastDateTime(planDate, selectedTime);
     if (isPast) {
-      messageApi.open(PAST_TIME_PLAN_MESSAGE_OPTION);
+      messageApi.open({ ...WARNING_MESSAGE_OPTION, content: PLAN_MESSAGE.pastTime });
       setPlanDateTime('');
     }
   };

@@ -2,8 +2,13 @@ import { message } from 'antd';
 import { useAtomValue } from 'jotai';
 import { Link } from 'react-router-dom';
 
-import { PLAN_MESSAGE, PLAN_TYPE, PLAN_TYPE_KR, ROUTE_PATH } from '@/constants';
-import { WarningIcon } from '@/icons/WarningIcon';
+import {
+  PLAN_MESSAGE,
+  PLAN_TYPE,
+  PLAN_TYPE_KR,
+  ROUTE_PATH,
+  WARNING_MESSAGE_OPTION,
+} from '@/constants';
 import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { selectedDateAtom } from '@/stores/atoms/selectedDateAtom';
 import { impossiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
@@ -32,13 +37,8 @@ export const PlanButtons = () => {
   const handlePlanButtonClick = () => {
     if (isPastDate) {
       messageApi.open({
-        type: 'warning',
+        ...WARNING_MESSAGE_OPTION,
         content: PLAN_MESSAGE.pastDate,
-        duration: 2,
-        style: {
-          marginTop: '75vh',
-        },
-        icon: WarningIcon(),
       });
     }
   };
@@ -49,13 +49,8 @@ export const PlanButtons = () => {
   const handleMasterButtonClick = () => {
     if (isAllMaster) {
       messageApi.open({
-        type: 'warning',
-        content: `모든 풀업 운동이 가능해서 마스터 할 동작이 없어요! 대신, [${PLAN_TYPE_KR.strength}]을 만들 수 있어요.`,
-        duration: 5,
-        style: {
-          marginTop: '75vh',
-        },
-        icon: WarningIcon(),
+        ...WARNING_MESSAGE_OPTION,
+        content: PLAN_MESSAGE.allMaster,
       });
 
       return;

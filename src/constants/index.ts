@@ -6,3 +6,4 @@ export * from './roadmapData';
 export * from './plan';
 export * from './summary';
 export * from './date';
+export * from './message';
