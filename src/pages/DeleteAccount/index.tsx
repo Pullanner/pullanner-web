@@ -5,12 +5,13 @@ import { useRef } from 'react';
 import { sendAuthenticationCode } from '@/apis/user';
 import { SaveButton } from '@/components/buttons/SaveButton';
 import { DeleteAccountSuccessModal } from '@/components/modals/DeleteAccountSuccessModal';
-import { SuccessIcon } from '@/icons/SuccessIcon';
+import { SUCCESS_MESSAGE_OPTION } from '@/constants';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { isTimerActiveAtom } from '@/stores/atoms/isTimerActiveAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 
 import { AuthenticationCodeInput } from './AuthenticationCodeInput';
+import { AUTHORIZATION_CODE_SENT_SUCCESSFULLY } from './constants';
 import { DeleteAccountDescription } from './DeleteAccountDescription';
 
 export const DeleteAccount = () => {
@@ -31,13 +32,8 @@ export const DeleteAccount = () => {
     const isSuccess = await sendAuthenticationCode(accessToken, setAccessToken, setModalType);
     if (isSuccess) {
       messageApi.open({
-        type: 'success',
-        content: '이메일로 인증 코드가 발송되었습니다.',
-        duration: 2,
-        style: {
-          marginTop: '75vh',
-        },
-        icon: SuccessIcon(),
+        ...SUCCESS_MESSAGE_OPTION,
+        content: AUTHORIZATION_CODE_SENT_SUCCESSFULLY,
       });
     }
   };
