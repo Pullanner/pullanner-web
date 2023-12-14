@@ -13,12 +13,12 @@ import { loginStateAtom } from '@/stores/atoms/loginStateAtom';
 import { selectedDateAtom } from '@/stores/atoms/selectedDateAtom';
 import { impossiblePullUpAtom } from '@/stores/atoms/workoutDataAtom';
 import { PlanType } from '@/types/plan';
-import { checkAfterDate } from '@/utils/date';
+import { checkPastDate } from '@/utils/date';
 
 export const PlanButtons = () => {
   const selectedDate = useAtomValue(selectedDateAtom);
   const isLoggedIn = useAtomValue(loginStateAtom);
-  const isAfterDate = checkAfterDate(selectedDate);
+  const isPastDate = checkPastDate(selectedDate);
   const [messageApi, contextHolder] = message.useMessage();
   const userImpossiblePullUps = useAtomValue(impossiblePullUpAtom);
   const isAllMaster = userImpossiblePullUps.length === 0;
@@ -27,18 +27,27 @@ export const PlanButtons = () => {
     if (!isLoggedIn) {
       return ROUTE_PATH.login;
     }
-    if (!isAfterDate || (planType === PLAN_TYPE.master && isAllMaster)) {
+    if (isPastDate || (planType === PLAN_TYPE.master && isAllMaster)) {
       return '';
     }
 
     return ROUTE_PATH.plan.new;
   };
 
-  const handlePlanButtonClick = () => {
-    if (!isAfterDate) {
+  const handleButtonClick = () => {
+    if (isPastDate) {
       messageApi.open({
         ...WARNING_MESSAGE_OPTION,
-        content: PLAN_MESSAGE.afterDate,
+        content: PLAN_MESSAGE.past,
+      });
+
+      return;
+    }
+
+    if (isAllMaster) {
+      messageApi.open({
+        ...WARNING_MESSAGE_OPTION,
+        content: PLAN_MESSAGE.allMaster,
       });
     }
   };
@@ -46,23 +55,11 @@ export const PlanButtons = () => {
   const strengthPlanLink = getPlanLink(PLAN_TYPE.strength);
   const masterPlanLink = getPlanLink(PLAN_TYPE.master);
 
-  const handleMasterButtonClick = () => {
-    if (isAllMaster) {
-      messageApi.open({
-        ...WARNING_MESSAGE_OPTION,
-        content: PLAN_MESSAGE.allMaster,
-      });
-
-      return;
-    }
-    handlePlanButtonClick();
-  };
-
   return (
     <div className="mb-3 flex justify-around p-3">
       <Link
         to={strengthPlanLink}
-        onClick={handlePlanButtonClick}
+        onClick={handleButtonClick}
         state={{ planType: PLAN_TYPE.strength, date: selectedDate }}
         className="flex items-center rounded-md bg-primary p-3 text-base text-black"
       >
@@ -70,7 +67,7 @@ export const PlanButtons = () => {
       </Link>
       <Link
         to={masterPlanLink}
-        onClick={handleMasterButtonClick}
+        onClick={handleButtonClick}
         state={{ planType: PLAN_TYPE.master, date: selectedDate }}
         className="flex items-center rounded-md border-2 border-primary bg-zinc-800 p-3 text-base text-white"
       >

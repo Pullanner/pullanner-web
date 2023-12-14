@@ -91,7 +91,7 @@ export const NewPlan = () => {
     setPlanDateTime(planDateTimeUtc);
     const isPast = checkPastDateTime(planDate, selectedTime);
     if (isPast) {
-      messageApi.open({ ...WARNING_MESSAGE_OPTION, content: PLAN_MESSAGE.pastTime });
+      messageApi.open({ ...WARNING_MESSAGE_OPTION, content: PLAN_MESSAGE.past });
       setPlanDateTime('');
     }
   };
