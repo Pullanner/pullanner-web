@@ -8,6 +8,7 @@ export const API_PATH = {
   summaryTotalWorkoutCount: '/api/summary/total-workout-count',
   summaryMonthWorkoutCount: '/api/summary/month-workout-count',
   summaryCompletedPlanCount: '/api/summary/completed-plan-count',
+  articles: '/api/articles',
 } as const;
 
 export type ApiPathType = (typeof API_PATH)[keyof typeof API_PATH] | `/api/plans/${string}`;
