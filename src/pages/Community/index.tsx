@@ -3,12 +3,16 @@ import { BANNER_DATA } from '@/constants';
 
 import { CommunityBoard } from './CommunityBoard';
 import { CommunityTabs } from './CommunityTabs';
+import { SearchBar } from './SearchBar';
 
 export const Community = () => {
   return (
     <>
       <Banner data={BANNER_DATA.community} />
       <div className="px-4 pt-5">
+        <div className="flex justify-center">
+          <SearchBar />
+        </div>
         <div className="flex items-center justify-between pt-5">
           <CommunityTabs />
           <img
