@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { useGetAllArticles } from '@/lib/react-query/useArticles';
 import { ArticleList } from '@/pages/Community/ArticleList';
+import { FilterDropdown } from '@/pages/Community/FilterDropdown';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 
@@ -25,6 +26,9 @@ export const CommunityBoard = () => {
 
   return (
     <section>
+      <div className="flex justify-end">
+        <FilterDropdown />
+      </div>
       <ul className="border-t-2 border-gray-4">
         {articles.map((article) => {
           return <ArticleList key={article.id} article={article} />;
