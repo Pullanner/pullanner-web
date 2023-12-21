@@ -1,3 +1,4 @@
+import articleHandler from '@/mocks/articles/handler';
 import planHandler from '@/mocks/plans/handler';
 import completedPlanCountHandler from '@/mocks/summaries/completedPlanCount/handler';
 import monthWorkoutCountHandler from '@/mocks/summaries/monthWorkoutCount/handler';
@@ -12,6 +13,7 @@ const handlers = [
   ...totalWorkoutCountsHandler,
   ...monthWorkoutCountHandler,
   ...completedPlanCountHandler,
+  ...articleHandler,
 ];
 
 export default handlers;
