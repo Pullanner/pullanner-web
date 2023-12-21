@@ -1,3 +1,4 @@
+import { Pagination, ConfigProvider } from 'antd';
 import { useAtom, useSetAtom } from 'jotai';
 import { useSearchParams } from 'react-router-dom';
 
@@ -7,8 +8,10 @@ import { FilterDropdown } from '@/pages/Community/FilterDropdown';
 import { accessTokenAtom } from '@/stores/atoms/accessTokenAtom';
 import { modalTypeAtom } from '@/stores/atoms/modalTypeAtom';
 
+import { CUSTOM_COLOR_TOKEN } from './customColorToken';
+
 export const CommunityBoard = () => {
-  const [searchParams, _] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const setModalType = useSetAtom(modalTypeAtom);
   const { data: articleData } = useGetAllArticles(
@@ -22,7 +25,7 @@ export const CommunityBoard = () => {
     return null;
   }
 
-  const { articles } = articleData;
+  const { articles, totalArticles } = articleData;
 
   return (
     <section>
@@ -34,6 +37,18 @@ export const CommunityBoard = () => {
           return <ArticleList key={article.id} article={article} />;
         })}
       </ul>
+      <div className="flex justify-center pt-5">
+        <ConfigProvider theme={{ token: CUSTOM_COLOR_TOKEN }}>
+          <Pagination
+            defaultCurrent={1}
+            total={totalArticles}
+            onChange={(page) => {
+              searchParams.set('page', `${page}`);
+              setSearchParams(searchParams);
+            }}
+          />
+        </ConfigProvider>
+      </div>
     </section>
   );
 };
