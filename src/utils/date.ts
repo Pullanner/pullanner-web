@@ -1,6 +1,11 @@
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/ko';
 
 import { DATE_FORMAT_YYYY_MM_DD } from '@/constants';
+
+dayjs.extend(relativeTime);
+dayjs.locale('ko');
 
 export const checkPastDate = (date: string): boolean => {
   const inputDate = dayjs(date);
@@ -63,4 +68,8 @@ export const getDateSubtractedByDays = (dateString: string, days: number) => {
 
 export const getDateAddedByDays = (dateString: string, days: number) => {
   return dayjs(dateString).add(days, 'day').format(DATE_FORMAT_YYYY_MM_DD);
+};
+
+export const getTimeDiff = (timeToCompare: string) => {
+  return dayjs(timeToCompare).fromNow();
 };
