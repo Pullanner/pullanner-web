@@ -20,6 +20,7 @@ export const CommunityBoard = () => {
     setModalType,
     searchParams,
   );
+  const currentPage = searchParams.get('page') ? Number(searchParams.get('page')) : 1;
 
   if (!articleData) {
     return null;
@@ -40,7 +41,7 @@ export const CommunityBoard = () => {
       <div className="flex justify-center pt-5">
         <ConfigProvider theme={{ token: CUSTOM_COLOR_TOKEN }}>
           <Pagination
-            defaultCurrent={1}
+            current={currentPage}
             total={totalArticles}
             onChange={(page) => {
               searchParams.set('page', `${page}`);
